@@ -1,0 +1,1809 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"comm_RS485_UART_SPI_UART.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.comm_RS485_UART_SpiUartReadRxData,"ax",%progbits
+  18              		.align	1
+  19              		.global	comm_RS485_UART_SpiUartReadRxData
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	comm_RS485_UART_SpiUartReadRxData, %function
+  23              	comm_RS485_UART_SpiUartReadRxData:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\comm_RS485_UART_SPI_UART.c"
+   1:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * File Name: comm_RS485_UART_SPI_UART.c
+   3:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Version 2.0
+   4:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+   5:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Description:
+   6:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  This file provides the source code to the API for the SCB Component in
+   7:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  SPI and UART modes.
+   8:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+   9:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Note:
+  10:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+  11:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *******************************************************************************
+  12:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Copyright 2013-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  18:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #include "comm_RS485_UART_PVT.h"
+  19:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #include "comm_RS485_UART_SPI_UART_PVT.h"
+  20:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  21:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** /***************************************
+  22:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *        SPI/UART Private Vars
+  23:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** ***************************************/
+  24:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  25:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST)
+  26:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint32 comm_RS485_UART_rxBufferHead;
+  27:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint32 comm_RS485_UART_rxBufferTail;
+  28:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint8  comm_RS485_UART_rxBufferOverflow;
+  29:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST) */
+  30:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  31:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST)
+  32:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint32 comm_RS485_UART_txBufferHead;
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint32 comm_RS485_UART_txBufferTail;
+  34:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST) */
+  35:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  36:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER)
+  37:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /* Add one element to the buffer to receive full packet. One byte in receive buffer is always e
+  38:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint16 comm_RS485_UART_rxBufferInternal[comm_RS485_UART_RX_BUFFER_SIZE];
+  39:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER) */
+  40:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  41:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER)
+  42:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     volatile uint16 comm_RS485_UART_txBufferInternal[comm_RS485_UART_TX_BUFFER_SIZE];
+  43:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER) */
+  44:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  45:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  46:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_RX_DIRECTION)
+  47:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  48:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+  49:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartReadRxData
+  50:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+  51:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+  52:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+  53:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Retrieves the next data element from the receive buffer.
+  54:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *   - RX software buffer is disabled: Returns data element retrieved from
+  55:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *     RX FIFO. Undefined data will be returned if the RX FIFO is empty.
+  56:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *   - RX software buffer is enabled: Returns data element from the software
+  57:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *     receive buffer. Zero value is returned if the software receive buffer
+  58:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *     is empty.
+  59:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+  60:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+  61:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+  62:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+  63:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+  64:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Next data element from the receive buffer.
+  65:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+  66:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Global Variables:
+  67:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Look into comm_RS485_UART_SpiInit for description.
+  68:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+  69:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+  70:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     uint32 comm_RS485_UART_SpiUartReadRxData(void)
+  71:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+  26              		.loc 1 71 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  72:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         uint32 rxData = 0u;
+  73:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  74:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST)
+  75:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 locTail;
+  76:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST) */
+  77:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  78:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_RX_SW_BUFFER)
+  79:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+  80:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             if(comm_RS485_UART_rxBufferHead != comm_RS485_UART_rxBufferTail)
+  81:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+  82:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* There is data in RX software buffer */
+  83:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  84:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Calculate index to read from */
+  85:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 locTail = (comm_RS485_UART_rxBufferTail + 1u);
+  86:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 3
+
+
+  87:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 if(comm_RS485_UART_RX_BUFFER_SIZE == locTail)
+  88:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 {
+  89:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                     locTail = 0u;
+  90:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 }
+  91:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  92:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Get data from RX software buffer */
+  93:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 rxData = comm_RS485_UART_GetWordFromRxBuffer(locTail);
+  94:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+  95:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Change index in the buffer */
+  96:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_rxBufferTail = locTail;
+  97:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+  98:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+  99:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 100:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 101:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             rxData = comm_RS485_UART_RX_FIFO_RD_REG; /* Read data from RX FIFO */
+  29              		.loc 1 101 0
+  30 0000 014B     		ldr	r3, .L2
+ 102:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 103:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 104:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 105:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         return(rxData);
+ 106:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+  31              		.loc 1 106 0
+  32              		@ sp needed
+ 101:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             rxData = comm_RS485_UART_RX_FIFO_RD_REG; /* Read data from RX FIFO */
+  33              		.loc 1 101 0
+  34 0002 1868     		ldr	r0, [r3]
+  35              	.LVL1:
+  36              		.loc 1 106 0
+  37 0004 7047     		bx	lr
+  38              	.L3:
+  39 0006 C046     		.align	2
+  40              	.L2:
+  41 0008 40030640 		.word	1074135872
+  42              		.cfi_endproc
+  43              	.LFE0:
+  44              		.size	comm_RS485_UART_SpiUartReadRxData, .-comm_RS485_UART_SpiUartReadRxData
+  45              		.section	.text.comm_RS485_UART_SpiUartGetRxBufferSize,"ax",%progbits
+  46              		.align	1
+  47              		.global	comm_RS485_UART_SpiUartGetRxBufferSize
+  48              		.code	16
+  49              		.thumb_func
+  50              		.type	comm_RS485_UART_SpiUartGetRxBufferSize, %function
+  51              	comm_RS485_UART_SpiUartGetRxBufferSize:
+  52              	.LFB1:
+ 107:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 108:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 109:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 110:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartGetRxBufferSize
+ 111:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ 112:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 113:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 114:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Returns the number of received data elements in the receive buffer.
+ 115:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *   - RX software buffer disabled: returns the number of used entries in
+ 116:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *     RX FIFO.
+ 117:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *   - RX software buffer enabled: returns the number of elements which were
+ 118:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *     placed in the receive buffer. This does not include the hardware RX FIFO.
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 4
+
+
+ 119:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 120:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 121:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 122:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 123:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 124:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Number of received data elements
+ 125:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 126:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 127:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     uint32 comm_RS485_UART_SpiUartGetRxBufferSize(void)
+ 128:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+  53              		.loc 1 128 0
+  54              		.cfi_startproc
+ 129:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         uint32 size;
+ 130:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST)
+ 131:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 locHead;
+ 132:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST) */
+ 133:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 134:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_RX_SW_BUFFER)
+ 135:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 136:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             locHead = comm_RS485_UART_rxBufferHead;
+ 137:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 138:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             if(locHead >= comm_RS485_UART_rxBufferTail)
+ 139:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 140:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 size = (locHead - comm_RS485_UART_rxBufferTail);
+ 141:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 142:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             else
+ 143:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 144:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 size = (locHead + (comm_RS485_UART_RX_BUFFER_SIZE - comm_RS485_UART_rxBufferTail));
+ 145:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 146:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 147:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 148:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 149:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             size = comm_RS485_UART_GET_RX_FIFO_ENTRIES;
+  55              		.loc 1 149 0
+  56 0000 024B     		ldr	r3, .L5
+ 150:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 151:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 152:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 153:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         return(size);
+ 154:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+  57              		.loc 1 154 0
+  58              		@ sp needed
+ 149:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             size = comm_RS485_UART_GET_RX_FIFO_ENTRIES;
+  59              		.loc 1 149 0
+  60 0002 1868     		ldr	r0, [r3]
+  61              	.LVL2:
+  62 0004 0F23     		mov	r3, #15
+  63 0006 1840     		and	r0, r3
+  64              	.LVL3:
+  65              		.loc 1 154 0
+  66 0008 7047     		bx	lr
+  67              	.L6:
+  68 000a C046     		.align	2
+  69              	.L5:
+  70 000c 08030640 		.word	1074135816
+  71              		.cfi_endproc
+  72              	.LFE1:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 5
+
+
+  73              		.size	comm_RS485_UART_SpiUartGetRxBufferSize, .-comm_RS485_UART_SpiUartGetRxBufferSize
+  74              		.section	.text.comm_RS485_UART_SpiUartClearRxBuffer,"ax",%progbits
+  75              		.align	1
+  76              		.global	comm_RS485_UART_SpiUartClearRxBuffer
+  77              		.code	16
+  78              		.thumb_func
+  79              		.type	comm_RS485_UART_SpiUartClearRxBuffer, %function
+  80              	comm_RS485_UART_SpiUartClearRxBuffer:
+  81              	.LFB2:
+ 155:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 156:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 157:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 158:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartClearRxBuffer
+ 159:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ 160:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 161:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 162:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Clears the receive buffer and RX FIFO.
+ 163:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 164:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 165:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 166:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 167:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 168:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 169:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 170:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 171:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     void comm_RS485_UART_SpiUartClearRxBuffer(void)
+ 172:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+  82              		.loc 1 172 0
+  83              		.cfi_startproc
+ 173:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST)
+ 174:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 intSourceMask;
+ 175:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST) */
+ 176:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 177:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_RX_SW_BUFFER)
+ 178:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 179:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             intSourceMask = comm_RS485_UART_SpiUartDisableIntRx();
+ 180:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 181:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_RX_FIFO;
+ 182:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 183:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Flush RX software buffer */
+ 184:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_rxBufferHead     = comm_RS485_UART_rxBufferTail;
+ 185:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_rxBufferOverflow = 0u;
+ 186:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 187:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* End RX transfer */
+ 188:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_ClearRxInterruptSource(comm_RS485_UART_INTR_RX_ALL);
+ 189:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 190:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_SpiUartEnableIntRx(intSourceMask);
+ 191:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 192:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 193:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 194:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_RX_FIFO;
+  84              		.loc 1 194 0
+  85 0000 054B     		ldr	r3, .L8
+  86 0002 8022     		mov	r2, #128
+  87 0004 1968     		ldr	r1, [r3]
+  88 0006 5202     		lsl	r2, r2, #9
+  89 0008 0A43     		orr	r2, r1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 6
+
+
+  90 000a 1A60     		str	r2, [r3]
+  91 000c 1968     		ldr	r1, [r3]
+  92 000e 034A     		ldr	r2, .L8+4
+ 195:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 196:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 197:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+  93              		.loc 1 197 0
+  94              		@ sp needed
+ 194:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_RX_FIFO;
+  95              		.loc 1 194 0
+  96 0010 0A40     		and	r2, r1
+  97 0012 1A60     		str	r2, [r3]
+  98              		.loc 1 197 0
+  99 0014 7047     		bx	lr
+ 100              	.L9:
+ 101 0016 C046     		.align	2
+ 102              	.L8:
+ 103 0018 04030640 		.word	1074135812
+ 104 001c FFFFFEFF 		.word	-65537
+ 105              		.cfi_endproc
+ 106              	.LFE2:
+ 107              		.size	comm_RS485_UART_SpiUartClearRxBuffer, .-comm_RS485_UART_SpiUartClearRxBuffer
+ 108              		.section	.text.comm_RS485_UART_SpiUartWriteTxData,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	comm_RS485_UART_SpiUartWriteTxData
+ 111              		.code	16
+ 112              		.thumb_func
+ 113              		.type	comm_RS485_UART_SpiUartWriteTxData, %function
+ 114              	comm_RS485_UART_SpiUartWriteTxData:
+ 115              	.LFB3:
+ 198:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 199:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_RX_DIRECTION) */
+ 200:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 201:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 202:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #if(comm_RS485_UART_TX_DIRECTION)
+ 203:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 204:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 205:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartWriteTxData
+ 206:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ 207:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 208:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 209:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Places a data entry into the transmit buffer to be sent at the next available
+ 210:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  bus time.
+ 211:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  This function is blocking and waits until there is space available to put the
+ 212:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  requested data in the transmit buffer.
+ 213:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 214:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 215:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  txDataByte: the data to be transmitted.
+ 216:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 217:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 218:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 219:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 220:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 221:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     void comm_RS485_UART_SpiUartWriteTxData(uint32 txData)
+ 222:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+ 116              		.loc 1 222 0
+ 117              		.cfi_startproc
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 7
+
+
+ 118              	.LVL4:
+ 119              	.L12:
+ 223:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST)
+ 224:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 locHead;
+ 225:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 intSourceMask;
+ 226:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST) */
+ 227:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 228:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_TX_SW_BUFFER)
+ 229:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 230:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Head index to put data */
+ 231:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             locHead = (comm_RS485_UART_txBufferHead + 1u);
+ 232:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 233:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Adjust TX software buffer index */
+ 234:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             if(comm_RS485_UART_TX_BUFFER_SIZE == locHead)
+ 235:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 236:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 locHead = 0u;
+ 237:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 238:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 239:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             while(locHead == comm_RS485_UART_txBufferTail)
+ 240:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 241:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Wait for space in TX software buffer */
+ 242:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 243:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 244:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* TX software buffer has at least one room */
+ 245:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 246:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             if((comm_RS485_UART_txBufferHead == comm_RS485_UART_txBufferTail) &&
+ 247:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                (comm_RS485_UART_SPI_UART_FIFO_SIZE != comm_RS485_UART_GET_TX_FIFO_ENTRIES))
+ 248:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 249:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* TX software buffer is empty: put data directly in TX FIFO */
+ 250:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_TX_FIFO_WR_REG = txData;
+ 251:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 252:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Put data in TX software buffer */
+ 253:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             else
+ 254:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 255:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Clear old status of INTR_TX_NOT_FULL. It sets at the end of transfer when TX FIF
+ 256:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_ClearTxInterruptSource(comm_RS485_UART_INTR_TX_NOT_FULL);
+ 257:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 258:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_PutWordInTxBuffer(locHead, txData);
+ 259:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 260:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_txBufferHead = locHead;
+ 261:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 262:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Enable interrupt to transmit */
+ 263:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 intSourceMask  = comm_RS485_UART_INTR_TX_NOT_FULL;
+ 264:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 intSourceMask |= comm_RS485_UART_GetTxInterruptMode();
+ 265:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 comm_RS485_UART_SpiUartEnableIntTx(intSourceMask);
+ 266:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 267:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 268:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 269:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 270:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             while(comm_RS485_UART_SPI_UART_FIFO_SIZE == comm_RS485_UART_GET_TX_FIFO_ENTRIES)
+ 120              		.loc 1 270 0 discriminator 1
+ 121 0000 044B     		ldr	r3, .L14
+ 122 0002 1A68     		ldr	r2, [r3]
+ 123 0004 0F23     		mov	r3, #15
+ 124 0006 1340     		and	r3, r2
+ 125 0008 082B     		cmp	r3, #8
+ 126 000a F9D0     		beq	.L12
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 8
+
+
+ 271:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 272:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 /* Block while TX FIFO is FULL */
+ 273:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 274:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 275:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_TX_FIFO_WR_REG = txData;
+ 127              		.loc 1 275 0
+ 128 000c 024B     		ldr	r3, .L14+4
+ 276:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 277:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 278:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+ 129              		.loc 1 278 0
+ 130              		@ sp needed
+ 275:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_TX_FIFO_WR_REG = txData;
+ 131              		.loc 1 275 0
+ 132 000e 1860     		str	r0, [r3]
+ 133              		.loc 1 278 0
+ 134 0010 7047     		bx	lr
+ 135              	.L15:
+ 136 0012 C046     		.align	2
+ 137              	.L14:
+ 138 0014 08020640 		.word	1074135560
+ 139 0018 40020640 		.word	1074135616
+ 140              		.cfi_endproc
+ 141              	.LFE3:
+ 142              		.size	comm_RS485_UART_SpiUartWriteTxData, .-comm_RS485_UART_SpiUartWriteTxData
+ 143              		.section	.text.comm_RS485_UART_SpiUartPutArray,"ax",%progbits
+ 144              		.align	1
+ 145              		.global	comm_RS485_UART_SpiUartPutArray
+ 146              		.code	16
+ 147              		.thumb_func
+ 148              		.type	comm_RS485_UART_SpiUartPutArray, %function
+ 149              	comm_RS485_UART_SpiUartPutArray:
+ 150              	.LFB4:
+ 279:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 280:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 281:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 282:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartPutArray
+ 283:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ 284:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 285:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 286:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Places an array of data into the transmit buffer to be sent.
+ 287:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  This function is blocking and waits until there is a space available to put
+ 288:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  all the requested data in the transmit buffer. The array size can be greater
+ 289:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  than transmit buffer size.
+ 290:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 291:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 292:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  wrBuf:  pointer to an array with data to be placed in transmit buffer.
+ 293:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  count:  number of data elements to be placed in the transmit buffer.
+ 294:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 295:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 296:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 297:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 298:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 299:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     void comm_RS485_UART_SpiUartPutArray(const uint16 wrBuf[], uint32 count)
+ 300:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+ 151              		.loc 1 300 0
+ 152              		.cfi_startproc
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 9
+
+
+ 153              	.LVL5:
+ 154 0000 70B5     		push	{r4, r5, r6, lr}
+ 155              		.cfi_def_cfa_offset 16
+ 156              		.cfi_offset 4, -16
+ 157              		.cfi_offset 5, -12
+ 158              		.cfi_offset 6, -8
+ 159              		.cfi_offset 14, -4
+ 160              		.loc 1 300 0
+ 161 0002 061C     		mov	r6, r0
+ 162 0004 0D1C     		mov	r5, r1
+ 301:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         uint32 i;
+ 302:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 303:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         for(i=0u; i < count; i++)
+ 163              		.loc 1 303 0
+ 164 0006 0024     		mov	r4, #0
+ 165              	.LVL6:
+ 166              	.L17:
+ 167              		.loc 1 303 0 is_stmt 0 discriminator 1
+ 168 0008 AC42     		cmp	r4, r5
+ 169 000a 05D0     		beq	.L19
+ 170 000c 6300     		lsl	r3, r4, #1
+ 304:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 305:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_SpiUartWriteTxData((uint32) wrBuf[i]);
+ 171              		.loc 1 305 0 is_stmt 1 discriminator 2
+ 172 000e F05A     		ldrh	r0, [r6, r3]
+ 173 0010 FFF7FEFF 		bl	comm_RS485_UART_SpiUartWriteTxData
+ 174              	.LVL7:
+ 303:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         for(i=0u; i < count; i++)
+ 175              		.loc 1 303 0 discriminator 2
+ 176 0014 0134     		add	r4, r4, #1
+ 177              	.LVL8:
+ 178 0016 F7E7     		b	.L17
+ 179              	.L19:
+ 306:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 307:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+ 180              		.loc 1 307 0
+ 181              		@ sp needed
+ 182              	.LVL9:
+ 183              	.LVL10:
+ 184              	.LVL11:
+ 185 0018 70BD     		pop	{r4, r5, r6, pc}
+ 186              		.cfi_endproc
+ 187              	.LFE4:
+ 188              		.size	comm_RS485_UART_SpiUartPutArray, .-comm_RS485_UART_SpiUartPutArray
+ 189              		.section	.text.comm_RS485_UART_SpiUartGetTxBufferSize,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	comm_RS485_UART_SpiUartGetTxBufferSize
+ 192              		.code	16
+ 193              		.thumb_func
+ 194              		.type	comm_RS485_UART_SpiUartGetTxBufferSize, %function
+ 195              	comm_RS485_UART_SpiUartGetTxBufferSize:
+ 196              	.LFB5:
+ 308:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 309:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 310:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 311:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartGetTxBufferSize
+ 312:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 10
+
+
+ 313:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 314:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 315:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Returns the number of elements currently in the transmit buffer.
+ 316:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  - TX software buffer is disabled: returns the number of used entries in
+ 317:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *    TX FIFO.
+ 318:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  - TX software buffer is enabled: returns the number of elements currently
+ 319:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *    used in the transmit buffer. This number does not include used entries in
+ 320:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *    the TX FIFO. The transmit buffer size is zero until the TX FIFO is
+ 321:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *    not full.
+ 322:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 323:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 324:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 325:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 326:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 327:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Number of data elements ready to transmit.
+ 328:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 329:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 330:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     uint32 comm_RS485_UART_SpiUartGetTxBufferSize(void)
+ 331:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+ 197              		.loc 1 331 0
+ 198              		.cfi_startproc
+ 332:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         uint32 size;
+ 333:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST)
+ 334:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 locTail;
+ 335:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST) */
+ 336:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 337:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_TX_SW_BUFFER)
+ 338:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 339:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Get current Tail index */
+ 340:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             locTail = comm_RS485_UART_txBufferTail;
+ 341:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 342:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             if(comm_RS485_UART_txBufferHead >= locTail)
+ 343:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 344:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 size = (comm_RS485_UART_txBufferHead - locTail);
+ 345:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 346:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             else
+ 347:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             {
+ 348:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****                 size = (comm_RS485_UART_txBufferHead + (comm_RS485_UART_TX_BUFFER_SIZE - locTail));
+ 349:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             }
+ 350:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 351:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 352:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 353:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             size = comm_RS485_UART_GET_TX_FIFO_ENTRIES;
+ 199              		.loc 1 353 0
+ 200 0000 024B     		ldr	r3, .L21
+ 354:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 355:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 356:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 357:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         return(size);
+ 358:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+ 201              		.loc 1 358 0
+ 202              		@ sp needed
+ 353:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             size = comm_RS485_UART_GET_TX_FIFO_ENTRIES;
+ 203              		.loc 1 353 0
+ 204 0002 1868     		ldr	r0, [r3]
+ 205              	.LVL12:
+ 206 0004 0F23     		mov	r3, #15
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 11
+
+
+ 207 0006 1840     		and	r0, r3
+ 208              	.LVL13:
+ 209              		.loc 1 358 0
+ 210 0008 7047     		bx	lr
+ 211              	.L22:
+ 212 000a C046     		.align	2
+ 213              	.L21:
+ 214 000c 08020640 		.word	1074135560
+ 215              		.cfi_endproc
+ 216              	.LFE5:
+ 217              		.size	comm_RS485_UART_SpiUartGetTxBufferSize, .-comm_RS485_UART_SpiUartGetTxBufferSize
+ 218              		.section	.text.comm_RS485_UART_SpiUartClearTxBuffer,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	comm_RS485_UART_SpiUartClearTxBuffer
+ 221              		.code	16
+ 222              		.thumb_func
+ 223              		.type	comm_RS485_UART_SpiUartClearTxBuffer, %function
+ 224              	comm_RS485_UART_SpiUartClearTxBuffer:
+ 225              	.LFB6:
+ 359:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 360:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 361:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     /*******************************************************************************
+ 362:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Function Name: comm_RS485_UART_SpiUartClearTxBuffer
+ 363:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     ********************************************************************************
+ 364:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 365:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Summary:
+ 366:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  Clears the transmit buffer and TX FIFO.
+ 367:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 368:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Parameters:
+ 369:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 370:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 371:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     * Return:
+ 372:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *  None
+ 373:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *
+ 374:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     *******************************************************************************/
+ 375:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     void comm_RS485_UART_SpiUartClearTxBuffer(void)
+ 376:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     {
+ 226              		.loc 1 376 0
+ 227              		.cfi_startproc
+ 377:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST)
+ 378:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             uint32 intSourceMask;
+ 379:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST) */
+ 380:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 381:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #if(comm_RS485_UART_CHECK_TX_SW_BUFFER)
+ 382:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 383:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             intSourceMask = comm_RS485_UART_SpiUartDisableIntTx();
+ 384:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 385:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_TX_FIFO;
+ 386:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 387:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* Flush TX software buffer */
+ 388:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_txBufferHead = comm_RS485_UART_txBufferTail;
+ 389:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 390:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             /* End TX transfer if it is in progress */
+ 391:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             intSourceMask &= (uint32) ~comm_RS485_UART_INTR_TX_NOT_FULL;
+ 392:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 393:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_SpiUartEnableIntTx(intSourceMask);
+ 394:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 12
+
+
+ 395:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #else
+ 396:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         {
+ 397:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_TX_FIFO;
+ 228              		.loc 1 397 0
+ 229 0000 054B     		ldr	r3, .L24
+ 230 0002 8022     		mov	r2, #128
+ 231 0004 1968     		ldr	r1, [r3]
+ 232 0006 5202     		lsl	r2, r2, #9
+ 233 0008 0A43     		orr	r2, r1
+ 234 000a 1A60     		str	r2, [r3]
+ 235 000c 1968     		ldr	r1, [r3]
+ 236 000e 034A     		ldr	r2, .L24+4
+ 398:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         }
+ 399:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****         #endif
+ 400:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     }
+ 237              		.loc 1 400 0
+ 238              		@ sp needed
+ 397:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****             comm_RS485_UART_CLEAR_TX_FIFO;
+ 239              		.loc 1 397 0
+ 240 0010 0A40     		and	r2, r1
+ 241 0012 1A60     		str	r2, [r3]
+ 242              		.loc 1 400 0
+ 243 0014 7047     		bx	lr
+ 244              	.L25:
+ 245 0016 C046     		.align	2
+ 246              	.L24:
+ 247 0018 04020640 		.word	1074135556
+ 248 001c FFFFFEFF 		.word	-65537
+ 249              		.cfi_endproc
+ 250              	.LFE6:
+ 251              		.size	comm_RS485_UART_SpiUartClearTxBuffer, .-comm_RS485_UART_SpiUartClearTxBuffer
+ 252              		.section	.text.comm_RS485_UART_SpiUartDisableIntRx,"ax",%progbits
+ 253              		.align	1
+ 254              		.global	comm_RS485_UART_SpiUartDisableIntRx
+ 255              		.code	16
+ 256              		.thumb_func
+ 257              		.type	comm_RS485_UART_SpiUartDisableIntRx, %function
+ 258              	comm_RS485_UART_SpiUartDisableIntRx:
+ 259              	.LFB7:
+ 401:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 402:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** #endif /* (comm_RS485_UART_TX_DIRECTION) */
+ 403:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 404:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 405:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** /*******************************************************************************
+ 406:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Function Name: comm_RS485_UART_SpiUartDisableIntRx
+ 407:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** ********************************************************************************
+ 408:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 409:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Summary:
+ 410:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  Disables the RX interrupt sources.
+ 411:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 412:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Parameters:
+ 413:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  None
+ 414:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 415:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Return:
+ 416:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  Returns the RX interrupt sources enabled before the function call.
+ 417:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 418:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *******************************************************************************/
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 13
+
+
+ 419:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** uint32 comm_RS485_UART_SpiUartDisableIntRx(void)
+ 420:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** {
+ 260              		.loc 1 420 0
+ 261              		.cfi_startproc
+ 421:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     uint32 intSource;
+ 422:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 423:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     intSource = comm_RS485_UART_GetRxInterruptMode();
+ 262              		.loc 1 423 0
+ 263 0000 024B     		ldr	r3, .L27
+ 424:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 425:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     comm_RS485_UART_SetRxInterruptMode(comm_RS485_UART_NO_INTR_SOURCES);
+ 264              		.loc 1 425 0
+ 265 0002 0022     		mov	r2, #0
+ 423:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     intSource = comm_RS485_UART_GetRxInterruptMode();
+ 266              		.loc 1 423 0
+ 267 0004 1868     		ldr	r0, [r3]
+ 268              	.LVL14:
+ 426:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 427:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     return(intSource);
+ 428:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** }
+ 269              		.loc 1 428 0
+ 270              		@ sp needed
+ 425:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     comm_RS485_UART_SetRxInterruptMode(comm_RS485_UART_NO_INTR_SOURCES);
+ 271              		.loc 1 425 0
+ 272 0006 1A60     		str	r2, [r3]
+ 273              		.loc 1 428 0
+ 274 0008 7047     		bx	lr
+ 275              	.L28:
+ 276 000a C046     		.align	2
+ 277              	.L27:
+ 278 000c C80F0640 		.word	1074139080
+ 279              		.cfi_endproc
+ 280              	.LFE7:
+ 281              		.size	comm_RS485_UART_SpiUartDisableIntRx, .-comm_RS485_UART_SpiUartDisableIntRx
+ 282              		.section	.text.comm_RS485_UART_SpiUartDisableIntTx,"ax",%progbits
+ 283              		.align	1
+ 284              		.global	comm_RS485_UART_SpiUartDisableIntTx
+ 285              		.code	16
+ 286              		.thumb_func
+ 287              		.type	comm_RS485_UART_SpiUartDisableIntTx, %function
+ 288              	comm_RS485_UART_SpiUartDisableIntTx:
+ 289              	.LFB8:
+ 429:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 430:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 431:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** /*******************************************************************************
+ 432:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Function Name: comm_RS485_UART_SpiUartDisableIntTx
+ 433:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** ********************************************************************************
+ 434:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 435:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Summary:
+ 436:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  Disables TX interrupt sources.
+ 437:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 438:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Parameters:
+ 439:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  None
+ 440:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ 441:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** * Return:
+ 442:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *  Returns TX interrupt sources enabled before function call.
+ 443:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 14
+
+
+ 444:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** *******************************************************************************/
+ 445:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** uint32 comm_RS485_UART_SpiUartDisableIntTx(void)
+ 446:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** {
+ 290              		.loc 1 446 0
+ 291              		.cfi_startproc
+ 447:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     uint32 intSourceMask;
+ 448:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 449:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     intSourceMask = comm_RS485_UART_GetTxInterruptMode();
+ 292              		.loc 1 449 0
+ 293 0000 024B     		ldr	r3, .L30
+ 450:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 451:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     comm_RS485_UART_SetTxInterruptMode(comm_RS485_UART_NO_INTR_SOURCES);
+ 294              		.loc 1 451 0
+ 295 0002 0022     		mov	r2, #0
+ 449:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     intSourceMask = comm_RS485_UART_GetTxInterruptMode();
+ 296              		.loc 1 449 0
+ 297 0004 1868     		ldr	r0, [r3]
+ 298              	.LVL15:
+ 452:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** 
+ 453:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     return(intSourceMask);
+ 454:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c **** }
+ 299              		.loc 1 454 0
+ 300              		@ sp needed
+ 451:.\Generated_Source\PSoC4/comm_RS485_UART_SPI_UART.c ****     comm_RS485_UART_SetTxInterruptMode(comm_RS485_UART_NO_INTR_SOURCES);
+ 301              		.loc 1 451 0
+ 302 0006 1A60     		str	r2, [r3]
+ 303              		.loc 1 454 0
+ 304 0008 7047     		bx	lr
+ 305              	.L31:
+ 306 000a C046     		.align	2
+ 307              	.L30:
+ 308 000c 880F0640 		.word	1074139016
+ 309              		.cfi_endproc
+ 310              	.LFE8:
+ 311              		.size	comm_RS485_UART_SpiUartDisableIntTx, .-comm_RS485_UART_SpiUartDisableIntTx
+ 312              		.text
+ 313              	.Letext0:
+ 314              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 315              		.section	.debug_info,"",%progbits
+ 316              	.Ldebug_info0:
+ 317 0000 15020000 		.4byte	0x215
+ 318 0004 0400     		.2byte	0x4
+ 319 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 320 000a 04       		.byte	0x4
+ 321 000b 01       		.uleb128 0x1
+ 322 000c C5000000 		.4byte	.LASF32
+ 323 0010 01       		.byte	0x1
+ 324 0011 E2020000 		.4byte	.LASF33
+ 325 0015 1C020000 		.4byte	.LASF34
+ 326 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 327 001d 00000000 		.4byte	0
+ 328 0021 00000000 		.4byte	.Ldebug_line0
+ 329 0025 02       		.uleb128 0x2
+ 330 0026 01       		.byte	0x1
+ 331 0027 06       		.byte	0x6
+ 332 0028 D6020000 		.4byte	.LASF0
+ 333 002c 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 15
+
+
+ 334 002d 01       		.byte	0x1
+ 335 002e 08       		.byte	0x8
+ 336 002f BC010000 		.4byte	.LASF1
+ 337 0033 02       		.uleb128 0x2
+ 338 0034 02       		.byte	0x2
+ 339 0035 05       		.byte	0x5
+ 340 0036 96020000 		.4byte	.LASF2
+ 341 003a 02       		.uleb128 0x2
+ 342 003b 02       		.byte	0x2
+ 343 003c 07       		.byte	0x7
+ 344 003d 75010000 		.4byte	.LASF3
+ 345 0041 02       		.uleb128 0x2
+ 346 0042 04       		.byte	0x4
+ 347 0043 05       		.byte	0x5
+ 348 0044 C7020000 		.4byte	.LASF4
+ 349 0048 02       		.uleb128 0x2
+ 350 0049 04       		.byte	0x4
+ 351 004a 07       		.byte	0x7
+ 352 004b 63010000 		.4byte	.LASF5
+ 353 004f 02       		.uleb128 0x2
+ 354 0050 08       		.byte	0x8
+ 355 0051 05       		.byte	0x5
+ 356 0052 83020000 		.4byte	.LASF6
+ 357 0056 02       		.uleb128 0x2
+ 358 0057 08       		.byte	0x8
+ 359 0058 07       		.byte	0x7
+ 360 0059 47010000 		.4byte	.LASF7
+ 361 005d 03       		.uleb128 0x3
+ 362 005e 04       		.byte	0x4
+ 363 005f 05       		.byte	0x5
+ 364 0060 696E7400 		.ascii	"int\000"
+ 365 0064 02       		.uleb128 0x2
+ 366 0065 04       		.byte	0x4
+ 367 0066 07       		.byte	0x7
+ 368 0067 B8000000 		.4byte	.LASF8
+ 369 006b 04       		.uleb128 0x4
+ 370 006c F6010000 		.4byte	.LASF9
+ 371 0070 02       		.byte	0x2
+ 372 0071 B4       		.byte	0xb4
+ 373 0072 3A000000 		.4byte	0x3a
+ 374 0076 04       		.uleb128 0x4
+ 375 0077 FD010000 		.4byte	.LASF10
+ 376 007b 02       		.byte	0x2
+ 377 007c B5       		.byte	0xb5
+ 378 007d 48000000 		.4byte	0x48
+ 379 0081 02       		.uleb128 0x2
+ 380 0082 04       		.byte	0x4
+ 381 0083 04       		.byte	0x4
+ 382 0084 41010000 		.4byte	.LASF11
+ 383 0088 02       		.uleb128 0x2
+ 384 0089 08       		.byte	0x8
+ 385 008a 04       		.byte	0x4
+ 386 008b CA010000 		.4byte	.LASF12
+ 387 008f 02       		.uleb128 0x2
+ 388 0090 01       		.byte	0x1
+ 389 0091 08       		.byte	0x8
+ 390 0092 91020000 		.4byte	.LASF13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 16
+
+
+ 391 0096 05       		.uleb128 0x5
+ 392 0097 D0020000 		.4byte	.LASF14
+ 393 009b 02       		.byte	0x2
+ 394 009c 5F01     		.2byte	0x15f
+ 395 009e A2000000 		.4byte	0xa2
+ 396 00a2 06       		.uleb128 0x6
+ 397 00a3 76000000 		.4byte	0x76
+ 398 00a7 02       		.uleb128 0x2
+ 399 00a8 04       		.byte	0x4
+ 400 00a9 07       		.byte	0x7
+ 401 00aa 7A020000 		.4byte	.LASF15
+ 402 00ae 07       		.uleb128 0x7
+ 403 00af 72000000 		.4byte	.LASF16
+ 404 00b3 01       		.byte	0x1
+ 405 00b4 46       		.byte	0x46
+ 406 00b5 76000000 		.4byte	0x76
+ 407 00b9 00000000 		.4byte	.LFB0
+ 408 00bd 0C000000 		.4byte	.LFE0-.LFB0
+ 409 00c1 01       		.uleb128 0x1
+ 410 00c2 9C       		.byte	0x9c
+ 411 00c3 D7000000 		.4byte	0xd7
+ 412 00c7 08       		.uleb128 0x8
+ 413 00c8 AF010000 		.4byte	.LASF18
+ 414 00cc 01       		.byte	0x1
+ 415 00cd 48       		.byte	0x48
+ 416 00ce 76000000 		.4byte	0x76
+ 417 00d2 00000000 		.4byte	.LLST0
+ 418 00d6 00       		.byte	0
+ 419 00d7 07       		.uleb128 0x7
+ 420 00d8 A0020000 		.4byte	.LASF17
+ 421 00dc 01       		.byte	0x1
+ 422 00dd 7F       		.byte	0x7f
+ 423 00de 76000000 		.4byte	0x76
+ 424 00e2 00000000 		.4byte	.LFB1
+ 425 00e6 10000000 		.4byte	.LFE1-.LFB1
+ 426 00ea 01       		.uleb128 0x1
+ 427 00eb 9C       		.byte	0x9c
+ 428 00ec 00010000 		.4byte	0x100
+ 429 00f0 08       		.uleb128 0x8
+ 430 00f1 5E010000 		.4byte	.LASF19
+ 431 00f5 01       		.byte	0x1
+ 432 00f6 81       		.byte	0x81
+ 433 00f7 76000000 		.4byte	0x76
+ 434 00fb 1F000000 		.4byte	.LLST1
+ 435 00ff 00       		.byte	0
+ 436 0100 09       		.uleb128 0x9
+ 437 0101 D1010000 		.4byte	.LASF26
+ 438 0105 01       		.byte	0x1
+ 439 0106 AB       		.byte	0xab
+ 440 0107 00000000 		.4byte	.LFB2
+ 441 010b 20000000 		.4byte	.LFE2-.LFB2
+ 442 010f 01       		.uleb128 0x1
+ 443 0110 9C       		.byte	0x9c
+ 444 0111 0A       		.uleb128 0xa
+ 445 0112 25000000 		.4byte	.LASF20
+ 446 0116 01       		.byte	0x1
+ 447 0117 DD       		.byte	0xdd
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 17
+
+
+ 448 0118 00000000 		.4byte	.LFB3
+ 449 011c 1C000000 		.4byte	.LFE3-.LFB3
+ 450 0120 01       		.uleb128 0x1
+ 451 0121 9C       		.byte	0x9c
+ 452 0122 34010000 		.4byte	0x134
+ 453 0126 0B       		.uleb128 0xb
+ 454 0127 73020000 		.4byte	.LASF22
+ 455 012b 01       		.byte	0x1
+ 456 012c DD       		.byte	0xdd
+ 457 012d 76000000 		.4byte	0x76
+ 458 0131 01       		.uleb128 0x1
+ 459 0132 50       		.byte	0x50
+ 460 0133 00       		.byte	0
+ 461 0134 0C       		.uleb128 0xc
+ 462 0135 53020000 		.4byte	.LASF21
+ 463 0139 01       		.byte	0x1
+ 464 013a 2B01     		.2byte	0x12b
+ 465 013c 00000000 		.4byte	.LFB4
+ 466 0140 1A000000 		.4byte	.LFE4-.LFB4
+ 467 0144 01       		.uleb128 0x1
+ 468 0145 9C       		.byte	0x9c
+ 469 0146 82010000 		.4byte	0x182
+ 470 014a 0D       		.uleb128 0xd
+ 471 014b B6010000 		.4byte	.LASF23
+ 472 014f 01       		.byte	0x1
+ 473 0150 2B01     		.2byte	0x12b
+ 474 0152 82010000 		.4byte	0x182
+ 475 0156 41000000 		.4byte	.LLST2
+ 476 015a 0D       		.uleb128 0xd
+ 477 015b 6C000000 		.4byte	.LASF24
+ 478 015f 01       		.byte	0x1
+ 479 0160 2B01     		.2byte	0x12b
+ 480 0162 76000000 		.4byte	0x76
+ 481 0166 6D000000 		.4byte	.LLST3
+ 482 016a 0E       		.uleb128 0xe
+ 483 016b 6900     		.ascii	"i\000"
+ 484 016d 01       		.byte	0x1
+ 485 016e 2D01     		.2byte	0x12d
+ 486 0170 76000000 		.4byte	0x76
+ 487 0174 99000000 		.4byte	.LLST4
+ 488 0178 0F       		.uleb128 0xf
+ 489 0179 14000000 		.4byte	.LVL7
+ 490 017d 11010000 		.4byte	0x111
+ 491 0181 00       		.byte	0
+ 492 0182 10       		.uleb128 0x10
+ 493 0183 04       		.byte	0x4
+ 494 0184 88010000 		.4byte	0x188
+ 495 0188 11       		.uleb128 0x11
+ 496 0189 6B000000 		.4byte	0x6b
+ 497 018d 12       		.uleb128 0x12
+ 498 018e 88010000 		.4byte	.LASF25
+ 499 0192 01       		.byte	0x1
+ 500 0193 4A01     		.2byte	0x14a
+ 501 0195 76000000 		.4byte	0x76
+ 502 0199 00000000 		.4byte	.LFB5
+ 503 019d 10000000 		.4byte	.LFE5-.LFB5
+ 504 01a1 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 18
+
+
+ 505 01a2 9C       		.byte	0x9c
+ 506 01a3 B8010000 		.4byte	0x1b8
+ 507 01a7 13       		.uleb128 0x13
+ 508 01a8 5E010000 		.4byte	.LASF19
+ 509 01ac 01       		.byte	0x1
+ 510 01ad 4C01     		.2byte	0x14c
+ 511 01af 76000000 		.4byte	0x76
+ 512 01b3 B8000000 		.4byte	.LLST5
+ 513 01b7 00       		.byte	0
+ 514 01b8 14       		.uleb128 0x14
+ 515 01b9 00000000 		.4byte	.LASF27
+ 516 01bd 01       		.byte	0x1
+ 517 01be 7701     		.2byte	0x177
+ 518 01c0 00000000 		.4byte	.LFB6
+ 519 01c4 20000000 		.4byte	.LFE6-.LFB6
+ 520 01c8 01       		.uleb128 0x1
+ 521 01c9 9C       		.byte	0x9c
+ 522 01ca 12       		.uleb128 0x12
+ 523 01cb 48000000 		.4byte	.LASF28
+ 524 01cf 01       		.byte	0x1
+ 525 01d0 A301     		.2byte	0x1a3
+ 526 01d2 76000000 		.4byte	0x76
+ 527 01d6 00000000 		.4byte	.LFB7
+ 528 01da 10000000 		.4byte	.LFE7-.LFB7
+ 529 01de 01       		.uleb128 0x1
+ 530 01df 9C       		.byte	0x9c
+ 531 01e0 F3010000 		.4byte	0x1f3
+ 532 01e4 15       		.uleb128 0x15
+ 533 01e5 12020000 		.4byte	.LASF29
+ 534 01e9 01       		.byte	0x1
+ 535 01ea A501     		.2byte	0x1a5
+ 536 01ec 76000000 		.4byte	0x76
+ 537 01f0 01       		.uleb128 0x1
+ 538 01f1 50       		.byte	0x50
+ 539 01f2 00       		.byte	0
+ 540 01f3 16       		.uleb128 0x16
+ 541 01f4 94000000 		.4byte	.LASF30
+ 542 01f8 01       		.byte	0x1
+ 543 01f9 BD01     		.2byte	0x1bd
+ 544 01fb 76000000 		.4byte	0x76
+ 545 01ff 00000000 		.4byte	.LFB8
+ 546 0203 10000000 		.4byte	.LFE8-.LFB8
+ 547 0207 01       		.uleb128 0x1
+ 548 0208 9C       		.byte	0x9c
+ 549 0209 15       		.uleb128 0x15
+ 550 020a 04020000 		.4byte	.LASF31
+ 551 020e 01       		.byte	0x1
+ 552 020f BF01     		.2byte	0x1bf
+ 553 0211 76000000 		.4byte	0x76
+ 554 0215 01       		.uleb128 0x1
+ 555 0216 50       		.byte	0x50
+ 556 0217 00       		.byte	0
+ 557 0218 00       		.byte	0
+ 558              		.section	.debug_abbrev,"",%progbits
+ 559              	.Ldebug_abbrev0:
+ 560 0000 01       		.uleb128 0x1
+ 561 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 19
+
+
+ 562 0002 01       		.byte	0x1
+ 563 0003 25       		.uleb128 0x25
+ 564 0004 0E       		.uleb128 0xe
+ 565 0005 13       		.uleb128 0x13
+ 566 0006 0B       		.uleb128 0xb
+ 567 0007 03       		.uleb128 0x3
+ 568 0008 0E       		.uleb128 0xe
+ 569 0009 1B       		.uleb128 0x1b
+ 570 000a 0E       		.uleb128 0xe
+ 571 000b 55       		.uleb128 0x55
+ 572 000c 17       		.uleb128 0x17
+ 573 000d 11       		.uleb128 0x11
+ 574 000e 01       		.uleb128 0x1
+ 575 000f 10       		.uleb128 0x10
+ 576 0010 17       		.uleb128 0x17
+ 577 0011 00       		.byte	0
+ 578 0012 00       		.byte	0
+ 579 0013 02       		.uleb128 0x2
+ 580 0014 24       		.uleb128 0x24
+ 581 0015 00       		.byte	0
+ 582 0016 0B       		.uleb128 0xb
+ 583 0017 0B       		.uleb128 0xb
+ 584 0018 3E       		.uleb128 0x3e
+ 585 0019 0B       		.uleb128 0xb
+ 586 001a 03       		.uleb128 0x3
+ 587 001b 0E       		.uleb128 0xe
+ 588 001c 00       		.byte	0
+ 589 001d 00       		.byte	0
+ 590 001e 03       		.uleb128 0x3
+ 591 001f 24       		.uleb128 0x24
+ 592 0020 00       		.byte	0
+ 593 0021 0B       		.uleb128 0xb
+ 594 0022 0B       		.uleb128 0xb
+ 595 0023 3E       		.uleb128 0x3e
+ 596 0024 0B       		.uleb128 0xb
+ 597 0025 03       		.uleb128 0x3
+ 598 0026 08       		.uleb128 0x8
+ 599 0027 00       		.byte	0
+ 600 0028 00       		.byte	0
+ 601 0029 04       		.uleb128 0x4
+ 602 002a 16       		.uleb128 0x16
+ 603 002b 00       		.byte	0
+ 604 002c 03       		.uleb128 0x3
+ 605 002d 0E       		.uleb128 0xe
+ 606 002e 3A       		.uleb128 0x3a
+ 607 002f 0B       		.uleb128 0xb
+ 608 0030 3B       		.uleb128 0x3b
+ 609 0031 0B       		.uleb128 0xb
+ 610 0032 49       		.uleb128 0x49
+ 611 0033 13       		.uleb128 0x13
+ 612 0034 00       		.byte	0
+ 613 0035 00       		.byte	0
+ 614 0036 05       		.uleb128 0x5
+ 615 0037 16       		.uleb128 0x16
+ 616 0038 00       		.byte	0
+ 617 0039 03       		.uleb128 0x3
+ 618 003a 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 20
+
+
+ 619 003b 3A       		.uleb128 0x3a
+ 620 003c 0B       		.uleb128 0xb
+ 621 003d 3B       		.uleb128 0x3b
+ 622 003e 05       		.uleb128 0x5
+ 623 003f 49       		.uleb128 0x49
+ 624 0040 13       		.uleb128 0x13
+ 625 0041 00       		.byte	0
+ 626 0042 00       		.byte	0
+ 627 0043 06       		.uleb128 0x6
+ 628 0044 35       		.uleb128 0x35
+ 629 0045 00       		.byte	0
+ 630 0046 49       		.uleb128 0x49
+ 631 0047 13       		.uleb128 0x13
+ 632 0048 00       		.byte	0
+ 633 0049 00       		.byte	0
+ 634 004a 07       		.uleb128 0x7
+ 635 004b 2E       		.uleb128 0x2e
+ 636 004c 01       		.byte	0x1
+ 637 004d 3F       		.uleb128 0x3f
+ 638 004e 19       		.uleb128 0x19
+ 639 004f 03       		.uleb128 0x3
+ 640 0050 0E       		.uleb128 0xe
+ 641 0051 3A       		.uleb128 0x3a
+ 642 0052 0B       		.uleb128 0xb
+ 643 0053 3B       		.uleb128 0x3b
+ 644 0054 0B       		.uleb128 0xb
+ 645 0055 27       		.uleb128 0x27
+ 646 0056 19       		.uleb128 0x19
+ 647 0057 49       		.uleb128 0x49
+ 648 0058 13       		.uleb128 0x13
+ 649 0059 11       		.uleb128 0x11
+ 650 005a 01       		.uleb128 0x1
+ 651 005b 12       		.uleb128 0x12
+ 652 005c 06       		.uleb128 0x6
+ 653 005d 40       		.uleb128 0x40
+ 654 005e 18       		.uleb128 0x18
+ 655 005f 9742     		.uleb128 0x2117
+ 656 0061 19       		.uleb128 0x19
+ 657 0062 01       		.uleb128 0x1
+ 658 0063 13       		.uleb128 0x13
+ 659 0064 00       		.byte	0
+ 660 0065 00       		.byte	0
+ 661 0066 08       		.uleb128 0x8
+ 662 0067 34       		.uleb128 0x34
+ 663 0068 00       		.byte	0
+ 664 0069 03       		.uleb128 0x3
+ 665 006a 0E       		.uleb128 0xe
+ 666 006b 3A       		.uleb128 0x3a
+ 667 006c 0B       		.uleb128 0xb
+ 668 006d 3B       		.uleb128 0x3b
+ 669 006e 0B       		.uleb128 0xb
+ 670 006f 49       		.uleb128 0x49
+ 671 0070 13       		.uleb128 0x13
+ 672 0071 02       		.uleb128 0x2
+ 673 0072 17       		.uleb128 0x17
+ 674 0073 00       		.byte	0
+ 675 0074 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 21
+
+
+ 676 0075 09       		.uleb128 0x9
+ 677 0076 2E       		.uleb128 0x2e
+ 678 0077 00       		.byte	0
+ 679 0078 3F       		.uleb128 0x3f
+ 680 0079 19       		.uleb128 0x19
+ 681 007a 03       		.uleb128 0x3
+ 682 007b 0E       		.uleb128 0xe
+ 683 007c 3A       		.uleb128 0x3a
+ 684 007d 0B       		.uleb128 0xb
+ 685 007e 3B       		.uleb128 0x3b
+ 686 007f 0B       		.uleb128 0xb
+ 687 0080 27       		.uleb128 0x27
+ 688 0081 19       		.uleb128 0x19
+ 689 0082 11       		.uleb128 0x11
+ 690 0083 01       		.uleb128 0x1
+ 691 0084 12       		.uleb128 0x12
+ 692 0085 06       		.uleb128 0x6
+ 693 0086 40       		.uleb128 0x40
+ 694 0087 18       		.uleb128 0x18
+ 695 0088 9742     		.uleb128 0x2117
+ 696 008a 19       		.uleb128 0x19
+ 697 008b 00       		.byte	0
+ 698 008c 00       		.byte	0
+ 699 008d 0A       		.uleb128 0xa
+ 700 008e 2E       		.uleb128 0x2e
+ 701 008f 01       		.byte	0x1
+ 702 0090 3F       		.uleb128 0x3f
+ 703 0091 19       		.uleb128 0x19
+ 704 0092 03       		.uleb128 0x3
+ 705 0093 0E       		.uleb128 0xe
+ 706 0094 3A       		.uleb128 0x3a
+ 707 0095 0B       		.uleb128 0xb
+ 708 0096 3B       		.uleb128 0x3b
+ 709 0097 0B       		.uleb128 0xb
+ 710 0098 27       		.uleb128 0x27
+ 711 0099 19       		.uleb128 0x19
+ 712 009a 11       		.uleb128 0x11
+ 713 009b 01       		.uleb128 0x1
+ 714 009c 12       		.uleb128 0x12
+ 715 009d 06       		.uleb128 0x6
+ 716 009e 40       		.uleb128 0x40
+ 717 009f 18       		.uleb128 0x18
+ 718 00a0 9742     		.uleb128 0x2117
+ 719 00a2 19       		.uleb128 0x19
+ 720 00a3 01       		.uleb128 0x1
+ 721 00a4 13       		.uleb128 0x13
+ 722 00a5 00       		.byte	0
+ 723 00a6 00       		.byte	0
+ 724 00a7 0B       		.uleb128 0xb
+ 725 00a8 05       		.uleb128 0x5
+ 726 00a9 00       		.byte	0
+ 727 00aa 03       		.uleb128 0x3
+ 728 00ab 0E       		.uleb128 0xe
+ 729 00ac 3A       		.uleb128 0x3a
+ 730 00ad 0B       		.uleb128 0xb
+ 731 00ae 3B       		.uleb128 0x3b
+ 732 00af 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 22
+
+
+ 733 00b0 49       		.uleb128 0x49
+ 734 00b1 13       		.uleb128 0x13
+ 735 00b2 02       		.uleb128 0x2
+ 736 00b3 18       		.uleb128 0x18
+ 737 00b4 00       		.byte	0
+ 738 00b5 00       		.byte	0
+ 739 00b6 0C       		.uleb128 0xc
+ 740 00b7 2E       		.uleb128 0x2e
+ 741 00b8 01       		.byte	0x1
+ 742 00b9 3F       		.uleb128 0x3f
+ 743 00ba 19       		.uleb128 0x19
+ 744 00bb 03       		.uleb128 0x3
+ 745 00bc 0E       		.uleb128 0xe
+ 746 00bd 3A       		.uleb128 0x3a
+ 747 00be 0B       		.uleb128 0xb
+ 748 00bf 3B       		.uleb128 0x3b
+ 749 00c0 05       		.uleb128 0x5
+ 750 00c1 27       		.uleb128 0x27
+ 751 00c2 19       		.uleb128 0x19
+ 752 00c3 11       		.uleb128 0x11
+ 753 00c4 01       		.uleb128 0x1
+ 754 00c5 12       		.uleb128 0x12
+ 755 00c6 06       		.uleb128 0x6
+ 756 00c7 40       		.uleb128 0x40
+ 757 00c8 18       		.uleb128 0x18
+ 758 00c9 9742     		.uleb128 0x2117
+ 759 00cb 19       		.uleb128 0x19
+ 760 00cc 01       		.uleb128 0x1
+ 761 00cd 13       		.uleb128 0x13
+ 762 00ce 00       		.byte	0
+ 763 00cf 00       		.byte	0
+ 764 00d0 0D       		.uleb128 0xd
+ 765 00d1 05       		.uleb128 0x5
+ 766 00d2 00       		.byte	0
+ 767 00d3 03       		.uleb128 0x3
+ 768 00d4 0E       		.uleb128 0xe
+ 769 00d5 3A       		.uleb128 0x3a
+ 770 00d6 0B       		.uleb128 0xb
+ 771 00d7 3B       		.uleb128 0x3b
+ 772 00d8 05       		.uleb128 0x5
+ 773 00d9 49       		.uleb128 0x49
+ 774 00da 13       		.uleb128 0x13
+ 775 00db 02       		.uleb128 0x2
+ 776 00dc 17       		.uleb128 0x17
+ 777 00dd 00       		.byte	0
+ 778 00de 00       		.byte	0
+ 779 00df 0E       		.uleb128 0xe
+ 780 00e0 34       		.uleb128 0x34
+ 781 00e1 00       		.byte	0
+ 782 00e2 03       		.uleb128 0x3
+ 783 00e3 08       		.uleb128 0x8
+ 784 00e4 3A       		.uleb128 0x3a
+ 785 00e5 0B       		.uleb128 0xb
+ 786 00e6 3B       		.uleb128 0x3b
+ 787 00e7 05       		.uleb128 0x5
+ 788 00e8 49       		.uleb128 0x49
+ 789 00e9 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 23
+
+
+ 790 00ea 02       		.uleb128 0x2
+ 791 00eb 17       		.uleb128 0x17
+ 792 00ec 00       		.byte	0
+ 793 00ed 00       		.byte	0
+ 794 00ee 0F       		.uleb128 0xf
+ 795 00ef 898201   		.uleb128 0x4109
+ 796 00f2 00       		.byte	0
+ 797 00f3 11       		.uleb128 0x11
+ 798 00f4 01       		.uleb128 0x1
+ 799 00f5 31       		.uleb128 0x31
+ 800 00f6 13       		.uleb128 0x13
+ 801 00f7 00       		.byte	0
+ 802 00f8 00       		.byte	0
+ 803 00f9 10       		.uleb128 0x10
+ 804 00fa 0F       		.uleb128 0xf
+ 805 00fb 00       		.byte	0
+ 806 00fc 0B       		.uleb128 0xb
+ 807 00fd 0B       		.uleb128 0xb
+ 808 00fe 49       		.uleb128 0x49
+ 809 00ff 13       		.uleb128 0x13
+ 810 0100 00       		.byte	0
+ 811 0101 00       		.byte	0
+ 812 0102 11       		.uleb128 0x11
+ 813 0103 26       		.uleb128 0x26
+ 814 0104 00       		.byte	0
+ 815 0105 49       		.uleb128 0x49
+ 816 0106 13       		.uleb128 0x13
+ 817 0107 00       		.byte	0
+ 818 0108 00       		.byte	0
+ 819 0109 12       		.uleb128 0x12
+ 820 010a 2E       		.uleb128 0x2e
+ 821 010b 01       		.byte	0x1
+ 822 010c 3F       		.uleb128 0x3f
+ 823 010d 19       		.uleb128 0x19
+ 824 010e 03       		.uleb128 0x3
+ 825 010f 0E       		.uleb128 0xe
+ 826 0110 3A       		.uleb128 0x3a
+ 827 0111 0B       		.uleb128 0xb
+ 828 0112 3B       		.uleb128 0x3b
+ 829 0113 05       		.uleb128 0x5
+ 830 0114 27       		.uleb128 0x27
+ 831 0115 19       		.uleb128 0x19
+ 832 0116 49       		.uleb128 0x49
+ 833 0117 13       		.uleb128 0x13
+ 834 0118 11       		.uleb128 0x11
+ 835 0119 01       		.uleb128 0x1
+ 836 011a 12       		.uleb128 0x12
+ 837 011b 06       		.uleb128 0x6
+ 838 011c 40       		.uleb128 0x40
+ 839 011d 18       		.uleb128 0x18
+ 840 011e 9742     		.uleb128 0x2117
+ 841 0120 19       		.uleb128 0x19
+ 842 0121 01       		.uleb128 0x1
+ 843 0122 13       		.uleb128 0x13
+ 844 0123 00       		.byte	0
+ 845 0124 00       		.byte	0
+ 846 0125 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 24
+
+
+ 847 0126 34       		.uleb128 0x34
+ 848 0127 00       		.byte	0
+ 849 0128 03       		.uleb128 0x3
+ 850 0129 0E       		.uleb128 0xe
+ 851 012a 3A       		.uleb128 0x3a
+ 852 012b 0B       		.uleb128 0xb
+ 853 012c 3B       		.uleb128 0x3b
+ 854 012d 05       		.uleb128 0x5
+ 855 012e 49       		.uleb128 0x49
+ 856 012f 13       		.uleb128 0x13
+ 857 0130 02       		.uleb128 0x2
+ 858 0131 17       		.uleb128 0x17
+ 859 0132 00       		.byte	0
+ 860 0133 00       		.byte	0
+ 861 0134 14       		.uleb128 0x14
+ 862 0135 2E       		.uleb128 0x2e
+ 863 0136 00       		.byte	0
+ 864 0137 3F       		.uleb128 0x3f
+ 865 0138 19       		.uleb128 0x19
+ 866 0139 03       		.uleb128 0x3
+ 867 013a 0E       		.uleb128 0xe
+ 868 013b 3A       		.uleb128 0x3a
+ 869 013c 0B       		.uleb128 0xb
+ 870 013d 3B       		.uleb128 0x3b
+ 871 013e 05       		.uleb128 0x5
+ 872 013f 27       		.uleb128 0x27
+ 873 0140 19       		.uleb128 0x19
+ 874 0141 11       		.uleb128 0x11
+ 875 0142 01       		.uleb128 0x1
+ 876 0143 12       		.uleb128 0x12
+ 877 0144 06       		.uleb128 0x6
+ 878 0145 40       		.uleb128 0x40
+ 879 0146 18       		.uleb128 0x18
+ 880 0147 9742     		.uleb128 0x2117
+ 881 0149 19       		.uleb128 0x19
+ 882 014a 00       		.byte	0
+ 883 014b 00       		.byte	0
+ 884 014c 15       		.uleb128 0x15
+ 885 014d 34       		.uleb128 0x34
+ 886 014e 00       		.byte	0
+ 887 014f 03       		.uleb128 0x3
+ 888 0150 0E       		.uleb128 0xe
+ 889 0151 3A       		.uleb128 0x3a
+ 890 0152 0B       		.uleb128 0xb
+ 891 0153 3B       		.uleb128 0x3b
+ 892 0154 05       		.uleb128 0x5
+ 893 0155 49       		.uleb128 0x49
+ 894 0156 13       		.uleb128 0x13
+ 895 0157 02       		.uleb128 0x2
+ 896 0158 18       		.uleb128 0x18
+ 897 0159 00       		.byte	0
+ 898 015a 00       		.byte	0
+ 899 015b 16       		.uleb128 0x16
+ 900 015c 2E       		.uleb128 0x2e
+ 901 015d 01       		.byte	0x1
+ 902 015e 3F       		.uleb128 0x3f
+ 903 015f 19       		.uleb128 0x19
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 25
+
+
+ 904 0160 03       		.uleb128 0x3
+ 905 0161 0E       		.uleb128 0xe
+ 906 0162 3A       		.uleb128 0x3a
+ 907 0163 0B       		.uleb128 0xb
+ 908 0164 3B       		.uleb128 0x3b
+ 909 0165 05       		.uleb128 0x5
+ 910 0166 27       		.uleb128 0x27
+ 911 0167 19       		.uleb128 0x19
+ 912 0168 49       		.uleb128 0x49
+ 913 0169 13       		.uleb128 0x13
+ 914 016a 11       		.uleb128 0x11
+ 915 016b 01       		.uleb128 0x1
+ 916 016c 12       		.uleb128 0x12
+ 917 016d 06       		.uleb128 0x6
+ 918 016e 40       		.uleb128 0x40
+ 919 016f 18       		.uleb128 0x18
+ 920 0170 9742     		.uleb128 0x2117
+ 921 0172 19       		.uleb128 0x19
+ 922 0173 00       		.byte	0
+ 923 0174 00       		.byte	0
+ 924 0175 00       		.byte	0
+ 925              		.section	.debug_loc,"",%progbits
+ 926              	.Ldebug_loc0:
+ 927              	.LLST0:
+ 928 0000 00000000 		.4byte	.LVL0
+ 929 0004 04000000 		.4byte	.LVL1
+ 930 0008 0200     		.2byte	0x2
+ 931 000a 30       		.byte	0x30
+ 932 000b 9F       		.byte	0x9f
+ 933 000c 04000000 		.4byte	.LVL1
+ 934 0010 0C000000 		.4byte	.LFE0
+ 935 0014 0100     		.2byte	0x1
+ 936 0016 50       		.byte	0x50
+ 937 0017 00000000 		.4byte	0
+ 938 001b 00000000 		.4byte	0
+ 939              	.LLST1:
+ 940 001f 04000000 		.4byte	.LVL2
+ 941 0023 08000000 		.4byte	.LVL3
+ 942 0027 0500     		.2byte	0x5
+ 943 0029 70       		.byte	0x70
+ 944 002a 00       		.sleb128 0
+ 945 002b 3F       		.byte	0x3f
+ 946 002c 1A       		.byte	0x1a
+ 947 002d 9F       		.byte	0x9f
+ 948 002e 08000000 		.4byte	.LVL3
+ 949 0032 10000000 		.4byte	.LFE1
+ 950 0036 0100     		.2byte	0x1
+ 951 0038 50       		.byte	0x50
+ 952 0039 00000000 		.4byte	0
+ 953 003d 00000000 		.4byte	0
+ 954              	.LLST2:
+ 955 0041 00000000 		.4byte	.LVL5
+ 956 0045 08000000 		.4byte	.LVL6
+ 957 0049 0100     		.2byte	0x1
+ 958 004b 50       		.byte	0x50
+ 959 004c 08000000 		.4byte	.LVL6
+ 960 0050 18000000 		.4byte	.LVL11
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 26
+
+
+ 961 0054 0100     		.2byte	0x1
+ 962 0056 56       		.byte	0x56
+ 963 0057 18000000 		.4byte	.LVL11
+ 964 005b 1A000000 		.4byte	.LFE4
+ 965 005f 0400     		.2byte	0x4
+ 966 0061 F3       		.byte	0xf3
+ 967 0062 01       		.uleb128 0x1
+ 968 0063 50       		.byte	0x50
+ 969 0064 9F       		.byte	0x9f
+ 970 0065 00000000 		.4byte	0
+ 971 0069 00000000 		.4byte	0
+ 972              	.LLST3:
+ 973 006d 00000000 		.4byte	.LVL5
+ 974 0071 08000000 		.4byte	.LVL6
+ 975 0075 0100     		.2byte	0x1
+ 976 0077 51       		.byte	0x51
+ 977 0078 08000000 		.4byte	.LVL6
+ 978 007c 18000000 		.4byte	.LVL10
+ 979 0080 0100     		.2byte	0x1
+ 980 0082 55       		.byte	0x55
+ 981 0083 18000000 		.4byte	.LVL10
+ 982 0087 1A000000 		.4byte	.LFE4
+ 983 008b 0400     		.2byte	0x4
+ 984 008d F3       		.byte	0xf3
+ 985 008e 01       		.uleb128 0x1
+ 986 008f 51       		.byte	0x51
+ 987 0090 9F       		.byte	0x9f
+ 988 0091 00000000 		.4byte	0
+ 989 0095 00000000 		.4byte	0
+ 990              	.LLST4:
+ 991 0099 00000000 		.4byte	.LVL5
+ 992 009d 08000000 		.4byte	.LVL6
+ 993 00a1 0200     		.2byte	0x2
+ 994 00a3 30       		.byte	0x30
+ 995 00a4 9F       		.byte	0x9f
+ 996 00a5 08000000 		.4byte	.LVL6
+ 997 00a9 18000000 		.4byte	.LVL9
+ 998 00ad 0100     		.2byte	0x1
+ 999 00af 54       		.byte	0x54
+ 1000 00b0 00000000 		.4byte	0
+ 1001 00b4 00000000 		.4byte	0
+ 1002              	.LLST5:
+ 1003 00b8 04000000 		.4byte	.LVL12
+ 1004 00bc 08000000 		.4byte	.LVL13
+ 1005 00c0 0500     		.2byte	0x5
+ 1006 00c2 70       		.byte	0x70
+ 1007 00c3 00       		.sleb128 0
+ 1008 00c4 3F       		.byte	0x3f
+ 1009 00c5 1A       		.byte	0x1a
+ 1010 00c6 9F       		.byte	0x9f
+ 1011 00c7 08000000 		.4byte	.LVL13
+ 1012 00cb 10000000 		.4byte	.LFE5
+ 1013 00cf 0100     		.2byte	0x1
+ 1014 00d1 50       		.byte	0x50
+ 1015 00d2 00000000 		.4byte	0
+ 1016 00d6 00000000 		.4byte	0
+ 1017              		.section	.debug_aranges,"",%progbits
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 27
+
+
+ 1018 0000 5C000000 		.4byte	0x5c
+ 1019 0004 0200     		.2byte	0x2
+ 1020 0006 00000000 		.4byte	.Ldebug_info0
+ 1021 000a 04       		.byte	0x4
+ 1022 000b 00       		.byte	0
+ 1023 000c 0000     		.2byte	0
+ 1024 000e 0000     		.2byte	0
+ 1025 0010 00000000 		.4byte	.LFB0
+ 1026 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 1027 0018 00000000 		.4byte	.LFB1
+ 1028 001c 10000000 		.4byte	.LFE1-.LFB1
+ 1029 0020 00000000 		.4byte	.LFB2
+ 1030 0024 20000000 		.4byte	.LFE2-.LFB2
+ 1031 0028 00000000 		.4byte	.LFB3
+ 1032 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 1033 0030 00000000 		.4byte	.LFB4
+ 1034 0034 1A000000 		.4byte	.LFE4-.LFB4
+ 1035 0038 00000000 		.4byte	.LFB5
+ 1036 003c 10000000 		.4byte	.LFE5-.LFB5
+ 1037 0040 00000000 		.4byte	.LFB6
+ 1038 0044 20000000 		.4byte	.LFE6-.LFB6
+ 1039 0048 00000000 		.4byte	.LFB7
+ 1040 004c 10000000 		.4byte	.LFE7-.LFB7
+ 1041 0050 00000000 		.4byte	.LFB8
+ 1042 0054 10000000 		.4byte	.LFE8-.LFB8
+ 1043 0058 00000000 		.4byte	0
+ 1044 005c 00000000 		.4byte	0
+ 1045              		.section	.debug_ranges,"",%progbits
+ 1046              	.Ldebug_ranges0:
+ 1047 0000 00000000 		.4byte	.LFB0
+ 1048 0004 0C000000 		.4byte	.LFE0
+ 1049 0008 00000000 		.4byte	.LFB1
+ 1050 000c 10000000 		.4byte	.LFE1
+ 1051 0010 00000000 		.4byte	.LFB2
+ 1052 0014 20000000 		.4byte	.LFE2
+ 1053 0018 00000000 		.4byte	.LFB3
+ 1054 001c 1C000000 		.4byte	.LFE3
+ 1055 0020 00000000 		.4byte	.LFB4
+ 1056 0024 1A000000 		.4byte	.LFE4
+ 1057 0028 00000000 		.4byte	.LFB5
+ 1058 002c 10000000 		.4byte	.LFE5
+ 1059 0030 00000000 		.4byte	.LFB6
+ 1060 0034 20000000 		.4byte	.LFE6
+ 1061 0038 00000000 		.4byte	.LFB7
+ 1062 003c 10000000 		.4byte	.LFE7
+ 1063 0040 00000000 		.4byte	.LFB8
+ 1064 0044 10000000 		.4byte	.LFE8
+ 1065 0048 00000000 		.4byte	0
+ 1066 004c 00000000 		.4byte	0
+ 1067              		.section	.debug_line,"",%progbits
+ 1068              	.Ldebug_line0:
+ 1069 0000 4D010000 		.section	.debug_str,"MS",%progbits,1
+ 1069      02006E00 
+ 1069      00000201 
+ 1069      FB0E0D00 
+ 1069      01010101 
+ 1070              	.LASF27:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 28
+
+
+ 1071 0000 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartClearTxBuffer\000"
+ 1071      5F525334 
+ 1071      38355F55 
+ 1071      4152545F 
+ 1071      53706955 
+ 1072              	.LASF20:
+ 1073 0025 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartWriteTxData\000"
+ 1073      5F525334 
+ 1073      38355F55 
+ 1073      4152545F 
+ 1073      53706955 
+ 1074              	.LASF28:
+ 1075 0048 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartDisableIntRx\000"
+ 1075      5F525334 
+ 1075      38355F55 
+ 1075      4152545F 
+ 1075      53706955 
+ 1076              	.LASF24:
+ 1077 006c 636F756E 		.ascii	"count\000"
+ 1077      7400
+ 1078              	.LASF16:
+ 1079 0072 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartReadRxData\000"
+ 1079      5F525334 
+ 1079      38355F55 
+ 1079      4152545F 
+ 1079      53706955 
+ 1080              	.LASF30:
+ 1081 0094 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartDisableIntTx\000"
+ 1081      5F525334 
+ 1081      38355F55 
+ 1081      4152545F 
+ 1081      53706955 
+ 1082              	.LASF8:
+ 1083 00b8 756E7369 		.ascii	"unsigned int\000"
+ 1083      676E6564 
+ 1083      20696E74 
+ 1083      00
+ 1084              	.LASF32:
+ 1085 00c5 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1085      4320342E 
+ 1085      382E3420 
+ 1085      32303134 
+ 1085      30353236 
+ 1086 00f8 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1086      20726576 
+ 1086      6973696F 
+ 1086      6E203231 
+ 1086      31333538 
+ 1087 012b 73202D66 		.ascii	"s -ffunction-sections\000"
+ 1087      66756E63 
+ 1087      74696F6E 
+ 1087      2D736563 
+ 1087      74696F6E 
+ 1088              	.LASF11:
+ 1089 0141 666C6F61 		.ascii	"float\000"
+ 1089      7400
+ 1090              	.LASF7:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 29
+
+
+ 1091 0147 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1091      206C6F6E 
+ 1091      6720756E 
+ 1091      7369676E 
+ 1091      65642069 
+ 1092              	.LASF19:
+ 1093 015e 73697A65 		.ascii	"size\000"
+ 1093      00
+ 1094              	.LASF5:
+ 1095 0163 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1095      20756E73 
+ 1095      69676E65 
+ 1095      6420696E 
+ 1095      7400
+ 1096              	.LASF3:
+ 1097 0175 73686F72 		.ascii	"short unsigned int\000"
+ 1097      7420756E 
+ 1097      7369676E 
+ 1097      65642069 
+ 1097      6E7400
+ 1098              	.LASF25:
+ 1099 0188 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartGetTxBufferSize\000"
+ 1099      5F525334 
+ 1099      38355F55 
+ 1099      4152545F 
+ 1099      53706955 
+ 1100              	.LASF18:
+ 1101 01af 72784461 		.ascii	"rxData\000"
+ 1101      746100
+ 1102              	.LASF23:
+ 1103 01b6 77724275 		.ascii	"wrBuf\000"
+ 1103      6600
+ 1104              	.LASF1:
+ 1105 01bc 756E7369 		.ascii	"unsigned char\000"
+ 1105      676E6564 
+ 1105      20636861 
+ 1105      7200
+ 1106              	.LASF12:
+ 1107 01ca 646F7562 		.ascii	"double\000"
+ 1107      6C6500
+ 1108              	.LASF26:
+ 1109 01d1 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartClearRxBuffer\000"
+ 1109      5F525334 
+ 1109      38355F55 
+ 1109      4152545F 
+ 1109      53706955 
+ 1110              	.LASF9:
+ 1111 01f6 75696E74 		.ascii	"uint16\000"
+ 1111      313600
+ 1112              	.LASF10:
+ 1113 01fd 75696E74 		.ascii	"uint32\000"
+ 1113      333200
+ 1114              	.LASF31:
+ 1115 0204 696E7453 		.ascii	"intSourceMask\000"
+ 1115      6F757263 
+ 1115      654D6173 
+ 1115      6B00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 30
+
+
+ 1116              	.LASF29:
+ 1117 0212 696E7453 		.ascii	"intSource\000"
+ 1117      6F757263 
+ 1117      6500
+ 1118              	.LASF34:
+ 1119 021c 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 1119      73657273 
+ 1119      5C736465 
+ 1119      76617365 
+ 1119      6E617061 
+ 1120 024a 6F6D2E63 		.ascii	"om.cydsn\000"
+ 1120      7964736E 
+ 1120      00
+ 1121              	.LASF21:
+ 1122 0253 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartPutArray\000"
+ 1122      5F525334 
+ 1122      38355F55 
+ 1122      4152545F 
+ 1122      53706955 
+ 1123              	.LASF22:
+ 1124 0273 74784461 		.ascii	"txData\000"
+ 1124      746100
+ 1125              	.LASF15:
+ 1126 027a 73697A65 		.ascii	"sizetype\000"
+ 1126      74797065 
+ 1126      00
+ 1127              	.LASF6:
+ 1128 0283 6C6F6E67 		.ascii	"long long int\000"
+ 1128      206C6F6E 
+ 1128      6720696E 
+ 1128      7400
+ 1129              	.LASF13:
+ 1130 0291 63686172 		.ascii	"char\000"
+ 1130      00
+ 1131              	.LASF2:
+ 1132 0296 73686F72 		.ascii	"short int\000"
+ 1132      7420696E 
+ 1132      7400
+ 1133              	.LASF17:
+ 1134 02a0 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartGetRxBufferSize\000"
+ 1134      5F525334 
+ 1134      38355F55 
+ 1134      4152545F 
+ 1134      53706955 
+ 1135              	.LASF4:
+ 1136 02c7 6C6F6E67 		.ascii	"long int\000"
+ 1136      20696E74 
+ 1136      00
+ 1137              	.LASF14:
+ 1138 02d0 72656733 		.ascii	"reg32\000"
+ 1138      3200
+ 1139              	.LASF0:
+ 1140 02d6 7369676E 		.ascii	"signed char\000"
+ 1140      65642063 
+ 1140      68617200 
+ 1141              	.LASF33:
+ 1142 02e2 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\comm_RS485_UART_SPI_UAR"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cckzAJqC.s 			page 31
+
+
+ 1142      6E657261 
+ 1142      7465645F 
+ 1142      536F7572 
+ 1142      63655C50 
+ 1143 0312 542E6300 		.ascii	"T.c\000"
+ 1144              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

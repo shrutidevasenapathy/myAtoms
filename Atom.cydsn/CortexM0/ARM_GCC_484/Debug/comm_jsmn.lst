@@ -1,0 +1,3020 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"comm_jsmn.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.jsmn_alloc_token,"ax",%progbits
+  18              		.align	2
+  19              		.code	16
+  20              		.thumb_func
+  21              		.type	jsmn_alloc_token, %function
+  22              	jsmn_alloc_token:
+  23              	.LFB33:
+  24              		.file 1 ".\\Generated_Source\\PSoC4\\comm_jsmn.c"
+   1:.\Generated_Source\PSoC4/comm_jsmn.c **** #include <stdlib.h>
+   2:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+   3:.\Generated_Source\PSoC4/comm_jsmn.c **** #include <project.h>
+   4:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+   5:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+   6:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Allocates a fresh unused token from the token pull.
+   7:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+   8:.\Generated_Source\PSoC4/comm_jsmn.c **** static jsmntok_t *jsmn_alloc_token(jsmn_parser *parser,
+   9:.\Generated_Source\PSoC4/comm_jsmn.c **** 		jsmntok_t *tokens, size_t num_tokens) {
+  25              		.loc 1 9 0
+  26              		.cfi_startproc
+  27 0000 80B5     		push	{r7, lr}
+  28              		.cfi_def_cfa_offset 8
+  29              		.cfi_offset 7, -8
+  30              		.cfi_offset 14, -4
+  31 0002 86B0     		sub	sp, sp, #24
+  32              		.cfi_def_cfa_offset 32
+  33 0004 00AF     		add	r7, sp, #0
+  34              		.cfi_def_cfa_register 7
+  35 0006 F860     		str	r0, [r7, #12]
+  36 0008 B960     		str	r1, [r7, #8]
+  37 000a 7A60     		str	r2, [r7, #4]
+  10:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmntok_t *tok;
+  11:.\Generated_Source\PSoC4/comm_jsmn.c **** 	if (parser->toknext >= num_tokens) {
+  38              		.loc 1 11 0
+  39 000c FB68     		ldr	r3, [r7, #12]
+  40 000e 5A68     		ldr	r2, [r3, #4]
+  41 0010 7B68     		ldr	r3, [r7, #4]
+  42 0012 9A42     		cmp	r2, r3
+  43 0014 01D3     		bcc	.L2
+  12:.\Generated_Source\PSoC4/comm_jsmn.c **** 		return NULL;
+  44              		.loc 1 12 0
+  45 0016 0023     		mov	r3, #0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 2
+
+
+  46 0018 14E0     		b	.L3
+  47              	.L2:
+  13:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+  14:.\Generated_Source\PSoC4/comm_jsmn.c **** 	tok = &tokens[parser->toknext++];
+  48              		.loc 1 14 0
+  49 001a FB68     		ldr	r3, [r7, #12]
+  50 001c 5B68     		ldr	r3, [r3, #4]
+  51 001e 591C     		add	r1, r3, #1
+  52 0020 FA68     		ldr	r2, [r7, #12]
+  53 0022 5160     		str	r1, [r2, #4]
+  54 0024 1B01     		lsl	r3, r3, #4
+  55 0026 BA68     		ldr	r2, [r7, #8]
+  56 0028 D318     		add	r3, r2, r3
+  57 002a 7B61     		str	r3, [r7, #20]
+  15:.\Generated_Source\PSoC4/comm_jsmn.c **** 	tok->start = tok->end = -1;
+  58              		.loc 1 15 0
+  59 002c 7B69     		ldr	r3, [r7, #20]
+  60 002e 0122     		mov	r2, #1
+  61 0030 5242     		neg	r2, r2
+  62 0032 9A60     		str	r2, [r3, #8]
+  63 0034 7B69     		ldr	r3, [r7, #20]
+  64 0036 9A68     		ldr	r2, [r3, #8]
+  65 0038 7B69     		ldr	r3, [r7, #20]
+  66 003a 5A60     		str	r2, [r3, #4]
+  16:.\Generated_Source\PSoC4/comm_jsmn.c **** 	tok->size = 0;
+  67              		.loc 1 16 0
+  68 003c 7B69     		ldr	r3, [r7, #20]
+  69 003e 0022     		mov	r2, #0
+  70 0040 DA60     		str	r2, [r3, #12]
+  17:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+  18:.\Generated_Source\PSoC4/comm_jsmn.c **** 	tok->parent = -1;
+  19:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+  20:.\Generated_Source\PSoC4/comm_jsmn.c **** 	return tok;
+  71              		.loc 1 20 0
+  72 0042 7B69     		ldr	r3, [r7, #20]
+  73              	.L3:
+  21:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+  74              		.loc 1 21 0
+  75 0044 181C     		mov	r0, r3
+  76 0046 BD46     		mov	sp, r7
+  77 0048 06B0     		add	sp, sp, #24
+  78              		@ sp needed
+  79 004a 80BD     		pop	{r7, pc}
+  80              		.cfi_endproc
+  81              	.LFE33:
+  82              		.size	jsmn_alloc_token, .-jsmn_alloc_token
+  83              		.section	.text.jsmn_fill_token,"ax",%progbits
+  84              		.align	2
+  85              		.code	16
+  86              		.thumb_func
+  87              		.type	jsmn_fill_token, %function
+  88              	jsmn_fill_token:
+  89              	.LFB34:
+  22:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  23:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+  24:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Fills token type and boundaries.
+  25:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 3
+
+
+  26:.\Generated_Source\PSoC4/comm_jsmn.c **** static void jsmn_fill_token(jsmntok_t *token, jsmntype_t type,
+  27:.\Generated_Source\PSoC4/comm_jsmn.c ****                             int start, int end) {
+  90              		.loc 1 27 0
+  91              		.cfi_startproc
+  92 0000 80B5     		push	{r7, lr}
+  93              		.cfi_def_cfa_offset 8
+  94              		.cfi_offset 7, -8
+  95              		.cfi_offset 14, -4
+  96 0002 84B0     		sub	sp, sp, #16
+  97              		.cfi_def_cfa_offset 24
+  98 0004 00AF     		add	r7, sp, #0
+  99              		.cfi_def_cfa_register 7
+ 100 0006 F860     		str	r0, [r7, #12]
+ 101 0008 7A60     		str	r2, [r7, #4]
+ 102 000a 3B60     		str	r3, [r7]
+ 103 000c 3B1C     		mov	r3, r7
+ 104 000e 0B33     		add	r3, r3, #11
+ 105 0010 0A1C     		add	r2, r1, #0
+ 106 0012 1A70     		strb	r2, [r3]
+  28:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token->type = type;
+ 107              		.loc 1 28 0
+ 108 0014 FB68     		ldr	r3, [r7, #12]
+ 109 0016 3A1C     		mov	r2, r7
+ 110 0018 0B32     		add	r2, r2, #11
+ 111 001a 1278     		ldrb	r2, [r2]
+ 112 001c 1A70     		strb	r2, [r3]
+  29:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token->start = start;
+ 113              		.loc 1 29 0
+ 114 001e FB68     		ldr	r3, [r7, #12]
+ 115 0020 7A68     		ldr	r2, [r7, #4]
+ 116 0022 5A60     		str	r2, [r3, #4]
+  30:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token->end = end;
+ 117              		.loc 1 30 0
+ 118 0024 FB68     		ldr	r3, [r7, #12]
+ 119 0026 3A68     		ldr	r2, [r7]
+ 120 0028 9A60     		str	r2, [r3, #8]
+  31:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token->size = 0;
+ 121              		.loc 1 31 0
+ 122 002a FB68     		ldr	r3, [r7, #12]
+ 123 002c 0022     		mov	r2, #0
+ 124 002e DA60     		str	r2, [r3, #12]
+  32:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+ 125              		.loc 1 32 0
+ 126 0030 BD46     		mov	sp, r7
+ 127 0032 04B0     		add	sp, sp, #16
+ 128              		@ sp needed
+ 129 0034 80BD     		pop	{r7, pc}
+ 130              		.cfi_endproc
+ 131              	.LFE34:
+ 132              		.size	jsmn_fill_token, .-jsmn_fill_token
+ 133 0036 C046     		.section	.text.jsmn_parse_primitive,"ax",%progbits
+ 134              		.align	2
+ 135              		.code	16
+ 136              		.thumb_func
+ 137              		.type	jsmn_parse_primitive, %function
+ 138              	jsmn_parse_primitive:
+ 139              	.LFB35:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 4
+
+
+  33:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  34:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+  35:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Fills next available token with JSON primitive.
+  36:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+  37:.\Generated_Source\PSoC4/comm_jsmn.c **** static jsmnerr_t jsmn_parse_primitive(jsmn_parser *parser, const char *js,
+  38:.\Generated_Source\PSoC4/comm_jsmn.c **** 		size_t len, jsmntok_t *tokens, size_t num_tokens) {
+ 140              		.loc 1 38 0
+ 141              		.cfi_startproc
+ 142 0000 80B5     		push	{r7, lr}
+ 143              		.cfi_def_cfa_offset 8
+ 144              		.cfi_offset 7, -8
+ 145              		.cfi_offset 14, -4
+ 146 0002 86B0     		sub	sp, sp, #24
+ 147              		.cfi_def_cfa_offset 32
+ 148 0004 00AF     		add	r7, sp, #0
+ 149              		.cfi_def_cfa_register 7
+ 150 0006 F860     		str	r0, [r7, #12]
+ 151 0008 B960     		str	r1, [r7, #8]
+ 152 000a 7A60     		str	r2, [r7, #4]
+ 153 000c 3B60     		str	r3, [r7]
+  39:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmntok_t *token;
+  40:.\Generated_Source\PSoC4/comm_jsmn.c **** 	int start;
+  41:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  42:.\Generated_Source\PSoC4/comm_jsmn.c **** 	start = parser->pos;
+ 154              		.loc 1 42 0
+ 155 000e FB68     		ldr	r3, [r7, #12]
+ 156 0010 1B68     		ldr	r3, [r3]
+ 157 0012 7B61     		str	r3, [r7, #20]
+  43:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  44:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 158              		.loc 1 44 0
+ 159 0014 30E0     		b	.L6
+ 160              	.L15:
+  45:.\Generated_Source\PSoC4/comm_jsmn.c **** 		switch (js[parser->pos]) {
+ 161              		.loc 1 45 0
+ 162 0016 FB68     		ldr	r3, [r7, #12]
+ 163 0018 1B68     		ldr	r3, [r3]
+ 164 001a BA68     		ldr	r2, [r7, #8]
+ 165 001c D318     		add	r3, r2, r3
+ 166 001e 1B78     		ldrb	r3, [r3]
+ 167 0020 202B     		cmp	r3, #32
+ 168 0022 36D0     		beq	.L18
+ 169 0024 06DC     		bgt	.L9
+ 170 0026 092B     		cmp	r3, #9
+ 171 0028 0EDB     		blt	.L7
+ 172 002a 0A2B     		cmp	r3, #10
+ 173 002c 31DD     		ble	.L18
+ 174 002e 0D2B     		cmp	r3, #13
+ 175 0030 2FD0     		beq	.L18
+ 176 0032 09E0     		b	.L7
+ 177              	.L9:
+ 178 0034 3A2B     		cmp	r3, #58
+ 179 0036 2CD0     		beq	.L18
+ 180 0038 02DC     		bgt	.L10
+ 181 003a 2C2B     		cmp	r3, #44
+ 182 003c 29D0     		beq	.L18
+ 183 003e 03E0     		b	.L7
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 5
+
+
+ 184              	.L10:
+ 185 0040 5D2B     		cmp	r3, #93
+ 186 0042 26D0     		beq	.L18
+ 187 0044 7D2B     		cmp	r3, #125
+ 188 0046 24D0     		beq	.L18
+ 189              	.L7:
+  46:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifndef JSMN_STRICT
+  47:.\Generated_Source\PSoC4/comm_jsmn.c **** 			/* In strict mode primitive must be followed by "," or "}" or "]" */
+  48:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case ':':
+  49:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+  50:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '\t' : case '\r' : case '\n' : case ' ' :
+  51:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case ','  : case ']'  : case '}' :
+  52:.\Generated_Source\PSoC4/comm_jsmn.c **** 				goto found;
+  53:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+  54:.\Generated_Source\PSoC4/comm_jsmn.c **** 		if (js[parser->pos] < 32 || js[parser->pos] >= 127) {
+ 190              		.loc 1 54 0
+ 191 0048 FB68     		ldr	r3, [r7, #12]
+ 192 004a 1B68     		ldr	r3, [r3]
+ 193 004c BA68     		ldr	r2, [r7, #8]
+ 194 004e D318     		add	r3, r2, r3
+ 195 0050 1B78     		ldrb	r3, [r3]
+ 196 0052 1F2B     		cmp	r3, #31
+ 197 0054 06D9     		bls	.L12
+ 198              		.loc 1 54 0 is_stmt 0 discriminator 1
+ 199 0056 FB68     		ldr	r3, [r7, #12]
+ 200 0058 1B68     		ldr	r3, [r3]
+ 201 005a BA68     		ldr	r2, [r7, #8]
+ 202 005c D318     		add	r3, r2, r3
+ 203 005e 1B78     		ldrb	r3, [r3]
+ 204 0060 7E2B     		cmp	r3, #126
+ 205 0062 04D9     		bls	.L13
+ 206              	.L12:
+  55:.\Generated_Source\PSoC4/comm_jsmn.c **** 			parser->pos = start;
+ 207              		.loc 1 55 0 is_stmt 1
+ 208 0064 7A69     		ldr	r2, [r7, #20]
+ 209 0066 FB68     		ldr	r3, [r7, #12]
+ 210 0068 1A60     		str	r2, [r3]
+  56:.\Generated_Source\PSoC4/comm_jsmn.c **** 			return JSMN_ERROR_INVAL;
+ 211              		.loc 1 56 0
+ 212 006a FE23     		mov	r3, #254
+ 213 006c 3CE0     		b	.L14
+ 214              	.L13:
+  44:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 215              		.loc 1 44 0
+ 216 006e FB68     		ldr	r3, [r7, #12]
+ 217 0070 1B68     		ldr	r3, [r3]
+ 218 0072 5A1C     		add	r2, r3, #1
+ 219 0074 FB68     		ldr	r3, [r7, #12]
+ 220 0076 1A60     		str	r2, [r3]
+ 221              	.L6:
+  44:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 222              		.loc 1 44 0 is_stmt 0 discriminator 1
+ 223 0078 FB68     		ldr	r3, [r7, #12]
+ 224 007a 1A68     		ldr	r2, [r3]
+ 225 007c 7B68     		ldr	r3, [r7, #4]
+ 226 007e 9A42     		cmp	r2, r3
+ 227 0080 08D2     		bcs	.L11
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 6
+
+
+  44:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 228              		.loc 1 44 0 discriminator 2
+ 229 0082 FB68     		ldr	r3, [r7, #12]
+ 230 0084 1B68     		ldr	r3, [r3]
+ 231 0086 BA68     		ldr	r2, [r7, #8]
+ 232 0088 D318     		add	r3, r2, r3
+ 233 008a 1B78     		ldrb	r3, [r3]
+ 234 008c 002B     		cmp	r3, #0
+ 235 008e C2D1     		bne	.L15
+ 236 0090 00E0     		b	.L11
+ 237              	.L18:
+  52:.\Generated_Source\PSoC4/comm_jsmn.c **** 				goto found;
+ 238              		.loc 1 52 0 is_stmt 1
+ 239 0092 C046     		mov	r8, r8
+ 240              	.L11:
+  57:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+  58:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+  59:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_STRICT
+  60:.\Generated_Source\PSoC4/comm_jsmn.c **** 	/* In strict mode primitive must be followed by a comma/object/array */
+  61:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->pos = start;
+  62:.\Generated_Source\PSoC4/comm_jsmn.c **** 	return JSMN_ERROR_PART;
+  63:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+  64:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  65:.\Generated_Source\PSoC4/comm_jsmn.c **** found:
+  66:.\Generated_Source\PSoC4/comm_jsmn.c **** 	if (tokens == NULL) {
+ 241              		.loc 1 66 0
+ 242 0094 3B68     		ldr	r3, [r7]
+ 243 0096 002B     		cmp	r3, #0
+ 244 0098 06D1     		bne	.L16
+  67:.\Generated_Source\PSoC4/comm_jsmn.c **** 		parser->pos--;
+ 245              		.loc 1 67 0
+ 246 009a FB68     		ldr	r3, [r7, #12]
+ 247 009c 1B68     		ldr	r3, [r3]
+ 248 009e 5A1E     		sub	r2, r3, #1
+ 249 00a0 FB68     		ldr	r3, [r7, #12]
+ 250 00a2 1A60     		str	r2, [r3]
+  68:.\Generated_Source\PSoC4/comm_jsmn.c **** 		return 0;
+ 251              		.loc 1 68 0
+ 252 00a4 0023     		mov	r3, #0
+ 253 00a6 1FE0     		b	.L14
+ 254              	.L16:
+  69:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+  70:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token = jsmn_alloc_token(parser, tokens, num_tokens);
+ 255              		.loc 1 70 0
+ 256 00a8 F968     		ldr	r1, [r7, #12]
+ 257 00aa 3A68     		ldr	r2, [r7]
+ 258 00ac 3B6A     		ldr	r3, [r7, #32]
+ 259 00ae 081C     		mov	r0, r1
+ 260 00b0 111C     		mov	r1, r2
+ 261 00b2 1A1C     		mov	r2, r3
+ 262 00b4 FFF7FEFF 		bl	jsmn_alloc_token
+ 263 00b8 031C     		mov	r3, r0
+ 264 00ba 3B61     		str	r3, [r7, #16]
+  71:.\Generated_Source\PSoC4/comm_jsmn.c **** 	if (token == NULL) {
+ 265              		.loc 1 71 0
+ 266 00bc 3B69     		ldr	r3, [r7, #16]
+ 267 00be 002B     		cmp	r3, #0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 7
+
+
+ 268 00c0 04D1     		bne	.L17
+  72:.\Generated_Source\PSoC4/comm_jsmn.c **** 		parser->pos = start;
+ 269              		.loc 1 72 0
+ 270 00c2 7A69     		ldr	r2, [r7, #20]
+ 271 00c4 FB68     		ldr	r3, [r7, #12]
+ 272 00c6 1A60     		str	r2, [r3]
+  73:.\Generated_Source\PSoC4/comm_jsmn.c **** 		return JSMN_ERROR_NOMEM;
+ 273              		.loc 1 73 0
+ 274 00c8 FF23     		mov	r3, #255
+ 275 00ca 0DE0     		b	.L14
+ 276              	.L17:
+  74:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+  75:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmn_fill_token(token, JSMN_PRIMITIVE, start, parser->pos);
+ 277              		.loc 1 75 0
+ 278 00cc FB68     		ldr	r3, [r7, #12]
+ 279 00ce 1B68     		ldr	r3, [r3]
+ 280 00d0 3969     		ldr	r1, [r7, #16]
+ 281 00d2 7A69     		ldr	r2, [r7, #20]
+ 282 00d4 081C     		mov	r0, r1
+ 283 00d6 0021     		mov	r1, #0
+ 284 00d8 FFF7FEFF 		bl	jsmn_fill_token
+  76:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+  77:.\Generated_Source\PSoC4/comm_jsmn.c **** 	token->parent = parser->toksuper;
+  78:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+  79:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->pos--;
+ 285              		.loc 1 79 0
+ 286 00dc FB68     		ldr	r3, [r7, #12]
+ 287 00de 1B68     		ldr	r3, [r3]
+ 288 00e0 5A1E     		sub	r2, r3, #1
+ 289 00e2 FB68     		ldr	r3, [r7, #12]
+ 290 00e4 1A60     		str	r2, [r3]
+  80:.\Generated_Source\PSoC4/comm_jsmn.c **** 	return 0;
+ 291              		.loc 1 80 0
+ 292 00e6 0023     		mov	r3, #0
+ 293              	.L14:
+ 294 00e8 5BB2     		sxtb	r3, r3
+  81:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+ 295              		.loc 1 81 0
+ 296 00ea 181C     		mov	r0, r3
+ 297 00ec BD46     		mov	sp, r7
+ 298 00ee 06B0     		add	sp, sp, #24
+ 299              		@ sp needed
+ 300 00f0 80BD     		pop	{r7, pc}
+ 301              		.cfi_endproc
+ 302              	.LFE35:
+ 303              		.size	jsmn_parse_primitive, .-jsmn_parse_primitive
+ 304 00f2 C046     		.section	.text.jsmn_parse_string,"ax",%progbits
+ 305              		.align	2
+ 306              		.code	16
+ 307              		.thumb_func
+ 308              		.type	jsmn_parse_string, %function
+ 309              	jsmn_parse_string:
+ 310              	.LFB36:
+  82:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  83:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+  84:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Filsl next token with JSON string.
+  85:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 8
+
+
+  86:.\Generated_Source\PSoC4/comm_jsmn.c **** static jsmnerr_t jsmn_parse_string(jsmn_parser *parser, const char *js,
+  87:.\Generated_Source\PSoC4/comm_jsmn.c **** 		size_t len, jsmntok_t *tokens, size_t num_tokens) {
+ 311              		.loc 1 87 0
+ 312              		.cfi_startproc
+ 313 0000 80B5     		push	{r7, lr}
+ 314              		.cfi_def_cfa_offset 8
+ 315              		.cfi_offset 7, -8
+ 316              		.cfi_offset 14, -4
+ 317 0002 88B0     		sub	sp, sp, #32
+ 318              		.cfi_def_cfa_offset 40
+ 319 0004 00AF     		add	r7, sp, #0
+ 320              		.cfi_def_cfa_register 7
+ 321 0006 F860     		str	r0, [r7, #12]
+ 322 0008 B960     		str	r1, [r7, #8]
+ 323 000a 7A60     		str	r2, [r7, #4]
+ 324 000c 3B60     		str	r3, [r7]
+  88:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmntok_t *token;
+  89:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  90:.\Generated_Source\PSoC4/comm_jsmn.c **** 	int start = parser->pos;
+ 325              		.loc 1 90 0
+ 326 000e FB68     		ldr	r3, [r7, #12]
+ 327 0010 1B68     		ldr	r3, [r3]
+ 328 0012 BB61     		str	r3, [r7, #24]
+  91:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  92:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->pos++;
+ 329              		.loc 1 92 0
+ 330 0014 FB68     		ldr	r3, [r7, #12]
+ 331 0016 1B68     		ldr	r3, [r3]
+ 332 0018 5A1C     		add	r2, r3, #1
+ 333 001a FB68     		ldr	r3, [r7, #12]
+ 334 001c 1A60     		str	r2, [r3]
+  93:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  94:.\Generated_Source\PSoC4/comm_jsmn.c **** 	/* Skip starting quote */
+  95:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 335              		.loc 1 95 0
+ 336 001e ACE0     		b	.L20
+ 337              	.L38:
+ 338              	.LBB2:
+  96:.\Generated_Source\PSoC4/comm_jsmn.c **** 		char c = js[parser->pos];
+ 339              		.loc 1 96 0
+ 340 0020 FB68     		ldr	r3, [r7, #12]
+ 341 0022 1B68     		ldr	r3, [r3]
+ 342 0024 BA68     		ldr	r2, [r7, #8]
+ 343 0026 D218     		add	r2, r2, r3
+ 344 0028 3B1C     		mov	r3, r7
+ 345 002a 1733     		add	r3, r3, #23
+ 346 002c 1278     		ldrb	r2, [r2]
+ 347 002e 1A70     		strb	r2, [r3]
+  97:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+  98:.\Generated_Source\PSoC4/comm_jsmn.c **** 		/* Quote: end of string */
+  99:.\Generated_Source\PSoC4/comm_jsmn.c **** 		if (c == '\"') {
+ 348              		.loc 1 99 0
+ 349 0030 3B1C     		mov	r3, r7
+ 350 0032 1733     		add	r3, r3, #23
+ 351 0034 1B78     		ldrb	r3, [r3]
+ 352 0036 222B     		cmp	r3, #34
+ 353 0038 21D1     		bne	.L21
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 9
+
+
+ 100:.\Generated_Source\PSoC4/comm_jsmn.c **** 			if (tokens == NULL) {
+ 354              		.loc 1 100 0
+ 355 003a 3B68     		ldr	r3, [r7]
+ 356 003c 002B     		cmp	r3, #0
+ 357 003e 01D1     		bne	.L22
+ 101:.\Generated_Source\PSoC4/comm_jsmn.c **** 				return 0;
+ 358              		.loc 1 101 0
+ 359 0040 0023     		mov	r3, #0
+ 360 0042 ABE0     		b	.L23
+ 361              	.L22:
+ 102:.\Generated_Source\PSoC4/comm_jsmn.c **** 			}
+ 103:.\Generated_Source\PSoC4/comm_jsmn.c **** 			token = jsmn_alloc_token(parser, tokens, num_tokens);
+ 362              		.loc 1 103 0
+ 363 0044 F968     		ldr	r1, [r7, #12]
+ 364 0046 3A68     		ldr	r2, [r7]
+ 365 0048 BB6A     		ldr	r3, [r7, #40]
+ 366 004a 081C     		mov	r0, r1
+ 367 004c 111C     		mov	r1, r2
+ 368 004e 1A1C     		mov	r2, r3
+ 369 0050 FFF7FEFF 		bl	jsmn_alloc_token
+ 370 0054 031C     		mov	r3, r0
+ 371 0056 3B61     		str	r3, [r7, #16]
+ 104:.\Generated_Source\PSoC4/comm_jsmn.c **** 			if (token == NULL) {
+ 372              		.loc 1 104 0
+ 373 0058 3B69     		ldr	r3, [r7, #16]
+ 374 005a 002B     		cmp	r3, #0
+ 375 005c 04D1     		bne	.L24
+ 105:.\Generated_Source\PSoC4/comm_jsmn.c **** 				parser->pos = start;
+ 376              		.loc 1 105 0
+ 377 005e BA69     		ldr	r2, [r7, #24]
+ 378 0060 FB68     		ldr	r3, [r7, #12]
+ 379 0062 1A60     		str	r2, [r3]
+ 106:.\Generated_Source\PSoC4/comm_jsmn.c **** 				return JSMN_ERROR_NOMEM;
+ 380              		.loc 1 106 0
+ 381 0064 FF23     		mov	r3, #255
+ 382 0066 99E0     		b	.L23
+ 383              	.L24:
+ 107:.\Generated_Source\PSoC4/comm_jsmn.c **** 			}
+ 108:.\Generated_Source\PSoC4/comm_jsmn.c **** 			jsmn_fill_token(token, JSMN_STRING, start+1, parser->pos);
+ 384              		.loc 1 108 0
+ 385 0068 BB69     		ldr	r3, [r7, #24]
+ 386 006a 5A1C     		add	r2, r3, #1
+ 387 006c FB68     		ldr	r3, [r7, #12]
+ 388 006e 1B68     		ldr	r3, [r3]
+ 389 0070 3969     		ldr	r1, [r7, #16]
+ 390 0072 081C     		mov	r0, r1
+ 391 0074 0321     		mov	r1, #3
+ 392 0076 FFF7FEFF 		bl	jsmn_fill_token
+ 109:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+ 110:.\Generated_Source\PSoC4/comm_jsmn.c **** 			token->parent = parser->toksuper;
+ 111:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 112:.\Generated_Source\PSoC4/comm_jsmn.c **** 			return 0;
+ 393              		.loc 1 112 0
+ 394 007a 0023     		mov	r3, #0
+ 395 007c 8EE0     		b	.L23
+ 396              	.L21:
+ 113:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 10
+
+
+ 114:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 115:.\Generated_Source\PSoC4/comm_jsmn.c **** 		/* Backslash: Quoted symbol expected */
+ 116:.\Generated_Source\PSoC4/comm_jsmn.c **** 		if (c == '\\' && parser->pos + 1 < len) {
+ 397              		.loc 1 116 0
+ 398 007e 3B1C     		mov	r3, r7
+ 399 0080 1733     		add	r3, r3, #23
+ 400 0082 1B78     		ldrb	r3, [r3]
+ 401 0084 5C2B     		cmp	r3, #92
+ 402 0086 00D0     		beq	.LCB356
+ 403 0088 72E0     		b	.L25	@long jump
+ 404              	.LCB356:
+ 405              		.loc 1 116 0 is_stmt 0 discriminator 1
+ 406 008a FB68     		ldr	r3, [r7, #12]
+ 407 008c 1B68     		ldr	r3, [r3]
+ 408 008e 5A1C     		add	r2, r3, #1
+ 409 0090 7B68     		ldr	r3, [r7, #4]
+ 410 0092 9A42     		cmp	r2, r3
+ 411 0094 00D3     		bcc	.LCB362
+ 412 0096 6BE0     		b	.L25	@long jump
+ 413              	.LCB362:
+ 414              	.LBB3:
+ 117:.\Generated_Source\PSoC4/comm_jsmn.c **** 			int i;
+ 118:.\Generated_Source\PSoC4/comm_jsmn.c **** 			parser->pos++;
+ 415              		.loc 1 118 0 is_stmt 1
+ 416 0098 FB68     		ldr	r3, [r7, #12]
+ 417 009a 1B68     		ldr	r3, [r3]
+ 418 009c 5A1C     		add	r2, r3, #1
+ 419 009e FB68     		ldr	r3, [r7, #12]
+ 420 00a0 1A60     		str	r2, [r3]
+ 119:.\Generated_Source\PSoC4/comm_jsmn.c **** 			switch (js[parser->pos]) {
+ 421              		.loc 1 119 0
+ 422 00a2 FB68     		ldr	r3, [r7, #12]
+ 423 00a4 1B68     		ldr	r3, [r3]
+ 424 00a6 BA68     		ldr	r2, [r7, #8]
+ 425 00a8 D318     		add	r3, r2, r3
+ 426 00aa 1B78     		ldrb	r3, [r3]
+ 427 00ac 223B     		sub	r3, r3, #34
+ 428 00ae 532B     		cmp	r3, #83
+ 429 00b0 58D8     		bhi	.L26
+ 430 00b2 9A00     		lsl	r2, r3, #2
+ 431 00b4 3C4B     		ldr	r3, .L40
+ 432 00b6 D318     		add	r3, r2, r3
+ 433 00b8 1B68     		ldr	r3, [r3]
+ 434 00ba 9F46     		mov	pc, r3
+ 435              		.section	.rodata
+ 436              		.align	2
+ 437              	.L28:
+ 438 0000 6E010000 		.word	.L39
+ 439 0004 64010000 		.word	.L26
+ 440 0008 64010000 		.word	.L26
+ 441 000c 64010000 		.word	.L26
+ 442 0010 64010000 		.word	.L26
+ 443 0014 64010000 		.word	.L26
+ 444 0018 64010000 		.word	.L26
+ 445 001c 64010000 		.word	.L26
+ 446 0020 64010000 		.word	.L26
+ 447 0024 64010000 		.word	.L26
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 11
+
+
+ 448 0028 64010000 		.word	.L26
+ 449 002c 64010000 		.word	.L26
+ 450 0030 64010000 		.word	.L26
+ 451 0034 6E010000 		.word	.L39
+ 452 0038 64010000 		.word	.L26
+ 453 003c 64010000 		.word	.L26
+ 454 0040 64010000 		.word	.L26
+ 455 0044 64010000 		.word	.L26
+ 456 0048 64010000 		.word	.L26
+ 457 004c 64010000 		.word	.L26
+ 458 0050 64010000 		.word	.L26
+ 459 0054 64010000 		.word	.L26
+ 460 0058 64010000 		.word	.L26
+ 461 005c 64010000 		.word	.L26
+ 462 0060 64010000 		.word	.L26
+ 463 0064 64010000 		.word	.L26
+ 464 0068 64010000 		.word	.L26
+ 465 006c 64010000 		.word	.L26
+ 466 0070 64010000 		.word	.L26
+ 467 0074 64010000 		.word	.L26
+ 468 0078 64010000 		.word	.L26
+ 469 007c 64010000 		.word	.L26
+ 470 0080 64010000 		.word	.L26
+ 471 0084 64010000 		.word	.L26
+ 472 0088 64010000 		.word	.L26
+ 473 008c 64010000 		.word	.L26
+ 474 0090 64010000 		.word	.L26
+ 475 0094 64010000 		.word	.L26
+ 476 0098 64010000 		.word	.L26
+ 477 009c 64010000 		.word	.L26
+ 478 00a0 64010000 		.word	.L26
+ 479 00a4 64010000 		.word	.L26
+ 480 00a8 64010000 		.word	.L26
+ 481 00ac 64010000 		.word	.L26
+ 482 00b0 64010000 		.word	.L26
+ 483 00b4 64010000 		.word	.L26
+ 484 00b8 64010000 		.word	.L26
+ 485 00bc 64010000 		.word	.L26
+ 486 00c0 64010000 		.word	.L26
+ 487 00c4 64010000 		.word	.L26
+ 488 00c8 64010000 		.word	.L26
+ 489 00cc 64010000 		.word	.L26
+ 490 00d0 64010000 		.word	.L26
+ 491 00d4 64010000 		.word	.L26
+ 492 00d8 64010000 		.word	.L26
+ 493 00dc 64010000 		.word	.L26
+ 494 00e0 64010000 		.word	.L26
+ 495 00e4 64010000 		.word	.L26
+ 496 00e8 6E010000 		.word	.L39
+ 497 00ec 64010000 		.word	.L26
+ 498 00f0 64010000 		.word	.L26
+ 499 00f4 64010000 		.word	.L26
+ 500 00f8 64010000 		.word	.L26
+ 501 00fc 64010000 		.word	.L26
+ 502 0100 6E010000 		.word	.L39
+ 503 0104 64010000 		.word	.L26
+ 504 0108 64010000 		.word	.L26
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 12
+
+
+ 505 010c 64010000 		.word	.L26
+ 506 0110 6E010000 		.word	.L39
+ 507 0114 64010000 		.word	.L26
+ 508 0118 64010000 		.word	.L26
+ 509 011c 64010000 		.word	.L26
+ 510 0120 64010000 		.word	.L26
+ 511 0124 64010000 		.word	.L26
+ 512 0128 64010000 		.word	.L26
+ 513 012c 64010000 		.word	.L26
+ 514 0130 6E010000 		.word	.L39
+ 515 0134 64010000 		.word	.L26
+ 516 0138 64010000 		.word	.L26
+ 517 013c 64010000 		.word	.L26
+ 518 0140 6E010000 		.word	.L39
+ 519 0144 64010000 		.word	.L26
+ 520 0148 6E010000 		.word	.L39
+ 521 014c BC000000 		.word	.L29
+ 522              		.section	.text.jsmn_parse_string
+ 523              	.L29:
+ 120:.\Generated_Source\PSoC4/comm_jsmn.c **** 				/* Allowed escaped symbols */
+ 121:.\Generated_Source\PSoC4/comm_jsmn.c **** 				case '\"': case '/' : case '\\' : case 'b' :
+ 122:.\Generated_Source\PSoC4/comm_jsmn.c **** 				case 'f' : case 'r' : case 'n'  : case 't' :
+ 123:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 124:.\Generated_Source\PSoC4/comm_jsmn.c **** 				/* Allows escaped symbol \uXXXX */
+ 125:.\Generated_Source\PSoC4/comm_jsmn.c **** 				case 'u':
+ 126:.\Generated_Source\PSoC4/comm_jsmn.c **** 					parser->pos++;
+ 524              		.loc 1 126 0
+ 525 00bc FB68     		ldr	r3, [r7, #12]
+ 526 00be 1B68     		ldr	r3, [r3]
+ 527 00c0 5A1C     		add	r2, r3, #1
+ 528 00c2 FB68     		ldr	r3, [r7, #12]
+ 529 00c4 1A60     		str	r2, [r3]
+ 127:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for(i = 0; i < 4 && parser->pos < len && js[parser->pos] != '\0'; i++) {
+ 530              		.loc 1 127 0
+ 531 00c6 0023     		mov	r3, #0
+ 532 00c8 FB61     		str	r3, [r7, #28]
+ 533 00ca 36E0     		b	.L30
+ 534              	.L36:
+ 128:.\Generated_Source\PSoC4/comm_jsmn.c **** 						/* If it isn't a hex character we have an error */
+ 129:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if(!((js[parser->pos] >= 48 && js[parser->pos] <= 57) || /* 0-9 */
+ 535              		.loc 1 129 0
+ 536 00cc FB68     		ldr	r3, [r7, #12]
+ 537 00ce 1B68     		ldr	r3, [r3]
+ 538 00d0 BA68     		ldr	r2, [r7, #8]
+ 539 00d2 D318     		add	r3, r2, r3
+ 540 00d4 1B78     		ldrb	r3, [r3]
+ 541 00d6 2F2B     		cmp	r3, #47
+ 542 00d8 06D9     		bls	.L31
+ 543              		.loc 1 129 0 is_stmt 0 discriminator 2
+ 544 00da FB68     		ldr	r3, [r7, #12]
+ 545 00dc 1B68     		ldr	r3, [r3]
+ 546 00de BA68     		ldr	r2, [r7, #8]
+ 547 00e0 D318     		add	r3, r2, r3
+ 548 00e2 1B78     		ldrb	r3, [r3]
+ 549 00e4 392B     		cmp	r3, #57
+ 550 00e6 20D9     		bls	.L32
+ 551              	.L31:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 13
+
+
+ 130:.\Generated_Source\PSoC4/comm_jsmn.c **** 									(js[parser->pos] >= 65 && js[parser->pos] <= 70) || /* A-F */
+ 552              		.loc 1 130 0 is_stmt 1 discriminator 1
+ 553 00e8 FB68     		ldr	r3, [r7, #12]
+ 554 00ea 1B68     		ldr	r3, [r3]
+ 555 00ec BA68     		ldr	r2, [r7, #8]
+ 556 00ee D318     		add	r3, r2, r3
+ 557 00f0 1B78     		ldrb	r3, [r3]
+ 129:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if(!((js[parser->pos] >= 48 && js[parser->pos] <= 57) || /* 0-9 */
+ 558              		.loc 1 129 0 discriminator 1
+ 559 00f2 402B     		cmp	r3, #64
+ 560 00f4 06D9     		bls	.L33
+ 561              		.loc 1 130 0
+ 562 00f6 FB68     		ldr	r3, [r7, #12]
+ 563 00f8 1B68     		ldr	r3, [r3]
+ 564 00fa BA68     		ldr	r2, [r7, #8]
+ 565 00fc D318     		add	r3, r2, r3
+ 566 00fe 1B78     		ldrb	r3, [r3]
+ 567 0100 462B     		cmp	r3, #70
+ 568 0102 12D9     		bls	.L32
+ 569              	.L33:
+ 131:.\Generated_Source\PSoC4/comm_jsmn.c **** 									(js[parser->pos] >= 97 && js[parser->pos] <= 102))) { /* a-f */
+ 570              		.loc 1 131 0 discriminator 1
+ 571 0104 FB68     		ldr	r3, [r7, #12]
+ 572 0106 1B68     		ldr	r3, [r3]
+ 573 0108 BA68     		ldr	r2, [r7, #8]
+ 574 010a D318     		add	r3, r2, r3
+ 575 010c 1B78     		ldrb	r3, [r3]
+ 129:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if(!((js[parser->pos] >= 48 && js[parser->pos] <= 57) || /* 0-9 */
+ 576              		.loc 1 129 0 discriminator 1
+ 577 010e 602B     		cmp	r3, #96
+ 578 0110 06D9     		bls	.L34
+ 579              		.loc 1 131 0
+ 580 0112 FB68     		ldr	r3, [r7, #12]
+ 581 0114 1B68     		ldr	r3, [r3]
+ 582 0116 BA68     		ldr	r2, [r7, #8]
+ 583 0118 D318     		add	r3, r2, r3
+ 584 011a 1B78     		ldrb	r3, [r3]
+ 585 011c 662B     		cmp	r3, #102
+ 586 011e 04D9     		bls	.L32
+ 587              	.L34:
+ 132:.\Generated_Source\PSoC4/comm_jsmn.c **** 							parser->pos = start;
+ 588              		.loc 1 132 0
+ 589 0120 BA69     		ldr	r2, [r7, #24]
+ 590 0122 FB68     		ldr	r3, [r7, #12]
+ 591 0124 1A60     		str	r2, [r3]
+ 133:.\Generated_Source\PSoC4/comm_jsmn.c **** 							return JSMN_ERROR_INVAL;
+ 592              		.loc 1 133 0
+ 593 0126 FE23     		mov	r3, #254
+ 594 0128 38E0     		b	.L23
+ 595              	.L32:
+ 134:.\Generated_Source\PSoC4/comm_jsmn.c **** 						}
+ 135:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->pos++;
+ 596              		.loc 1 135 0
+ 597 012a FB68     		ldr	r3, [r7, #12]
+ 598 012c 1B68     		ldr	r3, [r3]
+ 599 012e 5A1C     		add	r2, r3, #1
+ 600 0130 FB68     		ldr	r3, [r7, #12]
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 14
+
+
+ 601 0132 1A60     		str	r2, [r3]
+ 127:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for(i = 0; i < 4 && parser->pos < len && js[parser->pos] != '\0'; i++) {
+ 602              		.loc 1 127 0
+ 603 0134 FB69     		ldr	r3, [r7, #28]
+ 604 0136 0133     		add	r3, r3, #1
+ 605 0138 FB61     		str	r3, [r7, #28]
+ 606              	.L30:
+ 127:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for(i = 0; i < 4 && parser->pos < len && js[parser->pos] != '\0'; i++) {
+ 607              		.loc 1 127 0 is_stmt 0 discriminator 1
+ 608 013a FB69     		ldr	r3, [r7, #28]
+ 609 013c 032B     		cmp	r3, #3
+ 610 013e 0BDC     		bgt	.L35
+ 127:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for(i = 0; i < 4 && parser->pos < len && js[parser->pos] != '\0'; i++) {
+ 611              		.loc 1 127 0 discriminator 2
+ 612 0140 FB68     		ldr	r3, [r7, #12]
+ 613 0142 1A68     		ldr	r2, [r3]
+ 614 0144 7B68     		ldr	r3, [r7, #4]
+ 615 0146 9A42     		cmp	r2, r3
+ 616 0148 06D2     		bcs	.L35
+ 127:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for(i = 0; i < 4 && parser->pos < len && js[parser->pos] != '\0'; i++) {
+ 617              		.loc 1 127 0 discriminator 1
+ 618 014a FB68     		ldr	r3, [r7, #12]
+ 619 014c 1B68     		ldr	r3, [r3]
+ 620 014e BA68     		ldr	r2, [r7, #8]
+ 621 0150 D318     		add	r3, r2, r3
+ 622 0152 1B78     		ldrb	r3, [r3]
+ 623 0154 002B     		cmp	r3, #0
+ 624 0156 B9D1     		bne	.L36
+ 625              	.L35:
+ 136:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 137:.\Generated_Source\PSoC4/comm_jsmn.c **** 					parser->pos--;
+ 626              		.loc 1 137 0 is_stmt 1
+ 627 0158 FB68     		ldr	r3, [r7, #12]
+ 628 015a 1B68     		ldr	r3, [r3]
+ 629 015c 5A1E     		sub	r2, r3, #1
+ 630 015e FB68     		ldr	r3, [r7, #12]
+ 631 0160 1A60     		str	r2, [r3]
+ 138:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 632              		.loc 1 138 0
+ 633 0162 05E0     		b	.L25
+ 634              	.L26:
+ 139:.\Generated_Source\PSoC4/comm_jsmn.c **** 				/* Unexpected symbol */
+ 140:.\Generated_Source\PSoC4/comm_jsmn.c **** 				default:
+ 141:.\Generated_Source\PSoC4/comm_jsmn.c **** 					parser->pos = start;
+ 635              		.loc 1 141 0
+ 636 0164 BA69     		ldr	r2, [r7, #24]
+ 637 0166 FB68     		ldr	r3, [r7, #12]
+ 638 0168 1A60     		str	r2, [r3]
+ 142:.\Generated_Source\PSoC4/comm_jsmn.c **** 					return JSMN_ERROR_INVAL;
+ 639              		.loc 1 142 0
+ 640 016a FE23     		mov	r3, #254
+ 641 016c 16E0     		b	.L23
+ 642              	.L39:
+ 123:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 643              		.loc 1 123 0
+ 644 016e C046     		mov	r8, r8
+ 645              	.L25:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 15
+
+
+ 646              	.LBE3:
+ 647              	.LBE2:
+  95:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 648              		.loc 1 95 0
+ 649 0170 FB68     		ldr	r3, [r7, #12]
+ 650 0172 1B68     		ldr	r3, [r3]
+ 651 0174 5A1C     		add	r2, r3, #1
+ 652 0176 FB68     		ldr	r3, [r7, #12]
+ 653 0178 1A60     		str	r2, [r3]
+ 654              	.L20:
+  95:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 655              		.loc 1 95 0 is_stmt 0 discriminator 1
+ 656 017a FB68     		ldr	r3, [r7, #12]
+ 657 017c 1A68     		ldr	r2, [r3]
+ 658 017e 7B68     		ldr	r3, [r7, #4]
+ 659 0180 9A42     		cmp	r2, r3
+ 660 0182 07D2     		bcs	.L37
+  95:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 661              		.loc 1 95 0 discriminator 2
+ 662 0184 FB68     		ldr	r3, [r7, #12]
+ 663 0186 1B68     		ldr	r3, [r3]
+ 664 0188 BA68     		ldr	r2, [r7, #8]
+ 665 018a D318     		add	r3, r2, r3
+ 666 018c 1B78     		ldrb	r3, [r3]
+ 667 018e 002B     		cmp	r3, #0
+ 668 0190 00D0     		beq	.LCB518
+ 669 0192 45E7     		b	.L38	@long jump
+ 670              	.LCB518:
+ 671              	.L37:
+ 143:.\Generated_Source\PSoC4/comm_jsmn.c **** 			}
+ 144:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+ 145:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+ 146:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->pos = start;
+ 672              		.loc 1 146 0 is_stmt 1
+ 673 0194 BA69     		ldr	r2, [r7, #24]
+ 674 0196 FB68     		ldr	r3, [r7, #12]
+ 675 0198 1A60     		str	r2, [r3]
+ 147:.\Generated_Source\PSoC4/comm_jsmn.c **** 	return JSMN_ERROR_PART;
+ 676              		.loc 1 147 0
+ 677 019a FD23     		mov	r3, #253
+ 678              	.L23:
+ 679 019c 5BB2     		sxtb	r3, r3
+ 148:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+ 680              		.loc 1 148 0
+ 681 019e 181C     		mov	r0, r3
+ 682 01a0 BD46     		mov	sp, r7
+ 683 01a2 08B0     		add	sp, sp, #32
+ 684              		@ sp needed
+ 685 01a4 80BD     		pop	{r7, pc}
+ 686              	.L41:
+ 687 01a6 C046     		.align	2
+ 688              	.L40:
+ 689 01a8 00000000 		.word	.L28
+ 690              		.cfi_endproc
+ 691              	.LFE36:
+ 692              		.size	jsmn_parse_string, .-jsmn_parse_string
+ 693              		.section	.text.jsmn_parse,"ax",%progbits
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 16
+
+
+ 694              		.align	2
+ 695              		.global	jsmn_parse
+ 696              		.code	16
+ 697              		.thumb_func
+ 698              		.type	jsmn_parse, %function
+ 699              	jsmn_parse:
+ 700              	.LFB37:
+ 149:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 150:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+ 151:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Parse JSON string and fill tokens.
+ 152:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+ 153:.\Generated_Source\PSoC4/comm_jsmn.c **** jsmnerr_t jsmn_parse(jsmn_parser *parser, const char *js, size_t len,
+ 154:.\Generated_Source\PSoC4/comm_jsmn.c **** 		jsmntok_t *tokens, unsigned int num_tokens) {
+ 701              		.loc 1 154 0
+ 702              		.cfi_startproc
+ 703 0000 B0B5     		push	{r4, r5, r7, lr}
+ 704              		.cfi_def_cfa_offset 16
+ 705              		.cfi_offset 4, -16
+ 706              		.cfi_offset 5, -12
+ 707              		.cfi_offset 7, -8
+ 708              		.cfi_offset 14, -4
+ 709 0002 8CB0     		sub	sp, sp, #48
+ 710              		.cfi_def_cfa_offset 64
+ 711 0004 02AF     		add	r7, sp, #8
+ 712              		.cfi_def_cfa 7, 56
+ 713 0006 F860     		str	r0, [r7, #12]
+ 714 0008 B960     		str	r1, [r7, #8]
+ 715 000a 7A60     		str	r2, [r7, #4]
+ 716 000c 3B60     		str	r3, [r7]
+ 155:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmnerr_t r;
+ 156:.\Generated_Source\PSoC4/comm_jsmn.c **** 	int i;
+ 157:.\Generated_Source\PSoC4/comm_jsmn.c **** 	jsmntok_t *token;
+ 158:.\Generated_Source\PSoC4/comm_jsmn.c **** 	int count = 0;
+ 717              		.loc 1 158 0
+ 718 000e 0023     		mov	r3, #0
+ 719 0010 3B62     		str	r3, [r7, #32]
+ 159:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 160:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 720              		.loc 1 160 0
+ 721 0012 5BE1     		b	.L43
+ 722              	.L84:
+ 723              	.LBB4:
+ 161:.\Generated_Source\PSoC4/comm_jsmn.c **** 		char c;
+ 162:.\Generated_Source\PSoC4/comm_jsmn.c **** 		jsmntype_t type;
+ 163:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 164:.\Generated_Source\PSoC4/comm_jsmn.c **** 		c = js[parser->pos];
+ 724              		.loc 1 164 0
+ 725 0014 FB68     		ldr	r3, [r7, #12]
+ 726 0016 1B68     		ldr	r3, [r3]
+ 727 0018 BA68     		ldr	r2, [r7, #8]
+ 728 001a D218     		add	r2, r2, r3
+ 729 001c 3B1C     		mov	r3, r7
+ 730 001e 1F33     		add	r3, r3, #31
+ 731 0020 1278     		ldrb	r2, [r2]
+ 732 0022 1A70     		strb	r2, [r3]
+ 165:.\Generated_Source\PSoC4/comm_jsmn.c **** 		switch (c) {
+ 733              		.loc 1 165 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 17
+
+
+ 734 0024 3B1C     		mov	r3, r7
+ 735 0026 1F33     		add	r3, r3, #31
+ 736 0028 1B78     		ldrb	r3, [r3]
+ 737 002a 2C2B     		cmp	r3, #44
+ 738 002c 00D1     		bne	.LCB581
+ 739 002e DFE0     		b	.L45	@long jump
+ 740              	.LCB581:
+ 741 0030 0FDC     		bgt	.L46
+ 742 0032 0D2B     		cmp	r3, #13
+ 743 0034 00D1     		bne	.LCB585
+ 744 0036 43E1     		b	.L88	@long jump
+ 745              	.LCB585:
+ 746 0038 04DC     		bgt	.L48
+ 747 003a 093B     		sub	r3, r3, #9
+ 748 003c 012B     		cmp	r3, #1
+ 749 003e 00D9     		bls	.LCB590
+ 750 0040 15E1     		b	.L44	@long jump
+ 751              	.LCB590:
+ 166:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '{': case '[':
+ 167:.\Generated_Source\PSoC4/comm_jsmn.c **** 				count++;
+ 168:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens == NULL) {
+ 169:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 170:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 171:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token = jsmn_alloc_token(parser, tokens, num_tokens);
+ 172:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (token == NULL)
+ 173:.\Generated_Source\PSoC4/comm_jsmn.c **** 					return JSMN_ERROR_NOMEM;
+ 174:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1) {
+ 175:.\Generated_Source\PSoC4/comm_jsmn.c **** 					tokens[parser->toksuper].size++;
+ 176:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+ 177:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token->parent = parser->toksuper;
+ 178:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 179:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 180:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->type = (c == '{' ? JSMN_OBJECT : JSMN_ARRAY);
+ 181:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->start = parser->pos;
+ 182:.\Generated_Source\PSoC4/comm_jsmn.c **** 				parser->toksuper = parser->toknext - 1;
+ 183:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 184:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '}': case ']':
+ 185:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens == NULL)
+ 186:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 187:.\Generated_Source\PSoC4/comm_jsmn.c **** 				type = (c == '}' ? JSMN_OBJECT : JSMN_ARRAY);
+ 188:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+ 189:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toknext < 1) {
+ 190:.\Generated_Source\PSoC4/comm_jsmn.c **** 					return JSMN_ERROR_INVAL;
+ 191:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 192:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token = &tokens[parser->toknext - 1];
+ 193:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (;;) {
+ 194:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 195:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if (token->type != type) {
+ 196:.\Generated_Source\PSoC4/comm_jsmn.c **** 							return JSMN_ERROR_INVAL;
+ 197:.\Generated_Source\PSoC4/comm_jsmn.c **** 						}
+ 198:.\Generated_Source\PSoC4/comm_jsmn.c **** 						token->end = parser->pos + 1;
+ 199:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->toksuper = token->parent;
+ 200:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 201:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 202:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->parent == -1) {
+ 203:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 204:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 18
+
+
+ 205:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token = &tokens[token->parent];
+ 206:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 207:.\Generated_Source\PSoC4/comm_jsmn.c **** #else
+ 208:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (i = parser->toknext - 1; i >= 0; i--) {
+ 209:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token = &tokens[i];
+ 210:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 211:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if (token->type != type) {
+ 212:.\Generated_Source\PSoC4/comm_jsmn.c **** 							return JSMN_ERROR_INVAL;
+ 213:.\Generated_Source\PSoC4/comm_jsmn.c **** 						}
+ 214:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->toksuper = -1;
+ 215:.\Generated_Source\PSoC4/comm_jsmn.c **** 						token->end = parser->pos + 1;
+ 216:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 217:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 218:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 219:.\Generated_Source\PSoC4/comm_jsmn.c **** 				/* Error if unmatched closing bracket */
+ 220:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (i == -1) return JSMN_ERROR_INVAL;
+ 221:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (; i >= 0; i--) {
+ 222:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token = &tokens[i];
+ 223:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 224:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->toksuper = i;
+ 225:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 226:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 227:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 228:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 229:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 230:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '\"':
+ 231:.\Generated_Source\PSoC4/comm_jsmn.c **** 				r = jsmn_parse_string(parser, js, len, tokens, num_tokens);
+ 232:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (r < 0) return r;
+ 233:.\Generated_Source\PSoC4/comm_jsmn.c **** 				count++;
+ 234:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1 && tokens != NULL)
+ 235:.\Generated_Source\PSoC4/comm_jsmn.c **** 					tokens[parser->toksuper].size++;
+ 236:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 237:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '\t' : case '\r' : case '\n' : case ' ':
+ 238:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 752              		.loc 1 238 0
+ 753 0042 3DE1     		b	.L88
+ 754              	.L48:
+ 165:.\Generated_Source\PSoC4/comm_jsmn.c **** 		switch (c) {
+ 755              		.loc 1 165 0
+ 756 0044 202B     		cmp	r3, #32
+ 757 0046 00D1     		bne	.LCB596
+ 758 0048 3AE1     		b	.L88	@long jump
+ 759              	.LCB596:
+ 760 004a 222B     		cmp	r3, #34
+ 761 004c 00D1     		bne	.LCB598
+ 762 004e 9FE0     		b	.L49	@long jump
+ 763              	.LCB598:
+ 764 0050 0DE1     		b	.L44
+ 765              	.L46:
+ 766 0052 5D2B     		cmp	r3, #93
+ 767 0054 43D0     		beq	.L50
+ 768 0056 05DC     		bgt	.L51
+ 769 0058 3A2B     		cmp	r3, #58
+ 770 005a 00D1     		bne	.LCB608
+ 771 005c C1E0     		b	.L52	@long jump
+ 772              	.LCB608:
+ 773 005e 5B2B     		cmp	r3, #91
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 19
+
+
+ 774 0060 05D0     		beq	.L53
+ 775 0062 04E1     		b	.L44
+ 776              	.L51:
+ 777 0064 7B2B     		cmp	r3, #123
+ 778 0066 02D0     		beq	.L53
+ 779 0068 7D2B     		cmp	r3, #125
+ 780 006a 38D0     		beq	.L50
+ 781 006c FFE0     		b	.L44
+ 782              	.L53:
+ 167:.\Generated_Source\PSoC4/comm_jsmn.c **** 				count++;
+ 783              		.loc 1 167 0
+ 784 006e 3B6A     		ldr	r3, [r7, #32]
+ 785 0070 0133     		add	r3, r3, #1
+ 786 0072 3B62     		str	r3, [r7, #32]
+ 168:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens == NULL) {
+ 787              		.loc 1 168 0
+ 788 0074 3B68     		ldr	r3, [r7]
+ 789 0076 002B     		cmp	r3, #0
+ 790 0078 00D1     		bne	.L54
+ 169:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 791              		.loc 1 169 0
+ 792 007a 22E1     		b	.L55
+ 793              	.L54:
+ 171:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token = jsmn_alloc_token(parser, tokens, num_tokens);
+ 794              		.loc 1 171 0
+ 795 007c F968     		ldr	r1, [r7, #12]
+ 796 007e 3A68     		ldr	r2, [r7]
+ 797 0080 BB6B     		ldr	r3, [r7, #56]
+ 798 0082 081C     		mov	r0, r1
+ 799 0084 111C     		mov	r1, r2
+ 800 0086 1A1C     		mov	r2, r3
+ 801 0088 FFF7FEFF 		bl	jsmn_alloc_token
+ 802 008c 031C     		mov	r3, r0
+ 803 008e BB61     		str	r3, [r7, #24]
+ 172:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (token == NULL)
+ 804              		.loc 1 172 0
+ 805 0090 BB69     		ldr	r3, [r7, #24]
+ 806 0092 002B     		cmp	r3, #0
+ 807 0094 01D1     		bne	.L56
+ 173:.\Generated_Source\PSoC4/comm_jsmn.c **** 					return JSMN_ERROR_NOMEM;
+ 808              		.loc 1 173 0
+ 809 0096 FF23     		mov	r3, #255
+ 810 0098 42E1     		b	.L57
+ 811              	.L56:
+ 174:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1) {
+ 812              		.loc 1 174 0
+ 813 009a FB68     		ldr	r3, [r7, #12]
+ 814 009c 9B68     		ldr	r3, [r3, #8]
+ 815 009e 0133     		add	r3, r3, #1
+ 816 00a0 07D0     		beq	.L58
+ 175:.\Generated_Source\PSoC4/comm_jsmn.c **** 					tokens[parser->toksuper].size++;
+ 817              		.loc 1 175 0
+ 818 00a2 FB68     		ldr	r3, [r7, #12]
+ 819 00a4 9B68     		ldr	r3, [r3, #8]
+ 820 00a6 1B01     		lsl	r3, r3, #4
+ 821 00a8 3A68     		ldr	r2, [r7]
+ 822 00aa D318     		add	r3, r2, r3
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 20
+
+
+ 823 00ac DA68     		ldr	r2, [r3, #12]
+ 824 00ae 0132     		add	r2, r2, #1
+ 825 00b0 DA60     		str	r2, [r3, #12]
+ 826              	.L58:
+ 180:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->type = (c == '{' ? JSMN_OBJECT : JSMN_ARRAY);
+ 827              		.loc 1 180 0
+ 828 00b2 3B1C     		mov	r3, r7
+ 829 00b4 1F33     		add	r3, r3, #31
+ 830 00b6 1B78     		ldrb	r3, [r3]
+ 831 00b8 7B2B     		cmp	r3, #123
+ 832 00ba 01D1     		bne	.L59
+ 180:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->type = (c == '{' ? JSMN_OBJECT : JSMN_ARRAY);
+ 833              		.loc 1 180 0 is_stmt 0 discriminator 1
+ 834 00bc 0123     		mov	r3, #1
+ 835 00be 00E0     		b	.L60
+ 836              	.L59:
+ 180:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->type = (c == '{' ? JSMN_OBJECT : JSMN_ARRAY);
+ 837              		.loc 1 180 0 discriminator 2
+ 838 00c0 0223     		mov	r3, #2
+ 839              	.L60:
+ 180:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->type = (c == '{' ? JSMN_OBJECT : JSMN_ARRAY);
+ 840              		.loc 1 180 0 discriminator 3
+ 841 00c2 BA69     		ldr	r2, [r7, #24]
+ 842 00c4 1370     		strb	r3, [r2]
+ 181:.\Generated_Source\PSoC4/comm_jsmn.c **** 				token->start = parser->pos;
+ 843              		.loc 1 181 0 is_stmt 1 discriminator 3
+ 844 00c6 FB68     		ldr	r3, [r7, #12]
+ 845 00c8 1B68     		ldr	r3, [r3]
+ 846 00ca 1A1C     		mov	r2, r3
+ 847 00cc BB69     		ldr	r3, [r7, #24]
+ 848 00ce 5A60     		str	r2, [r3, #4]
+ 182:.\Generated_Source\PSoC4/comm_jsmn.c **** 				parser->toksuper = parser->toknext - 1;
+ 849              		.loc 1 182 0 discriminator 3
+ 850 00d0 FB68     		ldr	r3, [r7, #12]
+ 851 00d2 5B68     		ldr	r3, [r3, #4]
+ 852 00d4 013B     		sub	r3, r3, #1
+ 853 00d6 1A1C     		mov	r2, r3
+ 854 00d8 FB68     		ldr	r3, [r7, #12]
+ 855 00da 9A60     		str	r2, [r3, #8]
+ 183:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 856              		.loc 1 183 0 discriminator 3
+ 857 00dc F1E0     		b	.L55
+ 858              	.L50:
+ 185:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens == NULL)
+ 859              		.loc 1 185 0
+ 860 00de 3B68     		ldr	r3, [r7]
+ 861 00e0 002B     		cmp	r3, #0
+ 862 00e2 00D1     		bne	.L61
+ 186:.\Generated_Source\PSoC4/comm_jsmn.c **** 					break;
+ 863              		.loc 1 186 0
+ 864 00e4 EDE0     		b	.L55
+ 865              	.L61:
+ 187:.\Generated_Source\PSoC4/comm_jsmn.c **** 				type = (c == '}' ? JSMN_OBJECT : JSMN_ARRAY);
+ 866              		.loc 1 187 0
+ 867 00e6 3B1C     		mov	r3, r7
+ 868 00e8 1F33     		add	r3, r3, #31
+ 869 00ea 1B78     		ldrb	r3, [r3]
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 21
+
+
+ 870 00ec 7D2B     		cmp	r3, #125
+ 871 00ee 01D1     		bne	.L62
+ 187:.\Generated_Source\PSoC4/comm_jsmn.c **** 				type = (c == '}' ? JSMN_OBJECT : JSMN_ARRAY);
+ 872              		.loc 1 187 0 is_stmt 0 discriminator 1
+ 873 00f0 0123     		mov	r3, #1
+ 874 00f2 00E0     		b	.L63
+ 875              	.L62:
+ 187:.\Generated_Source\PSoC4/comm_jsmn.c **** 				type = (c == '}' ? JSMN_OBJECT : JSMN_ARRAY);
+ 876              		.loc 1 187 0 discriminator 2
+ 877 00f4 0223     		mov	r3, #2
+ 878              	.L63:
+ 187:.\Generated_Source\PSoC4/comm_jsmn.c **** 				type = (c == '}' ? JSMN_OBJECT : JSMN_ARRAY);
+ 879              		.loc 1 187 0 discriminator 3
+ 880 00f6 3A1C     		mov	r2, r7
+ 881 00f8 1732     		add	r2, r2, #23
+ 882 00fa 1370     		strb	r3, [r2]
+ 208:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (i = parser->toknext - 1; i >= 0; i--) {
+ 883              		.loc 1 208 0 is_stmt 1 discriminator 3
+ 884 00fc FB68     		ldr	r3, [r7, #12]
+ 885 00fe 5B68     		ldr	r3, [r3, #4]
+ 886 0100 013B     		sub	r3, r3, #1
+ 887 0102 7B62     		str	r3, [r7, #36]
+ 888 0104 23E0     		b	.L64
+ 889              	.L68:
+ 209:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token = &tokens[i];
+ 890              		.loc 1 209 0
+ 891 0106 7B6A     		ldr	r3, [r7, #36]
+ 892 0108 1B01     		lsl	r3, r3, #4
+ 893 010a 3A68     		ldr	r2, [r7]
+ 894 010c D318     		add	r3, r2, r3
+ 895 010e BB61     		str	r3, [r7, #24]
+ 210:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 896              		.loc 1 210 0
+ 897 0110 BB69     		ldr	r3, [r7, #24]
+ 898 0112 5B68     		ldr	r3, [r3, #4]
+ 899 0114 0133     		add	r3, r3, #1
+ 900 0116 17D0     		beq	.L65
+ 210:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 901              		.loc 1 210 0 is_stmt 0 discriminator 1
+ 902 0118 BB69     		ldr	r3, [r7, #24]
+ 903 011a 9B68     		ldr	r3, [r3, #8]
+ 904 011c 0133     		add	r3, r3, #1
+ 905 011e 13D1     		bne	.L65
+ 211:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if (token->type != type) {
+ 906              		.loc 1 211 0 is_stmt 1
+ 907 0120 BB69     		ldr	r3, [r7, #24]
+ 908 0122 1B78     		ldrb	r3, [r3]
+ 909 0124 3A1C     		mov	r2, r7
+ 910 0126 1732     		add	r2, r2, #23
+ 911 0128 1278     		ldrb	r2, [r2]
+ 912 012a 9A42     		cmp	r2, r3
+ 913 012c 01D0     		beq	.L66
+ 212:.\Generated_Source\PSoC4/comm_jsmn.c **** 							return JSMN_ERROR_INVAL;
+ 914              		.loc 1 212 0
+ 915 012e FE23     		mov	r3, #254
+ 916 0130 F6E0     		b	.L57
+ 917              	.L66:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 22
+
+
+ 214:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->toksuper = -1;
+ 918              		.loc 1 214 0
+ 919 0132 FB68     		ldr	r3, [r7, #12]
+ 920 0134 0122     		mov	r2, #1
+ 921 0136 5242     		neg	r2, r2
+ 922 0138 9A60     		str	r2, [r3, #8]
+ 215:.\Generated_Source\PSoC4/comm_jsmn.c **** 						token->end = parser->pos + 1;
+ 923              		.loc 1 215 0
+ 924 013a FB68     		ldr	r3, [r7, #12]
+ 925 013c 1B68     		ldr	r3, [r3]
+ 926 013e 0133     		add	r3, r3, #1
+ 927 0140 1A1C     		mov	r2, r3
+ 928 0142 BB69     		ldr	r3, [r7, #24]
+ 929 0144 9A60     		str	r2, [r3, #8]
+ 216:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 930              		.loc 1 216 0
+ 931 0146 05E0     		b	.L67
+ 932              	.L65:
+ 208:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (i = parser->toknext - 1; i >= 0; i--) {
+ 933              		.loc 1 208 0
+ 934 0148 7B6A     		ldr	r3, [r7, #36]
+ 935 014a 013B     		sub	r3, r3, #1
+ 936 014c 7B62     		str	r3, [r7, #36]
+ 937              	.L64:
+ 208:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (i = parser->toknext - 1; i >= 0; i--) {
+ 938              		.loc 1 208 0 is_stmt 0 discriminator 1
+ 939 014e 7B6A     		ldr	r3, [r7, #36]
+ 940 0150 002B     		cmp	r3, #0
+ 941 0152 D8DA     		bge	.L68
+ 942              	.L67:
+ 220:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (i == -1) return JSMN_ERROR_INVAL;
+ 943              		.loc 1 220 0 is_stmt 1
+ 944 0154 7B6A     		ldr	r3, [r7, #36]
+ 945 0156 0133     		add	r3, r3, #1
+ 946 0158 01D1     		bne	.L69
+ 220:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (i == -1) return JSMN_ERROR_INVAL;
+ 947              		.loc 1 220 0 is_stmt 0 discriminator 1
+ 948 015a FE23     		mov	r3, #254
+ 949 015c E0E0     		b	.L57
+ 950              	.L69:
+ 221:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (; i >= 0; i--) {
+ 951              		.loc 1 221 0 is_stmt 1
+ 952 015e 13E0     		b	.L70
+ 953              	.L73:
+ 222:.\Generated_Source\PSoC4/comm_jsmn.c **** 					token = &tokens[i];
+ 954              		.loc 1 222 0
+ 955 0160 7B6A     		ldr	r3, [r7, #36]
+ 956 0162 1B01     		lsl	r3, r3, #4
+ 957 0164 3A68     		ldr	r2, [r7]
+ 958 0166 D318     		add	r3, r2, r3
+ 959 0168 BB61     		str	r3, [r7, #24]
+ 223:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 960              		.loc 1 223 0
+ 961 016a BB69     		ldr	r3, [r7, #24]
+ 962 016c 5B68     		ldr	r3, [r3, #4]
+ 963 016e 0133     		add	r3, r3, #1
+ 964 0170 07D0     		beq	.L71
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 23
+
+
+ 223:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (token->start != -1 && token->end == -1) {
+ 965              		.loc 1 223 0 is_stmt 0 discriminator 1
+ 966 0172 BB69     		ldr	r3, [r7, #24]
+ 967 0174 9B68     		ldr	r3, [r3, #8]
+ 968 0176 0133     		add	r3, r3, #1
+ 969 0178 03D1     		bne	.L71
+ 224:.\Generated_Source\PSoC4/comm_jsmn.c **** 						parser->toksuper = i;
+ 970              		.loc 1 224 0 is_stmt 1
+ 971 017a FB68     		ldr	r3, [r7, #12]
+ 972 017c 7A6A     		ldr	r2, [r7, #36]
+ 973 017e 9A60     		str	r2, [r3, #8]
+ 225:.\Generated_Source\PSoC4/comm_jsmn.c **** 						break;
+ 974              		.loc 1 225 0
+ 975 0180 05E0     		b	.L72
+ 976              	.L71:
+ 221:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (; i >= 0; i--) {
+ 977              		.loc 1 221 0
+ 978 0182 7B6A     		ldr	r3, [r7, #36]
+ 979 0184 013B     		sub	r3, r3, #1
+ 980 0186 7B62     		str	r3, [r7, #36]
+ 981              	.L70:
+ 221:.\Generated_Source\PSoC4/comm_jsmn.c **** 				for (; i >= 0; i--) {
+ 982              		.loc 1 221 0 is_stmt 0 discriminator 1
+ 983 0188 7B6A     		ldr	r3, [r7, #36]
+ 984 018a 002B     		cmp	r3, #0
+ 985 018c E8DA     		bge	.L73
+ 986              	.L72:
+ 229:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 987              		.loc 1 229 0 is_stmt 1
+ 988 018e 98E0     		b	.L55
+ 989              	.L49:
+ 231:.\Generated_Source\PSoC4/comm_jsmn.c **** 				r = jsmn_parse_string(parser, js, len, tokens, num_tokens);
+ 990              		.loc 1 231 0
+ 991 0190 3C1C     		mov	r4, r7
+ 992 0192 1634     		add	r4, r4, #22
+ 993 0194 F868     		ldr	r0, [r7, #12]
+ 994 0196 B968     		ldr	r1, [r7, #8]
+ 995 0198 7A68     		ldr	r2, [r7, #4]
+ 996 019a 3B68     		ldr	r3, [r7]
+ 997 019c BD6B     		ldr	r5, [r7, #56]
+ 998 019e 0095     		str	r5, [sp]
+ 999 01a0 FFF7FEFF 		bl	jsmn_parse_string
+ 1000 01a4 031C     		mov	r3, r0
+ 1001 01a6 2370     		strb	r3, [r4]
+ 232:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (r < 0) return r;
+ 1002              		.loc 1 232 0
+ 1003 01a8 3B1C     		mov	r3, r7
+ 1004 01aa 1633     		add	r3, r3, #22
+ 1005 01ac 1B78     		ldrb	r3, [r3]
+ 1006 01ae 7F2B     		cmp	r3, #127
+ 1007 01b0 03D9     		bls	.L74
+ 232:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (r < 0) return r;
+ 1008              		.loc 1 232 0 is_stmt 0 discriminator 1
+ 1009 01b2 3B1C     		mov	r3, r7
+ 1010 01b4 1633     		add	r3, r3, #22
+ 1011 01b6 1B78     		ldrb	r3, [r3]
+ 1012 01b8 B2E0     		b	.L57
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 24
+
+
+ 1013              	.L74:
+ 233:.\Generated_Source\PSoC4/comm_jsmn.c **** 				count++;
+ 1014              		.loc 1 233 0 is_stmt 1
+ 1015 01ba 3B6A     		ldr	r3, [r7, #32]
+ 1016 01bc 0133     		add	r3, r3, #1
+ 1017 01be 3B62     		str	r3, [r7, #32]
+ 234:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1 && tokens != NULL)
+ 1018              		.loc 1 234 0
+ 1019 01c0 FB68     		ldr	r3, [r7, #12]
+ 1020 01c2 9B68     		ldr	r3, [r3, #8]
+ 1021 01c4 0133     		add	r3, r3, #1
+ 1022 01c6 0BD0     		beq	.L75
+ 234:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1 && tokens != NULL)
+ 1023              		.loc 1 234 0 is_stmt 0 discriminator 1
+ 1024 01c8 3B68     		ldr	r3, [r7]
+ 1025 01ca 002B     		cmp	r3, #0
+ 1026 01cc 08D0     		beq	.L75
+ 235:.\Generated_Source\PSoC4/comm_jsmn.c **** 					tokens[parser->toksuper].size++;
+ 1027              		.loc 1 235 0 is_stmt 1
+ 1028 01ce FB68     		ldr	r3, [r7, #12]
+ 1029 01d0 9B68     		ldr	r3, [r3, #8]
+ 1030 01d2 1B01     		lsl	r3, r3, #4
+ 1031 01d4 3A68     		ldr	r2, [r7]
+ 1032 01d6 D318     		add	r3, r2, r3
+ 1033 01d8 DA68     		ldr	r2, [r3, #12]
+ 1034 01da 0132     		add	r2, r2, #1
+ 1035 01dc DA60     		str	r2, [r3, #12]
+ 236:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 1036              		.loc 1 236 0
+ 1037 01de 70E0     		b	.L55
+ 1038              	.L75:
+ 1039 01e0 6FE0     		b	.L55
+ 1040              	.L52:
+ 239:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case ':':
+ 240:.\Generated_Source\PSoC4/comm_jsmn.c **** 				parser->toksuper = parser->toknext - 1;
+ 1041              		.loc 1 240 0
+ 1042 01e2 FB68     		ldr	r3, [r7, #12]
+ 1043 01e4 5B68     		ldr	r3, [r3, #4]
+ 1044 01e6 013B     		sub	r3, r3, #1
+ 1045 01e8 1A1C     		mov	r2, r3
+ 1046 01ea FB68     		ldr	r3, [r7, #12]
+ 1047 01ec 9A60     		str	r2, [r3, #8]
+ 241:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 1048              		.loc 1 241 0
+ 1049 01ee 68E0     		b	.L55
+ 1050              	.L45:
+ 242:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case ',':
+ 243:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens != NULL &&
+ 1051              		.loc 1 243 0
+ 1052 01f0 3B68     		ldr	r3, [r7]
+ 1053 01f2 002B     		cmp	r3, #0
+ 1054 01f4 3AD0     		beq	.L76
+ 244:.\Generated_Source\PSoC4/comm_jsmn.c **** 						tokens[parser->toksuper].type != JSMN_ARRAY &&
+ 1055              		.loc 1 244 0 discriminator 1
+ 1056 01f6 FB68     		ldr	r3, [r7, #12]
+ 1057 01f8 9B68     		ldr	r3, [r3, #8]
+ 1058 01fa 1B01     		lsl	r3, r3, #4
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 25
+
+
+ 1059 01fc 3A68     		ldr	r2, [r7]
+ 1060 01fe D318     		add	r3, r2, r3
+ 1061 0200 1B78     		ldrb	r3, [r3]
+ 243:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens != NULL &&
+ 1062              		.loc 1 243 0 discriminator 1
+ 1063 0202 022B     		cmp	r3, #2
+ 1064 0204 32D0     		beq	.L76
+ 245:.\Generated_Source\PSoC4/comm_jsmn.c **** 						tokens[parser->toksuper].type != JSMN_OBJECT) {
+ 1065              		.loc 1 245 0
+ 1066 0206 FB68     		ldr	r3, [r7, #12]
+ 1067 0208 9B68     		ldr	r3, [r3, #8]
+ 1068 020a 1B01     		lsl	r3, r3, #4
+ 1069 020c 3A68     		ldr	r2, [r7]
+ 1070 020e D318     		add	r3, r2, r3
+ 1071 0210 1B78     		ldrb	r3, [r3]
+ 244:.\Generated_Source\PSoC4/comm_jsmn.c **** 						tokens[parser->toksuper].type != JSMN_ARRAY &&
+ 1072              		.loc 1 244 0
+ 1073 0212 012B     		cmp	r3, #1
+ 1074 0214 2AD0     		beq	.L76
+ 246:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_PARENT_LINKS
+ 247:.\Generated_Source\PSoC4/comm_jsmn.c **** 					parser->toksuper = tokens[parser->toksuper].parent;
+ 248:.\Generated_Source\PSoC4/comm_jsmn.c **** #else
+ 249:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for (i = parser->toknext - 1; i >= 0; i--) {
+ 1075              		.loc 1 249 0
+ 1076 0216 FB68     		ldr	r3, [r7, #12]
+ 1077 0218 5B68     		ldr	r3, [r3, #4]
+ 1078 021a 013B     		sub	r3, r3, #1
+ 1079 021c 7B62     		str	r3, [r7, #36]
+ 1080 021e 22E0     		b	.L77
+ 1081              	.L80:
+ 250:.\Generated_Source\PSoC4/comm_jsmn.c **** 						if (tokens[i].type == JSMN_ARRAY || tokens[i].type == JSMN_OBJECT) {
+ 1082              		.loc 1 250 0
+ 1083 0220 7B6A     		ldr	r3, [r7, #36]
+ 1084 0222 1B01     		lsl	r3, r3, #4
+ 1085 0224 3A68     		ldr	r2, [r7]
+ 1086 0226 D318     		add	r3, r2, r3
+ 1087 0228 1B78     		ldrb	r3, [r3]
+ 1088 022a 022B     		cmp	r3, #2
+ 1089 022c 06D0     		beq	.L78
+ 1090              		.loc 1 250 0 is_stmt 0 discriminator 1
+ 1091 022e 7B6A     		ldr	r3, [r7, #36]
+ 1092 0230 1B01     		lsl	r3, r3, #4
+ 1093 0232 3A68     		ldr	r2, [r7]
+ 1094 0234 D318     		add	r3, r2, r3
+ 1095 0236 1B78     		ldrb	r3, [r3]
+ 1096 0238 012B     		cmp	r3, #1
+ 1097 023a 11D1     		bne	.L79
+ 1098              	.L78:
+ 251:.\Generated_Source\PSoC4/comm_jsmn.c **** 							if (tokens[i].start != -1 && tokens[i].end == -1) {
+ 1099              		.loc 1 251 0 is_stmt 1
+ 1100 023c 7B6A     		ldr	r3, [r7, #36]
+ 1101 023e 1B01     		lsl	r3, r3, #4
+ 1102 0240 3A68     		ldr	r2, [r7]
+ 1103 0242 D318     		add	r3, r2, r3
+ 1104 0244 5B68     		ldr	r3, [r3, #4]
+ 1105 0246 0133     		add	r3, r3, #1
+ 1106 0248 0AD0     		beq	.L79
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 26
+
+
+ 1107              		.loc 1 251 0 is_stmt 0 discriminator 1
+ 1108 024a 7B6A     		ldr	r3, [r7, #36]
+ 1109 024c 1B01     		lsl	r3, r3, #4
+ 1110 024e 3A68     		ldr	r2, [r7]
+ 1111 0250 D318     		add	r3, r2, r3
+ 1112 0252 9B68     		ldr	r3, [r3, #8]
+ 1113 0254 0133     		add	r3, r3, #1
+ 1114 0256 03D1     		bne	.L79
+ 252:.\Generated_Source\PSoC4/comm_jsmn.c **** 								parser->toksuper = i;
+ 1115              		.loc 1 252 0 is_stmt 1
+ 1116 0258 FB68     		ldr	r3, [r7, #12]
+ 1117 025a 7A6A     		ldr	r2, [r7, #36]
+ 1118 025c 9A60     		str	r2, [r3, #8]
+ 253:.\Generated_Source\PSoC4/comm_jsmn.c **** 								break;
+ 1119              		.loc 1 253 0
+ 1120 025e 05E0     		b	.L76
+ 1121              	.L79:
+ 249:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for (i = parser->toknext - 1; i >= 0; i--) {
+ 1122              		.loc 1 249 0
+ 1123 0260 7B6A     		ldr	r3, [r7, #36]
+ 1124 0262 013B     		sub	r3, r3, #1
+ 1125 0264 7B62     		str	r3, [r7, #36]
+ 1126              	.L77:
+ 249:.\Generated_Source\PSoC4/comm_jsmn.c **** 					for (i = parser->toknext - 1; i >= 0; i--) {
+ 1127              		.loc 1 249 0 is_stmt 0 discriminator 1
+ 1128 0266 7B6A     		ldr	r3, [r7, #36]
+ 1129 0268 002B     		cmp	r3, #0
+ 1130 026a D9DA     		bge	.L80
+ 1131              	.L76:
+ 254:.\Generated_Source\PSoC4/comm_jsmn.c **** 							}
+ 255:.\Generated_Source\PSoC4/comm_jsmn.c **** 						}
+ 256:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 257:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 258:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 259:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 1132              		.loc 1 259 0 is_stmt 1
+ 1133 026c 29E0     		b	.L55
+ 1134              	.L44:
+ 260:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_STRICT
+ 261:.\Generated_Source\PSoC4/comm_jsmn.c **** 			/* In strict mode primitives are: numbers and booleans */
+ 262:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '-': case '0': case '1' : case '2': case '3' : case '4':
+ 263:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case '5': case '6': case '7' : case '8': case '9':
+ 264:.\Generated_Source\PSoC4/comm_jsmn.c **** 			case 't': case 'f': case 'n' :
+ 265:.\Generated_Source\PSoC4/comm_jsmn.c **** 				/* And they must not be keys of the object */
+ 266:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (tokens != NULL) {
+ 267:.\Generated_Source\PSoC4/comm_jsmn.c **** 					jsmntok_t *t = &tokens[parser->toksuper];
+ 268:.\Generated_Source\PSoC4/comm_jsmn.c **** 					if (t->type == JSMN_OBJECT ||
+ 269:.\Generated_Source\PSoC4/comm_jsmn.c **** 							(t->type == JSMN_STRING && t->size != 0)) {
+ 270:.\Generated_Source\PSoC4/comm_jsmn.c **** 						return JSMN_ERROR_INVAL;
+ 271:.\Generated_Source\PSoC4/comm_jsmn.c **** 					}
+ 272:.\Generated_Source\PSoC4/comm_jsmn.c **** 				}
+ 273:.\Generated_Source\PSoC4/comm_jsmn.c **** #else
+ 274:.\Generated_Source\PSoC4/comm_jsmn.c **** 			/* In non-strict mode every unquoted value is a primitive */
+ 275:.\Generated_Source\PSoC4/comm_jsmn.c **** 			default:
+ 276:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 277:.\Generated_Source\PSoC4/comm_jsmn.c **** 				r = jsmn_parse_primitive(parser, js, len, tokens, num_tokens);
+ 1135              		.loc 1 277 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 27
+
+
+ 1136 026e 3C1C     		mov	r4, r7
+ 1137 0270 1634     		add	r4, r4, #22
+ 1138 0272 F868     		ldr	r0, [r7, #12]
+ 1139 0274 B968     		ldr	r1, [r7, #8]
+ 1140 0276 7A68     		ldr	r2, [r7, #4]
+ 1141 0278 3B68     		ldr	r3, [r7]
+ 1142 027a BD6B     		ldr	r5, [r7, #56]
+ 1143 027c 0095     		str	r5, [sp]
+ 1144 027e FFF7FEFF 		bl	jsmn_parse_primitive
+ 1145 0282 031C     		mov	r3, r0
+ 1146 0284 2370     		strb	r3, [r4]
+ 278:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (r < 0) return r;
+ 1147              		.loc 1 278 0
+ 1148 0286 3B1C     		mov	r3, r7
+ 1149 0288 1633     		add	r3, r3, #22
+ 1150 028a 1B78     		ldrb	r3, [r3]
+ 1151 028c 7F2B     		cmp	r3, #127
+ 1152 028e 03D9     		bls	.L81
+ 1153              		.loc 1 278 0 is_stmt 0 discriminator 1
+ 1154 0290 3B1C     		mov	r3, r7
+ 1155 0292 1633     		add	r3, r3, #22
+ 1156 0294 1B78     		ldrb	r3, [r3]
+ 1157 0296 43E0     		b	.L57
+ 1158              	.L81:
+ 279:.\Generated_Source\PSoC4/comm_jsmn.c **** 				count++;
+ 1159              		.loc 1 279 0 is_stmt 1
+ 1160 0298 3B6A     		ldr	r3, [r7, #32]
+ 1161 029a 0133     		add	r3, r3, #1
+ 1162 029c 3B62     		str	r3, [r7, #32]
+ 280:.\Generated_Source\PSoC4/comm_jsmn.c **** 				if (parser->toksuper != -1 && tokens != NULL)
+ 1163              		.loc 1 280 0
+ 1164 029e FB68     		ldr	r3, [r7, #12]
+ 1165 02a0 9B68     		ldr	r3, [r3, #8]
+ 1166 02a2 0133     		add	r3, r3, #1
+ 1167 02a4 0BD0     		beq	.L82
+ 1168              		.loc 1 280 0 is_stmt 0 discriminator 1
+ 1169 02a6 3B68     		ldr	r3, [r7]
+ 1170 02a8 002B     		cmp	r3, #0
+ 1171 02aa 08D0     		beq	.L82
+ 281:.\Generated_Source\PSoC4/comm_jsmn.c **** 					tokens[parser->toksuper].size++;
+ 1172              		.loc 1 281 0 is_stmt 1
+ 1173 02ac FB68     		ldr	r3, [r7, #12]
+ 1174 02ae 9B68     		ldr	r3, [r3, #8]
+ 1175 02b0 1B01     		lsl	r3, r3, #4
+ 1176 02b2 3A68     		ldr	r2, [r7]
+ 1177 02b4 D318     		add	r3, r2, r3
+ 1178 02b6 DA68     		ldr	r2, [r3, #12]
+ 1179 02b8 0132     		add	r2, r2, #1
+ 1180 02ba DA60     		str	r2, [r3, #12]
+ 282:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 1181              		.loc 1 282 0
+ 1182 02bc 01E0     		b	.L55
+ 1183              	.L82:
+ 1184 02be 00E0     		b	.L55
+ 1185              	.L88:
+ 238:.\Generated_Source\PSoC4/comm_jsmn.c **** 				break;
+ 1186              		.loc 1 238 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 28
+
+
+ 1187 02c0 C046     		mov	r8, r8
+ 1188              	.L55:
+ 1189              	.LBE4:
+ 160:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 1190              		.loc 1 160 0
+ 1191 02c2 FB68     		ldr	r3, [r7, #12]
+ 1192 02c4 1B68     		ldr	r3, [r3]
+ 1193 02c6 5A1C     		add	r2, r3, #1
+ 1194 02c8 FB68     		ldr	r3, [r7, #12]
+ 1195 02ca 1A60     		str	r2, [r3]
+ 1196              	.L43:
+ 160:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 1197              		.loc 1 160 0 is_stmt 0 discriminator 1
+ 1198 02cc FB68     		ldr	r3, [r7, #12]
+ 1199 02ce 1A68     		ldr	r2, [r3]
+ 1200 02d0 7B68     		ldr	r3, [r7, #4]
+ 1201 02d2 9A42     		cmp	r2, r3
+ 1202 02d4 07D2     		bcs	.L83
+ 160:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (; parser->pos < len && js[parser->pos] != '\0'; parser->pos++) {
+ 1203              		.loc 1 160 0 discriminator 2
+ 1204 02d6 FB68     		ldr	r3, [r7, #12]
+ 1205 02d8 1B68     		ldr	r3, [r3]
+ 1206 02da BA68     		ldr	r2, [r7, #8]
+ 1207 02dc D318     		add	r3, r2, r3
+ 1208 02de 1B78     		ldrb	r3, [r3]
+ 1209 02e0 002B     		cmp	r3, #0
+ 1210 02e2 00D0     		beq	.LCB1024
+ 1211 02e4 96E6     		b	.L84	@long jump
+ 1212              	.LCB1024:
+ 1213              	.L83:
+ 283:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 284:.\Generated_Source\PSoC4/comm_jsmn.c **** #ifdef JSMN_STRICT
+ 285:.\Generated_Source\PSoC4/comm_jsmn.c **** 			/* Unexpected char in strict mode */
+ 286:.\Generated_Source\PSoC4/comm_jsmn.c **** 			default:
+ 287:.\Generated_Source\PSoC4/comm_jsmn.c **** 				return JSMN_ERROR_INVAL;
+ 288:.\Generated_Source\PSoC4/comm_jsmn.c **** #endif
+ 289:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+ 290:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+ 291:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 292:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (i = parser->toknext - 1; i >= 0; i--) {
+ 1214              		.loc 1 292 0 is_stmt 1
+ 1215 02e6 FB68     		ldr	r3, [r7, #12]
+ 1216 02e8 5B68     		ldr	r3, [r3, #4]
+ 1217 02ea 013B     		sub	r3, r3, #1
+ 1218 02ec 7B62     		str	r3, [r7, #36]
+ 1219 02ee 12E0     		b	.L85
+ 1220              	.L87:
+ 293:.\Generated_Source\PSoC4/comm_jsmn.c **** 		/* Unmatched opened object or array */
+ 294:.\Generated_Source\PSoC4/comm_jsmn.c **** 		if (tokens[i].start != -1 && tokens[i].end == -1) {
+ 1221              		.loc 1 294 0
+ 1222 02f0 7B6A     		ldr	r3, [r7, #36]
+ 1223 02f2 1B01     		lsl	r3, r3, #4
+ 1224 02f4 3A68     		ldr	r2, [r7]
+ 1225 02f6 D318     		add	r3, r2, r3
+ 1226 02f8 5B68     		ldr	r3, [r3, #4]
+ 1227 02fa 0133     		add	r3, r3, #1
+ 1228 02fc 08D0     		beq	.L86
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 29
+
+
+ 1229              		.loc 1 294 0 is_stmt 0 discriminator 1
+ 1230 02fe 7B6A     		ldr	r3, [r7, #36]
+ 1231 0300 1B01     		lsl	r3, r3, #4
+ 1232 0302 3A68     		ldr	r2, [r7]
+ 1233 0304 D318     		add	r3, r2, r3
+ 1234 0306 9B68     		ldr	r3, [r3, #8]
+ 1235 0308 0133     		add	r3, r3, #1
+ 1236 030a 01D1     		bne	.L86
+ 295:.\Generated_Source\PSoC4/comm_jsmn.c **** 			return JSMN_ERROR_PART;
+ 1237              		.loc 1 295 0 is_stmt 1
+ 1238 030c FD23     		mov	r3, #253
+ 1239 030e 07E0     		b	.L57
+ 1240              	.L86:
+ 292:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (i = parser->toknext - 1; i >= 0; i--) {
+ 1241              		.loc 1 292 0
+ 1242 0310 7B6A     		ldr	r3, [r7, #36]
+ 1243 0312 013B     		sub	r3, r3, #1
+ 1244 0314 7B62     		str	r3, [r7, #36]
+ 1245              	.L85:
+ 292:.\Generated_Source\PSoC4/comm_jsmn.c **** 	for (i = parser->toknext - 1; i >= 0; i--) {
+ 1246              		.loc 1 292 0 is_stmt 0 discriminator 1
+ 1247 0316 7B6A     		ldr	r3, [r7, #36]
+ 1248 0318 002B     		cmp	r3, #0
+ 1249 031a E9DA     		bge	.L87
+ 296:.\Generated_Source\PSoC4/comm_jsmn.c **** 		}
+ 297:.\Generated_Source\PSoC4/comm_jsmn.c **** 	}
+ 298:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 299:.\Generated_Source\PSoC4/comm_jsmn.c **** 	return count;
+ 1250              		.loc 1 299 0 is_stmt 1
+ 1251 031c 3B6A     		ldr	r3, [r7, #32]
+ 1252 031e DBB2     		uxtb	r3, r3
+ 1253              	.L57:
+ 1254 0320 5BB2     		sxtb	r3, r3
+ 300:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+ 1255              		.loc 1 300 0
+ 1256 0322 181C     		mov	r0, r3
+ 1257 0324 BD46     		mov	sp, r7
+ 1258 0326 0AB0     		add	sp, sp, #40
+ 1259              		@ sp needed
+ 1260 0328 B0BD     		pop	{r4, r5, r7, pc}
+ 1261              		.cfi_endproc
+ 1262              	.LFE37:
+ 1263              		.size	jsmn_parse, .-jsmn_parse
+ 1264 032a C046     		.section	.text.jsmn_init,"ax",%progbits
+ 1265              		.align	2
+ 1266              		.global	jsmn_init
+ 1267              		.code	16
+ 1268              		.thumb_func
+ 1269              		.type	jsmn_init, %function
+ 1270              	jsmn_init:
+ 1271              	.LFB38:
+ 301:.\Generated_Source\PSoC4/comm_jsmn.c **** 
+ 302:.\Generated_Source\PSoC4/comm_jsmn.c **** /**
+ 303:.\Generated_Source\PSoC4/comm_jsmn.c ****  * Creates a new parser based over a given  buffer with an array of tokens
+ 304:.\Generated_Source\PSoC4/comm_jsmn.c ****  * available.
+ 305:.\Generated_Source\PSoC4/comm_jsmn.c ****  */
+ 306:.\Generated_Source\PSoC4/comm_jsmn.c **** void jsmn_init(jsmn_parser *parser) {
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 30
+
+
+ 1272              		.loc 1 306 0
+ 1273              		.cfi_startproc
+ 1274 0000 80B5     		push	{r7, lr}
+ 1275              		.cfi_def_cfa_offset 8
+ 1276              		.cfi_offset 7, -8
+ 1277              		.cfi_offset 14, -4
+ 1278 0002 82B0     		sub	sp, sp, #8
+ 1279              		.cfi_def_cfa_offset 16
+ 1280 0004 00AF     		add	r7, sp, #0
+ 1281              		.cfi_def_cfa_register 7
+ 1282 0006 7860     		str	r0, [r7, #4]
+ 307:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->pos = 0;
+ 1283              		.loc 1 307 0
+ 1284 0008 7B68     		ldr	r3, [r7, #4]
+ 1285 000a 0022     		mov	r2, #0
+ 1286 000c 1A60     		str	r2, [r3]
+ 308:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->toknext = 0;
+ 1287              		.loc 1 308 0
+ 1288 000e 7B68     		ldr	r3, [r7, #4]
+ 1289 0010 0022     		mov	r2, #0
+ 1290 0012 5A60     		str	r2, [r3, #4]
+ 309:.\Generated_Source\PSoC4/comm_jsmn.c **** 	parser->toksuper = -1;
+ 1291              		.loc 1 309 0
+ 1292 0014 7B68     		ldr	r3, [r7, #4]
+ 1293 0016 0122     		mov	r2, #1
+ 1294 0018 5242     		neg	r2, r2
+ 1295 001a 9A60     		str	r2, [r3, #8]
+ 310:.\Generated_Source\PSoC4/comm_jsmn.c **** }
+ 1296              		.loc 1 310 0
+ 1297 001c BD46     		mov	sp, r7
+ 1298 001e 02B0     		add	sp, sp, #8
+ 1299              		@ sp needed
+ 1300 0020 80BD     		pop	{r7, pc}
+ 1301              		.cfi_endproc
+ 1302              	.LFE38:
+ 1303              		.size	jsmn_init, .-jsmn_init
+ 1304 0022 C046     		.text
+ 1305              	.Letext0:
+ 1306              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1307              		.file 3 "Generated_Source\\PSoC4/comm_jsmn.h"
+ 1308              		.section	.debug_info,"",%progbits
+ 1309              	.Ldebug_info0:
+ 1310 0000 1A040000 		.4byte	0x41a
+ 1311 0004 0400     		.2byte	0x4
+ 1312 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1313 000a 04       		.byte	0x4
+ 1314 000b 01       		.uleb128 0x1
+ 1315 000c AD000000 		.4byte	.LASF38
+ 1316 0010 01       		.byte	0x1
+ 1317 0011 82000000 		.4byte	.LASF39
+ 1318 0015 15000000 		.4byte	.LASF40
+ 1319 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1320 001d 00000000 		.4byte	0
+ 1321 0021 00000000 		.4byte	.Ldebug_line0
+ 1322 0025 02       		.uleb128 0x2
+ 1323 0026 0E000000 		.4byte	.LASF17
+ 1324 002a 02       		.byte	0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 31
+
+
+ 1325 002b D4       		.byte	0xd4
+ 1326 002c 30000000 		.4byte	0x30
+ 1327 0030 03       		.uleb128 0x3
+ 1328 0031 04       		.byte	0x4
+ 1329 0032 07       		.byte	0x7
+ 1330 0033 DE010000 		.4byte	.LASF0
+ 1331 0037 04       		.uleb128 0x4
+ 1332 0038 04       		.byte	0x4
+ 1333 0039 05       		.byte	0x5
+ 1334 003a 696E7400 		.ascii	"int\000"
+ 1335 003e 03       		.uleb128 0x3
+ 1336 003f 01       		.byte	0x1
+ 1337 0040 06       		.byte	0x6
+ 1338 0041 77020000 		.4byte	.LASF1
+ 1339 0045 03       		.uleb128 0x3
+ 1340 0046 01       		.byte	0x1
+ 1341 0047 08       		.byte	0x8
+ 1342 0048 D0010000 		.4byte	.LASF2
+ 1343 004c 03       		.uleb128 0x3
+ 1344 004d 02       		.byte	0x2
+ 1345 004e 05       		.byte	0x5
+ 1346 004f 78000000 		.4byte	.LASF3
+ 1347 0053 03       		.uleb128 0x3
+ 1348 0054 02       		.byte	0x2
+ 1349 0055 07       		.byte	0x7
+ 1350 0056 69010000 		.4byte	.LASF4
+ 1351 005a 03       		.uleb128 0x3
+ 1352 005b 04       		.byte	0x4
+ 1353 005c 05       		.byte	0x5
+ 1354 005d 67000000 		.4byte	.LASF5
+ 1355 0061 03       		.uleb128 0x3
+ 1356 0062 04       		.byte	0x4
+ 1357 0063 07       		.byte	0x7
+ 1358 0064 AD010000 		.4byte	.LASF6
+ 1359 0068 03       		.uleb128 0x3
+ 1360 0069 08       		.byte	0x8
+ 1361 006a 05       		.byte	0x5
+ 1362 006b 00000000 		.4byte	.LASF7
+ 1363 006f 03       		.uleb128 0x3
+ 1364 0070 08       		.byte	0x8
+ 1365 0071 07       		.byte	0x7
+ 1366 0072 F2010000 		.4byte	.LASF8
+ 1367 0076 03       		.uleb128 0x3
+ 1368 0077 04       		.byte	0x4
+ 1369 0078 07       		.byte	0x7
+ 1370 0079 37020000 		.4byte	.LASF9
+ 1371 007d 03       		.uleb128 0x3
+ 1372 007e 01       		.byte	0x1
+ 1373 007f 08       		.byte	0x8
+ 1374 0080 46020000 		.4byte	.LASF10
+ 1375 0084 05       		.uleb128 0x5
+ 1376 0085 04       		.byte	0x4
+ 1377 0086 8A000000 		.4byte	0x8a
+ 1378 008a 06       		.uleb128 0x6
+ 1379 008b 7D000000 		.4byte	0x7d
+ 1380 008f 03       		.uleb128 0x3
+ 1381 0090 04       		.byte	0x4
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 32
+
+
+ 1382 0091 04       		.byte	0x4
+ 1383 0092 A7000000 		.4byte	.LASF11
+ 1384 0096 03       		.uleb128 0x3
+ 1385 0097 08       		.byte	0x8
+ 1386 0098 04       		.byte	0x4
+ 1387 0099 19020000 		.4byte	.LASF12
+ 1388 009d 07       		.uleb128 0x7
+ 1389 009e 01       		.byte	0x1
+ 1390 009f 03       		.byte	0x3
+ 1391 00a0 18       		.byte	0x18
+ 1392 00a1 BE000000 		.4byte	0xbe
+ 1393 00a5 08       		.uleb128 0x8
+ 1394 00a6 29010000 		.4byte	.LASF13
+ 1395 00aa 00       		.sleb128 0
+ 1396 00ab 08       		.uleb128 0x8
+ 1397 00ac 5B000000 		.4byte	.LASF14
+ 1398 00b0 01       		.sleb128 1
+ 1399 00b1 08       		.uleb128 0x8
+ 1400 00b2 7C010000 		.4byte	.LASF15
+ 1401 00b6 02       		.sleb128 2
+ 1402 00b7 08       		.uleb128 0x8
+ 1403 00b8 2B020000 		.4byte	.LASF16
+ 1404 00bc 03       		.sleb128 3
+ 1405 00bd 00       		.byte	0
+ 1406 00be 02       		.uleb128 0x2
+ 1407 00bf 91010000 		.4byte	.LASF18
+ 1408 00c3 03       		.byte	0x3
+ 1409 00c4 1D       		.byte	0x1d
+ 1410 00c5 9D000000 		.4byte	0x9d
+ 1411 00c9 07       		.uleb128 0x7
+ 1412 00ca 01       		.byte	0x1
+ 1413 00cb 03       		.byte	0x3
+ 1414 00cc 1F       		.byte	0x1f
+ 1415 00cd E4000000 		.4byte	0xe4
+ 1416 00d1 08       		.uleb128 0x8
+ 1417 00d2 83020000 		.4byte	.LASF19
+ 1418 00d6 7F       		.sleb128 -1
+ 1419 00d7 08       		.uleb128 0x8
+ 1420 00d8 BF010000 		.4byte	.LASF20
+ 1421 00dc 7E       		.sleb128 -2
+ 1422 00dd 08       		.uleb128 0x8
+ 1423 00de A6020000 		.4byte	.LASF21
+ 1424 00e2 7D       		.sleb128 -3
+ 1425 00e3 00       		.byte	0
+ 1426 00e4 02       		.uleb128 0x2
+ 1427 00e5 50020000 		.4byte	.LASF22
+ 1428 00e9 03       		.byte	0x3
+ 1429 00ea 26       		.byte	0x26
+ 1430 00eb C9000000 		.4byte	0xc9
+ 1431 00ef 09       		.uleb128 0x9
+ 1432 00f0 10       		.byte	0x10
+ 1433 00f1 03       		.byte	0x3
+ 1434 00f2 2E       		.byte	0x2e
+ 1435 00f3 28010000 		.4byte	0x128
+ 1436 00f7 0A       		.uleb128 0xa
+ 1437 00f8 4B020000 		.4byte	.LASF23
+ 1438 00fc 03       		.byte	0x3
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 33
+
+
+ 1439 00fd 2F       		.byte	0x2f
+ 1440 00fe BE000000 		.4byte	0xbe
+ 1441 0102 00       		.byte	0
+ 1442 0103 0A       		.uleb128 0xa
+ 1443 0104 4E010000 		.4byte	.LASF24
+ 1444 0108 03       		.byte	0x3
+ 1445 0109 30       		.byte	0x30
+ 1446 010a 37000000 		.4byte	0x37
+ 1447 010e 04       		.byte	0x4
+ 1448 010f 0B       		.uleb128 0xb
+ 1449 0110 656E6400 		.ascii	"end\000"
+ 1450 0114 03       		.byte	0x3
+ 1451 0115 31       		.byte	0x31
+ 1452 0116 37000000 		.4byte	0x37
+ 1453 011a 08       		.byte	0x8
+ 1454 011b 0A       		.uleb128 0xa
+ 1455 011c 38010000 		.4byte	.LASF25
+ 1456 0120 03       		.byte	0x3
+ 1457 0121 32       		.byte	0x32
+ 1458 0122 37000000 		.4byte	0x37
+ 1459 0126 0C       		.byte	0xc
+ 1460 0127 00       		.byte	0
+ 1461 0128 02       		.uleb128 0x2
+ 1462 0129 87010000 		.4byte	.LASF26
+ 1463 012d 03       		.byte	0x3
+ 1464 012e 36       		.byte	0x36
+ 1465 012f EF000000 		.4byte	0xef
+ 1466 0133 09       		.uleb128 0x9
+ 1467 0134 0C       		.byte	0xc
+ 1468 0135 03       		.byte	0x3
+ 1469 0136 3C       		.byte	0x3c
+ 1470 0137 60010000 		.4byte	0x160
+ 1471 013b 0B       		.uleb128 0xb
+ 1472 013c 706F7300 		.ascii	"pos\000"
+ 1473 0140 03       		.byte	0x3
+ 1474 0141 3D       		.byte	0x3d
+ 1475 0142 30000000 		.4byte	0x30
+ 1476 0146 00       		.byte	0
+ 1477 0147 0A       		.uleb128 0xa
+ 1478 0148 70000000 		.4byte	.LASF27
+ 1479 014c 03       		.byte	0x3
+ 1480 014d 3E       		.byte	0x3e
+ 1481 014e 30000000 		.4byte	0x30
+ 1482 0152 04       		.byte	0x4
+ 1483 0153 0A       		.uleb128 0xa
+ 1484 0154 4C000000 		.4byte	.LASF28
+ 1485 0158 03       		.byte	0x3
+ 1486 0159 3F       		.byte	0x3f
+ 1487 015a 37000000 		.4byte	0x37
+ 1488 015e 08       		.byte	0x8
+ 1489 015f 00       		.byte	0
+ 1490 0160 02       		.uleb128 0x2
+ 1491 0161 5A020000 		.4byte	.LASF29
+ 1492 0165 03       		.byte	0x3
+ 1493 0166 40       		.byte	0x40
+ 1494 0167 33010000 		.4byte	0x133
+ 1495 016b 0C       		.uleb128 0xc
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 34
+
+
+ 1496 016c 3D010000 		.4byte	.LASF34
+ 1497 0170 01       		.byte	0x1
+ 1498 0171 08       		.byte	0x8
+ 1499 0172 BD010000 		.4byte	0x1bd
+ 1500 0176 00000000 		.4byte	.LFB33
+ 1501 017a 4C000000 		.4byte	.LFE33-.LFB33
+ 1502 017e 01       		.uleb128 0x1
+ 1503 017f 9C       		.byte	0x9c
+ 1504 0180 BD010000 		.4byte	0x1bd
+ 1505 0184 0D       		.uleb128 0xd
+ 1506 0185 A6010000 		.4byte	.LASF30
+ 1507 0189 01       		.byte	0x1
+ 1508 018a 08       		.byte	0x8
+ 1509 018b C3010000 		.4byte	0x1c3
+ 1510 018f 02       		.uleb128 0x2
+ 1511 0190 91       		.byte	0x91
+ 1512 0191 6C       		.sleb128 -20
+ 1513 0192 0D       		.uleb128 0xd
+ 1514 0193 EB010000 		.4byte	.LASF31
+ 1515 0197 01       		.byte	0x1
+ 1516 0198 09       		.byte	0x9
+ 1517 0199 BD010000 		.4byte	0x1bd
+ 1518 019d 02       		.uleb128 0x2
+ 1519 019e 91       		.byte	0x91
+ 1520 019f 68       		.sleb128 -24
+ 1521 01a0 0D       		.uleb128 0xd
+ 1522 01a1 20020000 		.4byte	.LASF32
+ 1523 01a5 01       		.byte	0x1
+ 1524 01a6 09       		.byte	0x9
+ 1525 01a7 25000000 		.4byte	0x25
+ 1526 01ab 02       		.uleb128 0x2
+ 1527 01ac 91       		.byte	0x91
+ 1528 01ad 64       		.sleb128 -28
+ 1529 01ae 0E       		.uleb128 0xe
+ 1530 01af 746F6B00 		.ascii	"tok\000"
+ 1531 01b3 01       		.byte	0x1
+ 1532 01b4 0A       		.byte	0xa
+ 1533 01b5 BD010000 		.4byte	0x1bd
+ 1534 01b9 02       		.uleb128 0x2
+ 1535 01ba 91       		.byte	0x91
+ 1536 01bb 74       		.sleb128 -12
+ 1537 01bc 00       		.byte	0
+ 1538 01bd 05       		.uleb128 0x5
+ 1539 01be 04       		.byte	0x4
+ 1540 01bf 28010000 		.4byte	0x128
+ 1541 01c3 05       		.uleb128 0x5
+ 1542 01c4 04       		.byte	0x4
+ 1543 01c5 60010000 		.4byte	0x160
+ 1544 01c9 0F       		.uleb128 0xf
+ 1545 01ca 09020000 		.4byte	.LASF41
+ 1546 01ce 01       		.byte	0x1
+ 1547 01cf 1A       		.byte	0x1a
+ 1548 01d0 00000000 		.4byte	.LFB34
+ 1549 01d4 36000000 		.4byte	.LFE34-.LFB34
+ 1550 01d8 01       		.uleb128 0x1
+ 1551 01d9 9C       		.byte	0x9c
+ 1552 01da 17020000 		.4byte	0x217
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 35
+
+
+ 1553 01de 0D       		.uleb128 0xd
+ 1554 01df 71020000 		.4byte	.LASF33
+ 1555 01e3 01       		.byte	0x1
+ 1556 01e4 1A       		.byte	0x1a
+ 1557 01e5 BD010000 		.4byte	0x1bd
+ 1558 01e9 02       		.uleb128 0x2
+ 1559 01ea 91       		.byte	0x91
+ 1560 01eb 74       		.sleb128 -12
+ 1561 01ec 0D       		.uleb128 0xd
+ 1562 01ed 4B020000 		.4byte	.LASF23
+ 1563 01f1 01       		.byte	0x1
+ 1564 01f2 1A       		.byte	0x1a
+ 1565 01f3 BE000000 		.4byte	0xbe
+ 1566 01f7 02       		.uleb128 0x2
+ 1567 01f8 91       		.byte	0x91
+ 1568 01f9 73       		.sleb128 -13
+ 1569 01fa 0D       		.uleb128 0xd
+ 1570 01fb 4E010000 		.4byte	.LASF24
+ 1571 01ff 01       		.byte	0x1
+ 1572 0200 1B       		.byte	0x1b
+ 1573 0201 37000000 		.4byte	0x37
+ 1574 0205 02       		.uleb128 0x2
+ 1575 0206 91       		.byte	0x91
+ 1576 0207 6C       		.sleb128 -20
+ 1577 0208 10       		.uleb128 0x10
+ 1578 0209 656E6400 		.ascii	"end\000"
+ 1579 020d 01       		.byte	0x1
+ 1580 020e 1B       		.byte	0x1b
+ 1581 020f 37000000 		.4byte	0x37
+ 1582 0213 02       		.uleb128 0x2
+ 1583 0214 91       		.byte	0x91
+ 1584 0215 68       		.sleb128 -24
+ 1585 0216 00       		.byte	0
+ 1586 0217 11       		.uleb128 0x11
+ 1587 0218 54010000 		.4byte	.LASF35
+ 1588 021c 01       		.byte	0x1
+ 1589 021d 25       		.byte	0x25
+ 1590 021e E4000000 		.4byte	0xe4
+ 1591 0222 00000000 		.4byte	.LFB35
+ 1592 0226 F2000000 		.4byte	.LFE35-.LFB35
+ 1593 022a 01       		.uleb128 0x1
+ 1594 022b 9C       		.byte	0x9c
+ 1595 022c 9D020000 		.4byte	0x29d
+ 1596 0230 0D       		.uleb128 0xd
+ 1597 0231 A6010000 		.4byte	.LASF30
+ 1598 0235 01       		.byte	0x1
+ 1599 0236 25       		.byte	0x25
+ 1600 0237 C3010000 		.4byte	0x1c3
+ 1601 023b 02       		.uleb128 0x2
+ 1602 023c 91       		.byte	0x91
+ 1603 023d 6C       		.sleb128 -20
+ 1604 023e 10       		.uleb128 0x10
+ 1605 023f 6A7300   		.ascii	"js\000"
+ 1606 0242 01       		.byte	0x1
+ 1607 0243 25       		.byte	0x25
+ 1608 0244 84000000 		.4byte	0x84
+ 1609 0248 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 36
+
+
+ 1610 0249 91       		.byte	0x91
+ 1611 024a 68       		.sleb128 -24
+ 1612 024b 10       		.uleb128 0x10
+ 1613 024c 6C656E00 		.ascii	"len\000"
+ 1614 0250 01       		.byte	0x1
+ 1615 0251 26       		.byte	0x26
+ 1616 0252 25000000 		.4byte	0x25
+ 1617 0256 02       		.uleb128 0x2
+ 1618 0257 91       		.byte	0x91
+ 1619 0258 64       		.sleb128 -28
+ 1620 0259 0D       		.uleb128 0xd
+ 1621 025a EB010000 		.4byte	.LASF31
+ 1622 025e 01       		.byte	0x1
+ 1623 025f 26       		.byte	0x26
+ 1624 0260 BD010000 		.4byte	0x1bd
+ 1625 0264 02       		.uleb128 0x2
+ 1626 0265 91       		.byte	0x91
+ 1627 0266 60       		.sleb128 -32
+ 1628 0267 0D       		.uleb128 0xd
+ 1629 0268 20020000 		.4byte	.LASF32
+ 1630 026c 01       		.byte	0x1
+ 1631 026d 26       		.byte	0x26
+ 1632 026e 25000000 		.4byte	0x25
+ 1633 0272 02       		.uleb128 0x2
+ 1634 0273 91       		.byte	0x91
+ 1635 0274 00       		.sleb128 0
+ 1636 0275 12       		.uleb128 0x12
+ 1637 0276 71020000 		.4byte	.LASF33
+ 1638 027a 01       		.byte	0x1
+ 1639 027b 27       		.byte	0x27
+ 1640 027c BD010000 		.4byte	0x1bd
+ 1641 0280 02       		.uleb128 0x2
+ 1642 0281 91       		.byte	0x91
+ 1643 0282 70       		.sleb128 -16
+ 1644 0283 12       		.uleb128 0x12
+ 1645 0284 4E010000 		.4byte	.LASF24
+ 1646 0288 01       		.byte	0x1
+ 1647 0289 28       		.byte	0x28
+ 1648 028a 37000000 		.4byte	0x37
+ 1649 028e 02       		.uleb128 0x2
+ 1650 028f 91       		.byte	0x91
+ 1651 0290 74       		.sleb128 -12
+ 1652 0291 13       		.uleb128 0x13
+ 1653 0292 40020000 		.4byte	.LASF42
+ 1654 0296 01       		.byte	0x1
+ 1655 0297 41       		.byte	0x41
+ 1656 0298 94000000 		.4byte	.L11
+ 1657 029c 00       		.byte	0
+ 1658 029d 11       		.uleb128 0x11
+ 1659 029e 94020000 		.4byte	.LASF36
+ 1660 02a2 01       		.byte	0x1
+ 1661 02a3 56       		.byte	0x56
+ 1662 02a4 E4000000 		.4byte	0xe4
+ 1663 02a8 00000000 		.4byte	.LFB36
+ 1664 02ac AC010000 		.4byte	.LFE36-.LFB36
+ 1665 02b0 01       		.uleb128 0x1
+ 1666 02b1 9C       		.byte	0x9c
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 37
+
+
+ 1667 02b2 44030000 		.4byte	0x344
+ 1668 02b6 0D       		.uleb128 0xd
+ 1669 02b7 A6010000 		.4byte	.LASF30
+ 1670 02bb 01       		.byte	0x1
+ 1671 02bc 56       		.byte	0x56
+ 1672 02bd C3010000 		.4byte	0x1c3
+ 1673 02c1 02       		.uleb128 0x2
+ 1674 02c2 91       		.byte	0x91
+ 1675 02c3 64       		.sleb128 -28
+ 1676 02c4 10       		.uleb128 0x10
+ 1677 02c5 6A7300   		.ascii	"js\000"
+ 1678 02c8 01       		.byte	0x1
+ 1679 02c9 56       		.byte	0x56
+ 1680 02ca 84000000 		.4byte	0x84
+ 1681 02ce 02       		.uleb128 0x2
+ 1682 02cf 91       		.byte	0x91
+ 1683 02d0 60       		.sleb128 -32
+ 1684 02d1 10       		.uleb128 0x10
+ 1685 02d2 6C656E00 		.ascii	"len\000"
+ 1686 02d6 01       		.byte	0x1
+ 1687 02d7 57       		.byte	0x57
+ 1688 02d8 25000000 		.4byte	0x25
+ 1689 02dc 02       		.uleb128 0x2
+ 1690 02dd 91       		.byte	0x91
+ 1691 02de 5C       		.sleb128 -36
+ 1692 02df 0D       		.uleb128 0xd
+ 1693 02e0 EB010000 		.4byte	.LASF31
+ 1694 02e4 01       		.byte	0x1
+ 1695 02e5 57       		.byte	0x57
+ 1696 02e6 BD010000 		.4byte	0x1bd
+ 1697 02ea 02       		.uleb128 0x2
+ 1698 02eb 91       		.byte	0x91
+ 1699 02ec 58       		.sleb128 -40
+ 1700 02ed 0D       		.uleb128 0xd
+ 1701 02ee 20020000 		.4byte	.LASF32
+ 1702 02f2 01       		.byte	0x1
+ 1703 02f3 57       		.byte	0x57
+ 1704 02f4 25000000 		.4byte	0x25
+ 1705 02f8 02       		.uleb128 0x2
+ 1706 02f9 91       		.byte	0x91
+ 1707 02fa 00       		.sleb128 0
+ 1708 02fb 12       		.uleb128 0x12
+ 1709 02fc 71020000 		.4byte	.LASF33
+ 1710 0300 01       		.byte	0x1
+ 1711 0301 58       		.byte	0x58
+ 1712 0302 BD010000 		.4byte	0x1bd
+ 1713 0306 02       		.uleb128 0x2
+ 1714 0307 91       		.byte	0x91
+ 1715 0308 68       		.sleb128 -24
+ 1716 0309 12       		.uleb128 0x12
+ 1717 030a 4E010000 		.4byte	.LASF24
+ 1718 030e 01       		.byte	0x1
+ 1719 030f 5A       		.byte	0x5a
+ 1720 0310 37000000 		.4byte	0x37
+ 1721 0314 02       		.uleb128 0x2
+ 1722 0315 91       		.byte	0x91
+ 1723 0316 70       		.sleb128 -16
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 38
+
+
+ 1724 0317 14       		.uleb128 0x14
+ 1725 0318 20000000 		.4byte	.LBB2
+ 1726 031c 50010000 		.4byte	.LBE2-.LBB2
+ 1727 0320 0E       		.uleb128 0xe
+ 1728 0321 6300     		.ascii	"c\000"
+ 1729 0323 01       		.byte	0x1
+ 1730 0324 60       		.byte	0x60
+ 1731 0325 7D000000 		.4byte	0x7d
+ 1732 0329 02       		.uleb128 0x2
+ 1733 032a 91       		.byte	0x91
+ 1734 032b 6F       		.sleb128 -17
+ 1735 032c 14       		.uleb128 0x14
+ 1736 032d 98000000 		.4byte	.LBB3
+ 1737 0331 D8000000 		.4byte	.LBE3-.LBB3
+ 1738 0335 0E       		.uleb128 0xe
+ 1739 0336 6900     		.ascii	"i\000"
+ 1740 0338 01       		.byte	0x1
+ 1741 0339 75       		.byte	0x75
+ 1742 033a 37000000 		.4byte	0x37
+ 1743 033e 02       		.uleb128 0x2
+ 1744 033f 91       		.byte	0x91
+ 1745 0340 74       		.sleb128 -12
+ 1746 0341 00       		.byte	0
+ 1747 0342 00       		.byte	0
+ 1748 0343 00       		.byte	0
+ 1749 0344 15       		.uleb128 0x15
+ 1750 0345 66020000 		.4byte	.LASF43
+ 1751 0349 01       		.byte	0x1
+ 1752 034a 99       		.byte	0x99
+ 1753 034b E4000000 		.4byte	0xe4
+ 1754 034f 00000000 		.4byte	.LFB37
+ 1755 0353 2A030000 		.4byte	.LFE37-.LFB37
+ 1756 0357 01       		.uleb128 0x1
+ 1757 0358 9C       		.byte	0x9c
+ 1758 0359 FB030000 		.4byte	0x3fb
+ 1759 035d 0D       		.uleb128 0xd
+ 1760 035e A6010000 		.4byte	.LASF30
+ 1761 0362 01       		.byte	0x1
+ 1762 0363 99       		.byte	0x99
+ 1763 0364 C3010000 		.4byte	0x1c3
+ 1764 0368 02       		.uleb128 0x2
+ 1765 0369 91       		.byte	0x91
+ 1766 036a 54       		.sleb128 -44
+ 1767 036b 10       		.uleb128 0x10
+ 1768 036c 6A7300   		.ascii	"js\000"
+ 1769 036f 01       		.byte	0x1
+ 1770 0370 99       		.byte	0x99
+ 1771 0371 84000000 		.4byte	0x84
+ 1772 0375 02       		.uleb128 0x2
+ 1773 0376 91       		.byte	0x91
+ 1774 0377 50       		.sleb128 -48
+ 1775 0378 10       		.uleb128 0x10
+ 1776 0379 6C656E00 		.ascii	"len\000"
+ 1777 037d 01       		.byte	0x1
+ 1778 037e 99       		.byte	0x99
+ 1779 037f 25000000 		.4byte	0x25
+ 1780 0383 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 39
+
+
+ 1781 0384 91       		.byte	0x91
+ 1782 0385 4C       		.sleb128 -52
+ 1783 0386 0D       		.uleb128 0xd
+ 1784 0387 EB010000 		.4byte	.LASF31
+ 1785 038b 01       		.byte	0x1
+ 1786 038c 9A       		.byte	0x9a
+ 1787 038d BD010000 		.4byte	0x1bd
+ 1788 0391 02       		.uleb128 0x2
+ 1789 0392 91       		.byte	0x91
+ 1790 0393 48       		.sleb128 -56
+ 1791 0394 0D       		.uleb128 0xd
+ 1792 0395 20020000 		.4byte	.LASF32
+ 1793 0399 01       		.byte	0x1
+ 1794 039a 9A       		.byte	0x9a
+ 1795 039b 30000000 		.4byte	0x30
+ 1796 039f 02       		.uleb128 0x2
+ 1797 03a0 91       		.byte	0x91
+ 1798 03a1 00       		.sleb128 0
+ 1799 03a2 0E       		.uleb128 0xe
+ 1800 03a3 7200     		.ascii	"r\000"
+ 1801 03a5 01       		.byte	0x1
+ 1802 03a6 9B       		.byte	0x9b
+ 1803 03a7 E4000000 		.4byte	0xe4
+ 1804 03ab 02       		.uleb128 0x2
+ 1805 03ac 91       		.byte	0x91
+ 1806 03ad 5E       		.sleb128 -34
+ 1807 03ae 0E       		.uleb128 0xe
+ 1808 03af 6900     		.ascii	"i\000"
+ 1809 03b1 01       		.byte	0x1
+ 1810 03b2 9C       		.byte	0x9c
+ 1811 03b3 37000000 		.4byte	0x37
+ 1812 03b7 02       		.uleb128 0x2
+ 1813 03b8 91       		.byte	0x91
+ 1814 03b9 6C       		.sleb128 -20
+ 1815 03ba 12       		.uleb128 0x12
+ 1816 03bb 71020000 		.4byte	.LASF33
+ 1817 03bf 01       		.byte	0x1
+ 1818 03c0 9D       		.byte	0x9d
+ 1819 03c1 BD010000 		.4byte	0x1bd
+ 1820 03c5 02       		.uleb128 0x2
+ 1821 03c6 91       		.byte	0x91
+ 1822 03c7 60       		.sleb128 -32
+ 1823 03c8 12       		.uleb128 0x12
+ 1824 03c9 55000000 		.4byte	.LASF37
+ 1825 03cd 01       		.byte	0x1
+ 1826 03ce 9E       		.byte	0x9e
+ 1827 03cf 37000000 		.4byte	0x37
+ 1828 03d3 02       		.uleb128 0x2
+ 1829 03d4 91       		.byte	0x91
+ 1830 03d5 68       		.sleb128 -24
+ 1831 03d6 14       		.uleb128 0x14
+ 1832 03d7 14000000 		.4byte	.LBB4
+ 1833 03db AE020000 		.4byte	.LBE4-.LBB4
+ 1834 03df 0E       		.uleb128 0xe
+ 1835 03e0 6300     		.ascii	"c\000"
+ 1836 03e2 01       		.byte	0x1
+ 1837 03e3 A1       		.byte	0xa1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 40
+
+
+ 1838 03e4 7D000000 		.4byte	0x7d
+ 1839 03e8 02       		.uleb128 0x2
+ 1840 03e9 91       		.byte	0x91
+ 1841 03ea 67       		.sleb128 -25
+ 1842 03eb 12       		.uleb128 0x12
+ 1843 03ec 4B020000 		.4byte	.LASF23
+ 1844 03f0 01       		.byte	0x1
+ 1845 03f1 A2       		.byte	0xa2
+ 1846 03f2 BE000000 		.4byte	0xbe
+ 1847 03f6 02       		.uleb128 0x2
+ 1848 03f7 91       		.byte	0x91
+ 1849 03f8 5F       		.sleb128 -33
+ 1850 03f9 00       		.byte	0
+ 1851 03fa 00       		.byte	0
+ 1852 03fb 16       		.uleb128 0x16
+ 1853 03fc 9C010000 		.4byte	.LASF44
+ 1854 0400 01       		.byte	0x1
+ 1855 0401 3201     		.2byte	0x132
+ 1856 0403 00000000 		.4byte	.LFB38
+ 1857 0407 22000000 		.4byte	.LFE38-.LFB38
+ 1858 040b 01       		.uleb128 0x1
+ 1859 040c 9C       		.byte	0x9c
+ 1860 040d 17       		.uleb128 0x17
+ 1861 040e A6010000 		.4byte	.LASF30
+ 1862 0412 01       		.byte	0x1
+ 1863 0413 3201     		.2byte	0x132
+ 1864 0415 C3010000 		.4byte	0x1c3
+ 1865 0419 02       		.uleb128 0x2
+ 1866 041a 91       		.byte	0x91
+ 1867 041b 74       		.sleb128 -12
+ 1868 041c 00       		.byte	0
+ 1869 041d 00       		.byte	0
+ 1870              		.section	.debug_abbrev,"",%progbits
+ 1871              	.Ldebug_abbrev0:
+ 1872 0000 01       		.uleb128 0x1
+ 1873 0001 11       		.uleb128 0x11
+ 1874 0002 01       		.byte	0x1
+ 1875 0003 25       		.uleb128 0x25
+ 1876 0004 0E       		.uleb128 0xe
+ 1877 0005 13       		.uleb128 0x13
+ 1878 0006 0B       		.uleb128 0xb
+ 1879 0007 03       		.uleb128 0x3
+ 1880 0008 0E       		.uleb128 0xe
+ 1881 0009 1B       		.uleb128 0x1b
+ 1882 000a 0E       		.uleb128 0xe
+ 1883 000b 55       		.uleb128 0x55
+ 1884 000c 17       		.uleb128 0x17
+ 1885 000d 11       		.uleb128 0x11
+ 1886 000e 01       		.uleb128 0x1
+ 1887 000f 10       		.uleb128 0x10
+ 1888 0010 17       		.uleb128 0x17
+ 1889 0011 00       		.byte	0
+ 1890 0012 00       		.byte	0
+ 1891 0013 02       		.uleb128 0x2
+ 1892 0014 16       		.uleb128 0x16
+ 1893 0015 00       		.byte	0
+ 1894 0016 03       		.uleb128 0x3
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 41
+
+
+ 1895 0017 0E       		.uleb128 0xe
+ 1896 0018 3A       		.uleb128 0x3a
+ 1897 0019 0B       		.uleb128 0xb
+ 1898 001a 3B       		.uleb128 0x3b
+ 1899 001b 0B       		.uleb128 0xb
+ 1900 001c 49       		.uleb128 0x49
+ 1901 001d 13       		.uleb128 0x13
+ 1902 001e 00       		.byte	0
+ 1903 001f 00       		.byte	0
+ 1904 0020 03       		.uleb128 0x3
+ 1905 0021 24       		.uleb128 0x24
+ 1906 0022 00       		.byte	0
+ 1907 0023 0B       		.uleb128 0xb
+ 1908 0024 0B       		.uleb128 0xb
+ 1909 0025 3E       		.uleb128 0x3e
+ 1910 0026 0B       		.uleb128 0xb
+ 1911 0027 03       		.uleb128 0x3
+ 1912 0028 0E       		.uleb128 0xe
+ 1913 0029 00       		.byte	0
+ 1914 002a 00       		.byte	0
+ 1915 002b 04       		.uleb128 0x4
+ 1916 002c 24       		.uleb128 0x24
+ 1917 002d 00       		.byte	0
+ 1918 002e 0B       		.uleb128 0xb
+ 1919 002f 0B       		.uleb128 0xb
+ 1920 0030 3E       		.uleb128 0x3e
+ 1921 0031 0B       		.uleb128 0xb
+ 1922 0032 03       		.uleb128 0x3
+ 1923 0033 08       		.uleb128 0x8
+ 1924 0034 00       		.byte	0
+ 1925 0035 00       		.byte	0
+ 1926 0036 05       		.uleb128 0x5
+ 1927 0037 0F       		.uleb128 0xf
+ 1928 0038 00       		.byte	0
+ 1929 0039 0B       		.uleb128 0xb
+ 1930 003a 0B       		.uleb128 0xb
+ 1931 003b 49       		.uleb128 0x49
+ 1932 003c 13       		.uleb128 0x13
+ 1933 003d 00       		.byte	0
+ 1934 003e 00       		.byte	0
+ 1935 003f 06       		.uleb128 0x6
+ 1936 0040 26       		.uleb128 0x26
+ 1937 0041 00       		.byte	0
+ 1938 0042 49       		.uleb128 0x49
+ 1939 0043 13       		.uleb128 0x13
+ 1940 0044 00       		.byte	0
+ 1941 0045 00       		.byte	0
+ 1942 0046 07       		.uleb128 0x7
+ 1943 0047 04       		.uleb128 0x4
+ 1944 0048 01       		.byte	0x1
+ 1945 0049 0B       		.uleb128 0xb
+ 1946 004a 0B       		.uleb128 0xb
+ 1947 004b 3A       		.uleb128 0x3a
+ 1948 004c 0B       		.uleb128 0xb
+ 1949 004d 3B       		.uleb128 0x3b
+ 1950 004e 0B       		.uleb128 0xb
+ 1951 004f 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 42
+
+
+ 1952 0050 13       		.uleb128 0x13
+ 1953 0051 00       		.byte	0
+ 1954 0052 00       		.byte	0
+ 1955 0053 08       		.uleb128 0x8
+ 1956 0054 28       		.uleb128 0x28
+ 1957 0055 00       		.byte	0
+ 1958 0056 03       		.uleb128 0x3
+ 1959 0057 0E       		.uleb128 0xe
+ 1960 0058 1C       		.uleb128 0x1c
+ 1961 0059 0D       		.uleb128 0xd
+ 1962 005a 00       		.byte	0
+ 1963 005b 00       		.byte	0
+ 1964 005c 09       		.uleb128 0x9
+ 1965 005d 13       		.uleb128 0x13
+ 1966 005e 01       		.byte	0x1
+ 1967 005f 0B       		.uleb128 0xb
+ 1968 0060 0B       		.uleb128 0xb
+ 1969 0061 3A       		.uleb128 0x3a
+ 1970 0062 0B       		.uleb128 0xb
+ 1971 0063 3B       		.uleb128 0x3b
+ 1972 0064 0B       		.uleb128 0xb
+ 1973 0065 01       		.uleb128 0x1
+ 1974 0066 13       		.uleb128 0x13
+ 1975 0067 00       		.byte	0
+ 1976 0068 00       		.byte	0
+ 1977 0069 0A       		.uleb128 0xa
+ 1978 006a 0D       		.uleb128 0xd
+ 1979 006b 00       		.byte	0
+ 1980 006c 03       		.uleb128 0x3
+ 1981 006d 0E       		.uleb128 0xe
+ 1982 006e 3A       		.uleb128 0x3a
+ 1983 006f 0B       		.uleb128 0xb
+ 1984 0070 3B       		.uleb128 0x3b
+ 1985 0071 0B       		.uleb128 0xb
+ 1986 0072 49       		.uleb128 0x49
+ 1987 0073 13       		.uleb128 0x13
+ 1988 0074 38       		.uleb128 0x38
+ 1989 0075 0B       		.uleb128 0xb
+ 1990 0076 00       		.byte	0
+ 1991 0077 00       		.byte	0
+ 1992 0078 0B       		.uleb128 0xb
+ 1993 0079 0D       		.uleb128 0xd
+ 1994 007a 00       		.byte	0
+ 1995 007b 03       		.uleb128 0x3
+ 1996 007c 08       		.uleb128 0x8
+ 1997 007d 3A       		.uleb128 0x3a
+ 1998 007e 0B       		.uleb128 0xb
+ 1999 007f 3B       		.uleb128 0x3b
+ 2000 0080 0B       		.uleb128 0xb
+ 2001 0081 49       		.uleb128 0x49
+ 2002 0082 13       		.uleb128 0x13
+ 2003 0083 38       		.uleb128 0x38
+ 2004 0084 0B       		.uleb128 0xb
+ 2005 0085 00       		.byte	0
+ 2006 0086 00       		.byte	0
+ 2007 0087 0C       		.uleb128 0xc
+ 2008 0088 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 43
+
+
+ 2009 0089 01       		.byte	0x1
+ 2010 008a 03       		.uleb128 0x3
+ 2011 008b 0E       		.uleb128 0xe
+ 2012 008c 3A       		.uleb128 0x3a
+ 2013 008d 0B       		.uleb128 0xb
+ 2014 008e 3B       		.uleb128 0x3b
+ 2015 008f 0B       		.uleb128 0xb
+ 2016 0090 27       		.uleb128 0x27
+ 2017 0091 19       		.uleb128 0x19
+ 2018 0092 49       		.uleb128 0x49
+ 2019 0093 13       		.uleb128 0x13
+ 2020 0094 11       		.uleb128 0x11
+ 2021 0095 01       		.uleb128 0x1
+ 2022 0096 12       		.uleb128 0x12
+ 2023 0097 06       		.uleb128 0x6
+ 2024 0098 40       		.uleb128 0x40
+ 2025 0099 18       		.uleb128 0x18
+ 2026 009a 9742     		.uleb128 0x2117
+ 2027 009c 19       		.uleb128 0x19
+ 2028 009d 01       		.uleb128 0x1
+ 2029 009e 13       		.uleb128 0x13
+ 2030 009f 00       		.byte	0
+ 2031 00a0 00       		.byte	0
+ 2032 00a1 0D       		.uleb128 0xd
+ 2033 00a2 05       		.uleb128 0x5
+ 2034 00a3 00       		.byte	0
+ 2035 00a4 03       		.uleb128 0x3
+ 2036 00a5 0E       		.uleb128 0xe
+ 2037 00a6 3A       		.uleb128 0x3a
+ 2038 00a7 0B       		.uleb128 0xb
+ 2039 00a8 3B       		.uleb128 0x3b
+ 2040 00a9 0B       		.uleb128 0xb
+ 2041 00aa 49       		.uleb128 0x49
+ 2042 00ab 13       		.uleb128 0x13
+ 2043 00ac 02       		.uleb128 0x2
+ 2044 00ad 18       		.uleb128 0x18
+ 2045 00ae 00       		.byte	0
+ 2046 00af 00       		.byte	0
+ 2047 00b0 0E       		.uleb128 0xe
+ 2048 00b1 34       		.uleb128 0x34
+ 2049 00b2 00       		.byte	0
+ 2050 00b3 03       		.uleb128 0x3
+ 2051 00b4 08       		.uleb128 0x8
+ 2052 00b5 3A       		.uleb128 0x3a
+ 2053 00b6 0B       		.uleb128 0xb
+ 2054 00b7 3B       		.uleb128 0x3b
+ 2055 00b8 0B       		.uleb128 0xb
+ 2056 00b9 49       		.uleb128 0x49
+ 2057 00ba 13       		.uleb128 0x13
+ 2058 00bb 02       		.uleb128 0x2
+ 2059 00bc 18       		.uleb128 0x18
+ 2060 00bd 00       		.byte	0
+ 2061 00be 00       		.byte	0
+ 2062 00bf 0F       		.uleb128 0xf
+ 2063 00c0 2E       		.uleb128 0x2e
+ 2064 00c1 01       		.byte	0x1
+ 2065 00c2 03       		.uleb128 0x3
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 44
+
+
+ 2066 00c3 0E       		.uleb128 0xe
+ 2067 00c4 3A       		.uleb128 0x3a
+ 2068 00c5 0B       		.uleb128 0xb
+ 2069 00c6 3B       		.uleb128 0x3b
+ 2070 00c7 0B       		.uleb128 0xb
+ 2071 00c8 27       		.uleb128 0x27
+ 2072 00c9 19       		.uleb128 0x19
+ 2073 00ca 11       		.uleb128 0x11
+ 2074 00cb 01       		.uleb128 0x1
+ 2075 00cc 12       		.uleb128 0x12
+ 2076 00cd 06       		.uleb128 0x6
+ 2077 00ce 40       		.uleb128 0x40
+ 2078 00cf 18       		.uleb128 0x18
+ 2079 00d0 9742     		.uleb128 0x2117
+ 2080 00d2 19       		.uleb128 0x19
+ 2081 00d3 01       		.uleb128 0x1
+ 2082 00d4 13       		.uleb128 0x13
+ 2083 00d5 00       		.byte	0
+ 2084 00d6 00       		.byte	0
+ 2085 00d7 10       		.uleb128 0x10
+ 2086 00d8 05       		.uleb128 0x5
+ 2087 00d9 00       		.byte	0
+ 2088 00da 03       		.uleb128 0x3
+ 2089 00db 08       		.uleb128 0x8
+ 2090 00dc 3A       		.uleb128 0x3a
+ 2091 00dd 0B       		.uleb128 0xb
+ 2092 00de 3B       		.uleb128 0x3b
+ 2093 00df 0B       		.uleb128 0xb
+ 2094 00e0 49       		.uleb128 0x49
+ 2095 00e1 13       		.uleb128 0x13
+ 2096 00e2 02       		.uleb128 0x2
+ 2097 00e3 18       		.uleb128 0x18
+ 2098 00e4 00       		.byte	0
+ 2099 00e5 00       		.byte	0
+ 2100 00e6 11       		.uleb128 0x11
+ 2101 00e7 2E       		.uleb128 0x2e
+ 2102 00e8 01       		.byte	0x1
+ 2103 00e9 03       		.uleb128 0x3
+ 2104 00ea 0E       		.uleb128 0xe
+ 2105 00eb 3A       		.uleb128 0x3a
+ 2106 00ec 0B       		.uleb128 0xb
+ 2107 00ed 3B       		.uleb128 0x3b
+ 2108 00ee 0B       		.uleb128 0xb
+ 2109 00ef 27       		.uleb128 0x27
+ 2110 00f0 19       		.uleb128 0x19
+ 2111 00f1 49       		.uleb128 0x49
+ 2112 00f2 13       		.uleb128 0x13
+ 2113 00f3 11       		.uleb128 0x11
+ 2114 00f4 01       		.uleb128 0x1
+ 2115 00f5 12       		.uleb128 0x12
+ 2116 00f6 06       		.uleb128 0x6
+ 2117 00f7 40       		.uleb128 0x40
+ 2118 00f8 18       		.uleb128 0x18
+ 2119 00f9 9642     		.uleb128 0x2116
+ 2120 00fb 19       		.uleb128 0x19
+ 2121 00fc 01       		.uleb128 0x1
+ 2122 00fd 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 45
+
+
+ 2123 00fe 00       		.byte	0
+ 2124 00ff 00       		.byte	0
+ 2125 0100 12       		.uleb128 0x12
+ 2126 0101 34       		.uleb128 0x34
+ 2127 0102 00       		.byte	0
+ 2128 0103 03       		.uleb128 0x3
+ 2129 0104 0E       		.uleb128 0xe
+ 2130 0105 3A       		.uleb128 0x3a
+ 2131 0106 0B       		.uleb128 0xb
+ 2132 0107 3B       		.uleb128 0x3b
+ 2133 0108 0B       		.uleb128 0xb
+ 2134 0109 49       		.uleb128 0x49
+ 2135 010a 13       		.uleb128 0x13
+ 2136 010b 02       		.uleb128 0x2
+ 2137 010c 18       		.uleb128 0x18
+ 2138 010d 00       		.byte	0
+ 2139 010e 00       		.byte	0
+ 2140 010f 13       		.uleb128 0x13
+ 2141 0110 0A       		.uleb128 0xa
+ 2142 0111 00       		.byte	0
+ 2143 0112 03       		.uleb128 0x3
+ 2144 0113 0E       		.uleb128 0xe
+ 2145 0114 3A       		.uleb128 0x3a
+ 2146 0115 0B       		.uleb128 0xb
+ 2147 0116 3B       		.uleb128 0x3b
+ 2148 0117 0B       		.uleb128 0xb
+ 2149 0118 11       		.uleb128 0x11
+ 2150 0119 01       		.uleb128 0x1
+ 2151 011a 00       		.byte	0
+ 2152 011b 00       		.byte	0
+ 2153 011c 14       		.uleb128 0x14
+ 2154 011d 0B       		.uleb128 0xb
+ 2155 011e 01       		.byte	0x1
+ 2156 011f 11       		.uleb128 0x11
+ 2157 0120 01       		.uleb128 0x1
+ 2158 0121 12       		.uleb128 0x12
+ 2159 0122 06       		.uleb128 0x6
+ 2160 0123 00       		.byte	0
+ 2161 0124 00       		.byte	0
+ 2162 0125 15       		.uleb128 0x15
+ 2163 0126 2E       		.uleb128 0x2e
+ 2164 0127 01       		.byte	0x1
+ 2165 0128 3F       		.uleb128 0x3f
+ 2166 0129 19       		.uleb128 0x19
+ 2167 012a 03       		.uleb128 0x3
+ 2168 012b 0E       		.uleb128 0xe
+ 2169 012c 3A       		.uleb128 0x3a
+ 2170 012d 0B       		.uleb128 0xb
+ 2171 012e 3B       		.uleb128 0x3b
+ 2172 012f 0B       		.uleb128 0xb
+ 2173 0130 27       		.uleb128 0x27
+ 2174 0131 19       		.uleb128 0x19
+ 2175 0132 49       		.uleb128 0x49
+ 2176 0133 13       		.uleb128 0x13
+ 2177 0134 11       		.uleb128 0x11
+ 2178 0135 01       		.uleb128 0x1
+ 2179 0136 12       		.uleb128 0x12
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 46
+
+
+ 2180 0137 06       		.uleb128 0x6
+ 2181 0138 40       		.uleb128 0x40
+ 2182 0139 18       		.uleb128 0x18
+ 2183 013a 9642     		.uleb128 0x2116
+ 2184 013c 19       		.uleb128 0x19
+ 2185 013d 01       		.uleb128 0x1
+ 2186 013e 13       		.uleb128 0x13
+ 2187 013f 00       		.byte	0
+ 2188 0140 00       		.byte	0
+ 2189 0141 16       		.uleb128 0x16
+ 2190 0142 2E       		.uleb128 0x2e
+ 2191 0143 01       		.byte	0x1
+ 2192 0144 3F       		.uleb128 0x3f
+ 2193 0145 19       		.uleb128 0x19
+ 2194 0146 03       		.uleb128 0x3
+ 2195 0147 0E       		.uleb128 0xe
+ 2196 0148 3A       		.uleb128 0x3a
+ 2197 0149 0B       		.uleb128 0xb
+ 2198 014a 3B       		.uleb128 0x3b
+ 2199 014b 05       		.uleb128 0x5
+ 2200 014c 27       		.uleb128 0x27
+ 2201 014d 19       		.uleb128 0x19
+ 2202 014e 11       		.uleb128 0x11
+ 2203 014f 01       		.uleb128 0x1
+ 2204 0150 12       		.uleb128 0x12
+ 2205 0151 06       		.uleb128 0x6
+ 2206 0152 40       		.uleb128 0x40
+ 2207 0153 18       		.uleb128 0x18
+ 2208 0154 9742     		.uleb128 0x2117
+ 2209 0156 19       		.uleb128 0x19
+ 2210 0157 00       		.byte	0
+ 2211 0158 00       		.byte	0
+ 2212 0159 17       		.uleb128 0x17
+ 2213 015a 05       		.uleb128 0x5
+ 2214 015b 00       		.byte	0
+ 2215 015c 03       		.uleb128 0x3
+ 2216 015d 0E       		.uleb128 0xe
+ 2217 015e 3A       		.uleb128 0x3a
+ 2218 015f 0B       		.uleb128 0xb
+ 2219 0160 3B       		.uleb128 0x3b
+ 2220 0161 05       		.uleb128 0x5
+ 2221 0162 49       		.uleb128 0x49
+ 2222 0163 13       		.uleb128 0x13
+ 2223 0164 02       		.uleb128 0x2
+ 2224 0165 18       		.uleb128 0x18
+ 2225 0166 00       		.byte	0
+ 2226 0167 00       		.byte	0
+ 2227 0168 00       		.byte	0
+ 2228              		.section	.debug_aranges,"",%progbits
+ 2229 0000 44000000 		.4byte	0x44
+ 2230 0004 0200     		.2byte	0x2
+ 2231 0006 00000000 		.4byte	.Ldebug_info0
+ 2232 000a 04       		.byte	0x4
+ 2233 000b 00       		.byte	0
+ 2234 000c 0000     		.2byte	0
+ 2235 000e 0000     		.2byte	0
+ 2236 0010 00000000 		.4byte	.LFB33
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 47
+
+
+ 2237 0014 4C000000 		.4byte	.LFE33-.LFB33
+ 2238 0018 00000000 		.4byte	.LFB34
+ 2239 001c 36000000 		.4byte	.LFE34-.LFB34
+ 2240 0020 00000000 		.4byte	.LFB35
+ 2241 0024 F2000000 		.4byte	.LFE35-.LFB35
+ 2242 0028 00000000 		.4byte	.LFB36
+ 2243 002c AC010000 		.4byte	.LFE36-.LFB36
+ 2244 0030 00000000 		.4byte	.LFB37
+ 2245 0034 2A030000 		.4byte	.LFE37-.LFB37
+ 2246 0038 00000000 		.4byte	.LFB38
+ 2247 003c 22000000 		.4byte	.LFE38-.LFB38
+ 2248 0040 00000000 		.4byte	0
+ 2249 0044 00000000 		.4byte	0
+ 2250              		.section	.debug_ranges,"",%progbits
+ 2251              	.Ldebug_ranges0:
+ 2252 0000 00000000 		.4byte	.LFB33
+ 2253 0004 4C000000 		.4byte	.LFE33
+ 2254 0008 00000000 		.4byte	.LFB34
+ 2255 000c 36000000 		.4byte	.LFE34
+ 2256 0010 00000000 		.4byte	.LFB35
+ 2257 0014 F2000000 		.4byte	.LFE35
+ 2258 0018 00000000 		.4byte	.LFB36
+ 2259 001c AC010000 		.4byte	.LFE36
+ 2260 0020 00000000 		.4byte	.LFB37
+ 2261 0024 2A030000 		.4byte	.LFE37
+ 2262 0028 00000000 		.4byte	.LFB38
+ 2263 002c 22000000 		.4byte	.LFE38
+ 2264 0030 00000000 		.4byte	0
+ 2265 0034 00000000 		.4byte	0
+ 2266              		.section	.debug_line,"",%progbits
+ 2267              	.Ldebug_line0:
+ 2268 0000 F5020000 		.section	.debug_str,"MS",%progbits,1
+ 2268      0200E300 
+ 2268      00000201 
+ 2268      FB0E0D00 
+ 2268      01010101 
+ 2269              	.LASF7:
+ 2270 0000 6C6F6E67 		.ascii	"long long int\000"
+ 2270      206C6F6E 
+ 2270      6720696E 
+ 2270      7400
+ 2271              	.LASF17:
+ 2272 000e 73697A65 		.ascii	"size_t\000"
+ 2272      5F7400
+ 2273              	.LASF40:
+ 2274 0015 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 2274      73657273 
+ 2274      5C736465 
+ 2274      76617365 
+ 2274      6E617061 
+ 2275 0043 6F6D2E63 		.ascii	"om.cydsn\000"
+ 2275      7964736E 
+ 2275      00
+ 2276              	.LASF28:
+ 2277 004c 746F6B73 		.ascii	"toksuper\000"
+ 2277      75706572 
+ 2277      00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 48
+
+
+ 2278              	.LASF37:
+ 2279 0055 636F756E 		.ascii	"count\000"
+ 2279      7400
+ 2280              	.LASF14:
+ 2281 005b 4A534D4E 		.ascii	"JSMN_OBJECT\000"
+ 2281      5F4F424A 
+ 2281      45435400 
+ 2282              	.LASF5:
+ 2283 0067 6C6F6E67 		.ascii	"long int\000"
+ 2283      20696E74 
+ 2283      00
+ 2284              	.LASF27:
+ 2285 0070 746F6B6E 		.ascii	"toknext\000"
+ 2285      65787400 
+ 2286              	.LASF3:
+ 2287 0078 73686F72 		.ascii	"short int\000"
+ 2287      7420696E 
+ 2287      7400
+ 2288              	.LASF39:
+ 2289 0082 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\comm_jsmn.c\000"
+ 2289      6E657261 
+ 2289      7465645F 
+ 2289      536F7572 
+ 2289      63655C50 
+ 2290              	.LASF11:
+ 2291 00a7 666C6F61 		.ascii	"float\000"
+ 2291      7400
+ 2292              	.LASF38:
+ 2293 00ad 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2293      4320342E 
+ 2293      382E3420 
+ 2293      32303134 
+ 2293      30353236 
+ 2294 00e0 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 2294      20726576 
+ 2294      6973696F 
+ 2294      6E203231 
+ 2294      31333538 
+ 2295 0113 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 2295      66756E63 
+ 2295      74696F6E 
+ 2295      2D736563 
+ 2295      74696F6E 
+ 2296              	.LASF13:
+ 2297 0129 4A534D4E 		.ascii	"JSMN_PRIMITIVE\000"
+ 2297      5F505249 
+ 2297      4D495449 
+ 2297      564500
+ 2298              	.LASF25:
+ 2299 0138 73697A65 		.ascii	"size\000"
+ 2299      00
+ 2300              	.LASF34:
+ 2301 013d 6A736D6E 		.ascii	"jsmn_alloc_token\000"
+ 2301      5F616C6C 
+ 2301      6F635F74 
+ 2301      6F6B656E 
+ 2301      00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 49
+
+
+ 2302              	.LASF24:
+ 2303 014e 73746172 		.ascii	"start\000"
+ 2303      7400
+ 2304              	.LASF35:
+ 2305 0154 6A736D6E 		.ascii	"jsmn_parse_primitive\000"
+ 2305      5F706172 
+ 2305      73655F70 
+ 2305      72696D69 
+ 2305      74697665 
+ 2306              	.LASF4:
+ 2307 0169 73686F72 		.ascii	"short unsigned int\000"
+ 2307      7420756E 
+ 2307      7369676E 
+ 2307      65642069 
+ 2307      6E7400
+ 2308              	.LASF15:
+ 2309 017c 4A534D4E 		.ascii	"JSMN_ARRAY\000"
+ 2309      5F415252 
+ 2309      415900
+ 2310              	.LASF26:
+ 2311 0187 6A736D6E 		.ascii	"jsmntok_t\000"
+ 2311      746F6B5F 
+ 2311      7400
+ 2312              	.LASF18:
+ 2313 0191 6A736D6E 		.ascii	"jsmntype_t\000"
+ 2313      74797065 
+ 2313      5F7400
+ 2314              	.LASF44:
+ 2315 019c 6A736D6E 		.ascii	"jsmn_init\000"
+ 2315      5F696E69 
+ 2315      7400
+ 2316              	.LASF30:
+ 2317 01a6 70617273 		.ascii	"parser\000"
+ 2317      657200
+ 2318              	.LASF6:
+ 2319 01ad 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2319      20756E73 
+ 2319      69676E65 
+ 2319      6420696E 
+ 2319      7400
+ 2320              	.LASF20:
+ 2321 01bf 4A534D4E 		.ascii	"JSMN_ERROR_INVAL\000"
+ 2321      5F455252 
+ 2321      4F525F49 
+ 2321      4E56414C 
+ 2321      00
+ 2322              	.LASF2:
+ 2323 01d0 756E7369 		.ascii	"unsigned char\000"
+ 2323      676E6564 
+ 2323      20636861 
+ 2323      7200
+ 2324              	.LASF0:
+ 2325 01de 756E7369 		.ascii	"unsigned int\000"
+ 2325      676E6564 
+ 2325      20696E74 
+ 2325      00
+ 2326              	.LASF31:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 50
+
+
+ 2327 01eb 746F6B65 		.ascii	"tokens\000"
+ 2327      6E7300
+ 2328              	.LASF8:
+ 2329 01f2 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2329      206C6F6E 
+ 2329      6720756E 
+ 2329      7369676E 
+ 2329      65642069 
+ 2330              	.LASF41:
+ 2331 0209 6A736D6E 		.ascii	"jsmn_fill_token\000"
+ 2331      5F66696C 
+ 2331      6C5F746F 
+ 2331      6B656E00 
+ 2332              	.LASF12:
+ 2333 0219 646F7562 		.ascii	"double\000"
+ 2333      6C6500
+ 2334              	.LASF32:
+ 2335 0220 6E756D5F 		.ascii	"num_tokens\000"
+ 2335      746F6B65 
+ 2335      6E7300
+ 2336              	.LASF16:
+ 2337 022b 4A534D4E 		.ascii	"JSMN_STRING\000"
+ 2337      5F535452 
+ 2337      494E4700 
+ 2338              	.LASF9:
+ 2339 0237 73697A65 		.ascii	"sizetype\000"
+ 2339      74797065 
+ 2339      00
+ 2340              	.LASF42:
+ 2341 0240 666F756E 		.ascii	"found\000"
+ 2341      6400
+ 2342              	.LASF10:
+ 2343 0246 63686172 		.ascii	"char\000"
+ 2343      00
+ 2344              	.LASF23:
+ 2345 024b 74797065 		.ascii	"type\000"
+ 2345      00
+ 2346              	.LASF22:
+ 2347 0250 6A736D6E 		.ascii	"jsmnerr_t\000"
+ 2347      6572725F 
+ 2347      7400
+ 2348              	.LASF29:
+ 2349 025a 6A736D6E 		.ascii	"jsmn_parser\000"
+ 2349      5F706172 
+ 2349      73657200 
+ 2350              	.LASF43:
+ 2351 0266 6A736D6E 		.ascii	"jsmn_parse\000"
+ 2351      5F706172 
+ 2351      736500
+ 2352              	.LASF33:
+ 2353 0271 746F6B65 		.ascii	"token\000"
+ 2353      6E00
+ 2354              	.LASF1:
+ 2355 0277 7369676E 		.ascii	"signed char\000"
+ 2355      65642063 
+ 2355      68617200 
+ 2356              	.LASF19:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccG07fSf.s 			page 51
+
+
+ 2357 0283 4A534D4E 		.ascii	"JSMN_ERROR_NOMEM\000"
+ 2357      5F455252 
+ 2357      4F525F4E 
+ 2357      4F4D454D 
+ 2357      00
+ 2358              	.LASF36:
+ 2359 0294 6A736D6E 		.ascii	"jsmn_parse_string\000"
+ 2359      5F706172 
+ 2359      73655F73 
+ 2359      7472696E 
+ 2359      6700
+ 2360              	.LASF21:
+ 2361 02a6 4A534D4E 		.ascii	"JSMN_ERROR_PART\000"
+ 2361      5F455252 
+ 2361      4F525F50 
+ 2361      41525400 
+ 2362              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

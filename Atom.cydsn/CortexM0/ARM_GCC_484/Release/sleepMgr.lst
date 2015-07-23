@@ -1,0 +1,983 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"sleepMgr.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.sleepMgr_sleep,"ax",%progbits
+  18              		.align	1
+  19              		.global	sleepMgr_sleep
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	sleepMgr_sleep, %function
+  23              	sleepMgr_sleep:
+  24              	.LFB33:
+  25              		.file 1 ".\\src\\sleepMgr.c"
+   1:.\src/sleepMgr.c **** /*
+   2:.\src/sleepMgr.c ****  * sleepMgr.c
+   3:.\src/sleepMgr.c ****  *
+   4:.\src/sleepMgr.c ****  *      Author: jakub.piskorz@thaumatec.com
+   5:.\src/sleepMgr.c ****  */
+   6:.\src/sleepMgr.c **** 
+   7:.\src/sleepMgr.c **** #include "sleepMgr.h"
+   8:.\src/sleepMgr.c **** #include <CyLib.h>
+   9:.\src/sleepMgr.c **** #include <cyPm.h>
+  10:.\src/sleepMgr.c **** #include <core_cm0_psoc4.h>
+  11:.\src/sleepMgr.c **** 
+  12:.\src/sleepMgr.c **** static volatile uint32 deepSleepRequests = 0;
+  13:.\src/sleepMgr.c **** static volatile uint32 sleepRequests = 0;
+  14:.\src/sleepMgr.c **** 
+  15:.\src/sleepMgr.c **** void sleepMgr_sleep(void) {
+  26              		.loc 1 15 0
+  27              		.cfi_startproc
+  28 0000 08B5     		push	{r3, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 3, -8
+  31              		.cfi_offset 14, -4
+  16:.\src/sleepMgr.c **** 	if(deepSleepRequests != 0 && sleepRequests == 0) {
+  32              		.loc 1 16 0
+  33 0002 064B     		ldr	r3, .L8
+  34 0004 1A68     		ldr	r2, [r3]
+  35 0006 002A     		cmp	r2, #0
+  36 0008 05D0     		beq	.L2
+  37              		.loc 1 16 0 is_stmt 0 discriminator 1
+  38 000a 5B68     		ldr	r3, [r3, #4]
+  39 000c 002B     		cmp	r3, #0
+  40 000e 02D1     		bne	.L2
+  17:.\src/sleepMgr.c **** 		CySysPmDeepSleep();
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 2
+
+
+  41              		.loc 1 17 0 is_stmt 1
+  42 0010 FFF7FEFF 		bl	CySysPmDeepSleep
+  43              	.LVL0:
+  44 0014 01E0     		b	.L1
+  45              	.L2:
+  18:.\src/sleepMgr.c **** 	} else {
+  19:.\src/sleepMgr.c **** 		CySysPmSleep();
+  46              		.loc 1 19 0
+  47 0016 FFF7FEFF 		bl	CySysPmSleep
+  48              	.LVL1:
+  49              	.L1:
+  20:.\src/sleepMgr.c **** 	}
+  21:.\src/sleepMgr.c **** }
+  50              		.loc 1 21 0
+  51              		@ sp needed
+  52 001a 08BD     		pop	{r3, pc}
+  53              	.L9:
+  54              		.align	2
+  55              	.L8:
+  56 001c 00000000 		.word	.LANCHOR0
+  57              		.cfi_endproc
+  58              	.LFE33:
+  59              		.size	sleepMgr_sleep, .-sleepMgr_sleep
+  60              		.section	.text.sleepMgr_requestDeepSleep,"ax",%progbits
+  61              		.align	1
+  62              		.global	sleepMgr_requestDeepSleep
+  63              		.code	16
+  64              		.thumb_func
+  65              		.type	sleepMgr_requestDeepSleep, %function
+  66              	sleepMgr_requestDeepSleep:
+  67              	.LFB34:
+  22:.\src/sleepMgr.c **** 
+  23:.\src/sleepMgr.c **** void sleepMgr_requestDeepSleep(void) {
+  68              		.loc 1 23 0
+  69              		.cfi_startproc
+  70 0000 08B5     		push	{r3, lr}
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 3, -8
+  73              		.cfi_offset 14, -4
+  24:.\src/sleepMgr.c **** 	uint8 interruptState = CyEnterCriticalSection();
+  74              		.loc 1 24 0
+  75 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  76              	.LVL2:
+  25:.\src/sleepMgr.c **** 
+  26:.\src/sleepMgr.c **** 	deepSleepRequests++;
+  77              		.loc 1 26 0
+  78 0006 034B     		ldr	r3, .L11
+  27:.\src/sleepMgr.c **** 
+  28:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+  29:.\src/sleepMgr.c **** }
+  79              		.loc 1 29 0
+  80              		@ sp needed
+  26:.\src/sleepMgr.c **** 	deepSleepRequests++;
+  81              		.loc 1 26 0
+  82 0008 1A68     		ldr	r2, [r3]
+  83 000a 0132     		add	r2, r2, #1
+  84 000c 1A60     		str	r2, [r3]
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 3
+
+
+  28:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+  85              		.loc 1 28 0
+  86 000e FFF7FEFF 		bl	CyExitCriticalSection
+  87              	.LVL3:
+  88              		.loc 1 29 0
+  89 0012 08BD     		pop	{r3, pc}
+  90              	.L12:
+  91              		.align	2
+  92              	.L11:
+  93 0014 00000000 		.word	.LANCHOR0
+  94              		.cfi_endproc
+  95              	.LFE34:
+  96              		.size	sleepMgr_requestDeepSleep, .-sleepMgr_requestDeepSleep
+  97              		.section	.text.sleepMgr_releaseDeepSleep,"ax",%progbits
+  98              		.align	1
+  99              		.global	sleepMgr_releaseDeepSleep
+ 100              		.code	16
+ 101              		.thumb_func
+ 102              		.type	sleepMgr_releaseDeepSleep, %function
+ 103              	sleepMgr_releaseDeepSleep:
+ 104              	.LFB35:
+  30:.\src/sleepMgr.c **** void sleepMgr_releaseDeepSleep(void) {
+ 105              		.loc 1 30 0
+ 106              		.cfi_startproc
+ 107 0000 08B5     		push	{r3, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 3, -8
+ 110              		.cfi_offset 14, -4
+  31:.\src/sleepMgr.c **** 	uint8 interruptState = CyEnterCriticalSection();
+ 111              		.loc 1 31 0
+ 112 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 113              	.LVL4:
+  32:.\src/sleepMgr.c **** 
+  33:.\src/sleepMgr.c **** 	if(deepSleepRequests)
+ 114              		.loc 1 33 0
+ 115 0006 054B     		ldr	r3, .L18
+ 116 0008 1A68     		ldr	r2, [r3]
+ 117 000a 002A     		cmp	r2, #0
+ 118 000c 02D0     		beq	.L14
+  34:.\src/sleepMgr.c **** 		deepSleepRequests--;
+ 119              		.loc 1 34 0
+ 120 000e 1A68     		ldr	r2, [r3]
+ 121 0010 013A     		sub	r2, r2, #1
+ 122 0012 1A60     		str	r2, [r3]
+ 123              	.L14:
+  35:.\src/sleepMgr.c **** 
+  36:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+ 124              		.loc 1 36 0
+ 125 0014 FFF7FEFF 		bl	CyExitCriticalSection
+ 126              	.LVL5:
+  37:.\src/sleepMgr.c **** }
+ 127              		.loc 1 37 0
+ 128              		@ sp needed
+ 129 0018 08BD     		pop	{r3, pc}
+ 130              	.L19:
+ 131 001a C046     		.align	2
+ 132              	.L18:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 4
+
+
+ 133 001c 00000000 		.word	.LANCHOR0
+ 134              		.cfi_endproc
+ 135              	.LFE35:
+ 136              		.size	sleepMgr_releaseDeepSleep, .-sleepMgr_releaseDeepSleep
+ 137              		.section	.text.sleepMgr_requestSleep,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	sleepMgr_requestSleep
+ 140              		.code	16
+ 141              		.thumb_func
+ 142              		.type	sleepMgr_requestSleep, %function
+ 143              	sleepMgr_requestSleep:
+ 144              	.LFB36:
+  38:.\src/sleepMgr.c **** 
+  39:.\src/sleepMgr.c **** void sleepMgr_requestSleep(void) {
+ 145              		.loc 1 39 0
+ 146              		.cfi_startproc
+ 147 0000 08B5     		push	{r3, lr}
+ 148              		.cfi_def_cfa_offset 8
+ 149              		.cfi_offset 3, -8
+ 150              		.cfi_offset 14, -4
+  40:.\src/sleepMgr.c **** 	uint8 interruptState = CyEnterCriticalSection();
+ 151              		.loc 1 40 0
+ 152 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 153              	.LVL6:
+  41:.\src/sleepMgr.c **** 
+  42:.\src/sleepMgr.c **** 	sleepRequests++;
+ 154              		.loc 1 42 0
+ 155 0006 034B     		ldr	r3, .L21
+  43:.\src/sleepMgr.c **** 
+  44:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+  45:.\src/sleepMgr.c **** }
+ 156              		.loc 1 45 0
+ 157              		@ sp needed
+  42:.\src/sleepMgr.c **** 	sleepRequests++;
+ 158              		.loc 1 42 0
+ 159 0008 5A68     		ldr	r2, [r3, #4]
+ 160 000a 0132     		add	r2, r2, #1
+ 161 000c 5A60     		str	r2, [r3, #4]
+  44:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+ 162              		.loc 1 44 0
+ 163 000e FFF7FEFF 		bl	CyExitCriticalSection
+ 164              	.LVL7:
+ 165              		.loc 1 45 0
+ 166 0012 08BD     		pop	{r3, pc}
+ 167              	.L22:
+ 168              		.align	2
+ 169              	.L21:
+ 170 0014 00000000 		.word	.LANCHOR0
+ 171              		.cfi_endproc
+ 172              	.LFE36:
+ 173              		.size	sleepMgr_requestSleep, .-sleepMgr_requestSleep
+ 174              		.section	.text.sleepMgr_releaseSleep,"ax",%progbits
+ 175              		.align	1
+ 176              		.global	sleepMgr_releaseSleep
+ 177              		.code	16
+ 178              		.thumb_func
+ 179              		.type	sleepMgr_releaseSleep, %function
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 5
+
+
+ 180              	sleepMgr_releaseSleep:
+ 181              	.LFB37:
+  46:.\src/sleepMgr.c **** void sleepMgr_releaseSleep(void) {
+ 182              		.loc 1 46 0
+ 183              		.cfi_startproc
+ 184 0000 08B5     		push	{r3, lr}
+ 185              		.cfi_def_cfa_offset 8
+ 186              		.cfi_offset 3, -8
+ 187              		.cfi_offset 14, -4
+  47:.\src/sleepMgr.c **** 	uint8 interruptState = CyEnterCriticalSection();
+ 188              		.loc 1 47 0
+ 189 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 190              	.LVL8:
+  48:.\src/sleepMgr.c **** 
+  49:.\src/sleepMgr.c **** 	if(sleepRequests)
+ 191              		.loc 1 49 0
+ 192 0006 054B     		ldr	r3, .L28
+ 193 0008 5A68     		ldr	r2, [r3, #4]
+ 194 000a 002A     		cmp	r2, #0
+ 195 000c 02D0     		beq	.L24
+  50:.\src/sleepMgr.c **** 		sleepRequests--;
+ 196              		.loc 1 50 0
+ 197 000e 5A68     		ldr	r2, [r3, #4]
+ 198 0010 013A     		sub	r2, r2, #1
+ 199 0012 5A60     		str	r2, [r3, #4]
+ 200              	.L24:
+  51:.\src/sleepMgr.c **** 
+  52:.\src/sleepMgr.c **** 	CyExitCriticalSection(interruptState);
+ 201              		.loc 1 52 0
+ 202 0014 FFF7FEFF 		bl	CyExitCriticalSection
+ 203              	.LVL9:
+  53:.\src/sleepMgr.c **** }
+ 204              		.loc 1 53 0
+ 205              		@ sp needed
+ 206 0018 08BD     		pop	{r3, pc}
+ 207              	.L29:
+ 208 001a C046     		.align	2
+ 209              	.L28:
+ 210 001c 00000000 		.word	.LANCHOR0
+ 211              		.cfi_endproc
+ 212              	.LFE37:
+ 213              		.size	sleepMgr_releaseSleep, .-sleepMgr_releaseSleep
+ 214              		.bss
+ 215              		.align	2
+ 216              		.set	.LANCHOR0,. + 0
+ 217              		.type	deepSleepRequests, %object
+ 218              		.size	deepSleepRequests, 4
+ 219              	deepSleepRequests:
+ 220 0000 00000000 		.space	4
+ 221              		.type	sleepRequests, %object
+ 222              		.size	sleepRequests, 4
+ 223              	sleepRequests:
+ 224 0004 00000000 		.space	4
+ 225              		.text
+ 226              	.Letext0:
+ 227              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 228              		.file 3 "Generated_Source\\PSoC4/cyPm.h"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 6
+
+
+ 229              		.file 4 "Generated_Source\\PSoC4/CyLib.h"
+ 230              		.section	.debug_info,"",%progbits
+ 231              	.Ldebug_info0:
+ 232 0000 EB010000 		.4byte	0x1eb
+ 233 0004 0400     		.2byte	0x4
+ 234 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 235 000a 04       		.byte	0x4
+ 236 000b 01       		.uleb128 0x1
+ 237 000c 95000000 		.4byte	.LASF25
+ 238 0010 01       		.byte	0x1
+ 239 0011 48020000 		.4byte	.LASF26
+ 240 0015 12000000 		.4byte	.LASF27
+ 241 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 242 001d 00000000 		.4byte	0
+ 243 0021 00000000 		.4byte	.Ldebug_line0
+ 244 0025 02       		.uleb128 0x2
+ 245 0026 01       		.byte	0x1
+ 246 0027 06       		.byte	0x6
+ 247 0028 22020000 		.4byte	.LASF0
+ 248 002c 02       		.uleb128 0x2
+ 249 002d 01       		.byte	0x1
+ 250 002e 08       		.byte	0x8
+ 251 002f 2E010000 		.4byte	.LASF1
+ 252 0033 02       		.uleb128 0x2
+ 253 0034 02       		.byte	0x2
+ 254 0035 05       		.byte	0x5
+ 255 0036 FE010000 		.4byte	.LASF2
+ 256 003a 02       		.uleb128 0x2
+ 257 003b 02       		.byte	0x2
+ 258 003c 07       		.byte	0x7
+ 259 003d 56000000 		.4byte	.LASF3
+ 260 0041 02       		.uleb128 0x2
+ 261 0042 04       		.byte	0x4
+ 262 0043 05       		.byte	0x5
+ 263 0044 19020000 		.4byte	.LASF4
+ 264 0048 02       		.uleb128 0x2
+ 265 0049 04       		.byte	0x4
+ 266 004a 07       		.byte	0x7
+ 267 004b 4B010000 		.4byte	.LASF5
+ 268 004f 02       		.uleb128 0x2
+ 269 0050 08       		.byte	0x8
+ 270 0051 05       		.byte	0x5
+ 271 0052 EB010000 		.4byte	.LASF6
+ 272 0056 02       		.uleb128 0x2
+ 273 0057 08       		.byte	0x8
+ 274 0058 07       		.byte	0x7
+ 275 0059 17010000 		.4byte	.LASF7
+ 276 005d 03       		.uleb128 0x3
+ 277 005e 04       		.byte	0x4
+ 278 005f 05       		.byte	0x5
+ 279 0060 696E7400 		.ascii	"int\000"
+ 280 0064 02       		.uleb128 0x2
+ 281 0065 04       		.byte	0x4
+ 282 0066 07       		.byte	0x7
+ 283 0067 88010000 		.4byte	.LASF8
+ 284 006b 04       		.uleb128 0x4
+ 285 006c 5D010000 		.4byte	.LASF9
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 7
+
+
+ 286 0070 02       		.byte	0x2
+ 287 0071 B3       		.byte	0xb3
+ 288 0072 2C000000 		.4byte	0x2c
+ 289 0076 04       		.uleb128 0x4
+ 290 0077 6A010000 		.4byte	.LASF10
+ 291 007b 02       		.byte	0x2
+ 292 007c B5       		.byte	0xb5
+ 293 007d 48000000 		.4byte	0x48
+ 294 0081 02       		.uleb128 0x2
+ 295 0082 04       		.byte	0x4
+ 296 0083 04       		.byte	0x4
+ 297 0084 11010000 		.4byte	.LASF11
+ 298 0088 02       		.uleb128 0x2
+ 299 0089 08       		.byte	0x8
+ 300 008a 04       		.byte	0x4
+ 301 008b 63010000 		.4byte	.LASF12
+ 302 008f 02       		.uleb128 0x2
+ 303 0090 01       		.byte	0x1
+ 304 0091 08       		.byte	0x8
+ 305 0092 F9010000 		.4byte	.LASF13
+ 306 0096 05       		.uleb128 0x5
+ 307 0097 76000000 		.4byte	0x76
+ 308 009b 02       		.uleb128 0x2
+ 309 009c 04       		.byte	0x4
+ 310 009d 07       		.byte	0x7
+ 311 009e E2010000 		.4byte	.LASF14
+ 312 00a2 06       		.uleb128 0x6
+ 313 00a3 AB010000 		.4byte	.LASF15
+ 314 00a7 01       		.byte	0x1
+ 315 00a8 0F       		.byte	0xf
+ 316 00a9 00000000 		.4byte	.LFB33
+ 317 00ad 20000000 		.4byte	.LFE33-.LFB33
+ 318 00b1 01       		.uleb128 0x1
+ 319 00b2 9C       		.byte	0x9c
+ 320 00b3 CA000000 		.4byte	0xca
+ 321 00b7 07       		.uleb128 0x7
+ 322 00b8 14000000 		.4byte	.LVL0
+ 323 00bc C8010000 		.4byte	0x1c8
+ 324 00c0 07       		.uleb128 0x7
+ 325 00c1 1A000000 		.4byte	.LVL1
+ 326 00c5 CF010000 		.4byte	0x1cf
+ 327 00c9 00       		.byte	0
+ 328 00ca 06       		.uleb128 0x6
+ 329 00cb 2E020000 		.4byte	.LASF16
+ 330 00cf 01       		.byte	0x1
+ 331 00d0 17       		.byte	0x17
+ 332 00d1 00000000 		.4byte	.LFB34
+ 333 00d5 18000000 		.4byte	.LFE34-.LFB34
+ 334 00d9 01       		.uleb128 0x1
+ 335 00da 9C       		.byte	0x9c
+ 336 00db 01010000 		.4byte	0x101
+ 337 00df 08       		.uleb128 0x8
+ 338 00e0 3C010000 		.4byte	.LASF18
+ 339 00e4 01       		.byte	0x1
+ 340 00e5 18       		.byte	0x18
+ 341 00e6 6B000000 		.4byte	0x6b
+ 342 00ea 00000000 		.4byte	.LLST0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 8
+
+
+ 343 00ee 07       		.uleb128 0x7
+ 344 00ef 06000000 		.4byte	.LVL2
+ 345 00f3 D6010000 		.4byte	0x1d6
+ 346 00f7 07       		.uleb128 0x7
+ 347 00f8 12000000 		.4byte	.LVL3
+ 348 00fc E1010000 		.4byte	0x1e1
+ 349 0100 00       		.byte	0
+ 350 0101 06       		.uleb128 0x6
+ 351 0102 BA010000 		.4byte	.LASF17
+ 352 0106 01       		.byte	0x1
+ 353 0107 1E       		.byte	0x1e
+ 354 0108 00000000 		.4byte	.LFB35
+ 355 010c 20000000 		.4byte	.LFE35-.LFB35
+ 356 0110 01       		.uleb128 0x1
+ 357 0111 9C       		.byte	0x9c
+ 358 0112 38010000 		.4byte	0x138
+ 359 0116 08       		.uleb128 0x8
+ 360 0117 3C010000 		.4byte	.LASF18
+ 361 011b 01       		.byte	0x1
+ 362 011c 1F       		.byte	0x1f
+ 363 011d 6B000000 		.4byte	0x6b
+ 364 0121 13000000 		.4byte	.LLST1
+ 365 0125 07       		.uleb128 0x7
+ 366 0126 06000000 		.4byte	.LVL4
+ 367 012a D6010000 		.4byte	0x1d6
+ 368 012e 07       		.uleb128 0x7
+ 369 012f 18000000 		.4byte	.LVL5
+ 370 0133 E1010000 		.4byte	0x1e1
+ 371 0137 00       		.byte	0
+ 372 0138 06       		.uleb128 0x6
+ 373 0139 7F000000 		.4byte	.LASF19
+ 374 013d 01       		.byte	0x1
+ 375 013e 27       		.byte	0x27
+ 376 013f 00000000 		.4byte	.LFB36
+ 377 0143 18000000 		.4byte	.LFE36-.LFB36
+ 378 0147 01       		.uleb128 0x1
+ 379 0148 9C       		.byte	0x9c
+ 380 0149 6F010000 		.4byte	0x16f
+ 381 014d 08       		.uleb128 0x8
+ 382 014e 3C010000 		.4byte	.LASF18
+ 383 0152 01       		.byte	0x1
+ 384 0153 28       		.byte	0x28
+ 385 0154 6B000000 		.4byte	0x6b
+ 386 0158 26000000 		.4byte	.LLST2
+ 387 015c 07       		.uleb128 0x7
+ 388 015d 06000000 		.4byte	.LVL6
+ 389 0161 D6010000 		.4byte	0x1d6
+ 390 0165 07       		.uleb128 0x7
+ 391 0166 12000000 		.4byte	.LVL7
+ 392 016a E1010000 		.4byte	0x1e1
+ 393 016e 00       		.byte	0
+ 394 016f 06       		.uleb128 0x6
+ 395 0170 69000000 		.4byte	.LASF20
+ 396 0174 01       		.byte	0x1
+ 397 0175 2E       		.byte	0x2e
+ 398 0176 00000000 		.4byte	.LFB37
+ 399 017a 20000000 		.4byte	.LFE37-.LFB37
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 9
+
+
+ 400 017e 01       		.uleb128 0x1
+ 401 017f 9C       		.byte	0x9c
+ 402 0180 A6010000 		.4byte	0x1a6
+ 403 0184 08       		.uleb128 0x8
+ 404 0185 3C010000 		.4byte	.LASF18
+ 405 0189 01       		.byte	0x1
+ 406 018a 2F       		.byte	0x2f
+ 407 018b 6B000000 		.4byte	0x6b
+ 408 018f 39000000 		.4byte	.LLST3
+ 409 0193 07       		.uleb128 0x7
+ 410 0194 06000000 		.4byte	.LVL8
+ 411 0198 D6010000 		.4byte	0x1d6
+ 412 019c 07       		.uleb128 0x7
+ 413 019d 18000000 		.4byte	.LVL9
+ 414 01a1 E1010000 		.4byte	0x1e1
+ 415 01a5 00       		.byte	0
+ 416 01a6 09       		.uleb128 0x9
+ 417 01a7 00000000 		.4byte	.LASF21
+ 418 01ab 01       		.byte	0x1
+ 419 01ac 0C       		.byte	0xc
+ 420 01ad 96000000 		.4byte	0x96
+ 421 01b1 05       		.uleb128 0x5
+ 422 01b2 03       		.byte	0x3
+ 423 01b3 00000000 		.4byte	deepSleepRequests
+ 424 01b7 09       		.uleb128 0x9
+ 425 01b8 D4010000 		.4byte	.LASF22
+ 426 01bc 01       		.byte	0x1
+ 427 01bd 0D       		.byte	0xd
+ 428 01be 96000000 		.4byte	0x96
+ 429 01c2 05       		.uleb128 0x5
+ 430 01c3 03       		.byte	0x3
+ 431 01c4 04000000 		.4byte	sleepRequests
+ 432 01c8 0A       		.uleb128 0xa
+ 433 01c9 08020000 		.4byte	.LASF23
+ 434 01cd 03       		.byte	0x3
+ 435 01ce 1D       		.byte	0x1d
+ 436 01cf 0A       		.uleb128 0xa
+ 437 01d0 49000000 		.4byte	.LASF24
+ 438 01d4 03       		.byte	0x3
+ 439 01d5 1C       		.byte	0x1c
+ 440 01d6 0B       		.uleb128 0xb
+ 441 01d7 71010000 		.4byte	.LASF28
+ 442 01db 04       		.byte	0x4
+ 443 01dc 5E       		.byte	0x5e
+ 444 01dd 6B000000 		.4byte	0x6b
+ 445 01e1 0C       		.uleb128 0xc
+ 446 01e2 95010000 		.4byte	.LASF29
+ 447 01e6 04       		.byte	0x4
+ 448 01e7 5F       		.byte	0x5f
+ 449 01e8 0D       		.uleb128 0xd
+ 450 01e9 6B000000 		.4byte	0x6b
+ 451 01ed 00       		.byte	0
+ 452 01ee 00       		.byte	0
+ 453              		.section	.debug_abbrev,"",%progbits
+ 454              	.Ldebug_abbrev0:
+ 455 0000 01       		.uleb128 0x1
+ 456 0001 11       		.uleb128 0x11
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 10
+
+
+ 457 0002 01       		.byte	0x1
+ 458 0003 25       		.uleb128 0x25
+ 459 0004 0E       		.uleb128 0xe
+ 460 0005 13       		.uleb128 0x13
+ 461 0006 0B       		.uleb128 0xb
+ 462 0007 03       		.uleb128 0x3
+ 463 0008 0E       		.uleb128 0xe
+ 464 0009 1B       		.uleb128 0x1b
+ 465 000a 0E       		.uleb128 0xe
+ 466 000b 55       		.uleb128 0x55
+ 467 000c 17       		.uleb128 0x17
+ 468 000d 11       		.uleb128 0x11
+ 469 000e 01       		.uleb128 0x1
+ 470 000f 10       		.uleb128 0x10
+ 471 0010 17       		.uleb128 0x17
+ 472 0011 00       		.byte	0
+ 473 0012 00       		.byte	0
+ 474 0013 02       		.uleb128 0x2
+ 475 0014 24       		.uleb128 0x24
+ 476 0015 00       		.byte	0
+ 477 0016 0B       		.uleb128 0xb
+ 478 0017 0B       		.uleb128 0xb
+ 479 0018 3E       		.uleb128 0x3e
+ 480 0019 0B       		.uleb128 0xb
+ 481 001a 03       		.uleb128 0x3
+ 482 001b 0E       		.uleb128 0xe
+ 483 001c 00       		.byte	0
+ 484 001d 00       		.byte	0
+ 485 001e 03       		.uleb128 0x3
+ 486 001f 24       		.uleb128 0x24
+ 487 0020 00       		.byte	0
+ 488 0021 0B       		.uleb128 0xb
+ 489 0022 0B       		.uleb128 0xb
+ 490 0023 3E       		.uleb128 0x3e
+ 491 0024 0B       		.uleb128 0xb
+ 492 0025 03       		.uleb128 0x3
+ 493 0026 08       		.uleb128 0x8
+ 494 0027 00       		.byte	0
+ 495 0028 00       		.byte	0
+ 496 0029 04       		.uleb128 0x4
+ 497 002a 16       		.uleb128 0x16
+ 498 002b 00       		.byte	0
+ 499 002c 03       		.uleb128 0x3
+ 500 002d 0E       		.uleb128 0xe
+ 501 002e 3A       		.uleb128 0x3a
+ 502 002f 0B       		.uleb128 0xb
+ 503 0030 3B       		.uleb128 0x3b
+ 504 0031 0B       		.uleb128 0xb
+ 505 0032 49       		.uleb128 0x49
+ 506 0033 13       		.uleb128 0x13
+ 507 0034 00       		.byte	0
+ 508 0035 00       		.byte	0
+ 509 0036 05       		.uleb128 0x5
+ 510 0037 35       		.uleb128 0x35
+ 511 0038 00       		.byte	0
+ 512 0039 49       		.uleb128 0x49
+ 513 003a 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 11
+
+
+ 514 003b 00       		.byte	0
+ 515 003c 00       		.byte	0
+ 516 003d 06       		.uleb128 0x6
+ 517 003e 2E       		.uleb128 0x2e
+ 518 003f 01       		.byte	0x1
+ 519 0040 3F       		.uleb128 0x3f
+ 520 0041 19       		.uleb128 0x19
+ 521 0042 03       		.uleb128 0x3
+ 522 0043 0E       		.uleb128 0xe
+ 523 0044 3A       		.uleb128 0x3a
+ 524 0045 0B       		.uleb128 0xb
+ 525 0046 3B       		.uleb128 0x3b
+ 526 0047 0B       		.uleb128 0xb
+ 527 0048 27       		.uleb128 0x27
+ 528 0049 19       		.uleb128 0x19
+ 529 004a 11       		.uleb128 0x11
+ 530 004b 01       		.uleb128 0x1
+ 531 004c 12       		.uleb128 0x12
+ 532 004d 06       		.uleb128 0x6
+ 533 004e 40       		.uleb128 0x40
+ 534 004f 18       		.uleb128 0x18
+ 535 0050 9742     		.uleb128 0x2117
+ 536 0052 19       		.uleb128 0x19
+ 537 0053 01       		.uleb128 0x1
+ 538 0054 13       		.uleb128 0x13
+ 539 0055 00       		.byte	0
+ 540 0056 00       		.byte	0
+ 541 0057 07       		.uleb128 0x7
+ 542 0058 898201   		.uleb128 0x4109
+ 543 005b 00       		.byte	0
+ 544 005c 11       		.uleb128 0x11
+ 545 005d 01       		.uleb128 0x1
+ 546 005e 31       		.uleb128 0x31
+ 547 005f 13       		.uleb128 0x13
+ 548 0060 00       		.byte	0
+ 549 0061 00       		.byte	0
+ 550 0062 08       		.uleb128 0x8
+ 551 0063 34       		.uleb128 0x34
+ 552 0064 00       		.byte	0
+ 553 0065 03       		.uleb128 0x3
+ 554 0066 0E       		.uleb128 0xe
+ 555 0067 3A       		.uleb128 0x3a
+ 556 0068 0B       		.uleb128 0xb
+ 557 0069 3B       		.uleb128 0x3b
+ 558 006a 0B       		.uleb128 0xb
+ 559 006b 49       		.uleb128 0x49
+ 560 006c 13       		.uleb128 0x13
+ 561 006d 02       		.uleb128 0x2
+ 562 006e 17       		.uleb128 0x17
+ 563 006f 00       		.byte	0
+ 564 0070 00       		.byte	0
+ 565 0071 09       		.uleb128 0x9
+ 566 0072 34       		.uleb128 0x34
+ 567 0073 00       		.byte	0
+ 568 0074 03       		.uleb128 0x3
+ 569 0075 0E       		.uleb128 0xe
+ 570 0076 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 12
+
+
+ 571 0077 0B       		.uleb128 0xb
+ 572 0078 3B       		.uleb128 0x3b
+ 573 0079 0B       		.uleb128 0xb
+ 574 007a 49       		.uleb128 0x49
+ 575 007b 13       		.uleb128 0x13
+ 576 007c 02       		.uleb128 0x2
+ 577 007d 18       		.uleb128 0x18
+ 578 007e 00       		.byte	0
+ 579 007f 00       		.byte	0
+ 580 0080 0A       		.uleb128 0xa
+ 581 0081 2E       		.uleb128 0x2e
+ 582 0082 00       		.byte	0
+ 583 0083 3F       		.uleb128 0x3f
+ 584 0084 19       		.uleb128 0x19
+ 585 0085 03       		.uleb128 0x3
+ 586 0086 0E       		.uleb128 0xe
+ 587 0087 3A       		.uleb128 0x3a
+ 588 0088 0B       		.uleb128 0xb
+ 589 0089 3B       		.uleb128 0x3b
+ 590 008a 0B       		.uleb128 0xb
+ 591 008b 27       		.uleb128 0x27
+ 592 008c 19       		.uleb128 0x19
+ 593 008d 3C       		.uleb128 0x3c
+ 594 008e 19       		.uleb128 0x19
+ 595 008f 00       		.byte	0
+ 596 0090 00       		.byte	0
+ 597 0091 0B       		.uleb128 0xb
+ 598 0092 2E       		.uleb128 0x2e
+ 599 0093 00       		.byte	0
+ 600 0094 3F       		.uleb128 0x3f
+ 601 0095 19       		.uleb128 0x19
+ 602 0096 03       		.uleb128 0x3
+ 603 0097 0E       		.uleb128 0xe
+ 604 0098 3A       		.uleb128 0x3a
+ 605 0099 0B       		.uleb128 0xb
+ 606 009a 3B       		.uleb128 0x3b
+ 607 009b 0B       		.uleb128 0xb
+ 608 009c 27       		.uleb128 0x27
+ 609 009d 19       		.uleb128 0x19
+ 610 009e 49       		.uleb128 0x49
+ 611 009f 13       		.uleb128 0x13
+ 612 00a0 3C       		.uleb128 0x3c
+ 613 00a1 19       		.uleb128 0x19
+ 614 00a2 00       		.byte	0
+ 615 00a3 00       		.byte	0
+ 616 00a4 0C       		.uleb128 0xc
+ 617 00a5 2E       		.uleb128 0x2e
+ 618 00a6 01       		.byte	0x1
+ 619 00a7 3F       		.uleb128 0x3f
+ 620 00a8 19       		.uleb128 0x19
+ 621 00a9 03       		.uleb128 0x3
+ 622 00aa 0E       		.uleb128 0xe
+ 623 00ab 3A       		.uleb128 0x3a
+ 624 00ac 0B       		.uleb128 0xb
+ 625 00ad 3B       		.uleb128 0x3b
+ 626 00ae 0B       		.uleb128 0xb
+ 627 00af 27       		.uleb128 0x27
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 13
+
+
+ 628 00b0 19       		.uleb128 0x19
+ 629 00b1 3C       		.uleb128 0x3c
+ 630 00b2 19       		.uleb128 0x19
+ 631 00b3 00       		.byte	0
+ 632 00b4 00       		.byte	0
+ 633 00b5 0D       		.uleb128 0xd
+ 634 00b6 05       		.uleb128 0x5
+ 635 00b7 00       		.byte	0
+ 636 00b8 49       		.uleb128 0x49
+ 637 00b9 13       		.uleb128 0x13
+ 638 00ba 00       		.byte	0
+ 639 00bb 00       		.byte	0
+ 640 00bc 00       		.byte	0
+ 641              		.section	.debug_loc,"",%progbits
+ 642              	.Ldebug_loc0:
+ 643              	.LLST0:
+ 644 0000 06000000 		.4byte	.LVL2
+ 645 0004 11000000 		.4byte	.LVL3-1
+ 646 0008 0100     		.2byte	0x1
+ 647 000a 50       		.byte	0x50
+ 648 000b 00000000 		.4byte	0
+ 649 000f 00000000 		.4byte	0
+ 650              	.LLST1:
+ 651 0013 06000000 		.4byte	.LVL4
+ 652 0017 17000000 		.4byte	.LVL5-1
+ 653 001b 0100     		.2byte	0x1
+ 654 001d 50       		.byte	0x50
+ 655 001e 00000000 		.4byte	0
+ 656 0022 00000000 		.4byte	0
+ 657              	.LLST2:
+ 658 0026 06000000 		.4byte	.LVL6
+ 659 002a 11000000 		.4byte	.LVL7-1
+ 660 002e 0100     		.2byte	0x1
+ 661 0030 50       		.byte	0x50
+ 662 0031 00000000 		.4byte	0
+ 663 0035 00000000 		.4byte	0
+ 664              	.LLST3:
+ 665 0039 06000000 		.4byte	.LVL8
+ 666 003d 17000000 		.4byte	.LVL9-1
+ 667 0041 0100     		.2byte	0x1
+ 668 0043 50       		.byte	0x50
+ 669 0044 00000000 		.4byte	0
+ 670 0048 00000000 		.4byte	0
+ 671              		.section	.debug_aranges,"",%progbits
+ 672 0000 3C000000 		.4byte	0x3c
+ 673 0004 0200     		.2byte	0x2
+ 674 0006 00000000 		.4byte	.Ldebug_info0
+ 675 000a 04       		.byte	0x4
+ 676 000b 00       		.byte	0
+ 677 000c 0000     		.2byte	0
+ 678 000e 0000     		.2byte	0
+ 679 0010 00000000 		.4byte	.LFB33
+ 680 0014 20000000 		.4byte	.LFE33-.LFB33
+ 681 0018 00000000 		.4byte	.LFB34
+ 682 001c 18000000 		.4byte	.LFE34-.LFB34
+ 683 0020 00000000 		.4byte	.LFB35
+ 684 0024 20000000 		.4byte	.LFE35-.LFB35
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 14
+
+
+ 685 0028 00000000 		.4byte	.LFB36
+ 686 002c 18000000 		.4byte	.LFE36-.LFB36
+ 687 0030 00000000 		.4byte	.LFB37
+ 688 0034 20000000 		.4byte	.LFE37-.LFB37
+ 689 0038 00000000 		.4byte	0
+ 690 003c 00000000 		.4byte	0
+ 691              		.section	.debug_ranges,"",%progbits
+ 692              	.Ldebug_ranges0:
+ 693 0000 00000000 		.4byte	.LFB33
+ 694 0004 20000000 		.4byte	.LFE33
+ 695 0008 00000000 		.4byte	.LFB34
+ 696 000c 18000000 		.4byte	.LFE34
+ 697 0010 00000000 		.4byte	.LFB35
+ 698 0014 20000000 		.4byte	.LFE35
+ 699 0018 00000000 		.4byte	.LFB36
+ 700 001c 18000000 		.4byte	.LFE36
+ 701 0020 00000000 		.4byte	.LFB37
+ 702 0024 20000000 		.4byte	.LFE37
+ 703 0028 00000000 		.4byte	0
+ 704 002c 00000000 		.4byte	0
+ 705              		.section	.debug_line,"",%progbits
+ 706              	.Ldebug_line0:
+ 707 0000 D2000000 		.section	.debug_str,"MS",%progbits,1
+ 707      02006000 
+ 707      00000201 
+ 707      FB0E0D00 
+ 707      01010101 
+ 708              	.LASF21:
+ 709 0000 64656570 		.ascii	"deepSleepRequests\000"
+ 709      536C6565 
+ 709      70526571 
+ 709      75657374 
+ 709      7300
+ 710              	.LASF27:
+ 711 0012 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 711      73657273 
+ 711      5C736465 
+ 711      76617365 
+ 711      6E617061 
+ 712 0040 6F6D2E63 		.ascii	"om.cydsn\000"
+ 712      7964736E 
+ 712      00
+ 713              	.LASF24:
+ 714 0049 43795379 		.ascii	"CySysPmSleep\000"
+ 714      73506D53 
+ 714      6C656570 
+ 714      00
+ 715              	.LASF3:
+ 716 0056 73686F72 		.ascii	"short unsigned int\000"
+ 716      7420756E 
+ 716      7369676E 
+ 716      65642069 
+ 716      6E7400
+ 717              	.LASF20:
+ 718 0069 736C6565 		.ascii	"sleepMgr_releaseSleep\000"
+ 718      704D6772 
+ 718      5F72656C 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 15
+
+
+ 718      65617365 
+ 718      536C6565 
+ 719              	.LASF19:
+ 720 007f 736C6565 		.ascii	"sleepMgr_requestSleep\000"
+ 720      704D6772 
+ 720      5F726571 
+ 720      75657374 
+ 720      536C6565 
+ 721              	.LASF25:
+ 722 0095 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 722      4320342E 
+ 722      382E3420 
+ 722      32303134 
+ 722      30353236 
+ 723 00c8 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 723      20726576 
+ 723      6973696F 
+ 723      6E203231 
+ 723      31333538 
+ 724 00fb 73202D66 		.ascii	"s -ffunction-sections\000"
+ 724      66756E63 
+ 724      74696F6E 
+ 724      2D736563 
+ 724      74696F6E 
+ 725              	.LASF11:
+ 726 0111 666C6F61 		.ascii	"float\000"
+ 726      7400
+ 727              	.LASF7:
+ 728 0117 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 728      206C6F6E 
+ 728      6720756E 
+ 728      7369676E 
+ 728      65642069 
+ 729              	.LASF1:
+ 730 012e 756E7369 		.ascii	"unsigned char\000"
+ 730      676E6564 
+ 730      20636861 
+ 730      7200
+ 731              	.LASF18:
+ 732 013c 696E7465 		.ascii	"interruptState\000"
+ 732      72727570 
+ 732      74537461 
+ 732      746500
+ 733              	.LASF5:
+ 734 014b 6C6F6E67 		.ascii	"long unsigned int\000"
+ 734      20756E73 
+ 734      69676E65 
+ 734      6420696E 
+ 734      7400
+ 735              	.LASF9:
+ 736 015d 75696E74 		.ascii	"uint8\000"
+ 736      3800
+ 737              	.LASF12:
+ 738 0163 646F7562 		.ascii	"double\000"
+ 738      6C6500
+ 739              	.LASF10:
+ 740 016a 75696E74 		.ascii	"uint32\000"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 16
+
+
+ 740      333200
+ 741              	.LASF28:
+ 742 0171 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 742      74657243 
+ 742      72697469 
+ 742      63616C53 
+ 742      65637469 
+ 743              	.LASF8:
+ 744 0188 756E7369 		.ascii	"unsigned int\000"
+ 744      676E6564 
+ 744      20696E74 
+ 744      00
+ 745              	.LASF29:
+ 746 0195 43794578 		.ascii	"CyExitCriticalSection\000"
+ 746      69744372 
+ 746      69746963 
+ 746      616C5365 
+ 746      6374696F 
+ 747              	.LASF15:
+ 748 01ab 736C6565 		.ascii	"sleepMgr_sleep\000"
+ 748      704D6772 
+ 748      5F736C65 
+ 748      657000
+ 749              	.LASF17:
+ 750 01ba 736C6565 		.ascii	"sleepMgr_releaseDeepSleep\000"
+ 750      704D6772 
+ 750      5F72656C 
+ 750      65617365 
+ 750      44656570 
+ 751              	.LASF22:
+ 752 01d4 736C6565 		.ascii	"sleepRequests\000"
+ 752      70526571 
+ 752      75657374 
+ 752      7300
+ 753              	.LASF14:
+ 754 01e2 73697A65 		.ascii	"sizetype\000"
+ 754      74797065 
+ 754      00
+ 755              	.LASF6:
+ 756 01eb 6C6F6E67 		.ascii	"long long int\000"
+ 756      206C6F6E 
+ 756      6720696E 
+ 756      7400
+ 757              	.LASF13:
+ 758 01f9 63686172 		.ascii	"char\000"
+ 758      00
+ 759              	.LASF2:
+ 760 01fe 73686F72 		.ascii	"short int\000"
+ 760      7420696E 
+ 760      7400
+ 761              	.LASF23:
+ 762 0208 43795379 		.ascii	"CySysPmDeepSleep\000"
+ 762      73506D44 
+ 762      65657053 
+ 762      6C656570 
+ 762      00
+ 763              	.LASF4:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\cc6pHh4M.s 			page 17
+
+
+ 764 0219 6C6F6E67 		.ascii	"long int\000"
+ 764      20696E74 
+ 764      00
+ 765              	.LASF0:
+ 766 0222 7369676E 		.ascii	"signed char\000"
+ 766      65642063 
+ 766      68617200 
+ 767              	.LASF16:
+ 768 022e 736C6565 		.ascii	"sleepMgr_requestDeepSleep\000"
+ 768      704D6772 
+ 768      5F726571 
+ 768      75657374 
+ 768      44656570 
+ 769              	.LASF26:
+ 770 0248 2E5C7372 		.ascii	".\\src\\sleepMgr.c\000"
+ 770      635C736C 
+ 770      6565704D 
+ 770      67722E63 
+ 770      00
+ 771              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

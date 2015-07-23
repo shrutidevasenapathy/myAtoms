@@ -1,0 +1,1360 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"comm_RS485_Timeout.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.comm_RS485_Timeout_Init,"ax",%progbits
+  18              		.align	1
+  19              		.global	comm_RS485_Timeout_Init
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	comm_RS485_Timeout_Init, %function
+  23              	comm_RS485_Timeout_Init:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\comm_RS485_Timeout.c"
+   1:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * File Name: comm_RS485_Timeout.c
+   3:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Version 1.0
+   4:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+   5:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Description:
+   6:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This file provides source code for the Count7 component's API.
+   7:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+   8:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Note:
+   9:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  10:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+  11:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  12:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * the software package with which this file was provided.
+  15:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+  16:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  17:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** #include "comm_RS485_Timeout.h"
+  18:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** #include "CyLib.h"
+  19:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  20:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  21:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** uint8 comm_RS485_Timeout_initVar = 0u;
+  22:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  23:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  24:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_Init
+  26:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  28:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+  29:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  Initializes or restores the component according to the parameter editor
+  30:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  settings.
+  31:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  32:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+  34:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  35:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+  36:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+  37:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  38:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Theory:
+  39:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  It is not necessary to call Count7_Init() because the Count7_Start() API
+  40:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  calls this function and is the preferred method to begin component
+  41:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  operation.
+  42:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  43:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+  44:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_Init(void) 
+  45:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+  26              		.loc 1 45 0
+  27              		.cfi_startproc
+  46:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     /* Set the initial period value from parameter editor */
+  47:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_PERIOD_REG = comm_RS485_Timeout_INITIAL_PERIOD;
+  28              		.loc 1 47 0
+  29 0000 014B     		ldr	r3, .L2
+  30 0002 6422     		mov	r2, #100
+  31 0004 1A70     		strb	r2, [r3]
+  48:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+  32              		.loc 1 48 0
+  33              		@ sp needed
+  34 0006 7047     		bx	lr
+  35              	.L3:
+  36              		.align	2
+  37              	.L2:
+  38 0008 83000F40 		.word	1074724995
+  39              		.cfi_endproc
+  40              	.LFE0:
+  41              		.size	comm_RS485_Timeout_Init, .-comm_RS485_Timeout_Init
+  42              		.section	.text.comm_RS485_Timeout_Enable,"ax",%progbits
+  43              		.align	1
+  44              		.global	comm_RS485_Timeout_Enable
+  45              		.code	16
+  46              		.thumb_func
+  47              		.type	comm_RS485_Timeout_Enable, %function
+  48              	comm_RS485_Timeout_Enable:
+  49              	.LFB1:
+  49:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  50:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  51:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+  52:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_Enable
+  53:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+  54:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  55:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+  56:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  Enables the software enable of the counter.
+  57:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  58:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+  59:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+  60:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  61:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+  62:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+  63:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  64:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Theory:
+  65:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  It is not necessary to call Count7_Enable() because the Count7_Start() API
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 3
+
+
+  66:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  calls this function, which is the preferred method to begin component
+  67:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  operation.
+  68:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This API performs modification of auxiliary control register which is a
+  69:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  shared resource so it is required to disable interrupts until the
+  70:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  modification will complete.
+  71:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  72:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+  73:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_Enable(void) 
+  74:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+  50              		.loc 1 74 0
+  51              		.cfi_startproc
+  52 0000 08B5     		push	{r3, lr}
+  53              		.cfi_def_cfa_offset 8
+  54              		.cfi_offset 3, -8
+  55              		.cfi_offset 14, -4
+  75:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     uint8 interruptState;
+  76:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  77:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     interruptState = CyEnterCriticalSection();
+  56              		.loc 1 77 0
+  57 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+  58              	.LVL0:
+  78:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     /* Set the counter start bit in auxiliary control. If routed enable
+  79:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     * isn't used then this will immediately star the Count7 operation.
+  80:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     */
+  81:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_AUX_CONTROL_REG |= comm_RS485_Timeout_COUNTER_START;
+  59              		.loc 1 81 0
+  60 0006 044B     		ldr	r3, .L5
+  61 0008 2021     		mov	r1, #32
+  62 000a 1A78     		ldrb	r2, [r3]
+  82:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  83:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     CyExitCriticalSection(interruptState);
+  84:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+  63              		.loc 1 84 0
+  64              		@ sp needed
+  81:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_AUX_CONTROL_REG |= comm_RS485_Timeout_COUNTER_START;
+  65              		.loc 1 81 0
+  66 000c 0A43     		orr	r2, r1
+  67 000e 1A70     		strb	r2, [r3]
+  83:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     CyExitCriticalSection(interruptState);
+  68              		.loc 1 83 0
+  69 0010 FFF7FEFF 		bl	CyExitCriticalSection
+  70              	.LVL1:
+  71              		.loc 1 84 0
+  72 0014 08BD     		pop	{r3, pc}
+  73              	.L6:
+  74 0016 C046     		.align	2
+  75              	.L5:
+  76 0018 93000F40 		.word	1074725011
+  77              		.cfi_endproc
+  78              	.LFE1:
+  79              		.size	comm_RS485_Timeout_Enable, .-comm_RS485_Timeout_Enable
+  80              		.section	.text.comm_RS485_Timeout_Start,"ax",%progbits
+  81              		.align	1
+  82              		.global	comm_RS485_Timeout_Start
+  83              		.code	16
+  84              		.thumb_func
+  85              		.type	comm_RS485_Timeout_Start, %function
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 4
+
+
+  86              	comm_RS485_Timeout_Start:
+  87              	.LFB2:
+  85:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  86:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+  87:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+  88:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_Start
+  89:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+  90:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  91:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+  92:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  Performs all of the required initialization for the component and enables
+  93:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  the counter. The first time the routine is executed, the period is set as
+  94:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  configured in the customizer. When called to restart the counter following a
+  95:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  Count7_Stop() call, the current period value is retained.
+  96:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+  97:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+  98:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None.
+  99:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 100:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Global Variables:
+ 101:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  comm_RS485_Timeout_initVar - global variable.
+ 102:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 103:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 104:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None.
+ 105:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 106:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 107:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_Start(void) 
+ 108:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+  88              		.loc 1 108 0
+  89              		.cfi_startproc
+  90 0000 08B5     		push	{r3, lr}
+  91              		.cfi_def_cfa_offset 8
+  92              		.cfi_offset 3, -8
+  93              		.cfi_offset 14, -4
+ 109:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     /* If not initialized then perform initialization */
+ 110:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     if(comm_RS485_Timeout_initVar == 0u)
+  94              		.loc 1 110 0
+  95 0002 064B     		ldr	r3, .L10
+  96 0004 1A78     		ldrb	r2, [r3]
+  97 0006 002A     		cmp	r2, #0
+  98 0008 04D1     		bne	.L8
+  99              	.LBB4:
+ 100              	.LBB5:
+  47:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_PERIOD_REG = comm_RS485_Timeout_INITIAL_PERIOD;
+ 101              		.loc 1 47 0
+ 102 000a 054A     		ldr	r2, .L10+4
+ 103 000c 6421     		mov	r1, #100
+ 104 000e 1170     		strb	r1, [r2]
+ 105              	.LBE5:
+ 106              	.LBE4:
+ 111:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     {
+ 112:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****         comm_RS485_Timeout_Init();
+ 113:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****         comm_RS485_Timeout_initVar = 1u;
+ 107              		.loc 1 113 0
+ 108 0010 0122     		mov	r2, #1
+ 109 0012 1A70     		strb	r2, [r3]
+ 110              	.L8:
+ 114:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     }
+ 115:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 5
+
+
+ 116:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     /* Enable Count7 */
+ 117:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_Enable();
+ 111              		.loc 1 117 0
+ 112 0014 FFF7FEFF 		bl	comm_RS485_Timeout_Enable
+ 113              	.LVL2:
+ 118:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 114              		.loc 1 118 0
+ 115              		@ sp needed
+ 116 0018 08BD     		pop	{r3, pc}
+ 117              	.L11:
+ 118 001a C046     		.align	2
+ 119              	.L10:
+ 120 001c 00000000 		.word	.LANCHOR0
+ 121 0020 83000F40 		.word	1074724995
+ 122              		.cfi_endproc
+ 123              	.LFE2:
+ 124              		.size	comm_RS485_Timeout_Start, .-comm_RS485_Timeout_Start
+ 125              		.section	.text.comm_RS485_Timeout_Stop,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	comm_RS485_Timeout_Stop
+ 128              		.code	16
+ 129              		.thumb_func
+ 130              		.type	comm_RS485_Timeout_Stop, %function
+ 131              	comm_RS485_Timeout_Stop:
+ 132              	.LFB3:
+ 119:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 120:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 121:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+ 122:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_Stop
+ 123:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+ 124:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 125:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+ 126:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  Disables the software enable of the counter.
+ 127:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 128:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ 129:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 130:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 131:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 132:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 133:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 134:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 135:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_Stop(void) 
+ 136:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+ 133              		.loc 1 136 0
+ 134              		.cfi_startproc
+ 135 0000 08B5     		push	{r3, lr}
+ 136              		.cfi_def_cfa_offset 8
+ 137              		.cfi_offset 3, -8
+ 138              		.cfi_offset 14, -4
+ 137:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     uint8 interruptState;
+ 138:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 139:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     interruptState = CyEnterCriticalSection();
+ 139              		.loc 1 139 0
+ 140 0002 FFF7FEFF 		bl	CyEnterCriticalSection
+ 141              	.LVL3:
+ 140:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     /* Clear the counter start bit in auxiliary control. */
+ 141:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_AUX_CONTROL_REG &= (uint8) ~((uint8) comm_RS485_Timeout_COUNTER_START);
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 6
+
+
+ 142              		.loc 1 141 0
+ 143 0006 044B     		ldr	r3, .L13
+ 144 0008 2021     		mov	r1, #32
+ 145 000a 1A78     		ldrb	r2, [r3]
+ 142:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 143:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     CyExitCriticalSection(interruptState);
+ 144:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 146              		.loc 1 144 0
+ 147              		@ sp needed
+ 141:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_AUX_CONTROL_REG &= (uint8) ~((uint8) comm_RS485_Timeout_COUNTER_START);
+ 148              		.loc 1 141 0
+ 149 000c 8A43     		bic	r2, r1
+ 150 000e 1A70     		strb	r2, [r3]
+ 143:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     CyExitCriticalSection(interruptState);
+ 151              		.loc 1 143 0
+ 152 0010 FFF7FEFF 		bl	CyExitCriticalSection
+ 153              	.LVL4:
+ 154              		.loc 1 144 0
+ 155 0014 08BD     		pop	{r3, pc}
+ 156              	.L14:
+ 157 0016 C046     		.align	2
+ 158              	.L13:
+ 159 0018 93000F40 		.word	1074725011
+ 160              		.cfi_endproc
+ 161              	.LFE3:
+ 162              		.size	comm_RS485_Timeout_Stop, .-comm_RS485_Timeout_Stop
+ 163              		.section	.text.comm_RS485_Timeout_WriteCounter,"ax",%progbits
+ 164              		.align	1
+ 165              		.global	comm_RS485_Timeout_WriteCounter
+ 166              		.code	16
+ 167              		.thumb_func
+ 168              		.type	comm_RS485_Timeout_WriteCounter, %function
+ 169              	comm_RS485_Timeout_WriteCounter:
+ 170              	.LFB4:
+ 145:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 146:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 147:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+ 148:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_WriteCounter
+ 149:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+ 150:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 151:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+ 152:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This function writes the counter directly. The counter should be disabled
+ 153:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  before calling this function.
+ 154:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 155:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ 156:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  count - Value to be written to counter.
+ 157:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 158:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 159:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 160:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 161:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 162:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_WriteCounter(uint8 count) 
+ 163:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+ 171              		.loc 1 163 0
+ 172              		.cfi_startproc
+ 173              	.LVL5:
+ 164:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_COUNT_REG = (count & comm_RS485_Timeout_COUNT_7BIT_MASK);
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 7
+
+
+ 174              		.loc 1 164 0
+ 175 0000 7F23     		mov	r3, #127
+ 176 0002 1840     		and	r0, r3
+ 177              	.LVL6:
+ 178 0004 014B     		ldr	r3, .L16
+ 165:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 179              		.loc 1 165 0
+ 180              		@ sp needed
+ 164:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_COUNT_REG = (count & comm_RS485_Timeout_COUNT_7BIT_MASK);
+ 181              		.loc 1 164 0
+ 182 0006 1870     		strb	r0, [r3]
+ 183              		.loc 1 165 0
+ 184 0008 7047     		bx	lr
+ 185              	.L17:
+ 186 000a C046     		.align	2
+ 187              	.L16:
+ 188 000c 73000F40 		.word	1074724979
+ 189              		.cfi_endproc
+ 190              	.LFE4:
+ 191              		.size	comm_RS485_Timeout_WriteCounter, .-comm_RS485_Timeout_WriteCounter
+ 192              		.section	.text.comm_RS485_Timeout_ReadCounter,"ax",%progbits
+ 193              		.align	1
+ 194              		.global	comm_RS485_Timeout_ReadCounter
+ 195              		.code	16
+ 196              		.thumb_func
+ 197              		.type	comm_RS485_Timeout_ReadCounter, %function
+ 198              	comm_RS485_Timeout_ReadCounter:
+ 199              	.LFB5:
+ 166:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 167:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 168:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+ 169:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_ReadCounter
+ 170:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+ 171:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 172:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+ 173:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This function reads the counter value.
+ 174:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 175:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ 176:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 177:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 178:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 179:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 180:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 181:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 182:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** uint8 comm_RS485_Timeout_ReadCounter(void) 
+ 183:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+ 200              		.loc 1 183 0
+ 201              		.cfi_startproc
+ 184:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     return(comm_RS485_Timeout_COUNT_REG & comm_RS485_Timeout_COUNT_7BIT_MASK);
+ 202              		.loc 1 184 0
+ 203 0000 024B     		ldr	r3, .L19
+ 185:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 204              		.loc 1 185 0
+ 205              		@ sp needed
+ 184:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     return(comm_RS485_Timeout_COUNT_REG & comm_RS485_Timeout_COUNT_7BIT_MASK);
+ 206              		.loc 1 184 0
+ 207 0002 1878     		ldrb	r0, [r3]
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 8
+
+
+ 208 0004 7F23     		mov	r3, #127
+ 209 0006 1840     		and	r0, r3
+ 210              		.loc 1 185 0
+ 211 0008 7047     		bx	lr
+ 212              	.L20:
+ 213 000a C046     		.align	2
+ 214              	.L19:
+ 215 000c 73000F40 		.word	1074724979
+ 216              		.cfi_endproc
+ 217              	.LFE5:
+ 218              		.size	comm_RS485_Timeout_ReadCounter, .-comm_RS485_Timeout_ReadCounter
+ 219              		.section	.text.comm_RS485_Timeout_WritePeriod,"ax",%progbits
+ 220              		.align	1
+ 221              		.global	comm_RS485_Timeout_WritePeriod
+ 222              		.code	16
+ 223              		.thumb_func
+ 224              		.type	comm_RS485_Timeout_WritePeriod, %function
+ 225              	comm_RS485_Timeout_WritePeriod:
+ 226              	.LFB6:
+ 186:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 187:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 188:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+ 189:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_WritePeriod
+ 190:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+ 191:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 192:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+ 193:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This function writes the period register. The actual period is one greater
+ 194:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  than the value in the period register since the counting sequence starts
+ 195:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  with the period register and counts down to 0 inclusive. The period of the
+ 196:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  counter output does not change until the counter is reloaded following the
+ 197:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  terminal count value of 0 or due to a hardware load signal.
+ 198:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 199:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ 200:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  period - Period value to be written.
+ 201:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 202:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 203:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 204:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 205:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 206:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** void comm_RS485_Timeout_WritePeriod(uint8 period) 
+ 207:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+ 227              		.loc 1 207 0
+ 228              		.cfi_startproc
+ 229              	.LVL7:
+ 208:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_PERIOD_REG = period;
+ 230              		.loc 1 208 0
+ 231 0000 014B     		ldr	r3, .L22
+ 209:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 232              		.loc 1 209 0
+ 233              		@ sp needed
+ 208:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     comm_RS485_Timeout_PERIOD_REG = period;
+ 234              		.loc 1 208 0
+ 235 0002 1870     		strb	r0, [r3]
+ 236              		.loc 1 209 0
+ 237 0004 7047     		bx	lr
+ 238              	.L23:
+ 239 0006 C046     		.align	2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 9
+
+
+ 240              	.L22:
+ 241 0008 83000F40 		.word	1074724995
+ 242              		.cfi_endproc
+ 243              	.LFE6:
+ 244              		.size	comm_RS485_Timeout_WritePeriod, .-comm_RS485_Timeout_WritePeriod
+ 245              		.section	.text.comm_RS485_Timeout_ReadPeriod,"ax",%progbits
+ 246              		.align	1
+ 247              		.global	comm_RS485_Timeout_ReadPeriod
+ 248              		.code	16
+ 249              		.thumb_func
+ 250              		.type	comm_RS485_Timeout_ReadPeriod, %function
+ 251              	comm_RS485_Timeout_ReadPeriod:
+ 252              	.LFB7:
+ 210:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 211:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** 
+ 212:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** /*******************************************************************************
+ 213:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Function Name: comm_RS485_Timeout_ReadPeriod
+ 214:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** ********************************************************************************
+ 215:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 216:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Summary:
+ 217:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  This function reads the period register.
+ 218:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 219:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Parameters:
+ 220:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  None
+ 221:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 222:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** * Return:
+ 223:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *  uint8 - Current period value.
+ 224:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *
+ 225:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** *******************************************************************************/
+ 226:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** uint8 comm_RS485_Timeout_ReadPeriod(void) 
+ 227:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** {
+ 253              		.loc 1 227 0
+ 254              		.cfi_startproc
+ 228:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     return(comm_RS485_Timeout_PERIOD_REG);
+ 255              		.loc 1 228 0
+ 256 0000 014B     		ldr	r3, .L25
+ 229:.\Generated_Source\PSoC4/comm_RS485_Timeout.c **** }
+ 257              		.loc 1 229 0
+ 258              		@ sp needed
+ 228:.\Generated_Source\PSoC4/comm_RS485_Timeout.c ****     return(comm_RS485_Timeout_PERIOD_REG);
+ 259              		.loc 1 228 0
+ 260 0002 1878     		ldrb	r0, [r3]
+ 261 0004 C0B2     		uxtb	r0, r0
+ 262              		.loc 1 229 0
+ 263 0006 7047     		bx	lr
+ 264              	.L26:
+ 265              		.align	2
+ 266              	.L25:
+ 267 0008 83000F40 		.word	1074724995
+ 268              		.cfi_endproc
+ 269              	.LFE7:
+ 270              		.size	comm_RS485_Timeout_ReadPeriod, .-comm_RS485_Timeout_ReadPeriod
+ 271              		.global	comm_RS485_Timeout_initVar
+ 272              		.bss
+ 273              		.set	.LANCHOR0,. + 0
+ 274              		.type	comm_RS485_Timeout_initVar, %object
+ 275              		.size	comm_RS485_Timeout_initVar, 1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 10
+
+
+ 276              	comm_RS485_Timeout_initVar:
+ 277 0000 00       		.space	1
+ 278              		.text
+ 279              	.Letext0:
+ 280              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 281              		.file 3 ".\\Generated_Source\\PSoC4\\CyLib.h"
+ 282              		.section	.debug_info,"",%progbits
+ 283              	.Ldebug_info0:
+ 284 0000 EE010000 		.4byte	0x1ee
+ 285 0004 0400     		.2byte	0x4
+ 286 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 287 000a 04       		.byte	0x4
+ 288 000b 01       		.uleb128 0x1
+ 289 000c 88000000 		.4byte	.LASF25
+ 290 0010 01       		.byte	0x1
+ 291 0011 7A010000 		.4byte	.LASF26
+ 292 0015 00000000 		.4byte	.LASF27
+ 293 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 294 001d 00000000 		.4byte	0
+ 295 0021 00000000 		.4byte	.Ldebug_line0
+ 296 0025 02       		.uleb128 0x2
+ 297 0026 01       		.byte	0x1
+ 298 0027 06       		.byte	0x6
+ 299 0028 84020000 		.4byte	.LASF0
+ 300 002c 02       		.uleb128 0x2
+ 301 002d 01       		.byte	0x1
+ 302 002e 08       		.byte	0x8
+ 303 002f 40010000 		.4byte	.LASF1
+ 304 0033 02       		.uleb128 0x2
+ 305 0034 02       		.byte	0x2
+ 306 0035 05       		.byte	0x5
+ 307 0036 57020000 		.4byte	.LASF2
+ 308 003a 02       		.uleb128 0x2
+ 309 003b 02       		.byte	0x2
+ 310 003c 07       		.byte	0x7
+ 311 003d 5C000000 		.4byte	.LASF3
+ 312 0041 02       		.uleb128 0x2
+ 313 0042 04       		.byte	0x4
+ 314 0043 05       		.byte	0x5
+ 315 0044 61020000 		.4byte	.LASF4
+ 316 0048 02       		.uleb128 0x2
+ 317 0049 04       		.byte	0x4
+ 318 004a 07       		.byte	0x7
+ 319 004b 62010000 		.4byte	.LASF5
+ 320 004f 02       		.uleb128 0x2
+ 321 0050 08       		.byte	0x8
+ 322 0051 05       		.byte	0x5
+ 323 0052 2C020000 		.4byte	.LASF6
+ 324 0056 02       		.uleb128 0x2
+ 325 0057 08       		.byte	0x8
+ 326 0058 07       		.byte	0x7
+ 327 0059 0A010000 		.4byte	.LASF7
+ 328 005d 03       		.uleb128 0x3
+ 329 005e 04       		.byte	0x4
+ 330 005f 05       		.byte	0x5
+ 331 0060 696E7400 		.ascii	"int\000"
+ 332 0064 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 11
+
+
+ 333 0065 04       		.byte	0x4
+ 334 0066 07       		.byte	0x7
+ 335 0067 E1010000 		.4byte	.LASF8
+ 336 006b 04       		.uleb128 0x4
+ 337 006c 74010000 		.4byte	.LASF12
+ 338 0070 02       		.byte	0x2
+ 339 0071 B3       		.byte	0xb3
+ 340 0072 2C000000 		.4byte	0x2c
+ 341 0076 02       		.uleb128 0x2
+ 342 0077 04       		.byte	0x4
+ 343 0078 04       		.byte	0x4
+ 344 0079 04010000 		.4byte	.LASF9
+ 345 007d 02       		.uleb128 0x2
+ 346 007e 08       		.byte	0x8
+ 347 007f 04       		.byte	0x4
+ 348 0080 A8010000 		.4byte	.LASF10
+ 349 0084 02       		.uleb128 0x2
+ 350 0085 01       		.byte	0x1
+ 351 0086 08       		.byte	0x8
+ 352 0087 3A020000 		.4byte	.LASF11
+ 353 008b 05       		.uleb128 0x5
+ 354 008c 4E010000 		.4byte	.LASF13
+ 355 0090 02       		.byte	0x2
+ 356 0091 5D01     		.2byte	0x15d
+ 357 0093 97000000 		.4byte	0x97
+ 358 0097 06       		.uleb128 0x6
+ 359 0098 6B000000 		.4byte	0x6b
+ 360 009c 02       		.uleb128 0x2
+ 361 009d 04       		.byte	0x4
+ 362 009e 07       		.byte	0x7
+ 363 009f 23020000 		.4byte	.LASF14
+ 364 00a3 07       		.uleb128 0x7
+ 365 00a4 3F020000 		.4byte	.LASF28
+ 366 00a8 01       		.byte	0x1
+ 367 00a9 2C       		.byte	0x2c
+ 368 00aa 01       		.byte	0x1
+ 369 00ab 08       		.uleb128 0x8
+ 370 00ac A3000000 		.4byte	0xa3
+ 371 00b0 00000000 		.4byte	.LFB0
+ 372 00b4 0C000000 		.4byte	.LFE0-.LFB0
+ 373 00b8 01       		.uleb128 0x1
+ 374 00b9 9C       		.byte	0x9c
+ 375 00ba 09       		.uleb128 0x9
+ 376 00bb 6A020000 		.4byte	.LASF15
+ 377 00bf 01       		.byte	0x1
+ 378 00c0 49       		.byte	0x49
+ 379 00c1 00000000 		.4byte	.LFB1
+ 380 00c5 1C000000 		.4byte	.LFE1-.LFB1
+ 381 00c9 01       		.uleb128 0x1
+ 382 00ca 9C       		.byte	0x9c
+ 383 00cb F1000000 		.4byte	0xf1
+ 384 00cf 0A       		.uleb128 0xa
+ 385 00d0 53010000 		.4byte	.LASF18
+ 386 00d4 01       		.byte	0x1
+ 387 00d5 4B       		.byte	0x4b
+ 388 00d6 6B000000 		.4byte	0x6b
+ 389 00da 00000000 		.4byte	.LLST0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 12
+
+
+ 390 00de 0B       		.uleb128 0xb
+ 391 00df 06000000 		.4byte	.LVL0
+ 392 00e3 D9010000 		.4byte	0x1d9
+ 393 00e7 0B       		.uleb128 0xb
+ 394 00e8 14000000 		.4byte	.LVL1
+ 395 00ec E4010000 		.4byte	0x1e4
+ 396 00f0 00       		.byte	0
+ 397 00f1 09       		.uleb128 0x9
+ 398 00f2 6F000000 		.4byte	.LASF16
+ 399 00f6 01       		.byte	0x1
+ 400 00f7 6B       		.byte	0x6b
+ 401 00f8 00000000 		.4byte	.LFB2
+ 402 00fc 24000000 		.4byte	.LFE2-.LFB2
+ 403 0100 01       		.uleb128 0x1
+ 404 0101 9C       		.byte	0x9c
+ 405 0102 1F010000 		.4byte	0x11f
+ 406 0106 0C       		.uleb128 0xc
+ 407 0107 A3000000 		.4byte	0xa3
+ 408 010b 0A000000 		.4byte	.LBB4
+ 409 010f 06000000 		.4byte	.LBE4-.LBB4
+ 410 0113 01       		.byte	0x1
+ 411 0114 70       		.byte	0x70
+ 412 0115 0B       		.uleb128 0xb
+ 413 0116 18000000 		.4byte	.LVL2
+ 414 011a BA000000 		.4byte	0xba
+ 415 011e 00       		.byte	0
+ 416 011f 09       		.uleb128 0x9
+ 417 0120 37000000 		.4byte	.LASF17
+ 418 0124 01       		.byte	0x1
+ 419 0125 87       		.byte	0x87
+ 420 0126 00000000 		.4byte	.LFB3
+ 421 012a 1C000000 		.4byte	.LFE3-.LFB3
+ 422 012e 01       		.uleb128 0x1
+ 423 012f 9C       		.byte	0x9c
+ 424 0130 56010000 		.4byte	0x156
+ 425 0134 0A       		.uleb128 0xa
+ 426 0135 53010000 		.4byte	.LASF18
+ 427 0139 01       		.byte	0x1
+ 428 013a 89       		.byte	0x89
+ 429 013b 6B000000 		.4byte	0x6b
+ 430 013f 13000000 		.4byte	.LLST1
+ 431 0143 0B       		.uleb128 0xb
+ 432 0144 06000000 		.4byte	.LVL3
+ 433 0148 D9010000 		.4byte	0x1d9
+ 434 014c 0B       		.uleb128 0xb
+ 435 014d 14000000 		.4byte	.LVL4
+ 436 0151 E4010000 		.4byte	0x1e4
+ 437 0155 00       		.byte	0
+ 438 0156 09       		.uleb128 0x9
+ 439 0157 AE020000 		.4byte	.LASF19
+ 440 015b 01       		.byte	0x1
+ 441 015c A2       		.byte	0xa2
+ 442 015d 00000000 		.4byte	.LFB4
+ 443 0161 10000000 		.4byte	.LFE4-.LFB4
+ 444 0165 01       		.uleb128 0x1
+ 445 0166 9C       		.byte	0x9c
+ 446 0167 7B010000 		.4byte	0x17b
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 13
+
+
+ 447 016b 0D       		.uleb128 0xd
+ 448 016c 4F000000 		.4byte	.LASF21
+ 449 0170 01       		.byte	0x1
+ 450 0171 A2       		.byte	0xa2
+ 451 0172 6B000000 		.4byte	0x6b
+ 452 0176 26000000 		.4byte	.LLST2
+ 453 017a 00       		.byte	0
+ 454 017b 0E       		.uleb128 0xe
+ 455 017c 21010000 		.4byte	.LASF23
+ 456 0180 01       		.byte	0x1
+ 457 0181 B6       		.byte	0xb6
+ 458 0182 6B000000 		.4byte	0x6b
+ 459 0186 00000000 		.4byte	.LFB5
+ 460 018a 10000000 		.4byte	.LFE5-.LFB5
+ 461 018e 01       		.uleb128 0x1
+ 462 018f 9C       		.byte	0x9c
+ 463 0190 09       		.uleb128 0x9
+ 464 0191 04020000 		.4byte	.LASF20
+ 465 0195 01       		.byte	0x1
+ 466 0196 CE       		.byte	0xce
+ 467 0197 00000000 		.4byte	.LFB6
+ 468 019b 0C000000 		.4byte	.LFE6-.LFB6
+ 469 019f 01       		.uleb128 0x1
+ 470 01a0 9C       		.byte	0x9c
+ 471 01a1 B3010000 		.4byte	0x1b3
+ 472 01a5 0F       		.uleb128 0xf
+ 473 01a6 55000000 		.4byte	.LASF22
+ 474 01aa 01       		.byte	0x1
+ 475 01ab CE       		.byte	0xce
+ 476 01ac 6B000000 		.4byte	0x6b
+ 477 01b0 01       		.uleb128 0x1
+ 478 01b1 50       		.byte	0x50
+ 479 01b2 00       		.byte	0
+ 480 01b3 0E       		.uleb128 0xe
+ 481 01b4 90020000 		.4byte	.LASF24
+ 482 01b8 01       		.byte	0x1
+ 483 01b9 E2       		.byte	0xe2
+ 484 01ba 6B000000 		.4byte	0x6b
+ 485 01be 00000000 		.4byte	.LFB7
+ 486 01c2 0C000000 		.4byte	.LFE7-.LFB7
+ 487 01c6 01       		.uleb128 0x1
+ 488 01c7 9C       		.byte	0x9c
+ 489 01c8 10       		.uleb128 0x10
+ 490 01c9 AF010000 		.4byte	.LASF29
+ 491 01cd 01       		.byte	0x1
+ 492 01ce 15       		.byte	0x15
+ 493 01cf 6B000000 		.4byte	0x6b
+ 494 01d3 05       		.uleb128 0x5
+ 495 01d4 03       		.byte	0x3
+ 496 01d5 00000000 		.4byte	comm_RS485_Timeout_initVar
+ 497 01d9 11       		.uleb128 0x11
+ 498 01da CA010000 		.4byte	.LASF30
+ 499 01de 03       		.byte	0x3
+ 500 01df 5E       		.byte	0x5e
+ 501 01e0 6B000000 		.4byte	0x6b
+ 502 01e4 12       		.uleb128 0x12
+ 503 01e5 EE010000 		.4byte	.LASF31
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 14
+
+
+ 504 01e9 03       		.byte	0x3
+ 505 01ea 5F       		.byte	0x5f
+ 506 01eb 13       		.uleb128 0x13
+ 507 01ec 6B000000 		.4byte	0x6b
+ 508 01f0 00       		.byte	0
+ 509 01f1 00       		.byte	0
+ 510              		.section	.debug_abbrev,"",%progbits
+ 511              	.Ldebug_abbrev0:
+ 512 0000 01       		.uleb128 0x1
+ 513 0001 11       		.uleb128 0x11
+ 514 0002 01       		.byte	0x1
+ 515 0003 25       		.uleb128 0x25
+ 516 0004 0E       		.uleb128 0xe
+ 517 0005 13       		.uleb128 0x13
+ 518 0006 0B       		.uleb128 0xb
+ 519 0007 03       		.uleb128 0x3
+ 520 0008 0E       		.uleb128 0xe
+ 521 0009 1B       		.uleb128 0x1b
+ 522 000a 0E       		.uleb128 0xe
+ 523 000b 55       		.uleb128 0x55
+ 524 000c 17       		.uleb128 0x17
+ 525 000d 11       		.uleb128 0x11
+ 526 000e 01       		.uleb128 0x1
+ 527 000f 10       		.uleb128 0x10
+ 528 0010 17       		.uleb128 0x17
+ 529 0011 00       		.byte	0
+ 530 0012 00       		.byte	0
+ 531 0013 02       		.uleb128 0x2
+ 532 0014 24       		.uleb128 0x24
+ 533 0015 00       		.byte	0
+ 534 0016 0B       		.uleb128 0xb
+ 535 0017 0B       		.uleb128 0xb
+ 536 0018 3E       		.uleb128 0x3e
+ 537 0019 0B       		.uleb128 0xb
+ 538 001a 03       		.uleb128 0x3
+ 539 001b 0E       		.uleb128 0xe
+ 540 001c 00       		.byte	0
+ 541 001d 00       		.byte	0
+ 542 001e 03       		.uleb128 0x3
+ 543 001f 24       		.uleb128 0x24
+ 544 0020 00       		.byte	0
+ 545 0021 0B       		.uleb128 0xb
+ 546 0022 0B       		.uleb128 0xb
+ 547 0023 3E       		.uleb128 0x3e
+ 548 0024 0B       		.uleb128 0xb
+ 549 0025 03       		.uleb128 0x3
+ 550 0026 08       		.uleb128 0x8
+ 551 0027 00       		.byte	0
+ 552 0028 00       		.byte	0
+ 553 0029 04       		.uleb128 0x4
+ 554 002a 16       		.uleb128 0x16
+ 555 002b 00       		.byte	0
+ 556 002c 03       		.uleb128 0x3
+ 557 002d 0E       		.uleb128 0xe
+ 558 002e 3A       		.uleb128 0x3a
+ 559 002f 0B       		.uleb128 0xb
+ 560 0030 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 15
+
+
+ 561 0031 0B       		.uleb128 0xb
+ 562 0032 49       		.uleb128 0x49
+ 563 0033 13       		.uleb128 0x13
+ 564 0034 00       		.byte	0
+ 565 0035 00       		.byte	0
+ 566 0036 05       		.uleb128 0x5
+ 567 0037 16       		.uleb128 0x16
+ 568 0038 00       		.byte	0
+ 569 0039 03       		.uleb128 0x3
+ 570 003a 0E       		.uleb128 0xe
+ 571 003b 3A       		.uleb128 0x3a
+ 572 003c 0B       		.uleb128 0xb
+ 573 003d 3B       		.uleb128 0x3b
+ 574 003e 05       		.uleb128 0x5
+ 575 003f 49       		.uleb128 0x49
+ 576 0040 13       		.uleb128 0x13
+ 577 0041 00       		.byte	0
+ 578 0042 00       		.byte	0
+ 579 0043 06       		.uleb128 0x6
+ 580 0044 35       		.uleb128 0x35
+ 581 0045 00       		.byte	0
+ 582 0046 49       		.uleb128 0x49
+ 583 0047 13       		.uleb128 0x13
+ 584 0048 00       		.byte	0
+ 585 0049 00       		.byte	0
+ 586 004a 07       		.uleb128 0x7
+ 587 004b 2E       		.uleb128 0x2e
+ 588 004c 00       		.byte	0
+ 589 004d 3F       		.uleb128 0x3f
+ 590 004e 19       		.uleb128 0x19
+ 591 004f 03       		.uleb128 0x3
+ 592 0050 0E       		.uleb128 0xe
+ 593 0051 3A       		.uleb128 0x3a
+ 594 0052 0B       		.uleb128 0xb
+ 595 0053 3B       		.uleb128 0x3b
+ 596 0054 0B       		.uleb128 0xb
+ 597 0055 27       		.uleb128 0x27
+ 598 0056 19       		.uleb128 0x19
+ 599 0057 20       		.uleb128 0x20
+ 600 0058 0B       		.uleb128 0xb
+ 601 0059 00       		.byte	0
+ 602 005a 00       		.byte	0
+ 603 005b 08       		.uleb128 0x8
+ 604 005c 2E       		.uleb128 0x2e
+ 605 005d 00       		.byte	0
+ 606 005e 31       		.uleb128 0x31
+ 607 005f 13       		.uleb128 0x13
+ 608 0060 11       		.uleb128 0x11
+ 609 0061 01       		.uleb128 0x1
+ 610 0062 12       		.uleb128 0x12
+ 611 0063 06       		.uleb128 0x6
+ 612 0064 40       		.uleb128 0x40
+ 613 0065 18       		.uleb128 0x18
+ 614 0066 9742     		.uleb128 0x2117
+ 615 0068 19       		.uleb128 0x19
+ 616 0069 00       		.byte	0
+ 617 006a 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 16
+
+
+ 618 006b 09       		.uleb128 0x9
+ 619 006c 2E       		.uleb128 0x2e
+ 620 006d 01       		.byte	0x1
+ 621 006e 3F       		.uleb128 0x3f
+ 622 006f 19       		.uleb128 0x19
+ 623 0070 03       		.uleb128 0x3
+ 624 0071 0E       		.uleb128 0xe
+ 625 0072 3A       		.uleb128 0x3a
+ 626 0073 0B       		.uleb128 0xb
+ 627 0074 3B       		.uleb128 0x3b
+ 628 0075 0B       		.uleb128 0xb
+ 629 0076 27       		.uleb128 0x27
+ 630 0077 19       		.uleb128 0x19
+ 631 0078 11       		.uleb128 0x11
+ 632 0079 01       		.uleb128 0x1
+ 633 007a 12       		.uleb128 0x12
+ 634 007b 06       		.uleb128 0x6
+ 635 007c 40       		.uleb128 0x40
+ 636 007d 18       		.uleb128 0x18
+ 637 007e 9742     		.uleb128 0x2117
+ 638 0080 19       		.uleb128 0x19
+ 639 0081 01       		.uleb128 0x1
+ 640 0082 13       		.uleb128 0x13
+ 641 0083 00       		.byte	0
+ 642 0084 00       		.byte	0
+ 643 0085 0A       		.uleb128 0xa
+ 644 0086 34       		.uleb128 0x34
+ 645 0087 00       		.byte	0
+ 646 0088 03       		.uleb128 0x3
+ 647 0089 0E       		.uleb128 0xe
+ 648 008a 3A       		.uleb128 0x3a
+ 649 008b 0B       		.uleb128 0xb
+ 650 008c 3B       		.uleb128 0x3b
+ 651 008d 0B       		.uleb128 0xb
+ 652 008e 49       		.uleb128 0x49
+ 653 008f 13       		.uleb128 0x13
+ 654 0090 02       		.uleb128 0x2
+ 655 0091 17       		.uleb128 0x17
+ 656 0092 00       		.byte	0
+ 657 0093 00       		.byte	0
+ 658 0094 0B       		.uleb128 0xb
+ 659 0095 898201   		.uleb128 0x4109
+ 660 0098 00       		.byte	0
+ 661 0099 11       		.uleb128 0x11
+ 662 009a 01       		.uleb128 0x1
+ 663 009b 31       		.uleb128 0x31
+ 664 009c 13       		.uleb128 0x13
+ 665 009d 00       		.byte	0
+ 666 009e 00       		.byte	0
+ 667 009f 0C       		.uleb128 0xc
+ 668 00a0 1D       		.uleb128 0x1d
+ 669 00a1 00       		.byte	0
+ 670 00a2 31       		.uleb128 0x31
+ 671 00a3 13       		.uleb128 0x13
+ 672 00a4 11       		.uleb128 0x11
+ 673 00a5 01       		.uleb128 0x1
+ 674 00a6 12       		.uleb128 0x12
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 17
+
+
+ 675 00a7 06       		.uleb128 0x6
+ 676 00a8 58       		.uleb128 0x58
+ 677 00a9 0B       		.uleb128 0xb
+ 678 00aa 59       		.uleb128 0x59
+ 679 00ab 0B       		.uleb128 0xb
+ 680 00ac 00       		.byte	0
+ 681 00ad 00       		.byte	0
+ 682 00ae 0D       		.uleb128 0xd
+ 683 00af 05       		.uleb128 0x5
+ 684 00b0 00       		.byte	0
+ 685 00b1 03       		.uleb128 0x3
+ 686 00b2 0E       		.uleb128 0xe
+ 687 00b3 3A       		.uleb128 0x3a
+ 688 00b4 0B       		.uleb128 0xb
+ 689 00b5 3B       		.uleb128 0x3b
+ 690 00b6 0B       		.uleb128 0xb
+ 691 00b7 49       		.uleb128 0x49
+ 692 00b8 13       		.uleb128 0x13
+ 693 00b9 02       		.uleb128 0x2
+ 694 00ba 17       		.uleb128 0x17
+ 695 00bb 00       		.byte	0
+ 696 00bc 00       		.byte	0
+ 697 00bd 0E       		.uleb128 0xe
+ 698 00be 2E       		.uleb128 0x2e
+ 699 00bf 00       		.byte	0
+ 700 00c0 3F       		.uleb128 0x3f
+ 701 00c1 19       		.uleb128 0x19
+ 702 00c2 03       		.uleb128 0x3
+ 703 00c3 0E       		.uleb128 0xe
+ 704 00c4 3A       		.uleb128 0x3a
+ 705 00c5 0B       		.uleb128 0xb
+ 706 00c6 3B       		.uleb128 0x3b
+ 707 00c7 0B       		.uleb128 0xb
+ 708 00c8 27       		.uleb128 0x27
+ 709 00c9 19       		.uleb128 0x19
+ 710 00ca 49       		.uleb128 0x49
+ 711 00cb 13       		.uleb128 0x13
+ 712 00cc 11       		.uleb128 0x11
+ 713 00cd 01       		.uleb128 0x1
+ 714 00ce 12       		.uleb128 0x12
+ 715 00cf 06       		.uleb128 0x6
+ 716 00d0 40       		.uleb128 0x40
+ 717 00d1 18       		.uleb128 0x18
+ 718 00d2 9742     		.uleb128 0x2117
+ 719 00d4 19       		.uleb128 0x19
+ 720 00d5 00       		.byte	0
+ 721 00d6 00       		.byte	0
+ 722 00d7 0F       		.uleb128 0xf
+ 723 00d8 05       		.uleb128 0x5
+ 724 00d9 00       		.byte	0
+ 725 00da 03       		.uleb128 0x3
+ 726 00db 0E       		.uleb128 0xe
+ 727 00dc 3A       		.uleb128 0x3a
+ 728 00dd 0B       		.uleb128 0xb
+ 729 00de 3B       		.uleb128 0x3b
+ 730 00df 0B       		.uleb128 0xb
+ 731 00e0 49       		.uleb128 0x49
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 18
+
+
+ 732 00e1 13       		.uleb128 0x13
+ 733 00e2 02       		.uleb128 0x2
+ 734 00e3 18       		.uleb128 0x18
+ 735 00e4 00       		.byte	0
+ 736 00e5 00       		.byte	0
+ 737 00e6 10       		.uleb128 0x10
+ 738 00e7 34       		.uleb128 0x34
+ 739 00e8 00       		.byte	0
+ 740 00e9 03       		.uleb128 0x3
+ 741 00ea 0E       		.uleb128 0xe
+ 742 00eb 3A       		.uleb128 0x3a
+ 743 00ec 0B       		.uleb128 0xb
+ 744 00ed 3B       		.uleb128 0x3b
+ 745 00ee 0B       		.uleb128 0xb
+ 746 00ef 49       		.uleb128 0x49
+ 747 00f0 13       		.uleb128 0x13
+ 748 00f1 3F       		.uleb128 0x3f
+ 749 00f2 19       		.uleb128 0x19
+ 750 00f3 02       		.uleb128 0x2
+ 751 00f4 18       		.uleb128 0x18
+ 752 00f5 00       		.byte	0
+ 753 00f6 00       		.byte	0
+ 754 00f7 11       		.uleb128 0x11
+ 755 00f8 2E       		.uleb128 0x2e
+ 756 00f9 00       		.byte	0
+ 757 00fa 3F       		.uleb128 0x3f
+ 758 00fb 19       		.uleb128 0x19
+ 759 00fc 03       		.uleb128 0x3
+ 760 00fd 0E       		.uleb128 0xe
+ 761 00fe 3A       		.uleb128 0x3a
+ 762 00ff 0B       		.uleb128 0xb
+ 763 0100 3B       		.uleb128 0x3b
+ 764 0101 0B       		.uleb128 0xb
+ 765 0102 27       		.uleb128 0x27
+ 766 0103 19       		.uleb128 0x19
+ 767 0104 49       		.uleb128 0x49
+ 768 0105 13       		.uleb128 0x13
+ 769 0106 3C       		.uleb128 0x3c
+ 770 0107 19       		.uleb128 0x19
+ 771 0108 00       		.byte	0
+ 772 0109 00       		.byte	0
+ 773 010a 12       		.uleb128 0x12
+ 774 010b 2E       		.uleb128 0x2e
+ 775 010c 01       		.byte	0x1
+ 776 010d 3F       		.uleb128 0x3f
+ 777 010e 19       		.uleb128 0x19
+ 778 010f 03       		.uleb128 0x3
+ 779 0110 0E       		.uleb128 0xe
+ 780 0111 3A       		.uleb128 0x3a
+ 781 0112 0B       		.uleb128 0xb
+ 782 0113 3B       		.uleb128 0x3b
+ 783 0114 0B       		.uleb128 0xb
+ 784 0115 27       		.uleb128 0x27
+ 785 0116 19       		.uleb128 0x19
+ 786 0117 3C       		.uleb128 0x3c
+ 787 0118 19       		.uleb128 0x19
+ 788 0119 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 19
+
+
+ 789 011a 00       		.byte	0
+ 790 011b 13       		.uleb128 0x13
+ 791 011c 05       		.uleb128 0x5
+ 792 011d 00       		.byte	0
+ 793 011e 49       		.uleb128 0x49
+ 794 011f 13       		.uleb128 0x13
+ 795 0120 00       		.byte	0
+ 796 0121 00       		.byte	0
+ 797 0122 00       		.byte	0
+ 798              		.section	.debug_loc,"",%progbits
+ 799              	.Ldebug_loc0:
+ 800              	.LLST0:
+ 801 0000 06000000 		.4byte	.LVL0
+ 802 0004 13000000 		.4byte	.LVL1-1
+ 803 0008 0100     		.2byte	0x1
+ 804 000a 50       		.byte	0x50
+ 805 000b 00000000 		.4byte	0
+ 806 000f 00000000 		.4byte	0
+ 807              	.LLST1:
+ 808 0013 06000000 		.4byte	.LVL3
+ 809 0017 13000000 		.4byte	.LVL4-1
+ 810 001b 0100     		.2byte	0x1
+ 811 001d 50       		.byte	0x50
+ 812 001e 00000000 		.4byte	0
+ 813 0022 00000000 		.4byte	0
+ 814              	.LLST2:
+ 815 0026 00000000 		.4byte	.LVL5
+ 816 002a 04000000 		.4byte	.LVL6
+ 817 002e 0100     		.2byte	0x1
+ 818 0030 50       		.byte	0x50
+ 819 0031 04000000 		.4byte	.LVL6
+ 820 0035 10000000 		.4byte	.LFE4
+ 821 0039 0400     		.2byte	0x4
+ 822 003b F3       		.byte	0xf3
+ 823 003c 01       		.uleb128 0x1
+ 824 003d 50       		.byte	0x50
+ 825 003e 9F       		.byte	0x9f
+ 826 003f 00000000 		.4byte	0
+ 827 0043 00000000 		.4byte	0
+ 828              		.section	.debug_aranges,"",%progbits
+ 829 0000 54000000 		.4byte	0x54
+ 830 0004 0200     		.2byte	0x2
+ 831 0006 00000000 		.4byte	.Ldebug_info0
+ 832 000a 04       		.byte	0x4
+ 833 000b 00       		.byte	0
+ 834 000c 0000     		.2byte	0
+ 835 000e 0000     		.2byte	0
+ 836 0010 00000000 		.4byte	.LFB0
+ 837 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 838 0018 00000000 		.4byte	.LFB1
+ 839 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 840 0020 00000000 		.4byte	.LFB2
+ 841 0024 24000000 		.4byte	.LFE2-.LFB2
+ 842 0028 00000000 		.4byte	.LFB3
+ 843 002c 1C000000 		.4byte	.LFE3-.LFB3
+ 844 0030 00000000 		.4byte	.LFB4
+ 845 0034 10000000 		.4byte	.LFE4-.LFB4
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 20
+
+
+ 846 0038 00000000 		.4byte	.LFB5
+ 847 003c 10000000 		.4byte	.LFE5-.LFB5
+ 848 0040 00000000 		.4byte	.LFB6
+ 849 0044 0C000000 		.4byte	.LFE6-.LFB6
+ 850 0048 00000000 		.4byte	.LFB7
+ 851 004c 0C000000 		.4byte	.LFE7-.LFB7
+ 852 0050 00000000 		.4byte	0
+ 853 0054 00000000 		.4byte	0
+ 854              		.section	.debug_ranges,"",%progbits
+ 855              	.Ldebug_ranges0:
+ 856 0000 00000000 		.4byte	.LFB0
+ 857 0004 0C000000 		.4byte	.LFE0
+ 858 0008 00000000 		.4byte	.LFB1
+ 859 000c 1C000000 		.4byte	.LFE1
+ 860 0010 00000000 		.4byte	.LFB2
+ 861 0014 24000000 		.4byte	.LFE2
+ 862 0018 00000000 		.4byte	.LFB3
+ 863 001c 1C000000 		.4byte	.LFE3
+ 864 0020 00000000 		.4byte	.LFB4
+ 865 0024 10000000 		.4byte	.LFE4
+ 866 0028 00000000 		.4byte	.LFB5
+ 867 002c 10000000 		.4byte	.LFE5
+ 868 0030 00000000 		.4byte	.LFB6
+ 869 0034 0C000000 		.4byte	.LFE6
+ 870 0038 00000000 		.4byte	.LFB7
+ 871 003c 0C000000 		.4byte	.LFE7
+ 872 0040 00000000 		.4byte	0
+ 873 0044 00000000 		.4byte	0
+ 874              		.section	.debug_line,"",%progbits
+ 875              	.Ldebug_line0:
+ 876 0000 09010000 		.section	.debug_str,"MS",%progbits,1
+ 876      02005C00 
+ 876      00000201 
+ 876      FB0E0D00 
+ 876      01010101 
+ 877              	.LASF27:
+ 878 0000 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 878      73657273 
+ 878      5C736465 
+ 878      76617365 
+ 878      6E617061 
+ 879 002e 6F6D2E63 		.ascii	"om.cydsn\000"
+ 879      7964736E 
+ 879      00
+ 880              	.LASF17:
+ 881 0037 636F6D6D 		.ascii	"comm_RS485_Timeout_Stop\000"
+ 881      5F525334 
+ 881      38355F54 
+ 881      696D656F 
+ 881      75745F53 
+ 882              	.LASF21:
+ 883 004f 636F756E 		.ascii	"count\000"
+ 883      7400
+ 884              	.LASF22:
+ 885 0055 70657269 		.ascii	"period\000"
+ 885      6F6400
+ 886              	.LASF3:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 21
+
+
+ 887 005c 73686F72 		.ascii	"short unsigned int\000"
+ 887      7420756E 
+ 887      7369676E 
+ 887      65642069 
+ 887      6E7400
+ 888              	.LASF16:
+ 889 006f 636F6D6D 		.ascii	"comm_RS485_Timeout_Start\000"
+ 889      5F525334 
+ 889      38355F54 
+ 889      696D656F 
+ 889      75745F53 
+ 890              	.LASF25:
+ 891 0088 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 891      4320342E 
+ 891      382E3420 
+ 891      32303134 
+ 891      30353236 
+ 892 00bb 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 892      20726576 
+ 892      6973696F 
+ 892      6E203231 
+ 892      31333538 
+ 893 00ee 73202D66 		.ascii	"s -ffunction-sections\000"
+ 893      66756E63 
+ 893      74696F6E 
+ 893      2D736563 
+ 893      74696F6E 
+ 894              	.LASF9:
+ 895 0104 666C6F61 		.ascii	"float\000"
+ 895      7400
+ 896              	.LASF7:
+ 897 010a 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 897      206C6F6E 
+ 897      6720756E 
+ 897      7369676E 
+ 897      65642069 
+ 898              	.LASF23:
+ 899 0121 636F6D6D 		.ascii	"comm_RS485_Timeout_ReadCounter\000"
+ 899      5F525334 
+ 899      38355F54 
+ 899      696D656F 
+ 899      75745F52 
+ 900              	.LASF1:
+ 901 0140 756E7369 		.ascii	"unsigned char\000"
+ 901      676E6564 
+ 901      20636861 
+ 901      7200
+ 902              	.LASF13:
+ 903 014e 72656738 		.ascii	"reg8\000"
+ 903      00
+ 904              	.LASF18:
+ 905 0153 696E7465 		.ascii	"interruptState\000"
+ 905      72727570 
+ 905      74537461 
+ 905      746500
+ 906              	.LASF5:
+ 907 0162 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 22
+
+
+ 907      20756E73 
+ 907      69676E65 
+ 907      6420696E 
+ 907      7400
+ 908              	.LASF12:
+ 909 0174 75696E74 		.ascii	"uint8\000"
+ 909      3800
+ 910              	.LASF26:
+ 911 017a 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\comm_RS485_Timeout.c\000"
+ 911      6E657261 
+ 911      7465645F 
+ 911      536F7572 
+ 911      63655C50 
+ 912              	.LASF10:
+ 913 01a8 646F7562 		.ascii	"double\000"
+ 913      6C6500
+ 914              	.LASF29:
+ 915 01af 636F6D6D 		.ascii	"comm_RS485_Timeout_initVar\000"
+ 915      5F525334 
+ 915      38355F54 
+ 915      696D656F 
+ 915      75745F69 
+ 916              	.LASF30:
+ 917 01ca 4379456E 		.ascii	"CyEnterCriticalSection\000"
+ 917      74657243 
+ 917      72697469 
+ 917      63616C53 
+ 917      65637469 
+ 918              	.LASF8:
+ 919 01e1 756E7369 		.ascii	"unsigned int\000"
+ 919      676E6564 
+ 919      20696E74 
+ 919      00
+ 920              	.LASF31:
+ 921 01ee 43794578 		.ascii	"CyExitCriticalSection\000"
+ 921      69744372 
+ 921      69746963 
+ 921      616C5365 
+ 921      6374696F 
+ 922              	.LASF20:
+ 923 0204 636F6D6D 		.ascii	"comm_RS485_Timeout_WritePeriod\000"
+ 923      5F525334 
+ 923      38355F54 
+ 923      696D656F 
+ 923      75745F57 
+ 924              	.LASF14:
+ 925 0223 73697A65 		.ascii	"sizetype\000"
+ 925      74797065 
+ 925      00
+ 926              	.LASF6:
+ 927 022c 6C6F6E67 		.ascii	"long long int\000"
+ 927      206C6F6E 
+ 927      6720696E 
+ 927      7400
+ 928              	.LASF11:
+ 929 023a 63686172 		.ascii	"char\000"
+ 929      00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccJ1IlTF.s 			page 23
+
+
+ 930              	.LASF28:
+ 931 023f 636F6D6D 		.ascii	"comm_RS485_Timeout_Init\000"
+ 931      5F525334 
+ 931      38355F54 
+ 931      696D656F 
+ 931      75745F49 
+ 932              	.LASF2:
+ 933 0257 73686F72 		.ascii	"short int\000"
+ 933      7420696E 
+ 933      7400
+ 934              	.LASF4:
+ 935 0261 6C6F6E67 		.ascii	"long int\000"
+ 935      20696E74 
+ 935      00
+ 936              	.LASF15:
+ 937 026a 636F6D6D 		.ascii	"comm_RS485_Timeout_Enable\000"
+ 937      5F525334 
+ 937      38355F54 
+ 937      696D656F 
+ 937      75745F45 
+ 938              	.LASF0:
+ 939 0284 7369676E 		.ascii	"signed char\000"
+ 939      65642063 
+ 939      68617200 
+ 940              	.LASF24:
+ 941 0290 636F6D6D 		.ascii	"comm_RS485_Timeout_ReadPeriod\000"
+ 941      5F525334 
+ 941      38355F54 
+ 941      696D656F 
+ 941      75745F52 
+ 942              	.LASF19:
+ 943 02ae 636F6D6D 		.ascii	"comm_RS485_Timeout_WriteCounter\000"
+ 943      5F525334 
+ 943      38355F54 
+ 943      696D656F 
+ 943      75745F57 
+ 944              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

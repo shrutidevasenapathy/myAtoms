@@ -1,0 +1,6 @@
+D:\Users\sdevasenapathy\atoms\AtomWorkspace\AtomLibrary.cylib\AtomLibrary.cyprj|e99faac3-4024-4485-b534-0ba087a92ab4
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|9f534faa-a250-4a45-9f88-c797ea4b7b51
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|cf2f794d-5248-457c-9e8f-83bd3b8d4373
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|d8b3d566-b7ba-477e-b9b3-3006c2015e5d
+C:\Program Files (x86)\Cypress\PSoC Creator\3.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|7e62daf8-7357-4de5-8003-be4c501b9c98
+D:\Users\sdevasenapathy\atoms\AtomWorkspace\Atom.cydsn\Atom.cyprj|208222be-72f3-47f3-80b8-2cc80ef95ecb

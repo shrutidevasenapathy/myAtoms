@@ -1,0 +1,1557 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"valveControl.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.setValve1ON,"ax",%progbits
+  18              		.align	1
+  19              		.global	setValve1ON
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	setValve1ON, %function
+  23              	setValve1ON:
+  24              	.LFB33:
+  25              		.file 1 ".\\src\\valveControl.c"
+   1:.\src/valveControl.c **** #include "valveControl.h"
+   2:.\src/valveControl.c **** 
+   3:.\src/valveControl.c **** 
+   4:.\src/valveControl.c **** /*******************************************************************************
+   5:.\src/valveControl.c **** * Function Name: setValve1ON
+   6:.\src/valveControl.c **** ********************************************************************************
+   7:.\src/valveControl.c **** *
+   8:.\src/valveControl.c **** * Summary:
+   9:.\src/valveControl.c **** *  Turns on valve 1 (connector J9 on Water Control Atom.)
+  10:.\src/valveControl.c **** *
+  11:.\src/valveControl.c **** * Parameters:
+  12:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+  13:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+  14:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+  15:.\src/valveControl.c **** *
+  16:.\src/valveControl.c **** * Return:
+  17:.\src/valveControl.c **** *  None.
+  18:.\src/valveControl.c **** *
+  19:.\src/valveControl.c **** *******************************************************************************/
+  20:.\src/valveControl.c **** void setValve1ON(bool direction){
+  26              		.loc 1 20 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 10B5     		push	{r4, lr}
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 4, -8
+  32              		.cfi_offset 14, -4
+  33              		.loc 1 20 0
+  34 0002 041E     		sub	r4, r0, #0
+  21:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+  35              		.loc 1 21 0
+  36 0004 04D0     		beq	.L2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 2
+
+
+  22:.\src/valveControl.c ****          ON1_DIR1_Write(0u);
+  37              		.loc 1 22 0
+  38 0006 0020     		mov	r0, #0
+  39              	.LVL1:
+  40 0008 FFF7FEFF 		bl	ON1_DIR1_Write
+  41              	.LVL2:
+  23:.\src/valveControl.c ****          ON2_DIR2_Write(1u);
+  42              		.loc 1 23 0
+  43 000c 0120     		mov	r0, #1
+  44 000e 03E0     		b	.L4
+  45              	.LVL3:
+  46              	.L2:
+  24:.\src/valveControl.c ****     }
+  25:.\src/valveControl.c ****     else{
+  26:.\src/valveControl.c ****         ON1_DIR1_Write(1u);
+  47              		.loc 1 26 0
+  48 0010 0120     		mov	r0, #1
+  49              	.LVL4:
+  50 0012 FFF7FEFF 		bl	ON1_DIR1_Write
+  51              	.LVL5:
+  27:.\src/valveControl.c ****         ON2_DIR2_Write(0u);
+  52              		.loc 1 27 0
+  53 0016 201C     		mov	r0, r4
+  54              	.L4:
+  55 0018 FFF7FEFF 		bl	ON2_DIR2_Write
+  56              	.LVL6:
+  28:.\src/valveControl.c ****     }
+  29:.\src/valveControl.c **** }
+  57              		.loc 1 29 0
+  58              		@ sp needed
+  59 001c 10BD     		pop	{r4, pc}
+  60              		.cfi_endproc
+  61              	.LFE33:
+  62              		.size	setValve1ON, .-setValve1ON
+  63              		.section	.text.setValve2ON,"ax",%progbits
+  64              		.align	1
+  65              		.global	setValve2ON
+  66              		.code	16
+  67              		.thumb_func
+  68              		.type	setValve2ON, %function
+  69              	setValve2ON:
+  70              	.LFB34:
+  30:.\src/valveControl.c **** /*******************************************************************************
+  31:.\src/valveControl.c **** * Function Name: setValve2ON
+  32:.\src/valveControl.c **** ********************************************************************************
+  33:.\src/valveControl.c **** *
+  34:.\src/valveControl.c **** * Summary:
+  35:.\src/valveControl.c **** *  Turns on valve 2 (connector J11 on Water Control Atom.)
+  36:.\src/valveControl.c **** *
+  37:.\src/valveControl.c **** * Parameters:
+  38:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+  39:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+  40:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+  41:.\src/valveControl.c **** *
+  42:.\src/valveControl.c **** * Return:
+  43:.\src/valveControl.c **** *  None.
+  44:.\src/valveControl.c **** *
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 3
+
+
+  45:.\src/valveControl.c **** *******************************************************************************/
+  46:.\src/valveControl.c **** void setValve2ON(bool direction){
+  71              		.loc 1 46 0
+  72              		.cfi_startproc
+  73              	.LVL7:
+  74 0000 10B5     		push	{r4, lr}
+  75              		.cfi_def_cfa_offset 8
+  76              		.cfi_offset 4, -8
+  77              		.cfi_offset 14, -4
+  78              		.loc 1 46 0
+  79 0002 041E     		sub	r4, r0, #0
+  47:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+  80              		.loc 1 47 0
+  81 0004 04D0     		beq	.L7
+  48:.\src/valveControl.c ****         ON1_DIR2_Write(0u);
+  82              		.loc 1 48 0
+  83 0006 0020     		mov	r0, #0
+  84              	.LVL8:
+  85 0008 FFF7FEFF 		bl	ON1_DIR2_Write
+  86              	.LVL9:
+  49:.\src/valveControl.c ****         ON2_DIR1_Write(1u);
+  87              		.loc 1 49 0
+  88 000c 0120     		mov	r0, #1
+  89 000e 03E0     		b	.L9
+  90              	.LVL10:
+  91              	.L7:
+  50:.\src/valveControl.c ****     }
+  51:.\src/valveControl.c ****     else{
+  52:.\src/valveControl.c ****        ON1_DIR2_Write(1u);
+  92              		.loc 1 52 0
+  93 0010 0120     		mov	r0, #1
+  94              	.LVL11:
+  95 0012 FFF7FEFF 		bl	ON1_DIR2_Write
+  96              	.LVL12:
+  53:.\src/valveControl.c ****        ON2_DIR1_Write(0u);
+  97              		.loc 1 53 0
+  98 0016 201C     		mov	r0, r4
+  99              	.L9:
+ 100 0018 FFF7FEFF 		bl	ON2_DIR1_Write
+ 101              	.LVL13:
+  54:.\src/valveControl.c ****     }
+  55:.\src/valveControl.c **** }
+ 102              		.loc 1 55 0
+ 103              		@ sp needed
+ 104 001c 10BD     		pop	{r4, pc}
+ 105              		.cfi_endproc
+ 106              	.LFE34:
+ 107              		.size	setValve2ON, .-setValve2ON
+ 108              		.section	.text.setValve3ON,"ax",%progbits
+ 109              		.align	1
+ 110              		.global	setValve3ON
+ 111              		.code	16
+ 112              		.thumb_func
+ 113              		.type	setValve3ON, %function
+ 114              	setValve3ON:
+ 115              	.LFB35:
+  56:.\src/valveControl.c **** /*******************************************************************************
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 4
+
+
+  57:.\src/valveControl.c **** * Function Name: setValve3ON
+  58:.\src/valveControl.c **** ********************************************************************************
+  59:.\src/valveControl.c **** *
+  60:.\src/valveControl.c **** * Summary:
+  61:.\src/valveControl.c **** *  Turns on valve 3 (connector J8 on Water Control Atom.)
+  62:.\src/valveControl.c **** *
+  63:.\src/valveControl.c **** * Parameters:
+  64:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+  65:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+  66:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+  67:.\src/valveControl.c **** *
+  68:.\src/valveControl.c **** * Return:
+  69:.\src/valveControl.c **** *  None.
+  70:.\src/valveControl.c **** *
+  71:.\src/valveControl.c **** *******************************************************************************/
+  72:.\src/valveControl.c **** void setValve3ON(bool direction){
+ 116              		.loc 1 72 0
+ 117              		.cfi_startproc
+ 118              	.LVL14:
+ 119 0000 10B5     		push	{r4, lr}
+ 120              		.cfi_def_cfa_offset 8
+ 121              		.cfi_offset 4, -8
+ 122              		.cfi_offset 14, -4
+ 123              		.loc 1 72 0
+ 124 0002 041E     		sub	r4, r0, #0
+  73:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+ 125              		.loc 1 73 0
+ 126 0004 04D0     		beq	.L11
+  74:.\src/valveControl.c ****         ON3_DIR1_Write(0u);
+ 127              		.loc 1 74 0
+ 128 0006 0020     		mov	r0, #0
+ 129              	.LVL15:
+ 130 0008 FFF7FEFF 		bl	ON3_DIR1_Write
+ 131              	.LVL16:
+  75:.\src/valveControl.c ****         ON4_DIR2_Write(1u);
+ 132              		.loc 1 75 0
+ 133 000c 0120     		mov	r0, #1
+ 134 000e 03E0     		b	.L13
+ 135              	.LVL17:
+ 136              	.L11:
+  76:.\src/valveControl.c ****     }
+  77:.\src/valveControl.c ****     else{
+  78:.\src/valveControl.c ****         ON3_DIR1_Write(1u);
+ 137              		.loc 1 78 0
+ 138 0010 0120     		mov	r0, #1
+ 139              	.LVL18:
+ 140 0012 FFF7FEFF 		bl	ON3_DIR1_Write
+ 141              	.LVL19:
+  79:.\src/valveControl.c ****         ON4_DIR2_Write(0u);
+ 142              		.loc 1 79 0
+ 143 0016 201C     		mov	r0, r4
+ 144              	.L13:
+ 145 0018 FFF7FEFF 		bl	ON4_DIR2_Write
+ 146              	.LVL20:
+  80:.\src/valveControl.c ****     }
+  81:.\src/valveControl.c **** }
+ 147              		.loc 1 81 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 5
+
+
+ 148              		@ sp needed
+ 149 001c 10BD     		pop	{r4, pc}
+ 150              		.cfi_endproc
+ 151              	.LFE35:
+ 152              		.size	setValve3ON, .-setValve3ON
+ 153              		.section	.text.setValve4ON,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	setValve4ON
+ 156              		.code	16
+ 157              		.thumb_func
+ 158              		.type	setValve4ON, %function
+ 159              	setValve4ON:
+ 160              	.LFB36:
+  82:.\src/valveControl.c **** /*******************************************************************************
+  83:.\src/valveControl.c **** * Function Name: setValve4ON
+  84:.\src/valveControl.c **** ********************************************************************************
+  85:.\src/valveControl.c **** *
+  86:.\src/valveControl.c **** * Summary:
+  87:.\src/valveControl.c **** *  Turns on valve 4 (connector J10 on Water Control Atom.)
+  88:.\src/valveControl.c **** *
+  89:.\src/valveControl.c **** * Parameters:
+  90:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+  91:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+  92:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+  93:.\src/valveControl.c **** *
+  94:.\src/valveControl.c **** * Return:
+  95:.\src/valveControl.c **** *  None.
+  96:.\src/valveControl.c **** *
+  97:.\src/valveControl.c **** *******************************************************************************/
+  98:.\src/valveControl.c **** void setValve4ON(bool direction){
+ 161              		.loc 1 98 0
+ 162              		.cfi_startproc
+ 163              	.LVL21:
+ 164 0000 10B5     		push	{r4, lr}
+ 165              		.cfi_def_cfa_offset 8
+ 166              		.cfi_offset 4, -8
+ 167              		.cfi_offset 14, -4
+ 168              		.loc 1 98 0
+ 169 0002 041E     		sub	r4, r0, #0
+  99:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+ 170              		.loc 1 99 0
+ 171 0004 04D0     		beq	.L15
+ 100:.\src/valveControl.c ****         ON3_DIR2_Write(0u);
+ 172              		.loc 1 100 0
+ 173 0006 0020     		mov	r0, #0
+ 174              	.LVL22:
+ 175 0008 FFF7FEFF 		bl	ON3_DIR2_Write
+ 176              	.LVL23:
+ 101:.\src/valveControl.c ****         ON4_DIR1_Write(1u);
+ 177              		.loc 1 101 0
+ 178 000c 0120     		mov	r0, #1
+ 179 000e 03E0     		b	.L17
+ 180              	.LVL24:
+ 181              	.L15:
+ 102:.\src/valveControl.c ****     }
+ 103:.\src/valveControl.c ****     else{
+ 104:.\src/valveControl.c ****         ON3_DIR2_Write(1u);
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 6
+
+
+ 182              		.loc 1 104 0
+ 183 0010 0120     		mov	r0, #1
+ 184              	.LVL25:
+ 185 0012 FFF7FEFF 		bl	ON3_DIR2_Write
+ 186              	.LVL26:
+ 105:.\src/valveControl.c ****         ON4_DIR1_Write(0u);
+ 187              		.loc 1 105 0
+ 188 0016 201C     		mov	r0, r4
+ 189              	.L17:
+ 190 0018 FFF7FEFF 		bl	ON4_DIR1_Write
+ 191              	.LVL27:
+ 106:.\src/valveControl.c ****     }
+ 107:.\src/valveControl.c **** }
+ 192              		.loc 1 107 0
+ 193              		@ sp needed
+ 194 001c 10BD     		pop	{r4, pc}
+ 195              		.cfi_endproc
+ 196              	.LFE36:
+ 197              		.size	setValve4ON, .-setValve4ON
+ 198              		.section	.text.setValve1OFF,"ax",%progbits
+ 199              		.align	1
+ 200              		.global	setValve1OFF
+ 201              		.code	16
+ 202              		.thumb_func
+ 203              		.type	setValve1OFF, %function
+ 204              	setValve1OFF:
+ 205              	.LFB37:
+ 108:.\src/valveControl.c **** /*******************************************************************************
+ 109:.\src/valveControl.c **** * Function Name: setValve5ON
+ 110:.\src/valveControl.c **** ********************************************************************************
+ 111:.\src/valveControl.c **** *
+ 112:.\src/valveControl.c **** * Summary:
+ 113:.\src/valveControl.c **** *  Turns on valve 5 (connector J6 on Water Control Atom.)
+ 114:.\src/valveControl.c **** *
+ 115:.\src/valveControl.c **** * Parameters:
+ 116:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+ 117:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+ 118:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+ 119:.\src/valveControl.c **** *
+ 120:.\src/valveControl.c **** * Return:
+ 121:.\src/valveControl.c **** *  None.
+ 122:.\src/valveControl.c **** *
+ 123:.\src/valveControl.c **** *******************************************************************************/
+ 124:.\src/valveControl.c **** /*void setValve5ON(bool direction){
+ 125:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+ 126:.\src/valveControl.c ****         ON5_DIR1_Write(0u);
+ 127:.\src/valveControl.c ****         ON6_DIR2_Write(1u);
+ 128:.\src/valveControl.c ****     }
+ 129:.\src/valveControl.c ****     else{
+ 130:.\src/valveControl.c ****         ON5_DIR1_Write(1u);
+ 131:.\src/valveControl.c ****         ON6_DIR2_Write(0u);
+ 132:.\src/valveControl.c ****     }
+ 133:.\src/valveControl.c **** }*/
+ 134:.\src/valveControl.c **** /*******************************************************************************
+ 135:.\src/valveControl.c **** * Function Name: setValve6ON
+ 136:.\src/valveControl.c **** ********************************************************************************
+ 137:.\src/valveControl.c **** *
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 7
+
+
+ 138:.\src/valveControl.c **** * Summary:
+ 139:.\src/valveControl.c **** *  Turns on valve 6 (connector J7 on Water Control Atom.)
+ 140:.\src/valveControl.c **** *
+ 141:.\src/valveControl.c **** * Parameters:
+ 142:.\src/valveControl.c **** *  direction: The direction in which to turn the valve ON.
+ 143:.\src/valveControl.c **** *  TRUE		1 to set pin 2 high and pin 1 low
+ 144:.\src/valveControl.c **** *  FALSE	0 to set pin 1 high and pin 2 low
+ 145:.\src/valveControl.c **** *
+ 146:.\src/valveControl.c **** * Return:
+ 147:.\src/valveControl.c **** *  None.
+ 148:.\src/valveControl.c **** *
+ 149:.\src/valveControl.c **** *******************************************************************************/
+ 150:.\src/valveControl.c **** /*void setValve6ON(bool direction){
+ 151:.\src/valveControl.c ****     if (direction==true){ //Direction 1
+ 152:.\src/valveControl.c ****          ON5_DIR2_Write(0u);
+ 153:.\src/valveControl.c ****          ON6_DIR1_Write(1u);
+ 154:.\src/valveControl.c ****     }
+ 155:.\src/valveControl.c ****     else{
+ 156:.\src/valveControl.c ****           ON5_DIR2_Write(1u);
+ 157:.\src/valveControl.c ****          ON6_DIR1_Write(0u);
+ 158:.\src/valveControl.c ****     }
+ 159:.\src/valveControl.c **** }
+ 160:.\src/valveControl.c **** */
+ 161:.\src/valveControl.c **** /*******************************************************************************
+ 162:.\src/valveControl.c **** * Function Name: setValve1OFF
+ 163:.\src/valveControl.c **** ********************************************************************************
+ 164:.\src/valveControl.c **** *
+ 165:.\src/valveControl.c **** * Summary:
+ 166:.\src/valveControl.c **** *  Turns off valve 1 (connector J9 on Water Control Atom.)
+ 167:.\src/valveControl.c **** *
+ 168:.\src/valveControl.c **** * Parameters:
+ 169:.\src/valveControl.c **** * None
+ 170:.\src/valveControl.c **** *
+ 171:.\src/valveControl.c **** * Return:
+ 172:.\src/valveControl.c **** *  None.
+ 173:.\src/valveControl.c **** *
+ 174:.\src/valveControl.c **** *******************************************************************************/
+ 175:.\src/valveControl.c **** 
+ 176:.\src/valveControl.c **** void setValve1OFF(void){
+ 206              		.loc 1 176 0
+ 207              		.cfi_startproc
+ 208 0000 08B5     		push	{r3, lr}
+ 209              		.cfi_def_cfa_offset 8
+ 210              		.cfi_offset 3, -8
+ 211              		.cfi_offset 14, -4
+ 177:.\src/valveControl.c ****     ON1_DIR1_Write(0u);
+ 212              		.loc 1 177 0
+ 213 0002 0020     		mov	r0, #0
+ 214 0004 FFF7FEFF 		bl	ON1_DIR1_Write
+ 215              	.LVL28:
+ 178:.\src/valveControl.c ****     ON2_DIR2_Write(0u);
+ 216              		.loc 1 178 0
+ 217 0008 0020     		mov	r0, #0
+ 218 000a FFF7FEFF 		bl	ON2_DIR2_Write
+ 219              	.LVL29:
+ 179:.\src/valveControl.c **** }
+ 220              		.loc 1 179 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 8
+
+
+ 221              		@ sp needed
+ 222 000e 08BD     		pop	{r3, pc}
+ 223              		.cfi_endproc
+ 224              	.LFE37:
+ 225              		.size	setValve1OFF, .-setValve1OFF
+ 226              		.section	.text.setValve2OFF,"ax",%progbits
+ 227              		.align	1
+ 228              		.global	setValve2OFF
+ 229              		.code	16
+ 230              		.thumb_func
+ 231              		.type	setValve2OFF, %function
+ 232              	setValve2OFF:
+ 233              	.LFB38:
+ 180:.\src/valveControl.c **** 
+ 181:.\src/valveControl.c **** /*******************************************************************************
+ 182:.\src/valveControl.c **** * Function Name: setValve2OFF
+ 183:.\src/valveControl.c **** ********************************************************************************
+ 184:.\src/valveControl.c **** *
+ 185:.\src/valveControl.c **** * Summary:
+ 186:.\src/valveControl.c **** *  Turns off valve 2 (connector J10 on Water Control Atom.)
+ 187:.\src/valveControl.c **** *
+ 188:.\src/valveControl.c **** * Parameters:
+ 189:.\src/valveControl.c **** * None
+ 190:.\src/valveControl.c **** *
+ 191:.\src/valveControl.c **** * Return:
+ 192:.\src/valveControl.c **** *  None.
+ 193:.\src/valveControl.c **** *
+ 194:.\src/valveControl.c **** *******************************************************************************/
+ 195:.\src/valveControl.c **** void setValve2OFF(void){
+ 234              		.loc 1 195 0
+ 235              		.cfi_startproc
+ 236 0000 08B5     		push	{r3, lr}
+ 237              		.cfi_def_cfa_offset 8
+ 238              		.cfi_offset 3, -8
+ 239              		.cfi_offset 14, -4
+ 196:.\src/valveControl.c **** 	ON1_DIR2_Write(0u);
+ 240              		.loc 1 196 0
+ 241 0002 0020     		mov	r0, #0
+ 242 0004 FFF7FEFF 		bl	ON1_DIR2_Write
+ 243              	.LVL30:
+ 197:.\src/valveControl.c **** 	ON2_DIR1_Write(0u);
+ 244              		.loc 1 197 0
+ 245 0008 0020     		mov	r0, #0
+ 246 000a FFF7FEFF 		bl	ON2_DIR1_Write
+ 247              	.LVL31:
+ 198:.\src/valveControl.c **** }
+ 248              		.loc 1 198 0
+ 249              		@ sp needed
+ 250 000e 08BD     		pop	{r3, pc}
+ 251              		.cfi_endproc
+ 252              	.LFE38:
+ 253              		.size	setValve2OFF, .-setValve2OFF
+ 254              		.section	.text.setValve3OFF,"ax",%progbits
+ 255              		.align	1
+ 256              		.global	setValve3OFF
+ 257              		.code	16
+ 258              		.thumb_func
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 9
+
+
+ 259              		.type	setValve3OFF, %function
+ 260              	setValve3OFF:
+ 261              	.LFB39:
+ 199:.\src/valveControl.c **** 
+ 200:.\src/valveControl.c **** /*******************************************************************************
+ 201:.\src/valveControl.c **** * Function Name: setValve3OFF
+ 202:.\src/valveControl.c **** ********************************************************************************
+ 203:.\src/valveControl.c **** *
+ 204:.\src/valveControl.c **** * Summary:
+ 205:.\src/valveControl.c **** *  Turns off valve 3 (connector J8 on Water Control Atom.)
+ 206:.\src/valveControl.c **** *
+ 207:.\src/valveControl.c **** * Parameters:
+ 208:.\src/valveControl.c **** * None
+ 209:.\src/valveControl.c **** *
+ 210:.\src/valveControl.c **** * Return:
+ 211:.\src/valveControl.c **** *  None.
+ 212:.\src/valveControl.c **** *
+ 213:.\src/valveControl.c **** *******************************************************************************/
+ 214:.\src/valveControl.c **** void setValve3OFF(void){
+ 262              		.loc 1 214 0
+ 263              		.cfi_startproc
+ 264 0000 08B5     		push	{r3, lr}
+ 265              		.cfi_def_cfa_offset 8
+ 266              		.cfi_offset 3, -8
+ 267              		.cfi_offset 14, -4
+ 215:.\src/valveControl.c ****     ON3_DIR1_Write(0u);
+ 268              		.loc 1 215 0
+ 269 0002 0020     		mov	r0, #0
+ 270 0004 FFF7FEFF 		bl	ON3_DIR1_Write
+ 271              	.LVL32:
+ 216:.\src/valveControl.c ****     ON4_DIR2_Write(0u);
+ 272              		.loc 1 216 0
+ 273 0008 0020     		mov	r0, #0
+ 274 000a FFF7FEFF 		bl	ON4_DIR2_Write
+ 275              	.LVL33:
+ 217:.\src/valveControl.c **** }
+ 276              		.loc 1 217 0
+ 277              		@ sp needed
+ 278 000e 08BD     		pop	{r3, pc}
+ 279              		.cfi_endproc
+ 280              	.LFE39:
+ 281              		.size	setValve3OFF, .-setValve3OFF
+ 282              		.section	.text.setValve4OFF,"ax",%progbits
+ 283              		.align	1
+ 284              		.global	setValve4OFF
+ 285              		.code	16
+ 286              		.thumb_func
+ 287              		.type	setValve4OFF, %function
+ 288              	setValve4OFF:
+ 289              	.LFB40:
+ 218:.\src/valveControl.c **** /*******************************************************************************
+ 219:.\src/valveControl.c **** * Function Name: setValve4OFF
+ 220:.\src/valveControl.c **** ********************************************************************************
+ 221:.\src/valveControl.c **** *
+ 222:.\src/valveControl.c **** * Summary:
+ 223:.\src/valveControl.c **** *  Turns off valve 4 (connector J10 on Water Control Atom.)
+ 224:.\src/valveControl.c **** *
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 10
+
+
+ 225:.\src/valveControl.c **** * Parameters:
+ 226:.\src/valveControl.c **** * None
+ 227:.\src/valveControl.c **** *
+ 228:.\src/valveControl.c **** * Return:
+ 229:.\src/valveControl.c **** *  None.
+ 230:.\src/valveControl.c **** *
+ 231:.\src/valveControl.c **** *******************************************************************************/
+ 232:.\src/valveControl.c **** void setValve4OFF(void){
+ 290              		.loc 1 232 0
+ 291              		.cfi_startproc
+ 292 0000 08B5     		push	{r3, lr}
+ 293              		.cfi_def_cfa_offset 8
+ 294              		.cfi_offset 3, -8
+ 295              		.cfi_offset 14, -4
+ 233:.\src/valveControl.c ****     ON3_DIR2_Write(0u);
+ 296              		.loc 1 233 0
+ 297 0002 0020     		mov	r0, #0
+ 298 0004 FFF7FEFF 		bl	ON3_DIR2_Write
+ 299              	.LVL34:
+ 234:.\src/valveControl.c ****     ON4_DIR1_Write(0u);
+ 300              		.loc 1 234 0
+ 301 0008 0020     		mov	r0, #0
+ 302 000a FFF7FEFF 		bl	ON4_DIR1_Write
+ 303              	.LVL35:
+ 235:.\src/valveControl.c **** }
+ 304              		.loc 1 235 0
+ 305              		@ sp needed
+ 306 000e 08BD     		pop	{r3, pc}
+ 307              		.cfi_endproc
+ 308              	.LFE40:
+ 309              		.size	setValve4OFF, .-setValve4OFF
+ 310              		.text
+ 311              	.Letext0:
+ 312              		.file 2 "Generated_Source\\PSoC4/ON1_DIR1.h"
+ 313              		.file 3 "Generated_Source\\PSoC4/ON2_DIR2.h"
+ 314              		.file 4 "Generated_Source\\PSoC4/ON1_DIR2.h"
+ 315              		.file 5 "Generated_Source\\PSoC4/ON2_DIR1.h"
+ 316              		.file 6 "Generated_Source\\PSoC4/ON3_DIR1.h"
+ 317              		.file 7 "Generated_Source\\PSoC4/ON4_DIR2.h"
+ 318              		.file 8 "Generated_Source\\PSoC4/ON3_DIR2.h"
+ 319              		.file 9 "Generated_Source\\PSoC4/cytypes.h"
+ 320              		.file 10 "Generated_Source\\PSoC4/ON4_DIR1.h"
+ 321              		.section	.debug_info,"",%progbits
+ 322              	.Ldebug_info0:
+ 323 0000 4A030000 		.4byte	0x34a
+ 324 0004 0400     		.2byte	0x4
+ 325 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 326 000a 04       		.byte	0x4
+ 327 000b 01       		.uleb128 0x1
+ 328 000c 87000000 		.4byte	.LASF30
+ 329 0010 01       		.byte	0x1
+ 330 0011 AD010000 		.4byte	.LASF31
+ 331 0015 00000000 		.4byte	.LASF32
+ 332 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 333 001d 00000000 		.4byte	0
+ 334 0021 00000000 		.4byte	.Ldebug_line0
+ 335 0025 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 11
+
+
+ 336 0026 01       		.byte	0x1
+ 337 0027 06       		.byte	0x6
+ 338 0028 47020000 		.4byte	.LASF0
+ 339 002c 02       		.uleb128 0x2
+ 340 002d 01       		.byte	0x1
+ 341 002e 08       		.byte	0x8
+ 342 002f 18010000 		.4byte	.LASF1
+ 343 0033 02       		.uleb128 0x2
+ 344 0034 02       		.byte	0x2
+ 345 0035 05       		.byte	0x5
+ 346 0036 21020000 		.4byte	.LASF2
+ 347 003a 02       		.uleb128 0x2
+ 348 003b 02       		.byte	0x2
+ 349 003c 07       		.byte	0x7
+ 350 003d 38010000 		.4byte	.LASF3
+ 351 0041 02       		.uleb128 0x2
+ 352 0042 04       		.byte	0x4
+ 353 0043 05       		.byte	0x5
+ 354 0044 31020000 		.4byte	.LASF4
+ 355 0048 02       		.uleb128 0x2
+ 356 0049 04       		.byte	0x4
+ 357 004a 07       		.byte	0x7
+ 358 004b 26010000 		.4byte	.LASF5
+ 359 004f 02       		.uleb128 0x2
+ 360 0050 08       		.byte	0x8
+ 361 0051 05       		.byte	0x5
+ 362 0052 F6010000 		.4byte	.LASF6
+ 363 0056 02       		.uleb128 0x2
+ 364 0057 08       		.byte	0x8
+ 365 0058 07       		.byte	0x7
+ 366 0059 87010000 		.4byte	.LASF7
+ 367 005d 03       		.uleb128 0x3
+ 368 005e 04       		.byte	0x4
+ 369 005f 05       		.byte	0x5
+ 370 0060 696E7400 		.ascii	"int\000"
+ 371 0064 02       		.uleb128 0x2
+ 372 0065 04       		.byte	0x4
+ 373 0066 07       		.byte	0x7
+ 374 0067 7A010000 		.4byte	.LASF8
+ 375 006b 04       		.uleb128 0x4
+ 376 006c 2B020000 		.4byte	.LASF33
+ 377 0070 09       		.byte	0x9
+ 378 0071 B3       		.byte	0xb3
+ 379 0072 2C000000 		.4byte	0x2c
+ 380 0076 02       		.uleb128 0x2
+ 381 0077 04       		.byte	0x4
+ 382 0078 04       		.byte	0x4
+ 383 0079 03010000 		.4byte	.LASF9
+ 384 007d 02       		.uleb128 0x2
+ 385 007e 08       		.byte	0x8
+ 386 007f 04       		.byte	0x4
+ 387 0080 64010000 		.4byte	.LASF10
+ 388 0084 02       		.uleb128 0x2
+ 389 0085 01       		.byte	0x1
+ 390 0086 08       		.byte	0x8
+ 391 0087 10020000 		.4byte	.LASF11
+ 392 008b 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 12
+
+
+ 393 008c 04       		.byte	0x4
+ 394 008d 07       		.byte	0x7
+ 395 008e DE010000 		.4byte	.LASF12
+ 396 0092 02       		.uleb128 0x2
+ 397 0093 01       		.byte	0x1
+ 398 0094 02       		.byte	0x2
+ 399 0095 53020000 		.4byte	.LASF13
+ 400 0099 05       		.uleb128 0x5
+ 401 009a 04020000 		.4byte	.LASF14
+ 402 009e 01       		.byte	0x1
+ 403 009f 14       		.byte	0x14
+ 404 00a0 00000000 		.4byte	.LFB33
+ 405 00a4 1E000000 		.4byte	.LFE33-.LFB33
+ 406 00a8 01       		.uleb128 0x1
+ 407 00a9 9C       		.byte	0x9c
+ 408 00aa ED000000 		.4byte	0xed
+ 409 00ae 06       		.uleb128 0x6
+ 410 00af 7D000000 		.4byte	.LASF16
+ 411 00b3 01       		.byte	0x1
+ 412 00b4 14       		.byte	0x14
+ 413 00b5 92000000 		.4byte	0x92
+ 414 00b9 00000000 		.4byte	.LLST0
+ 415 00bd 07       		.uleb128 0x7
+ 416 00be 0C000000 		.4byte	.LVL2
+ 417 00c2 C9020000 		.4byte	0x2c9
+ 418 00c6 D0000000 		.4byte	0xd0
+ 419 00ca 08       		.uleb128 0x8
+ 420 00cb 01       		.uleb128 0x1
+ 421 00cc 50       		.byte	0x50
+ 422 00cd 01       		.uleb128 0x1
+ 423 00ce 30       		.byte	0x30
+ 424 00cf 00       		.byte	0
+ 425 00d0 07       		.uleb128 0x7
+ 426 00d1 16000000 		.4byte	.LVL5
+ 427 00d5 C9020000 		.4byte	0x2c9
+ 428 00d9 E3000000 		.4byte	0xe3
+ 429 00dd 08       		.uleb128 0x8
+ 430 00de 01       		.uleb128 0x1
+ 431 00df 50       		.byte	0x50
+ 432 00e0 01       		.uleb128 0x1
+ 433 00e1 31       		.byte	0x31
+ 434 00e2 00       		.byte	0
+ 435 00e3 09       		.uleb128 0x9
+ 436 00e4 1C000000 		.4byte	.LVL6
+ 437 00e8 DA020000 		.4byte	0x2da
+ 438 00ec 00       		.byte	0
+ 439 00ed 05       		.uleb128 0x5
+ 440 00ee 37000000 		.4byte	.LASF15
+ 441 00f2 01       		.byte	0x1
+ 442 00f3 2E       		.byte	0x2e
+ 443 00f4 00000000 		.4byte	.LFB34
+ 444 00f8 1E000000 		.4byte	.LFE34-.LFB34
+ 445 00fc 01       		.uleb128 0x1
+ 446 00fd 9C       		.byte	0x9c
+ 447 00fe 41010000 		.4byte	0x141
+ 448 0102 06       		.uleb128 0x6
+ 449 0103 7D000000 		.4byte	.LASF16
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 13
+
+
+ 450 0107 01       		.byte	0x1
+ 451 0108 2E       		.byte	0x2e
+ 452 0109 92000000 		.4byte	0x92
+ 453 010d 3A000000 		.4byte	.LLST1
+ 454 0111 07       		.uleb128 0x7
+ 455 0112 0C000000 		.4byte	.LVL9
+ 456 0116 EB020000 		.4byte	0x2eb
+ 457 011a 24010000 		.4byte	0x124
+ 458 011e 08       		.uleb128 0x8
+ 459 011f 01       		.uleb128 0x1
+ 460 0120 50       		.byte	0x50
+ 461 0121 01       		.uleb128 0x1
+ 462 0122 30       		.byte	0x30
+ 463 0123 00       		.byte	0
+ 464 0124 07       		.uleb128 0x7
+ 465 0125 16000000 		.4byte	.LVL12
+ 466 0129 EB020000 		.4byte	0x2eb
+ 467 012d 37010000 		.4byte	0x137
+ 468 0131 08       		.uleb128 0x8
+ 469 0132 01       		.uleb128 0x1
+ 470 0133 50       		.byte	0x50
+ 471 0134 01       		.uleb128 0x1
+ 472 0135 31       		.byte	0x31
+ 473 0136 00       		.byte	0
+ 474 0137 09       		.uleb128 0x9
+ 475 0138 1C000000 		.4byte	.LVL13
+ 476 013c FC020000 		.4byte	0x2fc
+ 477 0140 00       		.byte	0
+ 478 0141 05       		.uleb128 0x5
+ 479 0142 4B010000 		.4byte	.LASF17
+ 480 0146 01       		.byte	0x1
+ 481 0147 48       		.byte	0x48
+ 482 0148 00000000 		.4byte	.LFB35
+ 483 014c 1E000000 		.4byte	.LFE35-.LFB35
+ 484 0150 01       		.uleb128 0x1
+ 485 0151 9C       		.byte	0x9c
+ 486 0152 95010000 		.4byte	0x195
+ 487 0156 06       		.uleb128 0x6
+ 488 0157 7D000000 		.4byte	.LASF16
+ 489 015b 01       		.byte	0x1
+ 490 015c 48       		.byte	0x48
+ 491 015d 92000000 		.4byte	0x92
+ 492 0161 74000000 		.4byte	.LLST2
+ 493 0165 07       		.uleb128 0x7
+ 494 0166 0C000000 		.4byte	.LVL16
+ 495 016a 0D030000 		.4byte	0x30d
+ 496 016e 78010000 		.4byte	0x178
+ 497 0172 08       		.uleb128 0x8
+ 498 0173 01       		.uleb128 0x1
+ 499 0174 50       		.byte	0x50
+ 500 0175 01       		.uleb128 0x1
+ 501 0176 30       		.byte	0x30
+ 502 0177 00       		.byte	0
+ 503 0178 07       		.uleb128 0x7
+ 504 0179 16000000 		.4byte	.LVL19
+ 505 017d 0D030000 		.4byte	0x30d
+ 506 0181 8B010000 		.4byte	0x18b
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 14
+
+
+ 507 0185 08       		.uleb128 0x8
+ 508 0186 01       		.uleb128 0x1
+ 509 0187 50       		.byte	0x50
+ 510 0188 01       		.uleb128 0x1
+ 511 0189 31       		.byte	0x31
+ 512 018a 00       		.byte	0
+ 513 018b 09       		.uleb128 0x9
+ 514 018c 1C000000 		.4byte	.LVL20
+ 515 0190 1E030000 		.4byte	0x31e
+ 516 0194 00       		.byte	0
+ 517 0195 05       		.uleb128 0x5
+ 518 0196 15020000 		.4byte	.LASF18
+ 519 019a 01       		.byte	0x1
+ 520 019b 62       		.byte	0x62
+ 521 019c 00000000 		.4byte	.LFB36
+ 522 01a0 1E000000 		.4byte	.LFE36-.LFB36
+ 523 01a4 01       		.uleb128 0x1
+ 524 01a5 9C       		.byte	0x9c
+ 525 01a6 E9010000 		.4byte	0x1e9
+ 526 01aa 06       		.uleb128 0x6
+ 527 01ab 7D000000 		.4byte	.LASF16
+ 528 01af 01       		.byte	0x1
+ 529 01b0 62       		.byte	0x62
+ 530 01b1 92000000 		.4byte	0x92
+ 531 01b5 AE000000 		.4byte	.LLST3
+ 532 01b9 07       		.uleb128 0x7
+ 533 01ba 0C000000 		.4byte	.LVL23
+ 534 01be 2F030000 		.4byte	0x32f
+ 535 01c2 CC010000 		.4byte	0x1cc
+ 536 01c6 08       		.uleb128 0x8
+ 537 01c7 01       		.uleb128 0x1
+ 538 01c8 50       		.byte	0x50
+ 539 01c9 01       		.uleb128 0x1
+ 540 01ca 30       		.byte	0x30
+ 541 01cb 00       		.byte	0
+ 542 01cc 07       		.uleb128 0x7
+ 543 01cd 16000000 		.4byte	.LVL26
+ 544 01d1 2F030000 		.4byte	0x32f
+ 545 01d5 DF010000 		.4byte	0x1df
+ 546 01d9 08       		.uleb128 0x8
+ 547 01da 01       		.uleb128 0x1
+ 548 01db 50       		.byte	0x50
+ 549 01dc 01       		.uleb128 0x1
+ 550 01dd 31       		.byte	0x31
+ 551 01de 00       		.byte	0
+ 552 01df 09       		.uleb128 0x9
+ 553 01e0 1C000000 		.4byte	.LVL27
+ 554 01e4 40030000 		.4byte	0x340
+ 555 01e8 00       		.byte	0
+ 556 01e9 05       		.uleb128 0x5
+ 557 01ea D1010000 		.4byte	.LASF19
+ 558 01ee 01       		.byte	0x1
+ 559 01ef B0       		.byte	0xb0
+ 560 01f0 00000000 		.4byte	.LFB37
+ 561 01f4 10000000 		.4byte	.LFE37-.LFB37
+ 562 01f8 01       		.uleb128 0x1
+ 563 01f9 9C       		.byte	0x9c
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 15
+
+
+ 564 01fa 21020000 		.4byte	0x221
+ 565 01fe 07       		.uleb128 0x7
+ 566 01ff 08000000 		.4byte	.LVL28
+ 567 0203 C9020000 		.4byte	0x2c9
+ 568 0207 11020000 		.4byte	0x211
+ 569 020b 08       		.uleb128 0x8
+ 570 020c 01       		.uleb128 0x1
+ 571 020d 50       		.byte	0x50
+ 572 020e 01       		.uleb128 0x1
+ 573 020f 30       		.byte	0x30
+ 574 0210 00       		.byte	0
+ 575 0211 0A       		.uleb128 0xa
+ 576 0212 0E000000 		.4byte	.LVL29
+ 577 0216 DA020000 		.4byte	0x2da
+ 578 021a 08       		.uleb128 0x8
+ 579 021b 01       		.uleb128 0x1
+ 580 021c 50       		.byte	0x50
+ 581 021d 01       		.uleb128 0x1
+ 582 021e 30       		.byte	0x30
+ 583 021f 00       		.byte	0
+ 584 0220 00       		.byte	0
+ 585 0221 05       		.uleb128 0x5
+ 586 0222 3A020000 		.4byte	.LASF20
+ 587 0226 01       		.byte	0x1
+ 588 0227 C3       		.byte	0xc3
+ 589 0228 00000000 		.4byte	.LFB38
+ 590 022c 10000000 		.4byte	.LFE38-.LFB38
+ 591 0230 01       		.uleb128 0x1
+ 592 0231 9C       		.byte	0x9c
+ 593 0232 59020000 		.4byte	0x259
+ 594 0236 07       		.uleb128 0x7
+ 595 0237 08000000 		.4byte	.LVL30
+ 596 023b EB020000 		.4byte	0x2eb
+ 597 023f 49020000 		.4byte	0x249
+ 598 0243 08       		.uleb128 0x8
+ 599 0244 01       		.uleb128 0x1
+ 600 0245 50       		.byte	0x50
+ 601 0246 01       		.uleb128 0x1
+ 602 0247 30       		.byte	0x30
+ 603 0248 00       		.byte	0
+ 604 0249 0A       		.uleb128 0xa
+ 605 024a 0E000000 		.4byte	.LVL31
+ 606 024e FC020000 		.4byte	0x2fc
+ 607 0252 08       		.uleb128 0x8
+ 608 0253 01       		.uleb128 0x1
+ 609 0254 50       		.byte	0x50
+ 610 0255 01       		.uleb128 0x1
+ 611 0256 30       		.byte	0x30
+ 612 0257 00       		.byte	0
+ 613 0258 00       		.byte	0
+ 614 0259 05       		.uleb128 0x5
+ 615 025a 43000000 		.4byte	.LASF21
+ 616 025e 01       		.byte	0x1
+ 617 025f D6       		.byte	0xd6
+ 618 0260 00000000 		.4byte	.LFB39
+ 619 0264 10000000 		.4byte	.LFE39-.LFB39
+ 620 0268 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 16
+
+
+ 621 0269 9C       		.byte	0x9c
+ 622 026a 91020000 		.4byte	0x291
+ 623 026e 07       		.uleb128 0x7
+ 624 026f 08000000 		.4byte	.LVL32
+ 625 0273 0D030000 		.4byte	0x30d
+ 626 0277 81020000 		.4byte	0x281
+ 627 027b 08       		.uleb128 0x8
+ 628 027c 01       		.uleb128 0x1
+ 629 027d 50       		.byte	0x50
+ 630 027e 01       		.uleb128 0x1
+ 631 027f 30       		.byte	0x30
+ 632 0280 00       		.byte	0
+ 633 0281 0A       		.uleb128 0xa
+ 634 0282 0E000000 		.4byte	.LVL33
+ 635 0286 1E030000 		.4byte	0x31e
+ 636 028a 08       		.uleb128 0x8
+ 637 028b 01       		.uleb128 0x1
+ 638 028c 50       		.byte	0x50
+ 639 028d 01       		.uleb128 0x1
+ 640 028e 30       		.byte	0x30
+ 641 028f 00       		.byte	0
+ 642 0290 00       		.byte	0
+ 643 0291 05       		.uleb128 0x5
+ 644 0292 57010000 		.4byte	.LASF22
+ 645 0296 01       		.byte	0x1
+ 646 0297 E8       		.byte	0xe8
+ 647 0298 00000000 		.4byte	.LFB40
+ 648 029c 10000000 		.4byte	.LFE40-.LFB40
+ 649 02a0 01       		.uleb128 0x1
+ 650 02a1 9C       		.byte	0x9c
+ 651 02a2 C9020000 		.4byte	0x2c9
+ 652 02a6 07       		.uleb128 0x7
+ 653 02a7 08000000 		.4byte	.LVL34
+ 654 02ab 2F030000 		.4byte	0x32f
+ 655 02af B9020000 		.4byte	0x2b9
+ 656 02b3 08       		.uleb128 0x8
+ 657 02b4 01       		.uleb128 0x1
+ 658 02b5 50       		.byte	0x50
+ 659 02b6 01       		.uleb128 0x1
+ 660 02b7 30       		.byte	0x30
+ 661 02b8 00       		.byte	0
+ 662 02b9 0A       		.uleb128 0xa
+ 663 02ba 0E000000 		.4byte	.LVL35
+ 664 02be 40030000 		.4byte	0x340
+ 665 02c2 08       		.uleb128 0x8
+ 666 02c3 01       		.uleb128 0x1
+ 667 02c4 50       		.byte	0x50
+ 668 02c5 01       		.uleb128 0x1
+ 669 02c6 30       		.byte	0x30
+ 670 02c7 00       		.byte	0
+ 671 02c8 00       		.byte	0
+ 672 02c9 0B       		.uleb128 0xb
+ 673 02ca 6E000000 		.4byte	.LASF23
+ 674 02ce 02       		.byte	0x2
+ 675 02cf 1D       		.byte	0x1d
+ 676 02d0 DA020000 		.4byte	0x2da
+ 677 02d4 0C       		.uleb128 0xc
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 17
+
+
+ 678 02d5 6B000000 		.4byte	0x6b
+ 679 02d9 00       		.byte	0
+ 680 02da 0B       		.uleb128 0xb
+ 681 02db E7010000 		.4byte	.LASF24
+ 682 02df 03       		.byte	0x3
+ 683 02e0 1D       		.byte	0x1d
+ 684 02e1 EB020000 		.4byte	0x2eb
+ 685 02e5 0C       		.uleb128 0xc
+ 686 02e6 6B000000 		.4byte	0x6b
+ 687 02ea 00       		.byte	0
+ 688 02eb 0B       		.uleb128 0xb
+ 689 02ec 09010000 		.4byte	.LASF25
+ 690 02f0 04       		.byte	0x4
+ 691 02f1 1D       		.byte	0x1d
+ 692 02f2 FC020000 		.4byte	0x2fc
+ 693 02f6 0C       		.uleb128 0xc
+ 694 02f7 6B000000 		.4byte	0x6b
+ 695 02fb 00       		.byte	0
+ 696 02fc 0B       		.uleb128 0xb
+ 697 02fd 9E010000 		.4byte	.LASF26
+ 698 0301 05       		.byte	0x5
+ 699 0302 1D       		.byte	0x1d
+ 700 0303 0D030000 		.4byte	0x30d
+ 701 0307 0C       		.uleb128 0xc
+ 702 0308 6B000000 		.4byte	0x6b
+ 703 030c 00       		.byte	0
+ 704 030d 0B       		.uleb128 0xb
+ 705 030e 5F000000 		.4byte	.LASF27
+ 706 0312 06       		.byte	0x6
+ 707 0313 1D       		.byte	0x1d
+ 708 0314 1E030000 		.4byte	0x31e
+ 709 0318 0C       		.uleb128 0xc
+ 710 0319 6B000000 		.4byte	0x6b
+ 711 031d 00       		.byte	0
+ 712 031e 0B       		.uleb128 0xb
+ 713 031f C2010000 		.4byte	.LASF28
+ 714 0323 07       		.byte	0x7
+ 715 0324 1D       		.byte	0x1d
+ 716 0325 2F030000 		.4byte	0x32f
+ 717 0329 0C       		.uleb128 0xc
+ 718 032a 6B000000 		.4byte	0x6b
+ 719 032e 00       		.byte	0
+ 720 032f 0B       		.uleb128 0xb
+ 721 0330 50000000 		.4byte	.LASF29
+ 722 0334 08       		.byte	0x8
+ 723 0335 1D       		.byte	0x1d
+ 724 0336 40030000 		.4byte	0x340
+ 725 033a 0C       		.uleb128 0xc
+ 726 033b 6B000000 		.4byte	0x6b
+ 727 033f 00       		.byte	0
+ 728 0340 0D       		.uleb128 0xd
+ 729 0341 6B010000 		.4byte	.LASF34
+ 730 0345 0A       		.byte	0xa
+ 731 0346 1D       		.byte	0x1d
+ 732 0347 0C       		.uleb128 0xc
+ 733 0348 6B000000 		.4byte	0x6b
+ 734 034c 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 18
+
+
+ 735 034d 00       		.byte	0
+ 736              		.section	.debug_abbrev,"",%progbits
+ 737              	.Ldebug_abbrev0:
+ 738 0000 01       		.uleb128 0x1
+ 739 0001 11       		.uleb128 0x11
+ 740 0002 01       		.byte	0x1
+ 741 0003 25       		.uleb128 0x25
+ 742 0004 0E       		.uleb128 0xe
+ 743 0005 13       		.uleb128 0x13
+ 744 0006 0B       		.uleb128 0xb
+ 745 0007 03       		.uleb128 0x3
+ 746 0008 0E       		.uleb128 0xe
+ 747 0009 1B       		.uleb128 0x1b
+ 748 000a 0E       		.uleb128 0xe
+ 749 000b 55       		.uleb128 0x55
+ 750 000c 17       		.uleb128 0x17
+ 751 000d 11       		.uleb128 0x11
+ 752 000e 01       		.uleb128 0x1
+ 753 000f 10       		.uleb128 0x10
+ 754 0010 17       		.uleb128 0x17
+ 755 0011 00       		.byte	0
+ 756 0012 00       		.byte	0
+ 757 0013 02       		.uleb128 0x2
+ 758 0014 24       		.uleb128 0x24
+ 759 0015 00       		.byte	0
+ 760 0016 0B       		.uleb128 0xb
+ 761 0017 0B       		.uleb128 0xb
+ 762 0018 3E       		.uleb128 0x3e
+ 763 0019 0B       		.uleb128 0xb
+ 764 001a 03       		.uleb128 0x3
+ 765 001b 0E       		.uleb128 0xe
+ 766 001c 00       		.byte	0
+ 767 001d 00       		.byte	0
+ 768 001e 03       		.uleb128 0x3
+ 769 001f 24       		.uleb128 0x24
+ 770 0020 00       		.byte	0
+ 771 0021 0B       		.uleb128 0xb
+ 772 0022 0B       		.uleb128 0xb
+ 773 0023 3E       		.uleb128 0x3e
+ 774 0024 0B       		.uleb128 0xb
+ 775 0025 03       		.uleb128 0x3
+ 776 0026 08       		.uleb128 0x8
+ 777 0027 00       		.byte	0
+ 778 0028 00       		.byte	0
+ 779 0029 04       		.uleb128 0x4
+ 780 002a 16       		.uleb128 0x16
+ 781 002b 00       		.byte	0
+ 782 002c 03       		.uleb128 0x3
+ 783 002d 0E       		.uleb128 0xe
+ 784 002e 3A       		.uleb128 0x3a
+ 785 002f 0B       		.uleb128 0xb
+ 786 0030 3B       		.uleb128 0x3b
+ 787 0031 0B       		.uleb128 0xb
+ 788 0032 49       		.uleb128 0x49
+ 789 0033 13       		.uleb128 0x13
+ 790 0034 00       		.byte	0
+ 791 0035 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 19
+
+
+ 792 0036 05       		.uleb128 0x5
+ 793 0037 2E       		.uleb128 0x2e
+ 794 0038 01       		.byte	0x1
+ 795 0039 3F       		.uleb128 0x3f
+ 796 003a 19       		.uleb128 0x19
+ 797 003b 03       		.uleb128 0x3
+ 798 003c 0E       		.uleb128 0xe
+ 799 003d 3A       		.uleb128 0x3a
+ 800 003e 0B       		.uleb128 0xb
+ 801 003f 3B       		.uleb128 0x3b
+ 802 0040 0B       		.uleb128 0xb
+ 803 0041 27       		.uleb128 0x27
+ 804 0042 19       		.uleb128 0x19
+ 805 0043 11       		.uleb128 0x11
+ 806 0044 01       		.uleb128 0x1
+ 807 0045 12       		.uleb128 0x12
+ 808 0046 06       		.uleb128 0x6
+ 809 0047 40       		.uleb128 0x40
+ 810 0048 18       		.uleb128 0x18
+ 811 0049 9742     		.uleb128 0x2117
+ 812 004b 19       		.uleb128 0x19
+ 813 004c 01       		.uleb128 0x1
+ 814 004d 13       		.uleb128 0x13
+ 815 004e 00       		.byte	0
+ 816 004f 00       		.byte	0
+ 817 0050 06       		.uleb128 0x6
+ 818 0051 05       		.uleb128 0x5
+ 819 0052 00       		.byte	0
+ 820 0053 03       		.uleb128 0x3
+ 821 0054 0E       		.uleb128 0xe
+ 822 0055 3A       		.uleb128 0x3a
+ 823 0056 0B       		.uleb128 0xb
+ 824 0057 3B       		.uleb128 0x3b
+ 825 0058 0B       		.uleb128 0xb
+ 826 0059 49       		.uleb128 0x49
+ 827 005a 13       		.uleb128 0x13
+ 828 005b 02       		.uleb128 0x2
+ 829 005c 17       		.uleb128 0x17
+ 830 005d 00       		.byte	0
+ 831 005e 00       		.byte	0
+ 832 005f 07       		.uleb128 0x7
+ 833 0060 898201   		.uleb128 0x4109
+ 834 0063 01       		.byte	0x1
+ 835 0064 11       		.uleb128 0x11
+ 836 0065 01       		.uleb128 0x1
+ 837 0066 31       		.uleb128 0x31
+ 838 0067 13       		.uleb128 0x13
+ 839 0068 01       		.uleb128 0x1
+ 840 0069 13       		.uleb128 0x13
+ 841 006a 00       		.byte	0
+ 842 006b 00       		.byte	0
+ 843 006c 08       		.uleb128 0x8
+ 844 006d 8A8201   		.uleb128 0x410a
+ 845 0070 00       		.byte	0
+ 846 0071 02       		.uleb128 0x2
+ 847 0072 18       		.uleb128 0x18
+ 848 0073 9142     		.uleb128 0x2111
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 20
+
+
+ 849 0075 18       		.uleb128 0x18
+ 850 0076 00       		.byte	0
+ 851 0077 00       		.byte	0
+ 852 0078 09       		.uleb128 0x9
+ 853 0079 898201   		.uleb128 0x4109
+ 854 007c 00       		.byte	0
+ 855 007d 11       		.uleb128 0x11
+ 856 007e 01       		.uleb128 0x1
+ 857 007f 31       		.uleb128 0x31
+ 858 0080 13       		.uleb128 0x13
+ 859 0081 00       		.byte	0
+ 860 0082 00       		.byte	0
+ 861 0083 0A       		.uleb128 0xa
+ 862 0084 898201   		.uleb128 0x4109
+ 863 0087 01       		.byte	0x1
+ 864 0088 11       		.uleb128 0x11
+ 865 0089 01       		.uleb128 0x1
+ 866 008a 31       		.uleb128 0x31
+ 867 008b 13       		.uleb128 0x13
+ 868 008c 00       		.byte	0
+ 869 008d 00       		.byte	0
+ 870 008e 0B       		.uleb128 0xb
+ 871 008f 2E       		.uleb128 0x2e
+ 872 0090 01       		.byte	0x1
+ 873 0091 3F       		.uleb128 0x3f
+ 874 0092 19       		.uleb128 0x19
+ 875 0093 03       		.uleb128 0x3
+ 876 0094 0E       		.uleb128 0xe
+ 877 0095 3A       		.uleb128 0x3a
+ 878 0096 0B       		.uleb128 0xb
+ 879 0097 3B       		.uleb128 0x3b
+ 880 0098 0B       		.uleb128 0xb
+ 881 0099 27       		.uleb128 0x27
+ 882 009a 19       		.uleb128 0x19
+ 883 009b 3C       		.uleb128 0x3c
+ 884 009c 19       		.uleb128 0x19
+ 885 009d 01       		.uleb128 0x1
+ 886 009e 13       		.uleb128 0x13
+ 887 009f 00       		.byte	0
+ 888 00a0 00       		.byte	0
+ 889 00a1 0C       		.uleb128 0xc
+ 890 00a2 05       		.uleb128 0x5
+ 891 00a3 00       		.byte	0
+ 892 00a4 49       		.uleb128 0x49
+ 893 00a5 13       		.uleb128 0x13
+ 894 00a6 00       		.byte	0
+ 895 00a7 00       		.byte	0
+ 896 00a8 0D       		.uleb128 0xd
+ 897 00a9 2E       		.uleb128 0x2e
+ 898 00aa 01       		.byte	0x1
+ 899 00ab 3F       		.uleb128 0x3f
+ 900 00ac 19       		.uleb128 0x19
+ 901 00ad 03       		.uleb128 0x3
+ 902 00ae 0E       		.uleb128 0xe
+ 903 00af 3A       		.uleb128 0x3a
+ 904 00b0 0B       		.uleb128 0xb
+ 905 00b1 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 21
+
+
+ 906 00b2 0B       		.uleb128 0xb
+ 907 00b3 27       		.uleb128 0x27
+ 908 00b4 19       		.uleb128 0x19
+ 909 00b5 3C       		.uleb128 0x3c
+ 910 00b6 19       		.uleb128 0x19
+ 911 00b7 00       		.byte	0
+ 912 00b8 00       		.byte	0
+ 913 00b9 00       		.byte	0
+ 914              		.section	.debug_loc,"",%progbits
+ 915              	.Ldebug_loc0:
+ 916              	.LLST0:
+ 917 0000 00000000 		.4byte	.LVL0
+ 918 0004 08000000 		.4byte	.LVL1
+ 919 0008 0100     		.2byte	0x1
+ 920 000a 50       		.byte	0x50
+ 921 000b 08000000 		.4byte	.LVL1
+ 922 000f 10000000 		.4byte	.LVL3
+ 923 0013 0400     		.2byte	0x4
+ 924 0015 F3       		.byte	0xf3
+ 925 0016 01       		.uleb128 0x1
+ 926 0017 50       		.byte	0x50
+ 927 0018 9F       		.byte	0x9f
+ 928 0019 10000000 		.4byte	.LVL3
+ 929 001d 12000000 		.4byte	.LVL4
+ 930 0021 0100     		.2byte	0x1
+ 931 0023 50       		.byte	0x50
+ 932 0024 12000000 		.4byte	.LVL4
+ 933 0028 1E000000 		.4byte	.LFE33
+ 934 002c 0400     		.2byte	0x4
+ 935 002e F3       		.byte	0xf3
+ 936 002f 01       		.uleb128 0x1
+ 937 0030 50       		.byte	0x50
+ 938 0031 9F       		.byte	0x9f
+ 939 0032 00000000 		.4byte	0
+ 940 0036 00000000 		.4byte	0
+ 941              	.LLST1:
+ 942 003a 00000000 		.4byte	.LVL7
+ 943 003e 08000000 		.4byte	.LVL8
+ 944 0042 0100     		.2byte	0x1
+ 945 0044 50       		.byte	0x50
+ 946 0045 08000000 		.4byte	.LVL8
+ 947 0049 10000000 		.4byte	.LVL10
+ 948 004d 0400     		.2byte	0x4
+ 949 004f F3       		.byte	0xf3
+ 950 0050 01       		.uleb128 0x1
+ 951 0051 50       		.byte	0x50
+ 952 0052 9F       		.byte	0x9f
+ 953 0053 10000000 		.4byte	.LVL10
+ 954 0057 12000000 		.4byte	.LVL11
+ 955 005b 0100     		.2byte	0x1
+ 956 005d 50       		.byte	0x50
+ 957 005e 12000000 		.4byte	.LVL11
+ 958 0062 1E000000 		.4byte	.LFE34
+ 959 0066 0400     		.2byte	0x4
+ 960 0068 F3       		.byte	0xf3
+ 961 0069 01       		.uleb128 0x1
+ 962 006a 50       		.byte	0x50
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 22
+
+
+ 963 006b 9F       		.byte	0x9f
+ 964 006c 00000000 		.4byte	0
+ 965 0070 00000000 		.4byte	0
+ 966              	.LLST2:
+ 967 0074 00000000 		.4byte	.LVL14
+ 968 0078 08000000 		.4byte	.LVL15
+ 969 007c 0100     		.2byte	0x1
+ 970 007e 50       		.byte	0x50
+ 971 007f 08000000 		.4byte	.LVL15
+ 972 0083 10000000 		.4byte	.LVL17
+ 973 0087 0400     		.2byte	0x4
+ 974 0089 F3       		.byte	0xf3
+ 975 008a 01       		.uleb128 0x1
+ 976 008b 50       		.byte	0x50
+ 977 008c 9F       		.byte	0x9f
+ 978 008d 10000000 		.4byte	.LVL17
+ 979 0091 12000000 		.4byte	.LVL18
+ 980 0095 0100     		.2byte	0x1
+ 981 0097 50       		.byte	0x50
+ 982 0098 12000000 		.4byte	.LVL18
+ 983 009c 1E000000 		.4byte	.LFE35
+ 984 00a0 0400     		.2byte	0x4
+ 985 00a2 F3       		.byte	0xf3
+ 986 00a3 01       		.uleb128 0x1
+ 987 00a4 50       		.byte	0x50
+ 988 00a5 9F       		.byte	0x9f
+ 989 00a6 00000000 		.4byte	0
+ 990 00aa 00000000 		.4byte	0
+ 991              	.LLST3:
+ 992 00ae 00000000 		.4byte	.LVL21
+ 993 00b2 08000000 		.4byte	.LVL22
+ 994 00b6 0100     		.2byte	0x1
+ 995 00b8 50       		.byte	0x50
+ 996 00b9 08000000 		.4byte	.LVL22
+ 997 00bd 10000000 		.4byte	.LVL24
+ 998 00c1 0400     		.2byte	0x4
+ 999 00c3 F3       		.byte	0xf3
+ 1000 00c4 01       		.uleb128 0x1
+ 1001 00c5 50       		.byte	0x50
+ 1002 00c6 9F       		.byte	0x9f
+ 1003 00c7 10000000 		.4byte	.LVL24
+ 1004 00cb 12000000 		.4byte	.LVL25
+ 1005 00cf 0100     		.2byte	0x1
+ 1006 00d1 50       		.byte	0x50
+ 1007 00d2 12000000 		.4byte	.LVL25
+ 1008 00d6 1E000000 		.4byte	.LFE36
+ 1009 00da 0400     		.2byte	0x4
+ 1010 00dc F3       		.byte	0xf3
+ 1011 00dd 01       		.uleb128 0x1
+ 1012 00de 50       		.byte	0x50
+ 1013 00df 9F       		.byte	0x9f
+ 1014 00e0 00000000 		.4byte	0
+ 1015 00e4 00000000 		.4byte	0
+ 1016              		.section	.debug_aranges,"",%progbits
+ 1017 0000 54000000 		.4byte	0x54
+ 1018 0004 0200     		.2byte	0x2
+ 1019 0006 00000000 		.4byte	.Ldebug_info0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 23
+
+
+ 1020 000a 04       		.byte	0x4
+ 1021 000b 00       		.byte	0
+ 1022 000c 0000     		.2byte	0
+ 1023 000e 0000     		.2byte	0
+ 1024 0010 00000000 		.4byte	.LFB33
+ 1025 0014 1E000000 		.4byte	.LFE33-.LFB33
+ 1026 0018 00000000 		.4byte	.LFB34
+ 1027 001c 1E000000 		.4byte	.LFE34-.LFB34
+ 1028 0020 00000000 		.4byte	.LFB35
+ 1029 0024 1E000000 		.4byte	.LFE35-.LFB35
+ 1030 0028 00000000 		.4byte	.LFB36
+ 1031 002c 1E000000 		.4byte	.LFE36-.LFB36
+ 1032 0030 00000000 		.4byte	.LFB37
+ 1033 0034 10000000 		.4byte	.LFE37-.LFB37
+ 1034 0038 00000000 		.4byte	.LFB38
+ 1035 003c 10000000 		.4byte	.LFE38-.LFB38
+ 1036 0040 00000000 		.4byte	.LFB39
+ 1037 0044 10000000 		.4byte	.LFE39-.LFB39
+ 1038 0048 00000000 		.4byte	.LFB40
+ 1039 004c 10000000 		.4byte	.LFE40-.LFB40
+ 1040 0050 00000000 		.4byte	0
+ 1041 0054 00000000 		.4byte	0
+ 1042              		.section	.debug_ranges,"",%progbits
+ 1043              	.Ldebug_ranges0:
+ 1044 0000 00000000 		.4byte	.LFB33
+ 1045 0004 1E000000 		.4byte	.LFE33
+ 1046 0008 00000000 		.4byte	.LFB34
+ 1047 000c 1E000000 		.4byte	.LFE34
+ 1048 0010 00000000 		.4byte	.LFB35
+ 1049 0014 1E000000 		.4byte	.LFE35
+ 1050 0018 00000000 		.4byte	.LFB36
+ 1051 001c 1E000000 		.4byte	.LFE36
+ 1052 0020 00000000 		.4byte	.LFB37
+ 1053 0024 10000000 		.4byte	.LFE37
+ 1054 0028 00000000 		.4byte	.LFB38
+ 1055 002c 10000000 		.4byte	.LFE38
+ 1056 0030 00000000 		.4byte	.LFB39
+ 1057 0034 10000000 		.4byte	.LFE39
+ 1058 0038 00000000 		.4byte	.LFB40
+ 1059 003c 10000000 		.4byte	.LFE40
+ 1060 0040 00000000 		.4byte	0
+ 1061 0044 00000000 		.4byte	0
+ 1062              		.section	.debug_line,"",%progbits
+ 1063              	.Ldebug_line0:
+ 1064 0000 6B010000 		.section	.debug_str,"MS",%progbits,1
+ 1064      0200BF00 
+ 1064      00000201 
+ 1064      FB0E0D00 
+ 1064      01010101 
+ 1065              	.LASF32:
+ 1066 0000 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 1066      73657273 
+ 1066      5C736465 
+ 1066      76617365 
+ 1066      6E617061 
+ 1067 002e 6F6D2E63 		.ascii	"om.cydsn\000"
+ 1067      7964736E 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 24
+
+
+ 1067      00
+ 1068              	.LASF15:
+ 1069 0037 73657456 		.ascii	"setValve2ON\000"
+ 1069      616C7665 
+ 1069      324F4E00 
+ 1070              	.LASF21:
+ 1071 0043 73657456 		.ascii	"setValve3OFF\000"
+ 1071      616C7665 
+ 1071      334F4646 
+ 1071      00
+ 1072              	.LASF29:
+ 1073 0050 4F4E335F 		.ascii	"ON3_DIR2_Write\000"
+ 1073      44495232 
+ 1073      5F577269 
+ 1073      746500
+ 1074              	.LASF27:
+ 1075 005f 4F4E335F 		.ascii	"ON3_DIR1_Write\000"
+ 1075      44495231 
+ 1075      5F577269 
+ 1075      746500
+ 1076              	.LASF23:
+ 1077 006e 4F4E315F 		.ascii	"ON1_DIR1_Write\000"
+ 1077      44495231 
+ 1077      5F577269 
+ 1077      746500
+ 1078              	.LASF16:
+ 1079 007d 64697265 		.ascii	"direction\000"
+ 1079      6374696F 
+ 1079      6E00
+ 1080              	.LASF30:
+ 1081 0087 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1081      4320342E 
+ 1081      382E3420 
+ 1081      32303134 
+ 1081      30353236 
+ 1082 00ba 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1082      20726576 
+ 1082      6973696F 
+ 1082      6E203231 
+ 1082      31333538 
+ 1083 00ed 73202D66 		.ascii	"s -ffunction-sections\000"
+ 1083      66756E63 
+ 1083      74696F6E 
+ 1083      2D736563 
+ 1083      74696F6E 
+ 1084              	.LASF9:
+ 1085 0103 666C6F61 		.ascii	"float\000"
+ 1085      7400
+ 1086              	.LASF25:
+ 1087 0109 4F4E315F 		.ascii	"ON1_DIR2_Write\000"
+ 1087      44495232 
+ 1087      5F577269 
+ 1087      746500
+ 1088              	.LASF1:
+ 1089 0118 756E7369 		.ascii	"unsigned char\000"
+ 1089      676E6564 
+ 1089      20636861 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 25
+
+
+ 1089      7200
+ 1090              	.LASF5:
+ 1091 0126 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1091      20756E73 
+ 1091      69676E65 
+ 1091      6420696E 
+ 1091      7400
+ 1092              	.LASF3:
+ 1093 0138 73686F72 		.ascii	"short unsigned int\000"
+ 1093      7420756E 
+ 1093      7369676E 
+ 1093      65642069 
+ 1093      6E7400
+ 1094              	.LASF17:
+ 1095 014b 73657456 		.ascii	"setValve3ON\000"
+ 1095      616C7665 
+ 1095      334F4E00 
+ 1096              	.LASF22:
+ 1097 0157 73657456 		.ascii	"setValve4OFF\000"
+ 1097      616C7665 
+ 1097      344F4646 
+ 1097      00
+ 1098              	.LASF10:
+ 1099 0164 646F7562 		.ascii	"double\000"
+ 1099      6C6500
+ 1100              	.LASF34:
+ 1101 016b 4F4E345F 		.ascii	"ON4_DIR1_Write\000"
+ 1101      44495231 
+ 1101      5F577269 
+ 1101      746500
+ 1102              	.LASF8:
+ 1103 017a 756E7369 		.ascii	"unsigned int\000"
+ 1103      676E6564 
+ 1103      20696E74 
+ 1103      00
+ 1104              	.LASF7:
+ 1105 0187 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1105      206C6F6E 
+ 1105      6720756E 
+ 1105      7369676E 
+ 1105      65642069 
+ 1106              	.LASF26:
+ 1107 019e 4F4E325F 		.ascii	"ON2_DIR1_Write\000"
+ 1107      44495231 
+ 1107      5F577269 
+ 1107      746500
+ 1108              	.LASF31:
+ 1109 01ad 2E5C7372 		.ascii	".\\src\\valveControl.c\000"
+ 1109      635C7661 
+ 1109      6C766543 
+ 1109      6F6E7472 
+ 1109      6F6C2E63 
+ 1110              	.LASF28:
+ 1111 01c2 4F4E345F 		.ascii	"ON4_DIR2_Write\000"
+ 1111      44495232 
+ 1111      5F577269 
+ 1111      746500
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccihUgHU.s 			page 26
+
+
+ 1112              	.LASF19:
+ 1113 01d1 73657456 		.ascii	"setValve1OFF\000"
+ 1113      616C7665 
+ 1113      314F4646 
+ 1113      00
+ 1114              	.LASF12:
+ 1115 01de 73697A65 		.ascii	"sizetype\000"
+ 1115      74797065 
+ 1115      00
+ 1116              	.LASF24:
+ 1117 01e7 4F4E325F 		.ascii	"ON2_DIR2_Write\000"
+ 1117      44495232 
+ 1117      5F577269 
+ 1117      746500
+ 1118              	.LASF6:
+ 1119 01f6 6C6F6E67 		.ascii	"long long int\000"
+ 1119      206C6F6E 
+ 1119      6720696E 
+ 1119      7400
+ 1120              	.LASF14:
+ 1121 0204 73657456 		.ascii	"setValve1ON\000"
+ 1121      616C7665 
+ 1121      314F4E00 
+ 1122              	.LASF11:
+ 1123 0210 63686172 		.ascii	"char\000"
+ 1123      00
+ 1124              	.LASF18:
+ 1125 0215 73657456 		.ascii	"setValve4ON\000"
+ 1125      616C7665 
+ 1125      344F4E00 
+ 1126              	.LASF2:
+ 1127 0221 73686F72 		.ascii	"short int\000"
+ 1127      7420696E 
+ 1127      7400
+ 1128              	.LASF33:
+ 1129 022b 75696E74 		.ascii	"uint8\000"
+ 1129      3800
+ 1130              	.LASF4:
+ 1131 0231 6C6F6E67 		.ascii	"long int\000"
+ 1131      20696E74 
+ 1131      00
+ 1132              	.LASF20:
+ 1133 023a 73657456 		.ascii	"setValve2OFF\000"
+ 1133      616C7665 
+ 1133      324F4646 
+ 1133      00
+ 1134              	.LASF0:
+ 1135 0247 7369676E 		.ascii	"signed char\000"
+ 1135      65642063 
+ 1135      68617200 
+ 1136              	.LASF13:
+ 1137 0253 5F426F6F 		.ascii	"_Bool\000"
+ 1137      6C00
+ 1138              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

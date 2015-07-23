@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?fileVersion 4.0.0?><cproject storage_type_id="org.eclipse.cdt.core.XmlProjectDescriptionStorage">
+	<storageModule moduleId="org.eclipse.cdt.core.settings">
+		<cconfiguration id="com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017" moduleId="org.eclipse.cdt.core.settings" name="Debug">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactExtension="" artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;" id="com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017" name="Debug" parent="com.cypress.psoccreatorimport.PSoC5DebugConfiguration" postbuildStep="&quot;../${EXPORT_FOLDER_PATH}/postbuild.bat&quot; &quot;${POSTBUILD_HEXFILE_PATH}/${ConfigName}/${ProjName}&quot;" prebuildStep="&quot;../${EXPORT_FOLDER_PATH}/prebuild.bat&quot;">
+					<folderInfo id="com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017." name="/" resourcePath="">
+						<toolChain id="com.cypress.psoccreatorimport.toolchain.gnu.debug.1371962578" name="Cross GCC (PSoC Creator)" nonInternalBuilderId="cdt.managedbuild.builder.gnu.cross" superClass="com.cypress.psoccreatorimport.toolchain.gnu.debug">
+							<option id="com.cypress.psoccreatorimport.gnu.cross.prefix.debug.647600522" name="Prefix" superClass="com.cypress.psoccreatorimport.gnu.cross.prefix.debug" value="arm-none-eabi-" valueType="string"/>
+							<option id="com.cypress.psoccreatorimport.gnu.cross.path.debug.990665825" name="Path" superClass="com.cypress.psoccreatorimport.gnu.cross.path.debug" value="C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\import\gnu_cs\arm\4.8.4\bin" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1742313188" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<builder autoBuildTarget="all" buildPath="${workspace_loc:/Atom}/Debug" cleanBuildTarget="clean" id="org.eclipse.cdt.build.core.internal.builder.629273578" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.compiler.debug.1653714615" name="Cross GCC Compiler (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.compiler.debug">
+								<option id="com.cypress.psoccreatorimport.gnu.compiler.option.incpaths.debug.ext" name="Include paths (-I)" superClass="com.cypress.psoccreatorimport.gnu.compiler.option.incpaths.debug"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.626258930" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1425459681" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.linker.debug.1237742237" name="Cross GCC Linker (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.linker.debug">
+								<option id="com.cypress.psoccreatorimport.linker.option.userobjs.debug.ext" name="Other objects" superClass="com.cypress.psoccreatorimport.linker.option.userobjs.debug"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.618043044" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.143892186" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1321115026" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.assembler.debug.1732890668" name="Cross GCC Assembler (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.assembler.debug">
+								<option id="com.cypress.psoccreatorimport.gnu.asm.option.incpaths.debug.ext" name="Include paths (-I)" superClass="com.cypress.psoccreatorimport.gnu.asm.option.incpaths.debug"/>
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1256583818" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+		<cconfiguration id="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723">
+			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723" moduleId="org.eclipse.cdt.core.settings" name="Release">
+				<externalSettings/>
+				<extensions>
+					<extension id="org.eclipse.cdt.core.ELF" point="org.eclipse.cdt.core.BinaryParser"/>
+					<extension id="org.eclipse.cdt.core.GASErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GmakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GLDErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.MakeErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.CWDLocator" point="org.eclipse.cdt.core.ErrorParser"/>
+					<extension id="org.eclipse.cdt.core.GCCErrorParser" point="org.eclipse.cdt.core.ErrorParser"/>
+				</extensions>
+			</storageModule>
+			<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+				<configuration artifactName="${ProjName}" buildArtefactType="org.eclipse.cdt.build.core.buildArtefactType.exe" buildProperties="org.eclipse.cdt.build.core.buildArtefactType=org.eclipse.cdt.build.core.buildArtefactType.exe" cleanCommand="rm -rf" description="" errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;" id="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723" name="Release" parent="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration" postbuildStep="&quot;../${EXPORT_FOLDER_PATH}/postbuild.bat&quot; &quot;${POSTBUILD_HEXFILE_PATH}/${ConfigName}/${ProjName}&quot;" prebuildStep="&quot;../${EXPORT_FOLDER_PATH}/prebuild.bat&quot;">
+					<folderInfo id="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723." name="/" resourcePath="">
+						<toolChain id="com.cypress.psoccreatorimport.toolchain.gnu.cross.exe.release.815674150" name="Cross GCC (PSoC Creator)" superClass="com.cypress.psoccreatorimport.toolchain.gnu.cross.exe.release">
+							<option id="com.cypress.psoccreatorimport.gnu.cross.prefix.release.822529241" name="Prefix" superClass="com.cypress.psoccreatorimport.gnu.cross.prefix.release" value="arm-none-eabi-" valueType="string"/>
+							<option id="com.cypress.psoccreatorimport.gnu.cross.path.release.674372454" name="Path" superClass="com.cypress.psoccreatorimport.gnu.cross.path.release" value="C:\Program Files (x86)\Cypress\PSoC Creator\3.1\PSoC Creator\import\gnu_cs\arm\4.8.4\bin" valueType="string"/>
+							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1495844437" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
+							<builder buildPath="${workspace_loc:/Atom}/Release" id="cdt.managedbuild.builder.gnu.cross.1410004896" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.compiler.release.1740567462" name="Cross GCC Compiler (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.compiler.release">
+								<option id="com.cypress.psoccreatorimport.gnu.compiler.option.incpaths.release.ext" name="Include paths (-I)" superClass="com.cypress.psoccreatorimport.gnu.compiler.option.incpaths.release"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1586658355" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.compiler.1303605658" name="Cross G++ Compiler" superClass="cdt.managedbuild.tool.gnu.cross.cpp.compiler"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.linker.release.654127420" name="Cross GCC Linker (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.linker.release">
+								<option id="com.cypress.psoccreatorimport.linker.option.userobjs.release.ext" name="Other objects" superClass="com.cypress.psoccreatorimport.linker.option.userobjs.release"/>
+								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1797847628" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
+									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
+									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
+								</inputType>
+							</tool>
+							<tool id="cdt.managedbuild.tool.gnu.cross.cpp.linker.1324791253" name="Cross G++ Linker" superClass="cdt.managedbuild.tool.gnu.cross.cpp.linker"/>
+							<tool id="cdt.managedbuild.tool.gnu.cross.archiver.1700589043" name="Cross GCC Archiver" superClass="cdt.managedbuild.tool.gnu.cross.archiver"/>
+							<tool id="com.cypress.psoccreatorimport.tool.gnu.assembler.release.180090931" name="Cross GCC Assembler (PSoC Creator)" superClass="com.cypress.psoccreatorimport.tool.gnu.assembler.release">
+								<option id="com.cypress.psoccreatorimport.gnu.asm.option.incpaths.release.ext" name="Include paths (-I)" superClass="com.cypress.psoccreatorimport.gnu.asm.option.incpaths.release"/>
+								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1951002839" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
+							</tool>
+						</toolChain>
+					</folderInfo>
+				</configuration>
+			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.externalSettings"/>
+		</cconfiguration>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="Atom.com.cypress.psoccreatorimport.PSoCProjectType.1777502538" name="PSoC Creator Project" projectType="com.cypress.psoccreatorimport.PSoCProjectType"/>
+	</storageModule>
+	<storageModule moduleId="scannerConfiguration">
+		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017;com.cypress.psoccreatorimport.PSoC5DebugConfiguration.1377826017.;com.cypress.psoccreatorimport.tool.gnu.compiler.debug.1653714615;cdt.managedbuild.tool.gnu.c.compiler.input.626258930">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+			<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+				<buildOutputProvider>
+					<openAction enabled="true" filePath=""/>
+					<parser enabled="true"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/specs.c&quot;" command="arm-none-eabi-gcc" useDefault="true"/>
+					<parser enabled="true"/>
+				</scannerInfoProvider>
+			</profile>
+		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723;com.cypress.psoccreatorimport.PSoC5ReleaseConfiguration.1487771723.;com.cypress.psoccreatorimport.tool.gnu.compiler.release.1740567462;cdt.managedbuild.tool.gnu.c.compiler.input.1586658355">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC"/>
+			<profile id="org.eclipse.cdt.managedbuilder.core.GCCManagedMakePerProjectProfileC">
+				<buildOutputProvider>
+					<openAction enabled="true" filePath=""/>
+					<parser enabled="true"/>
+				</buildOutputProvider>
+				<scannerInfoProvider id="specsFile">
+					<runAction arguments="-E -P -v -dD &quot;${plugin_state_location}/specs.c&quot;" command="arm-none-eabi-gcc" useDefault="true"/>
+					<parser enabled="true"/>
+				</scannerInfoProvider>
+			</profile>
+		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="refreshScope" versionNumber="2">
+		<configuration configurationName="Debug">
+			<resource resourceType="PROJECT" workspacePath="/Atom"/>
+		</configuration>
+		<configuration configurationName="Release">
+			<resource resourceType="PROJECT" workspacePath="/Atom"/>
+		</configuration>
+	</storageModule>
+	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+</cproject>

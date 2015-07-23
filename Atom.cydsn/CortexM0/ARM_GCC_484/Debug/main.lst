@@ -1,0 +1,3244 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	Flag
+  18              		.bss
+  19              		.type	Flag, %object
+  20              		.size	Flag, 1
+  21              	Flag:
+  22 0000 00       		.space	1
+  23              		.comm	time,5,4
+  24              		.global	voltage
+  25              		.data
+  26              		.align	2
+  27              		.type	voltage, %object
+  28              		.size	voltage, 4
+  29              	voltage:
+  30 0000 68100000 		.word	4200
+  31              		.global	str_mode
+  32              		.align	2
+  33              		.type	str_mode, %object
+  34              		.size	str_mode, 60
+  35              	str_mode:
+  36 0004 496E6974 		.ascii	"Init\000"
+  36      00
+  37 0009 00000000 		.space	10
+  37      00000000 
+  37      0000
+  38 0013 44617900 		.ascii	"Day\000"
+  39 0017 00000000 		.space	11
+  39      00000000 
+  39      000000
+  40 0022 4E696768 		.ascii	"Night\000"
+  40      7400
+  41 0028 00000000 		.space	9
+  41      00000000 
+  41      00
+  42 0031 4C6F7750 		.ascii	"LowPower\000"
+  42      6F776572 
+  42      00
+  43 003a 00000000 		.space	6
+  43      0000
+  44              		.comm	modelHandle,28,4
+  45              		.section	.text.communicationHandler,"ax",%progbits
+  46              		.align	2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 2
+
+
+  47              		.code	16
+  48              		.thumb_func
+  49              		.type	communicationHandler, %function
+  50              	communicationHandler:
+  51              	.LFB33:
+  52              		.file 1 ".\\src\\main.c"
+   1:.\src/main.c  **** #include <project.h>
+   2:.\src/main.c  **** #include "main.h"
+   3:.\src/main.c  **** 
+   4:.\src/main.c  ****    
+   5:.\src/main.c  **** #include "sysTimer.h"
+   6:.\src/main.c  **** #include "sleepMgr.h"
+   7:.\src/main.c  **** 
+   8:.\src/main.c  **** 
+   9:.\src/main.c  **** 
+  10:.\src/main.c  **** #include "waterControl.h"
+  11:.\src/main.c  **** #include "valveControl.h"
+  12:.\src/main.c  **** 
+  13:.\src/main.c  **** volatile uint8 Flag = 0;
+  14:.\src/main.c  **** clock time;
+  15:.\src/main.c  **** //int voltage = 0;
+  16:.\src/main.c  **** int voltage = 4200;
+  17:.\src/main.c  **** 
+  18:.\src/main.c  **** char str_mode[4][15]={{"Init"},{"Day"},{"Night"},{"LowPower"}};
+  19:.\src/main.c  **** Fsm modelHandle;
+  20:.\src/main.c  **** 
+  21:.\src/main.c  **** 
+  22:.\src/main.c  **** static void communicationHandler(Fsm* handle) {
+  53              		.loc 1 22 0
+  54              		.cfi_startproc
+  55 0000 80B5     		push	{r7, lr}
+  56              		.cfi_def_cfa_offset 8
+  57              		.cfi_offset 7, -8
+  58              		.cfi_offset 14, -4
+  59 0002 82B0     		sub	sp, sp, #8
+  60              		.cfi_def_cfa_offset 16
+  61 0004 00AF     		add	r7, sp, #0
+  62              		.cfi_def_cfa_register 7
+  63 0006 7860     		str	r0, [r7, #4]
+  23:.\src/main.c  **** 	comm_Handler();
+  64              		.loc 1 23 0
+  65 0008 FFF7FEFF 		bl	comm_Handler
+  24:.\src/main.c  **** }
+  66              		.loc 1 24 0
+  67 000c BD46     		mov	sp, r7
+  68 000e 02B0     		add	sp, sp, #8
+  69              		@ sp needed
+  70 0010 80BD     		pop	{r7, pc}
+  71              		.cfi_endproc
+  72              	.LFE33:
+  73              		.size	communicationHandler, .-communicationHandler
+  74 0012 C046     		.section	.text.setvar_updateRate,"ax",%progbits
+  75              		.align	2
+  76              		.global	setvar_updateRate
+  77              		.code	16
+  78              		.thumb_func
+  79              		.type	setvar_updateRate, %function
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 3
+
+
+  80              	setvar_updateRate:
+  81              	.LFB34:
+  25:.\src/main.c  **** 
+  26:.\src/main.c  **** 
+  27:.\src/main.c  **** void setvar_updateRate(int val) {
+  82              		.loc 1 27 0
+  83              		.cfi_startproc
+  84 0000 80B5     		push	{r7, lr}
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 7, -8
+  87              		.cfi_offset 14, -4
+  88 0002 82B0     		sub	sp, sp, #8
+  89              		.cfi_def_cfa_offset 16
+  90 0004 00AF     		add	r7, sp, #0
+  91              		.cfi_def_cfa_register 7
+  92 0006 7860     		str	r0, [r7, #4]
+  28:.\src/main.c  **** 
+  29:.\src/main.c  **** }
+  93              		.loc 1 29 0
+  94 0008 BD46     		mov	sp, r7
+  95 000a 02B0     		add	sp, sp, #8
+  96              		@ sp needed
+  97 000c 80BD     		pop	{r7, pc}
+  98              		.cfi_endproc
+  99              	.LFE34:
+ 100              		.size	setvar_updateRate, .-setvar_updateRate
+ 101 000e C046     		.section	.text.setvar_test,"ax",%progbits
+ 102              		.align	2
+ 103              		.global	setvar_test
+ 104              		.code	16
+ 105              		.thumb_func
+ 106              		.type	setvar_test, %function
+ 107              	setvar_test:
+ 108              	.LFB35:
+  30:.\src/main.c  **** 
+  31:.\src/main.c  **** 
+  32:.\src/main.c  **** void setvar_test(char * val) {
+ 109              		.loc 1 32 0
+ 110              		.cfi_startproc
+ 111 0000 80B5     		push	{r7, lr}
+ 112              		.cfi_def_cfa_offset 8
+ 113              		.cfi_offset 7, -8
+ 114              		.cfi_offset 14, -4
+ 115 0002 82B0     		sub	sp, sp, #8
+ 116              		.cfi_def_cfa_offset 16
+ 117 0004 00AF     		add	r7, sp, #0
+ 118              		.cfi_def_cfa_register 7
+ 119 0006 7860     		str	r0, [r7, #4]
+  33:.\src/main.c  ****   LED_Write(*val-0x30);
+ 120              		.loc 1 33 0
+ 121 0008 7B68     		ldr	r3, [r7, #4]
+ 122 000a 1B78     		ldrb	r3, [r3]
+ 123 000c 303B     		sub	r3, r3, #48
+ 124 000e DBB2     		uxtb	r3, r3
+ 125 0010 181C     		mov	r0, r3
+ 126 0012 FFF7FEFF 		bl	LED_Write
+  34:.\src/main.c  **** }
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 4
+
+
+ 127              		.loc 1 34 0
+ 128 0016 BD46     		mov	sp, r7
+ 129 0018 02B0     		add	sp, sp, #8
+ 130              		@ sp needed
+ 131 001a 80BD     		pop	{r7, pc}
+ 132              		.cfi_endproc
+ 133              	.LFE35:
+ 134              		.size	setvar_test, .-setvar_test
+ 135              		.section	.rodata
+ 136              		.align	2
+ 137              	.LC0:
+ 138 0000 3000     		.ascii	"0\000"
+ 139 0002 0000     		.align	2
+ 140              	.LC2:
+ 141 0004 3100     		.ascii	"1\000"
+ 142              		.section	.text.getvar_test,"ax",%progbits
+ 143              		.align	2
+ 144              		.global	getvar_test
+ 145              		.code	16
+ 146              		.thumb_func
+ 147              		.type	getvar_test, %function
+ 148              	getvar_test:
+ 149              	.LFB36:
+  35:.\src/main.c  **** char * getvar_test(void) {
+ 150              		.loc 1 35 0
+ 151              		.cfi_startproc
+ 152 0000 80B5     		push	{r7, lr}
+ 153              		.cfi_def_cfa_offset 8
+ 154              		.cfi_offset 7, -8
+ 155              		.cfi_offset 14, -4
+ 156 0002 00AF     		add	r7, sp, #0
+ 157              		.cfi_def_cfa_register 7
+  36:.\src/main.c  ****     return LED_Read() ? "0" : "1";
+ 158              		.loc 1 36 0
+ 159 0004 FFF7FEFF 		bl	LED_Read
+ 160 0008 031C     		mov	r3, r0
+ 161 000a 002B     		cmp	r3, #0
+ 162 000c 01D0     		beq	.L5
+ 163              		.loc 1 36 0 is_stmt 0 discriminator 1
+ 164 000e 034B     		ldr	r3, .L8
+ 165 0010 00E0     		b	.L6
+ 166              	.L5:
+ 167              		.loc 1 36 0 discriminator 2
+ 168 0012 034B     		ldr	r3, .L8+4
+ 169              	.L6:
+  37:.\src/main.c  **** }
+ 170              		.loc 1 37 0 is_stmt 1 discriminator 3
+ 171 0014 181C     		mov	r0, r3
+ 172 0016 BD46     		mov	sp, r7
+ 173              		@ sp needed
+ 174 0018 80BD     		pop	{r7, pc}
+ 175              	.L9:
+ 176 001a C046     		.align	2
+ 177              	.L8:
+ 178 001c 00000000 		.word	.LC0
+ 179 0020 04000000 		.word	.LC2
+ 180              		.cfi_endproc
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 5
+
+
+ 181              	.LFE36:
+ 182              		.size	getvar_test, .-getvar_test
+ 183              		.section	.text.getvar_sleepPeriod,"ax",%progbits
+ 184              		.align	2
+ 185              		.global	getvar_sleepPeriod
+ 186              		.code	16
+ 187              		.thumb_func
+ 188              		.type	getvar_sleepPeriod, %function
+ 189              	getvar_sleepPeriod:
+ 190              	.LFB37:
+  38:.\src/main.c  **** 
+  39:.\src/main.c  **** int getvar_sleepPeriod(void) {
+ 191              		.loc 1 39 0
+ 192              		.cfi_startproc
+ 193 0000 80B5     		push	{r7, lr}
+ 194              		.cfi_def_cfa_offset 8
+ 195              		.cfi_offset 7, -8
+ 196              		.cfi_offset 14, -4
+ 197 0002 00AF     		add	r7, sp, #0
+ 198              		.cfi_def_cfa_register 7
+  40:.\src/main.c  **** 	return CySysWdtReadMatch(CY_SYS_WDT_COUNTER1);
+ 199              		.loc 1 40 0
+ 200 0004 0120     		mov	r0, #1
+ 201 0006 FFF7FEFF 		bl	CySysWdtGetMatch
+ 202 000a 031C     		mov	r3, r0
+  41:.\src/main.c  **** }
+ 203              		.loc 1 41 0
+ 204 000c 181C     		mov	r0, r3
+ 205 000e BD46     		mov	sp, r7
+ 206              		@ sp needed
+ 207 0010 80BD     		pop	{r7, pc}
+ 208              		.cfi_endproc
+ 209              	.LFE37:
+ 210              		.size	getvar_sleepPeriod, .-getvar_sleepPeriod
+ 211 0012 C046     		.section	.text.setvar_sleepPeriod,"ax",%progbits
+ 212              		.align	2
+ 213              		.global	setvar_sleepPeriod
+ 214              		.code	16
+ 215              		.thumb_func
+ 216              		.type	setvar_sleepPeriod, %function
+ 217              	setvar_sleepPeriod:
+ 218              	.LFB38:
+  42:.\src/main.c  **** void setvar_sleepPeriod(int val) {
+ 219              		.loc 1 42 0
+ 220              		.cfi_startproc
+ 221 0000 80B5     		push	{r7, lr}
+ 222              		.cfi_def_cfa_offset 8
+ 223              		.cfi_offset 7, -8
+ 224              		.cfi_offset 14, -4
+ 225 0002 82B0     		sub	sp, sp, #8
+ 226              		.cfi_def_cfa_offset 16
+ 227 0004 00AF     		add	r7, sp, #0
+ 228              		.cfi_def_cfa_register 7
+ 229 0006 7860     		str	r0, [r7, #4]
+  43:.\src/main.c  **** 	CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 230              		.loc 1 43 0
+ 231 0008 0223     		mov	r3, #2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 6
+
+
+ 232 000a FF33     		add	r3, r3, #255
+ 233 000c 181C     		mov	r0, r3
+ 234 000e FFF7FEFF 		bl	CySysWdtDisable
+  44:.\src/main.c  **** 	CySysWdtResetCounters(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 235              		.loc 1 44 0
+ 236 0012 0223     		mov	r3, #2
+ 237 0014 FF33     		add	r3, r3, #255
+ 238 0016 181C     		mov	r0, r3
+ 239 0018 FFF7FEFF 		bl	CySysWdtResetCounters
+  45:.\src/main.c  **** 	CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1, val);
+ 240              		.loc 1 45 0
+ 241 001c 7B68     		ldr	r3, [r7, #4]
+ 242 001e 0120     		mov	r0, #1
+ 243 0020 191C     		mov	r1, r3
+ 244 0022 FFF7FEFF 		bl	CySysWdtSetMatch
+  46:.\src/main.c  **** 	CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 245              		.loc 1 46 0
+ 246 0026 0223     		mov	r3, #2
+ 247 0028 FF33     		add	r3, r3, #255
+ 248 002a 181C     		mov	r0, r3
+ 249 002c FFF7FEFF 		bl	CySysWdtEnable
+  47:.\src/main.c  **** }
+ 250              		.loc 1 47 0
+ 251 0030 BD46     		mov	sp, r7
+ 252 0032 02B0     		add	sp, sp, #8
+ 253              		@ sp needed
+ 254 0034 80BD     		pop	{r7, pc}
+ 255              		.cfi_endproc
+ 256              	.LFE38:
+ 257              		.size	setvar_sleepPeriod, .-setvar_sleepPeriod
+ 258 0036 C046     		.section	.text.getvar_shutdownTime,"ax",%progbits
+ 259              		.align	2
+ 260              		.global	getvar_shutdownTime
+ 261              		.code	16
+ 262              		.thumb_func
+ 263              		.type	getvar_shutdownTime, %function
+ 264              	getvar_shutdownTime:
+ 265              	.LFB39:
+  48:.\src/main.c  **** 
+  49:.\src/main.c  **** int getvar_shutdownTime(void) {
+ 266              		.loc 1 49 0
+ 267              		.cfi_startproc
+ 268 0000 80B5     		push	{r7, lr}
+ 269              		.cfi_def_cfa_offset 8
+ 270              		.cfi_offset 7, -8
+ 271              		.cfi_offset 14, -4
+ 272 0002 00AF     		add	r7, sp, #0
+ 273              		.cfi_def_cfa_register 7
+  50:.\src/main.c  **** 	return 1;
+ 274              		.loc 1 50 0
+ 275 0004 0123     		mov	r3, #1
+  51:.\src/main.c  **** }
+ 276              		.loc 1 51 0
+ 277 0006 181C     		mov	r0, r3
+ 278 0008 BD46     		mov	sp, r7
+ 279              		@ sp needed
+ 280 000a 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 7
+
+
+ 281              		.cfi_endproc
+ 282              	.LFE39:
+ 283              		.size	getvar_shutdownTime, .-getvar_shutdownTime
+ 284              		.section	.text.setvar_shutdownTime,"ax",%progbits
+ 285              		.align	2
+ 286              		.global	setvar_shutdownTime
+ 287              		.code	16
+ 288              		.thumb_func
+ 289              		.type	setvar_shutdownTime, %function
+ 290              	setvar_shutdownTime:
+ 291              	.LFB40:
+  52:.\src/main.c  **** void setvar_shutdownTime(int val) {}
+ 292              		.loc 1 52 0
+ 293              		.cfi_startproc
+ 294 0000 80B5     		push	{r7, lr}
+ 295              		.cfi_def_cfa_offset 8
+ 296              		.cfi_offset 7, -8
+ 297              		.cfi_offset 14, -4
+ 298 0002 82B0     		sub	sp, sp, #8
+ 299              		.cfi_def_cfa_offset 16
+ 300 0004 00AF     		add	r7, sp, #0
+ 301              		.cfi_def_cfa_register 7
+ 302 0006 7860     		str	r0, [r7, #4]
+ 303              		.loc 1 52 0
+ 304 0008 BD46     		mov	sp, r7
+ 305 000a 02B0     		add	sp, sp, #8
+ 306              		@ sp needed
+ 307 000c 80BD     		pop	{r7, pc}
+ 308              		.cfi_endproc
+ 309              	.LFE40:
+ 310              		.size	setvar_shutdownTime, .-setvar_shutdownTime
+ 311 000e C046     		.section	.text.comm_ModeChange,"ax",%progbits
+ 312              		.align	2
+ 313              		.global	comm_ModeChange
+ 314              		.code	16
+ 315              		.thumb_func
+ 316              		.type	comm_ModeChange, %function
+ 317              	comm_ModeChange:
+ 318              	.LFB41:
+  53:.\src/main.c  **** 
+  54:.\src/main.c  **** 
+  55:.\src/main.c  **** 
+  56:.\src/main.c  **** void comm_ModeChange(atom_modes_t mode) {
+ 319              		.loc 1 56 0
+ 320              		.cfi_startproc
+ 321 0000 80B5     		push	{r7, lr}
+ 322              		.cfi_def_cfa_offset 8
+ 323              		.cfi_offset 7, -8
+ 324              		.cfi_offset 14, -4
+ 325 0002 82B0     		sub	sp, sp, #8
+ 326              		.cfi_def_cfa_offset 16
+ 327 0004 00AF     		add	r7, sp, #0
+ 328              		.cfi_def_cfa_register 7
+ 329 0006 021C     		mov	r2, r0
+ 330 0008 FB1D     		add	r3, r7, #7
+ 331 000a 1A70     		strb	r2, [r3]
+  57:.\src/main.c  **** 	switch(mode) {
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 8
+
+
+ 332              		.loc 1 57 0
+ 333 000c FB1D     		add	r3, r7, #7
+ 334 000e 1B78     		ldrb	r3, [r3]
+ 335 0010 012B     		cmp	r3, #1
+ 336 0012 12D0     		beq	.L18
+ 337 0014 02DC     		bgt	.L19
+ 338 0016 002B     		cmp	r3, #0
+ 339 0018 0AD0     		beq	.L20
+  58:.\src/main.c  **** 	case ATOM_MODE_Idle: 	fsmIfacePlatform_raise_idle(&modelHandle); break;
+  59:.\src/main.c  **** 	case ATOM_MODE_Start: 	fsmIfacePlatform_raise_start(&modelHandle); break;
+  60:.\src/main.c  **** 	case ATOM_MODE_Test: 	fsmIfacePlatform_raise_test(&modelHandle); break;
+  61:.\src/main.c  **** 	case ATOM_MODE_Shutdown: /*TODO do something here!*/ break;
+  62:.\src/main.c  **** 	default: break;
+ 340              		.loc 1 62 0
+ 341 001a 14E0     		b	.L16
+ 342              	.L19:
+  57:.\src/main.c  **** 	switch(mode) {
+ 343              		.loc 1 57 0
+ 344 001c 022B     		cmp	r3, #2
+ 345 001e 02D0     		beq	.L21
+ 346 0020 032B     		cmp	r3, #3
+ 347 0022 0FD0     		beq	.L24
+ 348              		.loc 1 62 0
+ 349 0024 0FE0     		b	.L16
+ 350              	.L21:
+  58:.\src/main.c  **** 	case ATOM_MODE_Idle: 	fsmIfacePlatform_raise_idle(&modelHandle); break;
+ 351              		.loc 1 58 0
+ 352 0026 094B     		ldr	r3, .L25
+ 353 0028 181C     		mov	r0, r3
+ 354 002a FFF7FEFF 		bl	fsmIfacePlatform_raise_idle
+ 355 002e 0AE0     		b	.L16
+ 356              	.L20:
+  59:.\src/main.c  **** 	case ATOM_MODE_Start: 	fsmIfacePlatform_raise_start(&modelHandle); break;
+ 357              		.loc 1 59 0
+ 358 0030 064B     		ldr	r3, .L25
+ 359 0032 181C     		mov	r0, r3
+ 360 0034 FFF7FEFF 		bl	fsmIfacePlatform_raise_start
+ 361 0038 05E0     		b	.L16
+ 362              	.L18:
+  60:.\src/main.c  **** 	case ATOM_MODE_Test: 	fsmIfacePlatform_raise_test(&modelHandle); break;
+ 363              		.loc 1 60 0
+ 364 003a 044B     		ldr	r3, .L25
+ 365 003c 181C     		mov	r0, r3
+ 366 003e FFF7FEFF 		bl	fsmIfacePlatform_raise_test
+ 367 0042 00E0     		b	.L16
+ 368              	.L24:
+  61:.\src/main.c  **** 	case ATOM_MODE_Shutdown: /*TODO do something here!*/ break;
+ 369              		.loc 1 61 0
+ 370 0044 C046     		mov	r8, r8
+ 371              	.L16:
+  63:.\src/main.c  **** 	}
+  64:.\src/main.c  **** }
+ 372              		.loc 1 64 0
+ 373 0046 BD46     		mov	sp, r7
+ 374 0048 02B0     		add	sp, sp, #8
+ 375              		@ sp needed
+ 376 004a 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 9
+
+
+ 377              	.L26:
+ 378              		.align	2
+ 379              	.L25:
+ 380 004c 00000000 		.word	modelHandle
+ 381              		.cfi_endproc
+ 382              	.LFE41:
+ 383              		.size	comm_ModeChange, .-comm_ModeChange
+ 384              		.section	.text.getTime,"ax",%progbits
+ 385              		.align	2
+ 386              		.global	getTime
+ 387              		.code	16
+ 388              		.thumb_func
+ 389              		.type	getTime, %function
+ 390              	getTime:
+ 391              	.LFB42:
+  65:.\src/main.c  **** 
+  66:.\src/main.c  **** /*****************************************************************************************
+  67:.\src/main.c  **** * PLATFORM FUNCTIONS
+  68:.\src/main.c  **** *****************************************************************************************/
+  69:.\src/main.c  **** clock getTime(){
+ 392              		.loc 1 69 0
+ 393              		.cfi_startproc
+ 394 0000 80B5     		push	{r7, lr}
+ 395              		.cfi_def_cfa_offset 8
+ 396              		.cfi_offset 7, -8
+ 397              		.cfi_offset 14, -4
+ 398 0002 82B0     		sub	sp, sp, #8
+ 399              		.cfi_def_cfa_offset 16
+ 400 0004 00AF     		add	r7, sp, #0
+ 401              		.cfi_def_cfa_register 7
+ 402 0006 7860     		str	r0, [r7, #4]
+  70:.\src/main.c  ****     return time;
+ 403              		.loc 1 70 0
+ 404 0008 7A68     		ldr	r2, [r7, #4]
+ 405 000a 064B     		ldr	r3, .L29
+ 406 000c 111C     		mov	r1, r2
+ 407 000e 1A1C     		mov	r2, r3
+ 408 0010 0523     		mov	r3, #5
+ 409 0012 081C     		mov	r0, r1
+ 410 0014 111C     		mov	r1, r2
+ 411 0016 1A1C     		mov	r2, r3
+ 412 0018 FFF7FEFF 		bl	memcpy
+  71:.\src/main.c  **** }
+ 413              		.loc 1 71 0
+ 414 001c 7868     		ldr	r0, [r7, #4]
+ 415 001e BD46     		mov	sp, r7
+ 416 0020 02B0     		add	sp, sp, #8
+ 417              		@ sp needed
+ 418 0022 80BD     		pop	{r7, pc}
+ 419              	.L30:
+ 420              		.align	2
+ 421              	.L29:
+ 422 0024 00000000 		.word	time
+ 423              		.cfi_endproc
+ 424              	.LFE42:
+ 425              		.size	getTime, .-getTime
+ 426              		.section	.text.WDT_ISR_Handler,"ax",%progbits
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 10
+
+
+ 427              		.align	2
+ 428              		.global	WDT_ISR_Handler
+ 429              		.code	16
+ 430              		.thumb_func
+ 431              		.type	WDT_ISR_Handler, %function
+ 432              	WDT_ISR_Handler:
+ 433              	.LFB43:
+  72:.\src/main.c  **** 
+  73:.\src/main.c  **** CY_ISR(WDT_ISR_Handler){
+ 434              		.loc 1 73 0
+ 435              		.cfi_startproc
+ 436 0000 80B5     		push	{r7, lr}
+ 437              		.cfi_def_cfa_offset 8
+ 438              		.cfi_offset 7, -8
+ 439              		.cfi_offset 14, -4
+ 440 0002 00AF     		add	r7, sp, #0
+ 441              		.cfi_def_cfa_register 7
+  74:.\src/main.c  **** 	/* Clear the WDT interrupt */
+  75:.\src/main.c  ****     CySysWdtClearInterrupt(CY_SYS_WDT_COUNTER1_INT|CY_SYS_WDT_COUNTER0_INT);
+ 442              		.loc 1 75 0
+ 443 0004 084B     		ldr	r3, .L32
+ 444 0006 181C     		mov	r0, r3
+ 445 0008 FFF7FEFF 		bl	CySysWdtClearInterrupt
+  76:.\src/main.c  **** 
+  77:.\src/main.c  ****     fsmIfacePlatform_raise_timer(&modelHandle);
+ 446              		.loc 1 77 0
+ 447 000c 074B     		ldr	r3, .L32+4
+ 448 000e 181C     		mov	r0, r3
+ 449 0010 FFF7FEFF 		bl	fsmIfacePlatform_raise_timer
+  78:.\src/main.c  ****     Flag = Flag|DEEP_SLEEP_FLAG; //??
+ 450              		.loc 1 78 0
+ 451 0014 064B     		ldr	r3, .L32+8
+ 452 0016 1B78     		ldrb	r3, [r3]
+ 453 0018 DBB2     		uxtb	r3, r3
+ 454 001a 0322     		mov	r2, #3
+ 455 001c 1343     		orr	r3, r2
+ 456 001e DAB2     		uxtb	r2, r3
+ 457 0020 034B     		ldr	r3, .L32+8
+ 458 0022 1A70     		strb	r2, [r3]
+  79:.\src/main.c  **** }
+ 459              		.loc 1 79 0
+ 460 0024 BD46     		mov	sp, r7
+ 461              		@ sp needed
+ 462 0026 80BD     		pop	{r7, pc}
+ 463              	.L33:
+ 464              		.align	2
+ 465              	.L32:
+ 466 0028 04040000 		.word	1028
+ 467 002c 00000000 		.word	modelHandle
+ 468 0030 00000000 		.word	Flag
+ 469              		.cfi_endproc
+ 470              	.LFE43:
+ 471              		.size	WDT_ISR_Handler, .-WDT_ISR_Handler
+ 472              		.section	.text.preset,"ax",%progbits
+ 473              		.align	2
+ 474              		.global	preset
+ 475              		.code	16
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 11
+
+
+ 476              		.thumb_func
+ 477              		.type	preset, %function
+ 478              	preset:
+ 479              	.LFB44:
+  80:.\src/main.c  **** void preset(void){
+ 480              		.loc 1 80 0
+ 481              		.cfi_startproc
+ 482 0000 80B5     		push	{r7, lr}
+ 483              		.cfi_def_cfa_offset 8
+ 484              		.cfi_offset 7, -8
+ 485              		.cfi_offset 14, -4
+ 486 0002 00AF     		add	r7, sp, #0
+ 487              		.cfi_def_cfa_register 7
+  81:.\src/main.c  ****    	time.secs = 00;
+ 488              		.loc 1 81 0
+ 489 0004 0C4B     		ldr	r3, .L35
+ 490 0006 0022     		mov	r2, #0
+ 491 0008 1A70     		strb	r2, [r3]
+  82:.\src/main.c  ****    	time.mins = 43;
+ 492              		.loc 1 82 0
+ 493 000a 0B4B     		ldr	r3, .L35
+ 494 000c 2B22     		mov	r2, #43
+ 495 000e 5A70     		strb	r2, [r3, #1]
+  83:.\src/main.c  ****    	time.hours = 10;
+ 496              		.loc 1 83 0
+ 497 0010 094B     		ldr	r3, .L35
+ 498 0012 0A22     		mov	r2, #10
+ 499 0014 9A70     		strb	r2, [r3, #2]
+  84:.\src/main.c  ****    	time.mode = DAY;
+ 500              		.loc 1 84 0
+ 501 0016 084B     		ldr	r3, .L35
+ 502 0018 0122     		mov	r2, #1
+ 503 001a DA70     		strb	r2, [r3, #3]
+  85:.\src/main.c  ****    	time.omode = time.mode;
+ 504              		.loc 1 85 0
+ 505 001c 064B     		ldr	r3, .L35
+ 506 001e DA78     		ldrb	r2, [r3, #3]
+ 507 0020 054B     		ldr	r3, .L35
+ 508 0022 1A71     		strb	r2, [r3, #4]
+  86:.\src/main.c  ****    	Flag = Flag|POR_FLAG;
+ 509              		.loc 1 86 0
+ 510 0024 054B     		ldr	r3, .L35+4
+ 511 0026 1B78     		ldrb	r3, [r3]
+ 512 0028 DBB2     		uxtb	r3, r3
+ 513 002a 0122     		mov	r2, #1
+ 514 002c 1343     		orr	r3, r2
+ 515 002e DAB2     		uxtb	r2, r3
+ 516 0030 024B     		ldr	r3, .L35+4
+ 517 0032 1A70     		strb	r2, [r3]
+  87:.\src/main.c  **** }
+ 518              		.loc 1 87 0
+ 519 0034 BD46     		mov	sp, r7
+ 520              		@ sp needed
+ 521 0036 80BD     		pop	{r7, pc}
+ 522              	.L36:
+ 523              		.align	2
+ 524              	.L35:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 12
+
+
+ 525 0038 00000000 		.word	time
+ 526 003c 00000000 		.word	Flag
+ 527              		.cfi_endproc
+ 528              	.LFE44:
+ 529              		.size	preset, .-preset
+ 530              		.section	.text.init,"ax",%progbits
+ 531              		.align	2
+ 532              		.global	init
+ 533              		.code	16
+ 534              		.thumb_func
+ 535              		.type	init, %function
+ 536              	init:
+ 537              	.LFB45:
+  88:.\src/main.c  **** void init(void){
+ 538              		.loc 1 88 0
+ 539              		.cfi_startproc
+ 540 0000 80B5     		push	{r7, lr}
+ 541              		.cfi_def_cfa_offset 8
+ 542              		.cfi_offset 7, -8
+ 543              		.cfi_offset 14, -4
+ 544 0002 00AF     		add	r7, sp, #0
+ 545              		.cfi_def_cfa_register 7
+  89:.\src/main.c  **** 	Flag = Flag & WAKE_MASK;
+ 546              		.loc 1 89 0
+ 547 0004 124B     		ldr	r3, .L38
+ 548 0006 1B78     		ldrb	r3, [r3]
+ 549 0008 DBB2     		uxtb	r3, r3
+ 550 000a 0322     		mov	r2, #3
+ 551 000c 9343     		bic	r3, r2
+ 552 000e DAB2     		uxtb	r2, r3
+ 553 0010 0F4B     		ldr	r3, .L38
+ 554 0012 1A70     		strb	r2, [r3]
+  90:.\src/main.c  **** 
+  91:.\src/main.c  **** 
+  92:.\src/main.c  ****     //UART Initialization
+  93:.\src/main.c  ****     UART_Init();
+ 555              		.loc 1 93 0
+ 556 0014 FFF7FEFF 		bl	UART_Init
+  94:.\src/main.c  ****     UART_Enable();
+ 557              		.loc 1 94 0
+ 558 0018 FFF7FEFF 		bl	UART_Enable
+  95:.\src/main.c  ****     UART_Start();
+ 559              		.loc 1 95 0
+ 560 001c FFF7FEFF 		bl	UART_Start
+  96:.\src/main.c  **** 
+  97:.\src/main.c  **** 
+  98:.\src/main.c  ****     //Communication Initialization
+  99:.\src/main.c  ****     comm_Init();
+ 561              		.loc 1 99 0
+ 562 0020 FFF7FEFF 		bl	comm_Init
+ 100:.\src/main.c  **** 
+ 101:.\src/main.c  ****     SysTimer_Init();
+ 563              		.loc 1 101 0
+ 564 0024 FFF7FEFF 		bl	SysTimer_Init
+ 102:.\src/main.c  ****       
+ 103:.\src/main.c  ****     /*Watchdog timer initilization*/
+ 104:.\src/main.c  ****     SetUpWDT(INIT);
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 13
+
+
+ 565              		.loc 1 104 0
+ 566 0028 0020     		mov	r0, #0
+ 567 002a FFF7FEFF 		bl	SetUpWDT
+ 105:.\src/main.c  ****     CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 568              		.loc 1 105 0
+ 569 002e 0223     		mov	r3, #2
+ 570 0030 FF33     		add	r3, r3, #255
+ 571 0032 181C     		mov	r0, r3
+ 572 0034 FFF7FEFF 		bl	CySysWdtDisable
+ 106:.\src/main.c  ****     isr_WDT_StartEx(WDT_ISR_Handler);
+ 573              		.loc 1 106 0
+ 574 0038 064B     		ldr	r3, .L38+4
+ 575 003a 181C     		mov	r0, r3
+ 576 003c FFF7FEFF 		bl	isr_WDT_StartEx
+ 107:.\src/main.c  **** 	CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 577              		.loc 1 107 0
+ 578 0040 0223     		mov	r3, #2
+ 579 0042 FF33     		add	r3, r3, #255
+ 580 0044 181C     		mov	r0, r3
+ 581 0046 FFF7FEFF 		bl	CySysWdtEnable
+ 108:.\src/main.c  ****     CyGlobalIntEnable;
+ 582              		.loc 1 108 0
+ 583              	@ 108 ".\src\main.c" 1
+ 584 004a 62B6     		CPSIE   i
+ 585              	@ 0 "" 2
+ 109:.\src/main.c  **** }
+ 586              		.loc 1 109 0
+ 587              		.code	16
+ 588 004c BD46     		mov	sp, r7
+ 589              		@ sp needed
+ 590 004e 80BD     		pop	{r7, pc}
+ 591              	.L39:
+ 592              		.align	2
+ 593              	.L38:
+ 594 0050 00000000 		.word	Flag
+ 595 0054 00000000 		.word	WDT_ISR_Handler
+ 596              		.cfi_endproc
+ 597              	.LFE45:
+ 598              		.size	init, .-init
+ 599              		.section	.text.ResumePeripherals,"ax",%progbits
+ 600              		.align	2
+ 601              		.code	16
+ 602              		.thumb_func
+ 603              		.type	ResumePeripherals, %function
+ 604              	ResumePeripherals:
+ 605              	.LFB46:
+ 110:.\src/main.c  **** 
+ 111:.\src/main.c  **** static void ResumePeripherals(void){
+ 606              		.loc 1 111 0
+ 607              		.cfi_startproc
+ 608 0000 80B5     		push	{r7, lr}
+ 609              		.cfi_def_cfa_offset 8
+ 610              		.cfi_offset 7, -8
+ 611              		.cfi_offset 14, -4
+ 612 0002 00AF     		add	r7, sp, #0
+ 613              		.cfi_def_cfa_register 7
+ 112:.\src/main.c  ****     UART_Start();
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 14
+
+
+ 614              		.loc 1 112 0
+ 615 0004 FFF7FEFF 		bl	UART_Start
+ 113:.\src/main.c  **** }
+ 616              		.loc 1 113 0
+ 617 0008 BD46     		mov	sp, r7
+ 618              		@ sp needed
+ 619 000a 80BD     		pop	{r7, pc}
+ 620              		.cfi_endproc
+ 621              	.LFE46:
+ 622              		.size	ResumePeripherals, .-ResumePeripherals
+ 623              		.section	.text.StorePeripherals,"ax",%progbits
+ 624              		.align	2
+ 625              		.code	16
+ 626              		.thumb_func
+ 627              		.type	StorePeripherals, %function
+ 628              	StorePeripherals:
+ 629              	.LFB47:
+ 114:.\src/main.c  **** static void StorePeripherals(void){
+ 630              		.loc 1 114 0
+ 631              		.cfi_startproc
+ 632 0000 80B5     		push	{r7, lr}
+ 633              		.cfi_def_cfa_offset 8
+ 634              		.cfi_offset 7, -8
+ 635              		.cfi_offset 14, -4
+ 636 0002 00AF     		add	r7, sp, #0
+ 637              		.cfi_def_cfa_register 7
+ 115:.\src/main.c  ****     UART_Stop();
+ 638              		.loc 1 115 0
+ 639 0004 FFF7FEFF 		bl	UART_Stop
+ 116:.\src/main.c  **** }
+ 640              		.loc 1 116 0
+ 641 0008 BD46     		mov	sp, r7
+ 642              		@ sp needed
+ 643 000a 80BD     		pop	{r7, pc}
+ 644              		.cfi_endproc
+ 645              	.LFE47:
+ 646              		.size	StorePeripherals, .-StorePeripherals
+ 647              		.section	.text.CheckTime,"ax",%progbits
+ 648              		.align	2
+ 649              		.global	CheckTime
+ 650              		.code	16
+ 651              		.thumb_func
+ 652              		.type	CheckTime, %function
+ 653              	CheckTime:
+ 654              	.LFB48:
+ 117:.\src/main.c  **** 
+ 118:.\src/main.c  **** 
+ 119:.\src/main.c  **** void CheckTime(){
+ 655              		.loc 1 119 0
+ 656              		.cfi_startproc
+ 657 0000 80B5     		push	{r7, lr}
+ 658              		.cfi_def_cfa_offset 8
+ 659              		.cfi_offset 7, -8
+ 660              		.cfi_offset 14, -4
+ 661 0002 00AF     		add	r7, sp, #0
+ 662              		.cfi_def_cfa_register 7
+ 120:.\src/main.c  ****     /*Update time*/
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 15
+
+
+ 121:.\src/main.c  ****     if(time.mode == DAY){
+ 663              		.loc 1 121 0
+ 664 0004 244B     		ldr	r3, .L49
+ 665 0006 DB78     		ldrb	r3, [r3, #3]
+ 666 0008 012B     		cmp	r3, #1
+ 667 000a 16D1     		bne	.L43
+ 122:.\src/main.c  **** 		time.secs +=1;
+ 668              		.loc 1 122 0
+ 669 000c 224B     		ldr	r3, .L49
+ 670 000e 1B78     		ldrb	r3, [r3]
+ 671 0010 0133     		add	r3, r3, #1
+ 672 0012 DAB2     		uxtb	r2, r3
+ 673 0014 204B     		ldr	r3, .L49
+ 674 0016 1A70     		strb	r2, [r3]
+ 123:.\src/main.c  ****         if(time.secs >= 60){
+ 675              		.loc 1 123 0
+ 676 0018 1F4B     		ldr	r3, .L49
+ 677 001a 1B78     		ldrb	r3, [r3]
+ 678 001c 3B2B     		cmp	r3, #59
+ 679 001e 12D9     		bls	.L45
+ 124:.\src/main.c  **** 			time.mins++;
+ 680              		.loc 1 124 0
+ 681 0020 1D4B     		ldr	r3, .L49
+ 682 0022 5B78     		ldrb	r3, [r3, #1]
+ 683 0024 0133     		add	r3, r3, #1
+ 684 0026 DAB2     		uxtb	r2, r3
+ 685 0028 1B4B     		ldr	r3, .L49
+ 686 002a 5A70     		strb	r2, [r3, #1]
+ 125:.\src/main.c  **** 			time.secs -= 60;
+ 687              		.loc 1 125 0
+ 688 002c 1A4B     		ldr	r3, .L49
+ 689 002e 1B78     		ldrb	r3, [r3]
+ 690 0030 3C3B     		sub	r3, r3, #60
+ 691 0032 DAB2     		uxtb	r2, r3
+ 692 0034 184B     		ldr	r3, .L49
+ 693 0036 1A70     		strb	r2, [r3]
+ 694 0038 05E0     		b	.L45
+ 695              	.L43:
+ 126:.\src/main.c  **** 		}
+ 127:.\src/main.c  ****     }
+ 128:.\src/main.c  ****     else{
+ 129:.\src/main.c  **** 		time.mins++;
+ 696              		.loc 1 129 0
+ 697 003a 174B     		ldr	r3, .L49
+ 698 003c 5B78     		ldrb	r3, [r3, #1]
+ 699 003e 0133     		add	r3, r3, #1
+ 700 0040 DAB2     		uxtb	r2, r3
+ 701 0042 154B     		ldr	r3, .L49
+ 702 0044 5A70     		strb	r2, [r3, #1]
+ 703              	.L45:
+ 130:.\src/main.c  **** 	}
+ 131:.\src/main.c  ****     if(time.mins >= 60){
+ 704              		.loc 1 131 0
+ 705 0046 144B     		ldr	r3, .L49
+ 706 0048 5B78     		ldrb	r3, [r3, #1]
+ 707 004a 3B2B     		cmp	r3, #59
+ 708 004c 12D9     		bls	.L46
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 16
+
+
+ 132:.\src/main.c  ****         time.hours++;
+ 709              		.loc 1 132 0
+ 710 004e 124B     		ldr	r3, .L49
+ 711 0050 9B78     		ldrb	r3, [r3, #2]
+ 712 0052 0133     		add	r3, r3, #1
+ 713 0054 DAB2     		uxtb	r2, r3
+ 714 0056 104B     		ldr	r3, .L49
+ 715 0058 9A70     		strb	r2, [r3, #2]
+ 133:.\src/main.c  ****         time.mins -= 60;
+ 716              		.loc 1 133 0
+ 717 005a 0F4B     		ldr	r3, .L49
+ 718 005c 5B78     		ldrb	r3, [r3, #1]
+ 719 005e 3C3B     		sub	r3, r3, #60
+ 720 0060 DAB2     		uxtb	r2, r3
+ 721 0062 0D4B     		ldr	r3, .L49
+ 722 0064 5A70     		strb	r2, [r3, #1]
+ 134:.\src/main.c  ****         if(time.hours >= 24){
+ 723              		.loc 1 134 0
+ 724 0066 0C4B     		ldr	r3, .L49
+ 725 0068 9B78     		ldrb	r3, [r3, #2]
+ 726 006a 172B     		cmp	r3, #23
+ 727 006c 02D9     		bls	.L46
+ 135:.\src/main.c  **** 			time.hours = 0; 
+ 728              		.loc 1 135 0
+ 729 006e 0A4B     		ldr	r3, .L49
+ 730 0070 0022     		mov	r2, #0
+ 731 0072 9A70     		strb	r2, [r3, #2]
+ 732              	.L46:
+ 136:.\src/main.c  **** 		}
+ 137:.\src/main.c  ****     }
+ 138:.\src/main.c  ****     if(time.hours > 9 && time.hours < 17){
+ 733              		.loc 1 138 0
+ 734 0074 084B     		ldr	r3, .L49
+ 735 0076 9B78     		ldrb	r3, [r3, #2]
+ 736 0078 092B     		cmp	r3, #9
+ 737 007a 07D9     		bls	.L47
+ 738              		.loc 1 138 0 is_stmt 0 discriminator 1
+ 739 007c 064B     		ldr	r3, .L49
+ 740 007e 9B78     		ldrb	r3, [r3, #2]
+ 741 0080 102B     		cmp	r3, #16
+ 742 0082 03D8     		bhi	.L47
+ 139:.\src/main.c  **** 		time.mode = DAY;
+ 743              		.loc 1 139 0 is_stmt 1
+ 744 0084 044B     		ldr	r3, .L49
+ 745 0086 0122     		mov	r2, #1
+ 746 0088 DA70     		strb	r2, [r3, #3]
+ 747 008a 02E0     		b	.L42
+ 748              	.L47:
+ 140:.\src/main.c  **** 	}
+ 141:.\src/main.c  ****     else{
+ 142:.\src/main.c  **** 		time.mode = NIGHT;
+ 749              		.loc 1 142 0
+ 750 008c 024B     		ldr	r3, .L49
+ 751 008e 0222     		mov	r2, #2
+ 752 0090 DA70     		strb	r2, [r3, #3]
+ 753              	.L42:
+ 143:.\src/main.c  **** 	}
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 17
+
+
+ 144:.\src/main.c  **** }
+ 754              		.loc 1 144 0
+ 755 0092 BD46     		mov	sp, r7
+ 756              		@ sp needed
+ 757 0094 80BD     		pop	{r7, pc}
+ 758              	.L50:
+ 759 0096 C046     		.align	2
+ 760              	.L49:
+ 761 0098 00000000 		.word	time
+ 762              		.cfi_endproc
+ 763              	.LFE48:
+ 764              		.size	CheckTime, .-CheckTime
+ 765              		.section	.text.check_duty_cycle,"ax",%progbits
+ 766              		.align	2
+ 767              		.global	check_duty_cycle
+ 768              		.code	16
+ 769              		.thumb_func
+ 770              		.type	check_duty_cycle, %function
+ 771              	check_duty_cycle:
+ 772              	.LFB49:
+ 145:.\src/main.c  **** void check_duty_cycle(void){
+ 773              		.loc 1 145 0
+ 774              		.cfi_startproc
+ 775 0000 80B5     		push	{r7, lr}
+ 776              		.cfi_def_cfa_offset 8
+ 777              		.cfi_offset 7, -8
+ 778              		.cfi_offset 14, -4
+ 779 0002 00AF     		add	r7, sp, #0
+ 780              		.cfi_def_cfa_register 7
+ 146:.\src/main.c  ****         CheckTime();
+ 781              		.loc 1 146 0
+ 782 0004 FFF7FEFF 		bl	CheckTime
+ 147:.\src/main.c  **** }
+ 783              		.loc 1 147 0
+ 784 0008 BD46     		mov	sp, r7
+ 785              		@ sp needed
+ 786 000a 80BD     		pop	{r7, pc}
+ 787              		.cfi_endproc
+ 788              	.LFE49:
+ 789              		.size	check_duty_cycle, .-check_duty_cycle
+ 790              		.section	.text.SetUpWDT,"ax",%progbits
+ 791              		.align	2
+ 792              		.global	SetUpWDT
+ 793              		.code	16
+ 794              		.thumb_func
+ 795              		.type	SetUpWDT, %function
+ 796              	SetUpWDT:
+ 797              	.LFB50:
+ 148:.\src/main.c  **** void SetUpWDT(uint8 md){
+ 798              		.loc 1 148 0
+ 799              		.cfi_startproc
+ 800 0000 80B5     		push	{r7, lr}
+ 801              		.cfi_def_cfa_offset 8
+ 802              		.cfi_offset 7, -8
+ 803              		.cfi_offset 14, -4
+ 804 0002 82B0     		sub	sp, sp, #8
+ 805              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 18
+
+
+ 806 0004 00AF     		add	r7, sp, #0
+ 807              		.cfi_def_cfa_register 7
+ 808 0006 021C     		mov	r2, r0
+ 809 0008 FB1D     		add	r3, r7, #7
+ 810 000a 1A70     		strb	r2, [r3]
+ 149:.\src/main.c  ****     CySysWdtDisable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 811              		.loc 1 149 0
+ 812 000c 0223     		mov	r3, #2
+ 813 000e FF33     		add	r3, r3, #255
+ 814 0010 181C     		mov	r0, r3
+ 815 0012 FFF7FEFF 		bl	CySysWdtDisable
+ 150:.\src/main.c  ****     switch(md){
+ 816              		.loc 1 150 0
+ 817 0016 FB1D     		add	r3, r7, #7
+ 818 0018 1B78     		ldrb	r3, [r3]
+ 819 001a 012B     		cmp	r3, #1
+ 820 001c 25D0     		beq	.L54
+ 821 001e 02DC     		bgt	.L55
+ 822 0020 002B     		cmp	r3, #0
+ 823 0022 05D0     		beq	.L56
+ 151:.\src/main.c  ****     case INIT:
+ 152:.\src/main.c  ****         /* Configure for Free Running mode for WDT 0 */
+ 153:.\src/main.c  ****         CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_NONE);
+ 154:.\src/main.c  ****         /* Configure for Interrupt mode for WDT 1 */
+ 155:.\src/main.c  ****         CySysWdtWriteMode(CY_SYS_WDT_COUNTER1, CY_SYS_WDT_MODE_INT);
+ 156:.\src/main.c  ****         /* Configure for Cascade WDT 0 & 1 */
+ 157:.\src/main.c  ****         CySysWdtWriteCascade(CY_SYS_WDT_CASCADE_01);
+ 158:.\src/main.c  ****         /* Let the timers clear when it reaches period */
+ 159:.\src/main.c  ****         CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER0, 1u);
+ 160:.\src/main.c  ****         CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER1, 1u);
+ 161:.\src/main.c  ****         /* Set the period for the WDT0 to 1 second */
+ 162:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0,WDT_MATCH_VALUE0);
+ 163:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1, 10);
+ 164:.\src/main.c  ****         break;
+ 165:.\src/main.c  ****     /*Set sleep time for modes, add case for new modes*/    
+ 166:.\src/main.c  ****     case DAY:
+ 167:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_DAY);
+ 168:.\src/main.c  ****         break;
+ 169:.\src/main.c  ****     case NIGHT:
+ 170:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_NIGHT);
+ 171:.\src/main.c  ****         break;
+ 172:.\src/main.c  ****     case LOWPWR:
+ 173:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_NIGHT);
+ 174:.\src/main.c  ****         break;
+ 175:.\src/main.c  ****     default:
+ 176:.\src/main.c  ****         break;
+ 824              		.loc 1 176 0
+ 825 0024 30E0     		b	.L59
+ 826              	.L55:
+ 150:.\src/main.c  ****     switch(md){
+ 827              		.loc 1 150 0
+ 828 0026 022B     		cmp	r3, #2
+ 829 0028 24D0     		beq	.L57
+ 830 002a 032B     		cmp	r3, #3
+ 831 002c 27D0     		beq	.L58
+ 832              		.loc 1 176 0
+ 833 002e 2BE0     		b	.L59
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 19
+
+
+ 834              	.L56:
+ 153:.\src/main.c  ****         CySysWdtWriteMode(CY_SYS_WDT_COUNTER0, CY_SYS_WDT_MODE_NONE);
+ 835              		.loc 1 153 0
+ 836 0030 0020     		mov	r0, #0
+ 837 0032 0021     		mov	r1, #0
+ 838 0034 FFF7FEFF 		bl	CySysWdtSetMode
+ 155:.\src/main.c  ****         CySysWdtWriteMode(CY_SYS_WDT_COUNTER1, CY_SYS_WDT_MODE_INT);
+ 839              		.loc 1 155 0
+ 840 0038 0120     		mov	r0, #1
+ 841 003a 0121     		mov	r1, #1
+ 842 003c FFF7FEFF 		bl	CySysWdtSetMode
+ 157:.\src/main.c  ****         CySysWdtWriteCascade(CY_SYS_WDT_CASCADE_01);
+ 843              		.loc 1 157 0
+ 844 0040 0820     		mov	r0, #8
+ 845 0042 FFF7FEFF 		bl	CySysWdtSetCascade
+ 159:.\src/main.c  ****         CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER0, 1u);
+ 846              		.loc 1 159 0
+ 847 0046 0020     		mov	r0, #0
+ 848 0048 0121     		mov	r1, #1
+ 849 004a FFF7FEFF 		bl	CySysWdtSetClearOnMatch
+ 160:.\src/main.c  ****         CySysWdtWriteClearOnMatch(CY_SYS_WDT_COUNTER1, 1u);
+ 850              		.loc 1 160 0
+ 851 004e 0120     		mov	r0, #1
+ 852 0050 0121     		mov	r1, #1
+ 853 0052 FFF7FEFF 		bl	CySysWdtSetClearOnMatch
+ 162:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER0,WDT_MATCH_VALUE0);
+ 854              		.loc 1 162 0
+ 855 0056 104B     		ldr	r3, .L60
+ 856 0058 0020     		mov	r0, #0
+ 857 005a 191C     		mov	r1, r3
+ 858 005c FFF7FEFF 		bl	CySysWdtSetMatch
+ 163:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1, 10);
+ 859              		.loc 1 163 0
+ 860 0060 0120     		mov	r0, #1
+ 861 0062 0A21     		mov	r1, #10
+ 862 0064 FFF7FEFF 		bl	CySysWdtSetMatch
+ 164:.\src/main.c  ****         break;
+ 863              		.loc 1 164 0
+ 864 0068 0EE0     		b	.L59
+ 865              	.L54:
+ 167:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_DAY);
+ 866              		.loc 1 167 0
+ 867 006a 0120     		mov	r0, #1
+ 868 006c 0121     		mov	r1, #1
+ 869 006e FFF7FEFF 		bl	CySysWdtSetMatch
+ 168:.\src/main.c  ****         break;
+ 870              		.loc 1 168 0
+ 871 0072 09E0     		b	.L59
+ 872              	.L57:
+ 170:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_NIGHT);
+ 873              		.loc 1 170 0
+ 874 0074 0120     		mov	r0, #1
+ 875 0076 3C21     		mov	r1, #60
+ 876 0078 FFF7FEFF 		bl	CySysWdtSetMatch
+ 171:.\src/main.c  ****         break;
+ 877              		.loc 1 171 0
+ 878 007c 04E0     		b	.L59
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 20
+
+
+ 879              	.L58:
+ 173:.\src/main.c  ****         CySysWdtWriteMatch(CY_SYS_WDT_COUNTER1,WDT_MATCH_VALUE1_NIGHT);
+ 880              		.loc 1 173 0
+ 881 007e 0120     		mov	r0, #1
+ 882 0080 3C21     		mov	r1, #60
+ 883 0082 FFF7FEFF 		bl	CySysWdtSetMatch
+ 174:.\src/main.c  ****         break;
+ 884              		.loc 1 174 0
+ 885 0086 C046     		mov	r8, r8
+ 886              	.L59:
+ 177:.\src/main.c  ****     }
+ 178:.\src/main.c  ****     CySysWdtEnable(CY_SYS_WDT_COUNTER0_MASK|CY_SYS_WDT_COUNTER1_MASK);
+ 887              		.loc 1 178 0
+ 888 0088 0223     		mov	r3, #2
+ 889 008a FF33     		add	r3, r3, #255
+ 890 008c 181C     		mov	r0, r3
+ 891 008e FFF7FEFF 		bl	CySysWdtEnable
+ 179:.\src/main.c  **** }
+ 892              		.loc 1 179 0
+ 893 0092 BD46     		mov	sp, r7
+ 894 0094 02B0     		add	sp, sp, #8
+ 895              		@ sp needed
+ 896 0096 80BD     		pop	{r7, pc}
+ 897              	.L61:
+ 898              		.align	2
+ 899              	.L60:
+ 900 0098 FF7C0000 		.word	31999
+ 901              		.cfi_endproc
+ 902              	.LFE50:
+ 903              		.size	SetUpWDT, .-SetUpWDT
+ 904              		.section	.text.fsmIfacePlatform_sleep,"ax",%progbits
+ 905              		.align	2
+ 906              		.global	fsmIfacePlatform_sleep
+ 907              		.code	16
+ 908              		.thumb_func
+ 909              		.type	fsmIfacePlatform_sleep, %function
+ 910              	fsmIfacePlatform_sleep:
+ 911              	.LFB51:
+ 180:.\src/main.c  **** 
+ 181:.\src/main.c  **** /*****************************************************************************************
+ 182:.\src/main.c  **** * FSM OPERATION FUNCTIONS
+ 183:.\src/main.c  **** *****************************************************************************************/
+ 184:.\src/main.c  **** void fsmIfacePlatform_sleep(void){
+ 912              		.loc 1 184 0
+ 913              		.cfi_startproc
+ 914 0000 80B5     		push	{r7, lr}
+ 915              		.cfi_def_cfa_offset 8
+ 916              		.cfi_offset 7, -8
+ 917              		.cfi_offset 14, -4
+ 918 0002 00AF     		add	r7, sp, #0
+ 919              		.cfi_def_cfa_register 7
+ 185:.\src/main.c  **** 	/* 
+ 186:.\src/main.c  **** 	* This state should decide weather we go on HW sleep or HW DeepSleep and resume accordingly
+ 187:.\src/main.c  **** 	*/
+ 188:.\src/main.c  **** 	check_duty_cycle();
+ 920              		.loc 1 188 0
+ 921 0004 FFF7FEFF 		bl	check_duty_cycle
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 21
+
+
+ 189:.\src/main.c  **** 	if (time.omode != time.mode){
+ 922              		.loc 1 189 0
+ 923 0008 0A4B     		ldr	r3, .L64
+ 924 000a 1A79     		ldrb	r2, [r3, #4]
+ 925 000c 094B     		ldr	r3, .L64
+ 926 000e DB78     		ldrb	r3, [r3, #3]
+ 927 0010 9A42     		cmp	r2, r3
+ 928 0012 04D0     		beq	.L63
+ 190:.\src/main.c  **** 		SetUpWDT(time.mode);
+ 929              		.loc 1 190 0
+ 930 0014 074B     		ldr	r3, .L64
+ 931 0016 DB78     		ldrb	r3, [r3, #3]
+ 932 0018 181C     		mov	r0, r3
+ 933 001a FFF7FEFF 		bl	SetUpWDT
+ 934              	.L63:
+ 191:.\src/main.c  **** 	}
+ 192:.\src/main.c  ****     time.omode = time.mode; 
+ 935              		.loc 1 192 0
+ 936 001e 054B     		ldr	r3, .L64
+ 937 0020 DA78     		ldrb	r2, [r3, #3]
+ 938 0022 044B     		ldr	r3, .L64
+ 939 0024 1A71     		strb	r2, [r3, #4]
+ 193:.\src/main.c  ****     StorePeripherals();
+ 940              		.loc 1 193 0
+ 941 0026 FFF7FEFF 		bl	StorePeripherals
+ 194:.\src/main.c  **** 
+ 195:.\src/main.c  ****     sleepMgr_requestDeepSleep();
+ 942              		.loc 1 195 0
+ 943 002a FFF7FEFF 		bl	sleepMgr_requestDeepSleep
+ 196:.\src/main.c  **** }
+ 944              		.loc 1 196 0
+ 945 002e BD46     		mov	sp, r7
+ 946              		@ sp needed
+ 947 0030 80BD     		pop	{r7, pc}
+ 948              	.L65:
+ 949 0032 C046     		.align	2
+ 950              	.L64:
+ 951 0034 00000000 		.word	time
+ 952              		.cfi_endproc
+ 953              	.LFE51:
+ 954              		.size	fsmIfacePlatform_sleep, .-fsmIfacePlatform_sleep
+ 955              		.section	.text.fsmIfacePlatform_resume,"ax",%progbits
+ 956              		.align	2
+ 957              		.global	fsmIfacePlatform_resume
+ 958              		.code	16
+ 959              		.thumb_func
+ 960              		.type	fsmIfacePlatform_resume, %function
+ 961              	fsmIfacePlatform_resume:
+ 962              	.LFB52:
+ 197:.\src/main.c  **** void fsmIfacePlatform_resume(void){
+ 963              		.loc 1 197 0
+ 964              		.cfi_startproc
+ 965 0000 80B5     		push	{r7, lr}
+ 966              		.cfi_def_cfa_offset 8
+ 967              		.cfi_offset 7, -8
+ 968              		.cfi_offset 14, -4
+ 969 0002 00AF     		add	r7, sp, #0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 22
+
+
+ 970              		.cfi_def_cfa_register 7
+ 198:.\src/main.c  **** 	sleepMgr_releaseDeepSleep();
+ 971              		.loc 1 198 0
+ 972 0004 FFF7FEFF 		bl	sleepMgr_releaseDeepSleep
+ 199:.\src/main.c  **** 	/* this function will resume any peripherals */
+ 200:.\src/main.c  ****     Flag = Flag & WAKE_MASK;
+ 973              		.loc 1 200 0
+ 974 0008 054B     		ldr	r3, .L67
+ 975 000a 1B78     		ldrb	r3, [r3]
+ 976 000c DBB2     		uxtb	r3, r3
+ 977 000e 0322     		mov	r2, #3
+ 978 0010 9343     		bic	r3, r2
+ 979 0012 DAB2     		uxtb	r2, r3
+ 980 0014 024B     		ldr	r3, .L67
+ 981 0016 1A70     		strb	r2, [r3]
+ 201:.\src/main.c  ****     ResumePeripherals();
+ 982              		.loc 1 201 0
+ 983 0018 FFF7FEFF 		bl	ResumePeripherals
+ 202:.\src/main.c  **** 
+ 203:.\src/main.c  **** }
+ 984              		.loc 1 203 0
+ 985 001c BD46     		mov	sp, r7
+ 986              		@ sp needed
+ 987 001e 80BD     		pop	{r7, pc}
+ 988              	.L68:
+ 989              		.align	2
+ 990              	.L67:
+ 991 0020 00000000 		.word	Flag
+ 992              		.cfi_endproc
+ 993              	.LFE52:
+ 994              		.size	fsmIfacePlatform_resume, .-fsmIfacePlatform_resume
+ 995              		.section	.rodata
+ 996 0006 0000     		.align	2
+ 997              	.LC15:
+ 998 0008 496E666F 		.ascii	"Info\000"
+ 998      00
+ 999 000d 000000   		.section	.text.fsmIfacePlatform_send_msg,"ax",%progbits
+ 1000              		.align	2
+ 1001              		.global	fsmIfacePlatform_send_msg
+ 1002              		.code	16
+ 1003              		.thumb_func
+ 1004              		.type	fsmIfacePlatform_send_msg, %function
+ 1005              	fsmIfacePlatform_send_msg:
+ 1006              	.LFB53:
+ 204:.\src/main.c  **** 
+ 205:.\src/main.c  **** void fsmIfacePlatform_send_msg() {
+ 1007              		.loc 1 205 0
+ 1008              		.cfi_startproc
+ 1009 0000 80B5     		push	{r7, lr}
+ 1010              		.cfi_def_cfa_offset 8
+ 1011              		.cfi_offset 7, -8
+ 1012              		.cfi_offset 14, -4
+ 1013 0002 00AF     		add	r7, sp, #0
+ 1014              		.cfi_def_cfa_register 7
+ 206:.\src/main.c  **** 	comm_ScheduleMessage("Info", 4, 'X', '0');
+ 1015              		.loc 1 206 0
+ 1016 0004 044B     		ldr	r3, .L70
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 23
+
+
+ 1017 0006 181C     		mov	r0, r3
+ 1018 0008 0421     		mov	r1, #4
+ 1019 000a 5822     		mov	r2, #88
+ 1020 000c 3023     		mov	r3, #48
+ 1021 000e FFF7FEFF 		bl	comm_ScheduleMessage
+ 207:.\src/main.c  **** }
+ 1022              		.loc 1 207 0
+ 1023 0012 BD46     		mov	sp, r7
+ 1024              		@ sp needed
+ 1025 0014 80BD     		pop	{r7, pc}
+ 1026              	.L71:
+ 1027 0016 C046     		.align	2
+ 1028              	.L70:
+ 1029 0018 08000000 		.word	.LC15
+ 1030              		.cfi_endproc
+ 1031              	.LFE53:
+ 1032              		.size	fsmIfacePlatform_send_msg, .-fsmIfacePlatform_send_msg
+ 1033              		.section	.text.main,"ax",%progbits
+ 1034              		.align	2
+ 1035              		.global	main
+ 1036              		.code	16
+ 1037              		.thumb_func
+ 1038              		.type	main, %function
+ 1039              	main:
+ 1040              	.LFB54:
+ 208:.\src/main.c  **** 
+ 209:.\src/main.c  **** /*****************************************************************************************
+ 210:.\src/main.c  **** * MAIN
+ 211:.\src/main.c  **** *****************************************************************************************/
+ 212:.\src/main.c  **** int main(){
+ 1041              		.loc 1 212 0
+ 1042              		.cfi_startproc
+ 1043 0000 80B5     		push	{r7, lr}
+ 1044              		.cfi_def_cfa_offset 8
+ 1045              		.cfi_offset 7, -8
+ 1046              		.cfi_offset 14, -4
+ 1047 0002 00AF     		add	r7, sp, #0
+ 1048              		.cfi_def_cfa_register 7
+ 213:.\src/main.c  **** 	preset();
+ 1049              		.loc 1 213 0
+ 1050 0004 FFF7FEFF 		bl	preset
+ 214:.\src/main.c  **** 	init();
+ 1051              		.loc 1 214 0
+ 1052 0008 FFF7FEFF 		bl	init
+ 215:.\src/main.c  **** 
+ 216:.\src/main.c  ****     fsm_init(&modelHandle);
+ 1053              		.loc 1 216 0
+ 1054 000c 0B4B     		ldr	r3, .L74
+ 1055 000e 181C     		mov	r0, r3
+ 1056 0010 FFF7FEFF 		bl	fsm_init
+ 217:.\src/main.c  ****     fsm_enter(&modelHandle);
+ 1057              		.loc 1 217 0
+ 1058 0014 094B     		ldr	r3, .L74
+ 1059 0016 181C     		mov	r0, r3
+ 1060 0018 FFF7FEFF 		bl	fsm_enter
+ 1061              	.L73:
+ 218:.\src/main.c  **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 24
+
+
+ 219:.\src/main.c  ****     for(;;){
+ 220:.\src/main.c  ****         SysTimer_FsmHandler(&modelHandle);
+ 1062              		.loc 1 220 0 discriminator 1
+ 1063 001c 074B     		ldr	r3, .L74
+ 1064 001e 181C     		mov	r0, r3
+ 1065 0020 FFF7FEFF 		bl	SysTimer_FsmHandler
+ 221:.\src/main.c  ****     	communicationHandler(&modelHandle);
+ 1066              		.loc 1 221 0 discriminator 1
+ 1067 0024 054B     		ldr	r3, .L74
+ 1068 0026 181C     		mov	r0, r3
+ 1069 0028 FFF7FEFF 		bl	communicationHandler
+ 222:.\src/main.c  ****         fsm_runCycle(&modelHandle);
+ 1070              		.loc 1 222 0 discriminator 1
+ 1071 002c 034B     		ldr	r3, .L74
+ 1072 002e 181C     		mov	r0, r3
+ 1073 0030 FFF7FEFF 		bl	fsm_runCycle
+ 223:.\src/main.c  ****         sleepMgr_sleep();
+ 1074              		.loc 1 223 0 discriminator 1
+ 1075 0034 FFF7FEFF 		bl	sleepMgr_sleep
+ 224:.\src/main.c  ****     }
+ 1076              		.loc 1 224 0 discriminator 1
+ 1077 0038 F0E7     		b	.L73
+ 1078              	.L75:
+ 1079 003a C046     		.align	2
+ 1080              	.L74:
+ 1081 003c 00000000 		.word	modelHandle
+ 1082              		.cfi_endproc
+ 1083              	.LFE54:
+ 1084              		.size	main, .-main
+ 1085              		.text
+ 1086              	.Letext0:
+ 1087              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1088              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\3.2\\psoc creator\\import\\gnu\\arm\\4.8.
+ 1089              		.file 4 "Generated_Source\\PSoC4/cytypes.h"
+ 1090              		.file 5 "Generated_Source\\PSoC4/comm.h"
+ 1091              		.file 6 "./src-fsm/sc_types.h"
+ 1092              		.file 7 "./src-fsm/Fsm.h"
+ 1093              		.file 8 ".\\src\\main.h"
+ 1094              		.section	.debug_info,"",%progbits
+ 1095              	.Ldebug_info0:
+ 1096 0000 5B050000 		.4byte	0x55b
+ 1097 0004 0400     		.2byte	0x4
+ 1098 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1099 000a 04       		.byte	0x4
+ 1100 000b 01       		.uleb128 0x1
+ 1101 000c B9050000 		.4byte	.LASF91
+ 1102 0010 01       		.byte	0x1
+ 1103 0011 80000000 		.4byte	.LASF92
+ 1104 0015 12030000 		.4byte	.LASF93
+ 1105 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 1106 001d 00000000 		.4byte	0
+ 1107 0021 00000000 		.4byte	.Ldebug_line0
+ 1108 0025 02       		.uleb128 0x2
+ 1109 0026 01       		.byte	0x1
+ 1110 0027 06       		.byte	0x6
+ 1111 0028 58010000 		.4byte	.LASF0
+ 1112 002c 02       		.uleb128 0x2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 25
+
+
+ 1113 002d 01       		.byte	0x1
+ 1114 002e 08       		.byte	0x8
+ 1115 002f 2B020000 		.4byte	.LASF1
+ 1116 0033 02       		.uleb128 0x2
+ 1117 0034 02       		.byte	0x2
+ 1118 0035 05       		.byte	0x5
+ 1119 0036 62000000 		.4byte	.LASF2
+ 1120 003a 02       		.uleb128 0x2
+ 1121 003b 02       		.byte	0x2
+ 1122 003c 07       		.byte	0x7
+ 1123 003d D2020000 		.4byte	.LASF3
+ 1124 0041 03       		.uleb128 0x3
+ 1125 0042 9D040000 		.4byte	.LASF9
+ 1126 0046 02       		.byte	0x2
+ 1127 0047 37       		.byte	0x37
+ 1128 0048 4C000000 		.4byte	0x4c
+ 1129 004c 02       		.uleb128 0x2
+ 1130 004d 04       		.byte	0x4
+ 1131 004e 05       		.byte	0x5
+ 1132 004f C7010000 		.4byte	.LASF4
+ 1133 0053 02       		.uleb128 0x2
+ 1134 0054 04       		.byte	0x4
+ 1135 0055 07       		.byte	0x7
+ 1136 0056 1E040000 		.4byte	.LASF5
+ 1137 005a 02       		.uleb128 0x2
+ 1138 005b 08       		.byte	0x8
+ 1139 005c 05       		.byte	0x5
+ 1140 005d 8D000000 		.4byte	.LASF6
+ 1141 0061 02       		.uleb128 0x2
+ 1142 0062 08       		.byte	0x8
+ 1143 0063 07       		.byte	0x7
+ 1144 0064 70020000 		.4byte	.LASF7
+ 1145 0068 04       		.uleb128 0x4
+ 1146 0069 04       		.byte	0x4
+ 1147 006a 05       		.byte	0x5
+ 1148 006b 696E7400 		.ascii	"int\000"
+ 1149 006f 02       		.uleb128 0x2
+ 1150 0070 04       		.byte	0x4
+ 1151 0071 07       		.byte	0x7
+ 1152 0072 A6020000 		.4byte	.LASF8
+ 1153 0076 03       		.uleb128 0x3
+ 1154 0077 4E030000 		.4byte	.LASF10
+ 1155 007b 03       		.byte	0x3
+ 1156 007c 41       		.byte	0x41
+ 1157 007d 41000000 		.4byte	0x41
+ 1158 0081 03       		.uleb128 0x3
+ 1159 0082 56030000 		.4byte	.LASF11
+ 1160 0086 03       		.byte	0x3
+ 1161 0087 6A       		.byte	0x6a
+ 1162 0088 6F000000 		.4byte	0x6f
+ 1163 008c 03       		.uleb128 0x3
+ 1164 008d E6040000 		.4byte	.LASF12
+ 1165 0091 04       		.byte	0x4
+ 1166 0092 B3       		.byte	0xb3
+ 1167 0093 2C000000 		.4byte	0x2c
+ 1168 0097 03       		.uleb128 0x3
+ 1169 0098 17040000 		.4byte	.LASF13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 26
+
+
+ 1170 009c 04       		.byte	0x4
+ 1171 009d B5       		.byte	0xb5
+ 1172 009e 53000000 		.4byte	0x53
+ 1173 00a2 02       		.uleb128 0x2
+ 1174 00a3 04       		.byte	0x4
+ 1175 00a4 04       		.byte	0x4
+ 1176 00a5 75010000 		.4byte	.LASF14
+ 1177 00a9 02       		.uleb128 0x2
+ 1178 00aa 08       		.byte	0x8
+ 1179 00ab 04       		.byte	0x4
+ 1180 00ac 36040000 		.4byte	.LASF15
+ 1181 00b0 02       		.uleb128 0x2
+ 1182 00b1 01       		.byte	0x1
+ 1183 00b2 08       		.byte	0x8
+ 1184 00b3 08030000 		.4byte	.LASF16
+ 1185 00b7 05       		.uleb128 0x5
+ 1186 00b8 8C000000 		.4byte	0x8c
+ 1187 00bc 02       		.uleb128 0x2
+ 1188 00bd 04       		.byte	0x4
+ 1189 00be 07       		.byte	0x7
+ 1190 00bf 6C000000 		.4byte	.LASF17
+ 1191 00c3 06       		.uleb128 0x6
+ 1192 00c4 04       		.byte	0x4
+ 1193 00c5 B0000000 		.4byte	0xb0
+ 1194 00c9 07       		.uleb128 0x7
+ 1195 00ca 01       		.byte	0x1
+ 1196 00cb 05       		.byte	0x5
+ 1197 00cc 6B       		.byte	0x6b
+ 1198 00cd F6000000 		.4byte	0xf6
+ 1199 00d1 08       		.uleb128 0x8
+ 1200 00d2 E8010000 		.4byte	.LASF18
+ 1201 00d6 00       		.sleb128 0
+ 1202 00d7 08       		.uleb128 0x8
+ 1203 00d8 9A010000 		.4byte	.LASF19
+ 1204 00dc 01       		.sleb128 1
+ 1205 00dd 08       		.uleb128 0x8
+ 1206 00de 15010000 		.4byte	.LASF20
+ 1207 00e2 02       		.sleb128 2
+ 1208 00e3 08       		.uleb128 0x8
+ 1209 00e4 5D020000 		.4byte	.LASF21
+ 1210 00e8 03       		.sleb128 3
+ 1211 00e9 08       		.uleb128 0x8
+ 1212 00ea 50000000 		.4byte	.LASF22
+ 1213 00ee 04       		.sleb128 4
+ 1214 00ef 08       		.uleb128 0x8
+ 1215 00f0 46010000 		.4byte	.LASF23
+ 1216 00f4 05       		.sleb128 5
+ 1217 00f5 00       		.byte	0
+ 1218 00f6 03       		.uleb128 0x3
+ 1219 00f7 F6000000 		.4byte	.LASF24
+ 1220 00fb 05       		.byte	0x5
+ 1221 00fc 71       		.byte	0x71
+ 1222 00fd C9000000 		.4byte	0xc9
+ 1223 0101 03       		.uleb128 0x3
+ 1224 0102 A9010000 		.4byte	.LASF25
+ 1225 0106 06       		.byte	0x6
+ 1226 0107 0D       		.byte	0xd
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 27
+
+
+ 1227 0108 81000000 		.4byte	0x81
+ 1228 010c 03       		.uleb128 0x3
+ 1229 010d B9000000 		.4byte	.LASF26
+ 1230 0111 06       		.byte	0x6
+ 1231 0112 0E       		.byte	0xe
+ 1232 0113 76000000 		.4byte	0x76
+ 1233 0117 07       		.uleb128 0x7
+ 1234 0118 01       		.byte	0x1
+ 1235 0119 07       		.byte	0x7
+ 1236 011a 0F       		.byte	0xf
+ 1237 011b 62010000 		.4byte	0x162
+ 1238 011f 08       		.uleb128 0x8
+ 1239 0120 A0030000 		.4byte	.LASF27
+ 1240 0124 00       		.sleb128 0
+ 1241 0125 08       		.uleb128 0x8
+ 1242 0126 B3020000 		.4byte	.LASF28
+ 1243 012a 01       		.sleb128 1
+ 1244 012b 08       		.uleb128 0x8
+ 1245 012c CB000000 		.4byte	.LASF29
+ 1246 0130 02       		.sleb128 2
+ 1247 0131 08       		.uleb128 0x8
+ 1248 0132 75030000 		.4byte	.LASF30
+ 1249 0136 03       		.sleb128 3
+ 1250 0137 08       		.uleb128 0x8
+ 1251 0138 59050000 		.4byte	.LASF31
+ 1252 013c 04       		.sleb128 4
+ 1253 013d 08       		.uleb128 0x8
+ 1254 013e 90050000 		.4byte	.LASF32
+ 1255 0142 05       		.sleb128 5
+ 1256 0143 08       		.uleb128 0x8
+ 1257 0144 32050000 		.4byte	.LASF33
+ 1258 0148 06       		.sleb128 6
+ 1259 0149 08       		.uleb128 0x8
+ 1260 014a 49040000 		.4byte	.LASF34
+ 1261 014e 07       		.sleb128 7
+ 1262 014f 08       		.uleb128 0x8
+ 1263 0150 A7040000 		.4byte	.LASF35
+ 1264 0154 08       		.sleb128 8
+ 1265 0155 08       		.uleb128 0x8
+ 1266 0156 87020000 		.4byte	.LASF36
+ 1267 015a 09       		.sleb128 9
+ 1268 015b 08       		.uleb128 0x8
+ 1269 015c 87040000 		.4byte	.LASF37
+ 1270 0160 0A       		.sleb128 10
+ 1271 0161 00       		.byte	0
+ 1272 0162 03       		.uleb128 0x3
+ 1273 0163 9C020000 		.4byte	.LASF38
+ 1274 0167 07       		.byte	0x7
+ 1275 0168 1B       		.byte	0x1b
+ 1276 0169 17010000 		.4byte	0x117
+ 1277 016d 09       		.uleb128 0x9
+ 1278 016e 04       		.byte	0x4
+ 1279 016f 07       		.byte	0x7
+ 1280 0170 1E       		.byte	0x1e
+ 1281 0171 A6010000 		.4byte	0x1a6
+ 1282 0175 0A       		.uleb128 0xa
+ 1283 0176 07020000 		.4byte	.LASF39
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 28
+
+
+ 1284 017a 07       		.byte	0x7
+ 1285 017b 1F       		.byte	0x1f
+ 1286 017c A6010000 		.4byte	0x1a6
+ 1287 0180 00       		.byte	0
+ 1288 0181 0A       		.uleb128 0xa
+ 1289 0182 1A000000 		.4byte	.LASF40
+ 1290 0186 07       		.byte	0x7
+ 1291 0187 20       		.byte	0x20
+ 1292 0188 A6010000 		.4byte	0x1a6
+ 1293 018c 01       		.byte	0x1
+ 1294 018d 0A       		.uleb128 0xa
+ 1295 018e 7B010000 		.4byte	.LASF41
+ 1296 0192 07       		.byte	0x7
+ 1297 0193 21       		.byte	0x21
+ 1298 0194 A6010000 		.4byte	0x1a6
+ 1299 0198 02       		.byte	0x2
+ 1300 0199 0A       		.uleb128 0xa
+ 1301 019a 0A040000 		.4byte	.LASF42
+ 1302 019e 07       		.byte	0x7
+ 1303 019f 22       		.byte	0x22
+ 1304 01a0 A6010000 		.4byte	0x1a6
+ 1305 01a4 03       		.byte	0x3
+ 1306 01a5 00       		.byte	0
+ 1307 01a6 02       		.uleb128 0x2
+ 1308 01a7 01       		.byte	0x1
+ 1309 01a8 02       		.byte	0x2
+ 1310 01a9 9A030000 		.4byte	.LASF43
+ 1311 01ad 03       		.uleb128 0x3
+ 1312 01ae EC040000 		.4byte	.LASF44
+ 1313 01b2 07       		.byte	0x7
+ 1314 01b3 23       		.byte	0x23
+ 1315 01b4 6D010000 		.4byte	0x16d
+ 1316 01b8 0B       		.uleb128 0xb
+ 1317 01b9 00       		.byte	0
+ 1318 01ba 07       		.byte	0x7
+ 1319 01bb 26       		.byte	0x26
+ 1320 01bc 03       		.uleb128 0x3
+ 1321 01bd FD040000 		.4byte	.LASF45
+ 1322 01c1 07       		.byte	0x7
+ 1323 01c2 27       		.byte	0x27
+ 1324 01c3 B8010000 		.4byte	0x1b8
+ 1325 01c7 09       		.uleb128 0x9
+ 1326 01c8 0C       		.byte	0xc
+ 1327 01c9 07       		.byte	0x7
+ 1328 01ca 2A       		.byte	0x2a
+ 1329 01cb F4010000 		.4byte	0x1f4
+ 1330 01cf 0A       		.uleb128 0xa
+ 1331 01d0 24010000 		.4byte	.LASF46
+ 1332 01d4 07       		.byte	0x7
+ 1333 01d5 2B       		.byte	0x2b
+ 1334 01d6 0C010000 		.4byte	0x10c
+ 1335 01da 00       		.byte	0
+ 1336 01db 0A       		.uleb128 0xa
+ 1337 01dc FA020000 		.4byte	.LASF47
+ 1338 01e0 07       		.byte	0x7
+ 1339 01e1 2C       		.byte	0x2c
+ 1340 01e2 0C010000 		.4byte	0x10c
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 29
+
+
+ 1341 01e6 04       		.byte	0x4
+ 1342 01e7 0A       		.uleb128 0xa
+ 1343 01e8 EF000000 		.4byte	.LASF48
+ 1344 01ec 07       		.byte	0x7
+ 1345 01ed 2D       		.byte	0x2d
+ 1346 01ee 0C010000 		.4byte	0x10c
+ 1347 01f2 08       		.byte	0x8
+ 1348 01f3 00       		.byte	0
+ 1349 01f4 03       		.uleb128 0x3
+ 1350 01f5 26000000 		.4byte	.LASF49
+ 1351 01f9 07       		.byte	0x7
+ 1352 01fa 2E       		.byte	0x2e
+ 1353 01fb C7010000 		.4byte	0x1c7
+ 1354 01ff 09       		.uleb128 0x9
+ 1355 0200 01       		.byte	0x1
+ 1356 0201 07       		.byte	0x7
+ 1357 0202 31       		.byte	0x31
+ 1358 0203 14020000 		.4byte	0x214
+ 1359 0207 0A       		.uleb128 0xa
+ 1360 0208 D7030000 		.4byte	.LASF50
+ 1361 020c 07       		.byte	0x7
+ 1362 020d 32       		.byte	0x32
+ 1363 020e A6010000 		.4byte	0x1a6
+ 1364 0212 00       		.byte	0
+ 1365 0213 00       		.byte	0
+ 1366 0214 03       		.uleb128 0x3
+ 1367 0215 38010000 		.4byte	.LASF51
+ 1368 0219 07       		.byte	0x7
+ 1369 021a 33       		.byte	0x33
+ 1370 021b FF010000 		.4byte	0x1ff
+ 1371 021f 09       		.uleb128 0x9
+ 1372 0220 1C       		.byte	0x1c
+ 1373 0221 07       		.byte	0x7
+ 1374 0222 3B       		.byte	0x3b
+ 1375 0223 70020000 		.4byte	0x270
+ 1376 0227 0A       		.uleb128 0xa
+ 1377 0228 39020000 		.4byte	.LASF52
+ 1378 022c 07       		.byte	0x7
+ 1379 022d 3C       		.byte	0x3c
+ 1380 022e 70020000 		.4byte	0x270
+ 1381 0232 00       		.byte	0
+ 1382 0233 0A       		.uleb128 0xa
+ 1383 0234 1A050000 		.4byte	.LASF53
+ 1384 0238 07       		.byte	0x7
+ 1385 0239 3D       		.byte	0x3d
+ 1386 023a 01010000 		.4byte	0x101
+ 1387 023e 04       		.byte	0x4
+ 1388 023f 0A       		.uleb128 0xa
+ 1389 0240 C9030000 		.4byte	.LASF54
+ 1390 0244 07       		.byte	0x7
+ 1391 0245 3F       		.byte	0x3f
+ 1392 0246 AD010000 		.4byte	0x1ad
+ 1393 024a 08       		.byte	0x8
+ 1394 024b 0A       		.uleb128 0xa
+ 1395 024c 2E010000 		.4byte	.LASF55
+ 1396 0250 07       		.byte	0x7
+ 1397 0251 40       		.byte	0x40
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 30
+
+
+ 1398 0252 BC010000 		.4byte	0x1bc
+ 1399 0256 0C       		.byte	0xc
+ 1400 0257 0A       		.uleb128 0xa
+ 1401 0258 63040000 		.4byte	.LASF56
+ 1402 025c 07       		.byte	0x7
+ 1403 025d 41       		.byte	0x41
+ 1404 025e F4010000 		.4byte	0x1f4
+ 1405 0262 0C       		.byte	0xc
+ 1406 0263 0A       		.uleb128 0xa
+ 1407 0264 75000000 		.4byte	.LASF57
+ 1408 0268 07       		.byte	0x7
+ 1409 0269 42       		.byte	0x42
+ 1410 026a 14020000 		.4byte	0x214
+ 1411 026e 18       		.byte	0x18
+ 1412 026f 00       		.byte	0
+ 1413 0270 0C       		.uleb128 0xc
+ 1414 0271 62010000 		.4byte	0x162
+ 1415 0275 80020000 		.4byte	0x280
+ 1416 0279 0D       		.uleb128 0xd
+ 1417 027a BC000000 		.4byte	0xbc
+ 1418 027e 00       		.byte	0
+ 1419 027f 00       		.byte	0
+ 1420 0280 0E       		.uleb128 0xe
+ 1421 0281 46736D00 		.ascii	"Fsm\000"
+ 1422 0285 07       		.byte	0x7
+ 1423 0286 43       		.byte	0x43
+ 1424 0287 1F020000 		.4byte	0x21f
+ 1425 028b 0F       		.uleb128 0xf
+ 1426 028c 30040000 		.4byte	.LASF63
+ 1427 0290 05       		.byte	0x5
+ 1428 0291 08       		.byte	0x8
+ 1429 0292 4C       		.byte	0x4c
+ 1430 0293 D4020000 		.4byte	0x2d4
+ 1431 0297 0A       		.uleb128 0xa
+ 1432 0298 A0000000 		.4byte	.LASF58
+ 1433 029c 08       		.byte	0x8
+ 1434 029d 4D       		.byte	0x4d
+ 1435 029e 8C000000 		.4byte	0x8c
+ 1436 02a2 00       		.byte	0
+ 1437 02a3 0A       		.uleb128 0xa
+ 1438 02a4 64030000 		.4byte	.LASF59
+ 1439 02a8 08       		.byte	0x8
+ 1440 02a9 4E       		.byte	0x4e
+ 1441 02aa 8C000000 		.4byte	0x8c
+ 1442 02ae 01       		.byte	0x1
+ 1443 02af 0A       		.uleb128 0xa
+ 1444 02b0 F4020000 		.4byte	.LASF60
+ 1445 02b4 08       		.byte	0x8
+ 1446 02b5 4F       		.byte	0x4f
+ 1447 02b6 8C000000 		.4byte	0x8c
+ 1448 02ba 02       		.byte	0x2
+ 1449 02bb 0A       		.uleb128 0xa
+ 1450 02bc 9B000000 		.4byte	.LASF61
+ 1451 02c0 08       		.byte	0x8
+ 1452 02c1 50       		.byte	0x50
+ 1453 02c2 8C000000 		.4byte	0x8c
+ 1454 02c6 03       		.byte	0x3
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 31
+
+
+ 1455 02c7 0A       		.uleb128 0xa
+ 1456 02c8 01020000 		.4byte	.LASF62
+ 1457 02cc 08       		.byte	0x8
+ 1458 02cd 51       		.byte	0x51
+ 1459 02ce 8C000000 		.4byte	0x8c
+ 1460 02d2 04       		.byte	0x4
+ 1461 02d3 00       		.byte	0
+ 1462 02d4 03       		.uleb128 0x3
+ 1463 02d5 30040000 		.4byte	.LASF63
+ 1464 02d9 08       		.byte	0x8
+ 1465 02da 52       		.byte	0x52
+ 1466 02db 8B020000 		.4byte	0x28b
+ 1467 02df 10       		.uleb128 0x10
+ 1468 02e0 3B000000 		.4byte	.LASF94
+ 1469 02e4 01       		.byte	0x1
+ 1470 02e5 16       		.byte	0x16
+ 1471 02e6 00000000 		.4byte	.LFB33
+ 1472 02ea 12000000 		.4byte	.LFE33-.LFB33
+ 1473 02ee 01       		.uleb128 0x1
+ 1474 02ef 9C       		.byte	0x9c
+ 1475 02f0 03030000 		.4byte	0x303
+ 1476 02f4 11       		.uleb128 0x11
+ 1477 02f5 C4000000 		.4byte	.LASF64
+ 1478 02f9 01       		.byte	0x1
+ 1479 02fa 16       		.byte	0x16
+ 1480 02fb 03030000 		.4byte	0x303
+ 1481 02ff 02       		.uleb128 0x2
+ 1482 0300 91       		.byte	0x91
+ 1483 0301 74       		.sleb128 -12
+ 1484 0302 00       		.byte	0
+ 1485 0303 06       		.uleb128 0x6
+ 1486 0304 04       		.byte	0x4
+ 1487 0305 80020000 		.4byte	0x280
+ 1488 0309 12       		.uleb128 0x12
+ 1489 030a 75040000 		.4byte	.LASF65
+ 1490 030e 01       		.byte	0x1
+ 1491 030f 1B       		.byte	0x1b
+ 1492 0310 00000000 		.4byte	.LFB34
+ 1493 0314 0E000000 		.4byte	.LFE34-.LFB34
+ 1494 0318 01       		.uleb128 0x1
+ 1495 0319 9C       		.byte	0x9c
+ 1496 031a 2D030000 		.4byte	0x32d
+ 1497 031e 13       		.uleb128 0x13
+ 1498 031f 76616C00 		.ascii	"val\000"
+ 1499 0323 01       		.byte	0x1
+ 1500 0324 1B       		.byte	0x1b
+ 1501 0325 68000000 		.4byte	0x68
+ 1502 0329 02       		.uleb128 0x2
+ 1503 032a 91       		.byte	0x91
+ 1504 032b 74       		.sleb128 -12
+ 1505 032c 00       		.byte	0
+ 1506 032d 14       		.uleb128 0x14
+ 1507 032e 51020000 		.4byte	.LASF66
+ 1508 0332 01       		.byte	0x1
+ 1509 0333 20       		.byte	0x20
+ 1510 0334 00000000 		.4byte	.LFB35
+ 1511 0338 1C000000 		.4byte	.LFE35-.LFB35
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 32
+
+
+ 1512 033c 01       		.uleb128 0x1
+ 1513 033d 9C       		.byte	0x9c
+ 1514 033e 51030000 		.4byte	0x351
+ 1515 0342 13       		.uleb128 0x13
+ 1516 0343 76616C00 		.ascii	"val\000"
+ 1517 0347 01       		.byte	0x1
+ 1518 0348 20       		.byte	0x20
+ 1519 0349 C3000000 		.4byte	0xc3
+ 1520 034d 02       		.uleb128 0x2
+ 1521 034e 91       		.byte	0x91
+ 1522 034f 74       		.sleb128 -12
+ 1523 0350 00       		.byte	0
+ 1524 0351 15       		.uleb128 0x15
+ 1525 0352 69030000 		.4byte	.LASF67
+ 1526 0356 01       		.byte	0x1
+ 1527 0357 23       		.byte	0x23
+ 1528 0358 C3000000 		.4byte	0xc3
+ 1529 035c 00000000 		.4byte	.LFB36
+ 1530 0360 24000000 		.4byte	.LFE36-.LFB36
+ 1531 0364 01       		.uleb128 0x1
+ 1532 0365 9C       		.byte	0x9c
+ 1533 0366 15       		.uleb128 0x15
+ 1534 0367 87010000 		.4byte	.LASF68
+ 1535 036b 01       		.byte	0x1
+ 1536 036c 27       		.byte	0x27
+ 1537 036d 68000000 		.4byte	0x68
+ 1538 0371 00000000 		.4byte	.LFB37
+ 1539 0375 12000000 		.4byte	.LFE37-.LFB37
+ 1540 0379 01       		.uleb128 0x1
+ 1541 037a 9C       		.byte	0x9c
+ 1542 037b 14       		.uleb128 0x14
+ 1543 037c B6030000 		.4byte	.LASF69
+ 1544 0380 01       		.byte	0x1
+ 1545 0381 2A       		.byte	0x2a
+ 1546 0382 00000000 		.4byte	.LFB38
+ 1547 0386 36000000 		.4byte	.LFE38-.LFB38
+ 1548 038a 01       		.uleb128 0x1
+ 1549 038b 9C       		.byte	0x9c
+ 1550 038c 9F030000 		.4byte	0x39f
+ 1551 0390 13       		.uleb128 0x13
+ 1552 0391 76616C00 		.ascii	"val\000"
+ 1553 0395 01       		.byte	0x1
+ 1554 0396 2A       		.byte	0x2a
+ 1555 0397 68000000 		.4byte	0x68
+ 1556 039b 02       		.uleb128 0x2
+ 1557 039c 91       		.byte	0x91
+ 1558 039d 74       		.sleb128 -12
+ 1559 039e 00       		.byte	0
+ 1560 039f 16       		.uleb128 0x16
+ 1561 03a0 B3010000 		.4byte	.LASF70
+ 1562 03a4 01       		.byte	0x1
+ 1563 03a5 31       		.byte	0x31
+ 1564 03a6 68000000 		.4byte	0x68
+ 1565 03aa 00000000 		.4byte	.LFB39
+ 1566 03ae 0C000000 		.4byte	.LFE39-.LFB39
+ 1567 03b2 01       		.uleb128 0x1
+ 1568 03b3 9C       		.byte	0x9c
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 33
+
+
+ 1569 03b4 12       		.uleb128 0x12
+ 1570 03b5 A5000000 		.4byte	.LASF71
+ 1571 03b9 01       		.byte	0x1
+ 1572 03ba 34       		.byte	0x34
+ 1573 03bb 00000000 		.4byte	.LFB40
+ 1574 03bf 0E000000 		.4byte	.LFE40-.LFB40
+ 1575 03c3 01       		.uleb128 0x1
+ 1576 03c4 9C       		.byte	0x9c
+ 1577 03c5 D8030000 		.4byte	0x3d8
+ 1578 03c9 13       		.uleb128 0x13
+ 1579 03ca 76616C00 		.ascii	"val\000"
+ 1580 03ce 01       		.byte	0x1
+ 1581 03cf 34       		.byte	0x34
+ 1582 03d0 68000000 		.4byte	0x68
+ 1583 03d4 02       		.uleb128 0x2
+ 1584 03d5 91       		.byte	0x91
+ 1585 03d6 74       		.sleb128 -12
+ 1586 03d7 00       		.byte	0
+ 1587 03d8 14       		.uleb128 0x14
+ 1588 03d9 D8010000 		.4byte	.LASF72
+ 1589 03dd 01       		.byte	0x1
+ 1590 03de 38       		.byte	0x38
+ 1591 03df 00000000 		.4byte	.LFB41
+ 1592 03e3 50000000 		.4byte	.LFE41-.LFB41
+ 1593 03e7 01       		.uleb128 0x1
+ 1594 03e8 9C       		.byte	0x9c
+ 1595 03e9 FC030000 		.4byte	0x3fc
+ 1596 03ed 11       		.uleb128 0x11
+ 1597 03ee 9B000000 		.4byte	.LASF61
+ 1598 03f2 01       		.byte	0x1
+ 1599 03f3 38       		.byte	0x38
+ 1600 03f4 F6000000 		.4byte	0xf6
+ 1601 03f8 02       		.uleb128 0x2
+ 1602 03f9 91       		.byte	0x91
+ 1603 03fa 77       		.sleb128 -9
+ 1604 03fb 00       		.byte	0
+ 1605 03fc 17       		.uleb128 0x17
+ 1606 03fd 49020000 		.4byte	.LASF73
+ 1607 0401 01       		.byte	0x1
+ 1608 0402 45       		.byte	0x45
+ 1609 0403 D4020000 		.4byte	0x2d4
+ 1610 0407 00000000 		.4byte	.LFB42
+ 1611 040b 28000000 		.4byte	.LFE42-.LFB42
+ 1612 040f 01       		.uleb128 0x1
+ 1613 0410 9C       		.byte	0x9c
+ 1614 0411 18       		.uleb128 0x18
+ 1615 0412 0A050000 		.4byte	.LASF74
+ 1616 0416 01       		.byte	0x1
+ 1617 0417 49       		.byte	0x49
+ 1618 0418 00000000 		.4byte	.LFB43
+ 1619 041c 34000000 		.4byte	.LFE43-.LFB43
+ 1620 0420 01       		.uleb128 0x1
+ 1621 0421 9C       		.byte	0x9c
+ 1622 0422 19       		.uleb128 0x19
+ 1623 0423 96040000 		.4byte	.LASF75
+ 1624 0427 01       		.byte	0x1
+ 1625 0428 50       		.byte	0x50
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 34
+
+
+ 1626 0429 00000000 		.4byte	.LFB44
+ 1627 042d 40000000 		.4byte	.LFE44-.LFB44
+ 1628 0431 01       		.uleb128 0x1
+ 1629 0432 9C       		.byte	0x9c
+ 1630 0433 18       		.uleb128 0x18
+ 1631 0434 0D030000 		.4byte	.LASF76
+ 1632 0438 01       		.byte	0x1
+ 1633 0439 58       		.byte	0x58
+ 1634 043a 00000000 		.4byte	.LFB45
+ 1635 043e 58000000 		.4byte	.LFE45-.LFB45
+ 1636 0442 01       		.uleb128 0x1
+ 1637 0443 9C       		.byte	0x9c
+ 1638 0444 1A       		.uleb128 0x1a
+ 1639 0445 03010000 		.4byte	.LASF77
+ 1640 0449 01       		.byte	0x1
+ 1641 044a 6F       		.byte	0x6f
+ 1642 044b 00000000 		.4byte	.LFB46
+ 1643 044f 0C000000 		.4byte	.LFE46-.LFB46
+ 1644 0453 01       		.uleb128 0x1
+ 1645 0454 9C       		.byte	0x9c
+ 1646 0455 1A       		.uleb128 0x1a
+ 1647 0456 7F050000 		.4byte	.LASF78
+ 1648 045a 01       		.byte	0x1
+ 1649 045b 72       		.byte	0x72
+ 1650 045c 00000000 		.4byte	.LFB47
+ 1651 0460 0C000000 		.4byte	.LFE47-.LFB47
+ 1652 0464 01       		.uleb128 0x1
+ 1653 0465 9C       		.byte	0x9c
+ 1654 0466 1B       		.uleb128 0x1b
+ 1655 0467 EA020000 		.4byte	.LASF83
+ 1656 046b 01       		.byte	0x1
+ 1657 046c 77       		.byte	0x77
+ 1658 046d 00000000 		.4byte	.LFB48
+ 1659 0471 9C000000 		.4byte	.LFE48-.LFB48
+ 1660 0475 01       		.uleb128 0x1
+ 1661 0476 9C       		.byte	0x9c
+ 1662 0477 18       		.uleb128 0x18
+ 1663 0478 64010000 		.4byte	.LASF79
+ 1664 047c 01       		.byte	0x1
+ 1665 047d 91       		.byte	0x91
+ 1666 047e 00000000 		.4byte	.LFB49
+ 1667 0482 0C000000 		.4byte	.LFE49-.LFB49
+ 1668 0486 01       		.uleb128 0x1
+ 1669 0487 9C       		.byte	0x9c
+ 1670 0488 14       		.uleb128 0x14
+ 1671 0489 F8010000 		.4byte	.LASF80
+ 1672 048d 01       		.byte	0x1
+ 1673 048e 94       		.byte	0x94
+ 1674 048f 00000000 		.4byte	.LFB50
+ 1675 0493 9C000000 		.4byte	.LFE50-.LFB50
+ 1676 0497 01       		.uleb128 0x1
+ 1677 0498 9C       		.byte	0x9c
+ 1678 0499 AB040000 		.4byte	0x4ab
+ 1679 049d 13       		.uleb128 0x13
+ 1680 049e 6D6400   		.ascii	"md\000"
+ 1681 04a1 01       		.byte	0x1
+ 1682 04a2 94       		.byte	0x94
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 35
+
+
+ 1683 04a3 8C000000 		.4byte	0x8c
+ 1684 04a7 02       		.uleb128 0x2
+ 1685 04a8 91       		.byte	0x91
+ 1686 04a9 77       		.sleb128 -9
+ 1687 04aa 00       		.byte	0
+ 1688 04ab 18       		.uleb128 0x18
+ 1689 04ac 14020000 		.4byte	.LASF81
+ 1690 04b0 01       		.byte	0x1
+ 1691 04b1 B8       		.byte	0xb8
+ 1692 04b2 00000000 		.4byte	.LFB51
+ 1693 04b6 38000000 		.4byte	.LFE51-.LFB51
+ 1694 04ba 01       		.uleb128 0x1
+ 1695 04bb 9C       		.byte	0x9c
+ 1696 04bc 18       		.uleb128 0x18
+ 1697 04bd CE040000 		.4byte	.LASF82
+ 1698 04c1 01       		.byte	0x1
+ 1699 04c2 C5       		.byte	0xc5
+ 1700 04c3 00000000 		.4byte	.LFB52
+ 1701 04c7 24000000 		.4byte	.LFE52-.LFB52
+ 1702 04cb 01       		.uleb128 0x1
+ 1703 04cc 9C       		.byte	0x9c
+ 1704 04cd 1C       		.uleb128 0x1c
+ 1705 04ce 00000000 		.4byte	.LASF84
+ 1706 04d2 01       		.byte	0x1
+ 1707 04d3 CD       		.byte	0xcd
+ 1708 04d4 00000000 		.4byte	.LFB53
+ 1709 04d8 1C000000 		.4byte	.LFE53-.LFB53
+ 1710 04dc 01       		.uleb128 0x1
+ 1711 04dd 9C       		.byte	0x9c
+ 1712 04de 17       		.uleb128 0x17
+ 1713 04df 49030000 		.4byte	.LASF85
+ 1714 04e3 01       		.byte	0x1
+ 1715 04e4 D4       		.byte	0xd4
+ 1716 04e5 68000000 		.4byte	0x68
+ 1717 04e9 00000000 		.4byte	.LFB54
+ 1718 04ed 40000000 		.4byte	.LFE54-.LFB54
+ 1719 04f1 01       		.uleb128 0x1
+ 1720 04f2 9C       		.byte	0x9c
+ 1721 04f3 1D       		.uleb128 0x1d
+ 1722 04f4 E5020000 		.4byte	.LASF86
+ 1723 04f8 01       		.byte	0x1
+ 1724 04f9 0D       		.byte	0xd
+ 1725 04fa B7000000 		.4byte	0xb7
+ 1726 04fe 05       		.uleb128 0x5
+ 1727 04ff 03       		.byte	0x3
+ 1728 0500 00000000 		.4byte	Flag
+ 1729 0504 1D       		.uleb128 0x1d
+ 1730 0505 CD020000 		.4byte	.LASF87
+ 1731 0509 01       		.byte	0x1
+ 1732 050a 0E       		.byte	0xe
+ 1733 050b D4020000 		.4byte	0x2d4
+ 1734 050f 05       		.uleb128 0x5
+ 1735 0510 03       		.byte	0x3
+ 1736 0511 00000000 		.4byte	time
+ 1737 0515 1D       		.uleb128 0x1d
+ 1738 0516 D0010000 		.4byte	.LASF88
+ 1739 051a 01       		.byte	0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 36
+
+
+ 1740 051b 10       		.byte	0x10
+ 1741 051c 68000000 		.4byte	0x68
+ 1742 0520 05       		.uleb128 0x5
+ 1743 0521 03       		.byte	0x3
+ 1744 0522 00000000 		.4byte	voltage
+ 1745 0526 0C       		.uleb128 0xc
+ 1746 0527 B0000000 		.4byte	0xb0
+ 1747 052b 3C050000 		.4byte	0x53c
+ 1748 052f 0D       		.uleb128 0xd
+ 1749 0530 BC000000 		.4byte	0xbc
+ 1750 0534 03       		.byte	0x3
+ 1751 0535 0D       		.uleb128 0xd
+ 1752 0536 BC000000 		.4byte	0xbc
+ 1753 053a 0E       		.byte	0xe
+ 1754 053b 00       		.byte	0
+ 1755 053c 1D       		.uleb128 0x1d
+ 1756 053d 35060000 		.4byte	.LASF89
+ 1757 0541 01       		.byte	0x1
+ 1758 0542 12       		.byte	0x12
+ 1759 0543 26050000 		.4byte	0x526
+ 1760 0547 05       		.uleb128 0x5
+ 1761 0548 03       		.byte	0x3
+ 1762 0549 00000000 		.4byte	str_mode
+ 1763 054d 1D       		.uleb128 0x1d
+ 1764 054e 3D040000 		.4byte	.LASF90
+ 1765 0552 01       		.byte	0x1
+ 1766 0553 13       		.byte	0x13
+ 1767 0554 80020000 		.4byte	0x280
+ 1768 0558 05       		.uleb128 0x5
+ 1769 0559 03       		.byte	0x3
+ 1770 055a 00000000 		.4byte	modelHandle
+ 1771 055e 00       		.byte	0
+ 1772              		.section	.debug_abbrev,"",%progbits
+ 1773              	.Ldebug_abbrev0:
+ 1774 0000 01       		.uleb128 0x1
+ 1775 0001 11       		.uleb128 0x11
+ 1776 0002 01       		.byte	0x1
+ 1777 0003 25       		.uleb128 0x25
+ 1778 0004 0E       		.uleb128 0xe
+ 1779 0005 13       		.uleb128 0x13
+ 1780 0006 0B       		.uleb128 0xb
+ 1781 0007 03       		.uleb128 0x3
+ 1782 0008 0E       		.uleb128 0xe
+ 1783 0009 1B       		.uleb128 0x1b
+ 1784 000a 0E       		.uleb128 0xe
+ 1785 000b 55       		.uleb128 0x55
+ 1786 000c 17       		.uleb128 0x17
+ 1787 000d 11       		.uleb128 0x11
+ 1788 000e 01       		.uleb128 0x1
+ 1789 000f 10       		.uleb128 0x10
+ 1790 0010 17       		.uleb128 0x17
+ 1791 0011 00       		.byte	0
+ 1792 0012 00       		.byte	0
+ 1793 0013 02       		.uleb128 0x2
+ 1794 0014 24       		.uleb128 0x24
+ 1795 0015 00       		.byte	0
+ 1796 0016 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 37
+
+
+ 1797 0017 0B       		.uleb128 0xb
+ 1798 0018 3E       		.uleb128 0x3e
+ 1799 0019 0B       		.uleb128 0xb
+ 1800 001a 03       		.uleb128 0x3
+ 1801 001b 0E       		.uleb128 0xe
+ 1802 001c 00       		.byte	0
+ 1803 001d 00       		.byte	0
+ 1804 001e 03       		.uleb128 0x3
+ 1805 001f 16       		.uleb128 0x16
+ 1806 0020 00       		.byte	0
+ 1807 0021 03       		.uleb128 0x3
+ 1808 0022 0E       		.uleb128 0xe
+ 1809 0023 3A       		.uleb128 0x3a
+ 1810 0024 0B       		.uleb128 0xb
+ 1811 0025 3B       		.uleb128 0x3b
+ 1812 0026 0B       		.uleb128 0xb
+ 1813 0027 49       		.uleb128 0x49
+ 1814 0028 13       		.uleb128 0x13
+ 1815 0029 00       		.byte	0
+ 1816 002a 00       		.byte	0
+ 1817 002b 04       		.uleb128 0x4
+ 1818 002c 24       		.uleb128 0x24
+ 1819 002d 00       		.byte	0
+ 1820 002e 0B       		.uleb128 0xb
+ 1821 002f 0B       		.uleb128 0xb
+ 1822 0030 3E       		.uleb128 0x3e
+ 1823 0031 0B       		.uleb128 0xb
+ 1824 0032 03       		.uleb128 0x3
+ 1825 0033 08       		.uleb128 0x8
+ 1826 0034 00       		.byte	0
+ 1827 0035 00       		.byte	0
+ 1828 0036 05       		.uleb128 0x5
+ 1829 0037 35       		.uleb128 0x35
+ 1830 0038 00       		.byte	0
+ 1831 0039 49       		.uleb128 0x49
+ 1832 003a 13       		.uleb128 0x13
+ 1833 003b 00       		.byte	0
+ 1834 003c 00       		.byte	0
+ 1835 003d 06       		.uleb128 0x6
+ 1836 003e 0F       		.uleb128 0xf
+ 1837 003f 00       		.byte	0
+ 1838 0040 0B       		.uleb128 0xb
+ 1839 0041 0B       		.uleb128 0xb
+ 1840 0042 49       		.uleb128 0x49
+ 1841 0043 13       		.uleb128 0x13
+ 1842 0044 00       		.byte	0
+ 1843 0045 00       		.byte	0
+ 1844 0046 07       		.uleb128 0x7
+ 1845 0047 04       		.uleb128 0x4
+ 1846 0048 01       		.byte	0x1
+ 1847 0049 0B       		.uleb128 0xb
+ 1848 004a 0B       		.uleb128 0xb
+ 1849 004b 3A       		.uleb128 0x3a
+ 1850 004c 0B       		.uleb128 0xb
+ 1851 004d 3B       		.uleb128 0x3b
+ 1852 004e 0B       		.uleb128 0xb
+ 1853 004f 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 38
+
+
+ 1854 0050 13       		.uleb128 0x13
+ 1855 0051 00       		.byte	0
+ 1856 0052 00       		.byte	0
+ 1857 0053 08       		.uleb128 0x8
+ 1858 0054 28       		.uleb128 0x28
+ 1859 0055 00       		.byte	0
+ 1860 0056 03       		.uleb128 0x3
+ 1861 0057 0E       		.uleb128 0xe
+ 1862 0058 1C       		.uleb128 0x1c
+ 1863 0059 0D       		.uleb128 0xd
+ 1864 005a 00       		.byte	0
+ 1865 005b 00       		.byte	0
+ 1866 005c 09       		.uleb128 0x9
+ 1867 005d 13       		.uleb128 0x13
+ 1868 005e 01       		.byte	0x1
+ 1869 005f 0B       		.uleb128 0xb
+ 1870 0060 0B       		.uleb128 0xb
+ 1871 0061 3A       		.uleb128 0x3a
+ 1872 0062 0B       		.uleb128 0xb
+ 1873 0063 3B       		.uleb128 0x3b
+ 1874 0064 0B       		.uleb128 0xb
+ 1875 0065 01       		.uleb128 0x1
+ 1876 0066 13       		.uleb128 0x13
+ 1877 0067 00       		.byte	0
+ 1878 0068 00       		.byte	0
+ 1879 0069 0A       		.uleb128 0xa
+ 1880 006a 0D       		.uleb128 0xd
+ 1881 006b 00       		.byte	0
+ 1882 006c 03       		.uleb128 0x3
+ 1883 006d 0E       		.uleb128 0xe
+ 1884 006e 3A       		.uleb128 0x3a
+ 1885 006f 0B       		.uleb128 0xb
+ 1886 0070 3B       		.uleb128 0x3b
+ 1887 0071 0B       		.uleb128 0xb
+ 1888 0072 49       		.uleb128 0x49
+ 1889 0073 13       		.uleb128 0x13
+ 1890 0074 38       		.uleb128 0x38
+ 1891 0075 0B       		.uleb128 0xb
+ 1892 0076 00       		.byte	0
+ 1893 0077 00       		.byte	0
+ 1894 0078 0B       		.uleb128 0xb
+ 1895 0079 13       		.uleb128 0x13
+ 1896 007a 00       		.byte	0
+ 1897 007b 0B       		.uleb128 0xb
+ 1898 007c 0B       		.uleb128 0xb
+ 1899 007d 3A       		.uleb128 0x3a
+ 1900 007e 0B       		.uleb128 0xb
+ 1901 007f 3B       		.uleb128 0x3b
+ 1902 0080 0B       		.uleb128 0xb
+ 1903 0081 00       		.byte	0
+ 1904 0082 00       		.byte	0
+ 1905 0083 0C       		.uleb128 0xc
+ 1906 0084 01       		.uleb128 0x1
+ 1907 0085 01       		.byte	0x1
+ 1908 0086 49       		.uleb128 0x49
+ 1909 0087 13       		.uleb128 0x13
+ 1910 0088 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 39
+
+
+ 1911 0089 13       		.uleb128 0x13
+ 1912 008a 00       		.byte	0
+ 1913 008b 00       		.byte	0
+ 1914 008c 0D       		.uleb128 0xd
+ 1915 008d 21       		.uleb128 0x21
+ 1916 008e 00       		.byte	0
+ 1917 008f 49       		.uleb128 0x49
+ 1918 0090 13       		.uleb128 0x13
+ 1919 0091 2F       		.uleb128 0x2f
+ 1920 0092 0B       		.uleb128 0xb
+ 1921 0093 00       		.byte	0
+ 1922 0094 00       		.byte	0
+ 1923 0095 0E       		.uleb128 0xe
+ 1924 0096 16       		.uleb128 0x16
+ 1925 0097 00       		.byte	0
+ 1926 0098 03       		.uleb128 0x3
+ 1927 0099 08       		.uleb128 0x8
+ 1928 009a 3A       		.uleb128 0x3a
+ 1929 009b 0B       		.uleb128 0xb
+ 1930 009c 3B       		.uleb128 0x3b
+ 1931 009d 0B       		.uleb128 0xb
+ 1932 009e 49       		.uleb128 0x49
+ 1933 009f 13       		.uleb128 0x13
+ 1934 00a0 00       		.byte	0
+ 1935 00a1 00       		.byte	0
+ 1936 00a2 0F       		.uleb128 0xf
+ 1937 00a3 13       		.uleb128 0x13
+ 1938 00a4 01       		.byte	0x1
+ 1939 00a5 03       		.uleb128 0x3
+ 1940 00a6 0E       		.uleb128 0xe
+ 1941 00a7 0B       		.uleb128 0xb
+ 1942 00a8 0B       		.uleb128 0xb
+ 1943 00a9 3A       		.uleb128 0x3a
+ 1944 00aa 0B       		.uleb128 0xb
+ 1945 00ab 3B       		.uleb128 0x3b
+ 1946 00ac 0B       		.uleb128 0xb
+ 1947 00ad 01       		.uleb128 0x1
+ 1948 00ae 13       		.uleb128 0x13
+ 1949 00af 00       		.byte	0
+ 1950 00b0 00       		.byte	0
+ 1951 00b1 10       		.uleb128 0x10
+ 1952 00b2 2E       		.uleb128 0x2e
+ 1953 00b3 01       		.byte	0x1
+ 1954 00b4 03       		.uleb128 0x3
+ 1955 00b5 0E       		.uleb128 0xe
+ 1956 00b6 3A       		.uleb128 0x3a
+ 1957 00b7 0B       		.uleb128 0xb
+ 1958 00b8 3B       		.uleb128 0x3b
+ 1959 00b9 0B       		.uleb128 0xb
+ 1960 00ba 27       		.uleb128 0x27
+ 1961 00bb 19       		.uleb128 0x19
+ 1962 00bc 11       		.uleb128 0x11
+ 1963 00bd 01       		.uleb128 0x1
+ 1964 00be 12       		.uleb128 0x12
+ 1965 00bf 06       		.uleb128 0x6
+ 1966 00c0 40       		.uleb128 0x40
+ 1967 00c1 18       		.uleb128 0x18
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 40
+
+
+ 1968 00c2 9642     		.uleb128 0x2116
+ 1969 00c4 19       		.uleb128 0x19
+ 1970 00c5 01       		.uleb128 0x1
+ 1971 00c6 13       		.uleb128 0x13
+ 1972 00c7 00       		.byte	0
+ 1973 00c8 00       		.byte	0
+ 1974 00c9 11       		.uleb128 0x11
+ 1975 00ca 05       		.uleb128 0x5
+ 1976 00cb 00       		.byte	0
+ 1977 00cc 03       		.uleb128 0x3
+ 1978 00cd 0E       		.uleb128 0xe
+ 1979 00ce 3A       		.uleb128 0x3a
+ 1980 00cf 0B       		.uleb128 0xb
+ 1981 00d0 3B       		.uleb128 0x3b
+ 1982 00d1 0B       		.uleb128 0xb
+ 1983 00d2 49       		.uleb128 0x49
+ 1984 00d3 13       		.uleb128 0x13
+ 1985 00d4 02       		.uleb128 0x2
+ 1986 00d5 18       		.uleb128 0x18
+ 1987 00d6 00       		.byte	0
+ 1988 00d7 00       		.byte	0
+ 1989 00d8 12       		.uleb128 0x12
+ 1990 00d9 2E       		.uleb128 0x2e
+ 1991 00da 01       		.byte	0x1
+ 1992 00db 3F       		.uleb128 0x3f
+ 1993 00dc 19       		.uleb128 0x19
+ 1994 00dd 03       		.uleb128 0x3
+ 1995 00de 0E       		.uleb128 0xe
+ 1996 00df 3A       		.uleb128 0x3a
+ 1997 00e0 0B       		.uleb128 0xb
+ 1998 00e1 3B       		.uleb128 0x3b
+ 1999 00e2 0B       		.uleb128 0xb
+ 2000 00e3 27       		.uleb128 0x27
+ 2001 00e4 19       		.uleb128 0x19
+ 2002 00e5 11       		.uleb128 0x11
+ 2003 00e6 01       		.uleb128 0x1
+ 2004 00e7 12       		.uleb128 0x12
+ 2005 00e8 06       		.uleb128 0x6
+ 2006 00e9 40       		.uleb128 0x40
+ 2007 00ea 18       		.uleb128 0x18
+ 2008 00eb 9742     		.uleb128 0x2117
+ 2009 00ed 19       		.uleb128 0x19
+ 2010 00ee 01       		.uleb128 0x1
+ 2011 00ef 13       		.uleb128 0x13
+ 2012 00f0 00       		.byte	0
+ 2013 00f1 00       		.byte	0
+ 2014 00f2 13       		.uleb128 0x13
+ 2015 00f3 05       		.uleb128 0x5
+ 2016 00f4 00       		.byte	0
+ 2017 00f5 03       		.uleb128 0x3
+ 2018 00f6 08       		.uleb128 0x8
+ 2019 00f7 3A       		.uleb128 0x3a
+ 2020 00f8 0B       		.uleb128 0xb
+ 2021 00f9 3B       		.uleb128 0x3b
+ 2022 00fa 0B       		.uleb128 0xb
+ 2023 00fb 49       		.uleb128 0x49
+ 2024 00fc 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 41
+
+
+ 2025 00fd 02       		.uleb128 0x2
+ 2026 00fe 18       		.uleb128 0x18
+ 2027 00ff 00       		.byte	0
+ 2028 0100 00       		.byte	0
+ 2029 0101 14       		.uleb128 0x14
+ 2030 0102 2E       		.uleb128 0x2e
+ 2031 0103 01       		.byte	0x1
+ 2032 0104 3F       		.uleb128 0x3f
+ 2033 0105 19       		.uleb128 0x19
+ 2034 0106 03       		.uleb128 0x3
+ 2035 0107 0E       		.uleb128 0xe
+ 2036 0108 3A       		.uleb128 0x3a
+ 2037 0109 0B       		.uleb128 0xb
+ 2038 010a 3B       		.uleb128 0x3b
+ 2039 010b 0B       		.uleb128 0xb
+ 2040 010c 27       		.uleb128 0x27
+ 2041 010d 19       		.uleb128 0x19
+ 2042 010e 11       		.uleb128 0x11
+ 2043 010f 01       		.uleb128 0x1
+ 2044 0110 12       		.uleb128 0x12
+ 2045 0111 06       		.uleb128 0x6
+ 2046 0112 40       		.uleb128 0x40
+ 2047 0113 18       		.uleb128 0x18
+ 2048 0114 9642     		.uleb128 0x2116
+ 2049 0116 19       		.uleb128 0x19
+ 2050 0117 01       		.uleb128 0x1
+ 2051 0118 13       		.uleb128 0x13
+ 2052 0119 00       		.byte	0
+ 2053 011a 00       		.byte	0
+ 2054 011b 15       		.uleb128 0x15
+ 2055 011c 2E       		.uleb128 0x2e
+ 2056 011d 00       		.byte	0
+ 2057 011e 3F       		.uleb128 0x3f
+ 2058 011f 19       		.uleb128 0x19
+ 2059 0120 03       		.uleb128 0x3
+ 2060 0121 0E       		.uleb128 0xe
+ 2061 0122 3A       		.uleb128 0x3a
+ 2062 0123 0B       		.uleb128 0xb
+ 2063 0124 3B       		.uleb128 0x3b
+ 2064 0125 0B       		.uleb128 0xb
+ 2065 0126 27       		.uleb128 0x27
+ 2066 0127 19       		.uleb128 0x19
+ 2067 0128 49       		.uleb128 0x49
+ 2068 0129 13       		.uleb128 0x13
+ 2069 012a 11       		.uleb128 0x11
+ 2070 012b 01       		.uleb128 0x1
+ 2071 012c 12       		.uleb128 0x12
+ 2072 012d 06       		.uleb128 0x6
+ 2073 012e 40       		.uleb128 0x40
+ 2074 012f 18       		.uleb128 0x18
+ 2075 0130 9642     		.uleb128 0x2116
+ 2076 0132 19       		.uleb128 0x19
+ 2077 0133 00       		.byte	0
+ 2078 0134 00       		.byte	0
+ 2079 0135 16       		.uleb128 0x16
+ 2080 0136 2E       		.uleb128 0x2e
+ 2081 0137 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 42
+
+
+ 2082 0138 3F       		.uleb128 0x3f
+ 2083 0139 19       		.uleb128 0x19
+ 2084 013a 03       		.uleb128 0x3
+ 2085 013b 0E       		.uleb128 0xe
+ 2086 013c 3A       		.uleb128 0x3a
+ 2087 013d 0B       		.uleb128 0xb
+ 2088 013e 3B       		.uleb128 0x3b
+ 2089 013f 0B       		.uleb128 0xb
+ 2090 0140 27       		.uleb128 0x27
+ 2091 0141 19       		.uleb128 0x19
+ 2092 0142 49       		.uleb128 0x49
+ 2093 0143 13       		.uleb128 0x13
+ 2094 0144 11       		.uleb128 0x11
+ 2095 0145 01       		.uleb128 0x1
+ 2096 0146 12       		.uleb128 0x12
+ 2097 0147 06       		.uleb128 0x6
+ 2098 0148 40       		.uleb128 0x40
+ 2099 0149 18       		.uleb128 0x18
+ 2100 014a 9742     		.uleb128 0x2117
+ 2101 014c 19       		.uleb128 0x19
+ 2102 014d 00       		.byte	0
+ 2103 014e 00       		.byte	0
+ 2104 014f 17       		.uleb128 0x17
+ 2105 0150 2E       		.uleb128 0x2e
+ 2106 0151 00       		.byte	0
+ 2107 0152 3F       		.uleb128 0x3f
+ 2108 0153 19       		.uleb128 0x19
+ 2109 0154 03       		.uleb128 0x3
+ 2110 0155 0E       		.uleb128 0xe
+ 2111 0156 3A       		.uleb128 0x3a
+ 2112 0157 0B       		.uleb128 0xb
+ 2113 0158 3B       		.uleb128 0x3b
+ 2114 0159 0B       		.uleb128 0xb
+ 2115 015a 49       		.uleb128 0x49
+ 2116 015b 13       		.uleb128 0x13
+ 2117 015c 11       		.uleb128 0x11
+ 2118 015d 01       		.uleb128 0x1
+ 2119 015e 12       		.uleb128 0x12
+ 2120 015f 06       		.uleb128 0x6
+ 2121 0160 40       		.uleb128 0x40
+ 2122 0161 18       		.uleb128 0x18
+ 2123 0162 9642     		.uleb128 0x2116
+ 2124 0164 19       		.uleb128 0x19
+ 2125 0165 00       		.byte	0
+ 2126 0166 00       		.byte	0
+ 2127 0167 18       		.uleb128 0x18
+ 2128 0168 2E       		.uleb128 0x2e
+ 2129 0169 00       		.byte	0
+ 2130 016a 3F       		.uleb128 0x3f
+ 2131 016b 19       		.uleb128 0x19
+ 2132 016c 03       		.uleb128 0x3
+ 2133 016d 0E       		.uleb128 0xe
+ 2134 016e 3A       		.uleb128 0x3a
+ 2135 016f 0B       		.uleb128 0xb
+ 2136 0170 3B       		.uleb128 0x3b
+ 2137 0171 0B       		.uleb128 0xb
+ 2138 0172 27       		.uleb128 0x27
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 43
+
+
+ 2139 0173 19       		.uleb128 0x19
+ 2140 0174 11       		.uleb128 0x11
+ 2141 0175 01       		.uleb128 0x1
+ 2142 0176 12       		.uleb128 0x12
+ 2143 0177 06       		.uleb128 0x6
+ 2144 0178 40       		.uleb128 0x40
+ 2145 0179 18       		.uleb128 0x18
+ 2146 017a 9642     		.uleb128 0x2116
+ 2147 017c 19       		.uleb128 0x19
+ 2148 017d 00       		.byte	0
+ 2149 017e 00       		.byte	0
+ 2150 017f 19       		.uleb128 0x19
+ 2151 0180 2E       		.uleb128 0x2e
+ 2152 0181 00       		.byte	0
+ 2153 0182 3F       		.uleb128 0x3f
+ 2154 0183 19       		.uleb128 0x19
+ 2155 0184 03       		.uleb128 0x3
+ 2156 0185 0E       		.uleb128 0xe
+ 2157 0186 3A       		.uleb128 0x3a
+ 2158 0187 0B       		.uleb128 0xb
+ 2159 0188 3B       		.uleb128 0x3b
+ 2160 0189 0B       		.uleb128 0xb
+ 2161 018a 27       		.uleb128 0x27
+ 2162 018b 19       		.uleb128 0x19
+ 2163 018c 11       		.uleb128 0x11
+ 2164 018d 01       		.uleb128 0x1
+ 2165 018e 12       		.uleb128 0x12
+ 2166 018f 06       		.uleb128 0x6
+ 2167 0190 40       		.uleb128 0x40
+ 2168 0191 18       		.uleb128 0x18
+ 2169 0192 9742     		.uleb128 0x2117
+ 2170 0194 19       		.uleb128 0x19
+ 2171 0195 00       		.byte	0
+ 2172 0196 00       		.byte	0
+ 2173 0197 1A       		.uleb128 0x1a
+ 2174 0198 2E       		.uleb128 0x2e
+ 2175 0199 00       		.byte	0
+ 2176 019a 03       		.uleb128 0x3
+ 2177 019b 0E       		.uleb128 0xe
+ 2178 019c 3A       		.uleb128 0x3a
+ 2179 019d 0B       		.uleb128 0xb
+ 2180 019e 3B       		.uleb128 0x3b
+ 2181 019f 0B       		.uleb128 0xb
+ 2182 01a0 27       		.uleb128 0x27
+ 2183 01a1 19       		.uleb128 0x19
+ 2184 01a2 11       		.uleb128 0x11
+ 2185 01a3 01       		.uleb128 0x1
+ 2186 01a4 12       		.uleb128 0x12
+ 2187 01a5 06       		.uleb128 0x6
+ 2188 01a6 40       		.uleb128 0x40
+ 2189 01a7 18       		.uleb128 0x18
+ 2190 01a8 9642     		.uleb128 0x2116
+ 2191 01aa 19       		.uleb128 0x19
+ 2192 01ab 00       		.byte	0
+ 2193 01ac 00       		.byte	0
+ 2194 01ad 1B       		.uleb128 0x1b
+ 2195 01ae 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 44
+
+
+ 2196 01af 00       		.byte	0
+ 2197 01b0 3F       		.uleb128 0x3f
+ 2198 01b1 19       		.uleb128 0x19
+ 2199 01b2 03       		.uleb128 0x3
+ 2200 01b3 0E       		.uleb128 0xe
+ 2201 01b4 3A       		.uleb128 0x3a
+ 2202 01b5 0B       		.uleb128 0xb
+ 2203 01b6 3B       		.uleb128 0x3b
+ 2204 01b7 0B       		.uleb128 0xb
+ 2205 01b8 11       		.uleb128 0x11
+ 2206 01b9 01       		.uleb128 0x1
+ 2207 01ba 12       		.uleb128 0x12
+ 2208 01bb 06       		.uleb128 0x6
+ 2209 01bc 40       		.uleb128 0x40
+ 2210 01bd 18       		.uleb128 0x18
+ 2211 01be 9742     		.uleb128 0x2117
+ 2212 01c0 19       		.uleb128 0x19
+ 2213 01c1 00       		.byte	0
+ 2214 01c2 00       		.byte	0
+ 2215 01c3 1C       		.uleb128 0x1c
+ 2216 01c4 2E       		.uleb128 0x2e
+ 2217 01c5 00       		.byte	0
+ 2218 01c6 3F       		.uleb128 0x3f
+ 2219 01c7 19       		.uleb128 0x19
+ 2220 01c8 03       		.uleb128 0x3
+ 2221 01c9 0E       		.uleb128 0xe
+ 2222 01ca 3A       		.uleb128 0x3a
+ 2223 01cb 0B       		.uleb128 0xb
+ 2224 01cc 3B       		.uleb128 0x3b
+ 2225 01cd 0B       		.uleb128 0xb
+ 2226 01ce 11       		.uleb128 0x11
+ 2227 01cf 01       		.uleb128 0x1
+ 2228 01d0 12       		.uleb128 0x12
+ 2229 01d1 06       		.uleb128 0x6
+ 2230 01d2 40       		.uleb128 0x40
+ 2231 01d3 18       		.uleb128 0x18
+ 2232 01d4 9642     		.uleb128 0x2116
+ 2233 01d6 19       		.uleb128 0x19
+ 2234 01d7 00       		.byte	0
+ 2235 01d8 00       		.byte	0
+ 2236 01d9 1D       		.uleb128 0x1d
+ 2237 01da 34       		.uleb128 0x34
+ 2238 01db 00       		.byte	0
+ 2239 01dc 03       		.uleb128 0x3
+ 2240 01dd 0E       		.uleb128 0xe
+ 2241 01de 3A       		.uleb128 0x3a
+ 2242 01df 0B       		.uleb128 0xb
+ 2243 01e0 3B       		.uleb128 0x3b
+ 2244 01e1 0B       		.uleb128 0xb
+ 2245 01e2 49       		.uleb128 0x49
+ 2246 01e3 13       		.uleb128 0x13
+ 2247 01e4 3F       		.uleb128 0x3f
+ 2248 01e5 19       		.uleb128 0x19
+ 2249 01e6 02       		.uleb128 0x2
+ 2250 01e7 18       		.uleb128 0x18
+ 2251 01e8 00       		.byte	0
+ 2252 01e9 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 45
+
+
+ 2253 01ea 00       		.byte	0
+ 2254              		.section	.debug_aranges,"",%progbits
+ 2255 0000 C4000000 		.4byte	0xc4
+ 2256 0004 0200     		.2byte	0x2
+ 2257 0006 00000000 		.4byte	.Ldebug_info0
+ 2258 000a 04       		.byte	0x4
+ 2259 000b 00       		.byte	0
+ 2260 000c 0000     		.2byte	0
+ 2261 000e 0000     		.2byte	0
+ 2262 0010 00000000 		.4byte	.LFB33
+ 2263 0014 12000000 		.4byte	.LFE33-.LFB33
+ 2264 0018 00000000 		.4byte	.LFB34
+ 2265 001c 0E000000 		.4byte	.LFE34-.LFB34
+ 2266 0020 00000000 		.4byte	.LFB35
+ 2267 0024 1C000000 		.4byte	.LFE35-.LFB35
+ 2268 0028 00000000 		.4byte	.LFB36
+ 2269 002c 24000000 		.4byte	.LFE36-.LFB36
+ 2270 0030 00000000 		.4byte	.LFB37
+ 2271 0034 12000000 		.4byte	.LFE37-.LFB37
+ 2272 0038 00000000 		.4byte	.LFB38
+ 2273 003c 36000000 		.4byte	.LFE38-.LFB38
+ 2274 0040 00000000 		.4byte	.LFB39
+ 2275 0044 0C000000 		.4byte	.LFE39-.LFB39
+ 2276 0048 00000000 		.4byte	.LFB40
+ 2277 004c 0E000000 		.4byte	.LFE40-.LFB40
+ 2278 0050 00000000 		.4byte	.LFB41
+ 2279 0054 50000000 		.4byte	.LFE41-.LFB41
+ 2280 0058 00000000 		.4byte	.LFB42
+ 2281 005c 28000000 		.4byte	.LFE42-.LFB42
+ 2282 0060 00000000 		.4byte	.LFB43
+ 2283 0064 34000000 		.4byte	.LFE43-.LFB43
+ 2284 0068 00000000 		.4byte	.LFB44
+ 2285 006c 40000000 		.4byte	.LFE44-.LFB44
+ 2286 0070 00000000 		.4byte	.LFB45
+ 2287 0074 58000000 		.4byte	.LFE45-.LFB45
+ 2288 0078 00000000 		.4byte	.LFB46
+ 2289 007c 0C000000 		.4byte	.LFE46-.LFB46
+ 2290 0080 00000000 		.4byte	.LFB47
+ 2291 0084 0C000000 		.4byte	.LFE47-.LFB47
+ 2292 0088 00000000 		.4byte	.LFB48
+ 2293 008c 9C000000 		.4byte	.LFE48-.LFB48
+ 2294 0090 00000000 		.4byte	.LFB49
+ 2295 0094 0C000000 		.4byte	.LFE49-.LFB49
+ 2296 0098 00000000 		.4byte	.LFB50
+ 2297 009c 9C000000 		.4byte	.LFE50-.LFB50
+ 2298 00a0 00000000 		.4byte	.LFB51
+ 2299 00a4 38000000 		.4byte	.LFE51-.LFB51
+ 2300 00a8 00000000 		.4byte	.LFB52
+ 2301 00ac 24000000 		.4byte	.LFE52-.LFB52
+ 2302 00b0 00000000 		.4byte	.LFB53
+ 2303 00b4 1C000000 		.4byte	.LFE53-.LFB53
+ 2304 00b8 00000000 		.4byte	.LFB54
+ 2305 00bc 40000000 		.4byte	.LFE54-.LFB54
+ 2306 00c0 00000000 		.4byte	0
+ 2307 00c4 00000000 		.4byte	0
+ 2308              		.section	.debug_ranges,"",%progbits
+ 2309              	.Ldebug_ranges0:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 46
+
+
+ 2310 0000 00000000 		.4byte	.LFB33
+ 2311 0004 12000000 		.4byte	.LFE33
+ 2312 0008 00000000 		.4byte	.LFB34
+ 2313 000c 0E000000 		.4byte	.LFE34
+ 2314 0010 00000000 		.4byte	.LFB35
+ 2315 0014 1C000000 		.4byte	.LFE35
+ 2316 0018 00000000 		.4byte	.LFB36
+ 2317 001c 24000000 		.4byte	.LFE36
+ 2318 0020 00000000 		.4byte	.LFB37
+ 2319 0024 12000000 		.4byte	.LFE37
+ 2320 0028 00000000 		.4byte	.LFB38
+ 2321 002c 36000000 		.4byte	.LFE38
+ 2322 0030 00000000 		.4byte	.LFB39
+ 2323 0034 0C000000 		.4byte	.LFE39
+ 2324 0038 00000000 		.4byte	.LFB40
+ 2325 003c 0E000000 		.4byte	.LFE40
+ 2326 0040 00000000 		.4byte	.LFB41
+ 2327 0044 50000000 		.4byte	.LFE41
+ 2328 0048 00000000 		.4byte	.LFB42
+ 2329 004c 28000000 		.4byte	.LFE42
+ 2330 0050 00000000 		.4byte	.LFB43
+ 2331 0054 34000000 		.4byte	.LFE43
+ 2332 0058 00000000 		.4byte	.LFB44
+ 2333 005c 40000000 		.4byte	.LFE44
+ 2334 0060 00000000 		.4byte	.LFB45
+ 2335 0064 58000000 		.4byte	.LFE45
+ 2336 0068 00000000 		.4byte	.LFB46
+ 2337 006c 0C000000 		.4byte	.LFE46
+ 2338 0070 00000000 		.4byte	.LFB47
+ 2339 0074 0C000000 		.4byte	.LFE47
+ 2340 0078 00000000 		.4byte	.LFB48
+ 2341 007c 9C000000 		.4byte	.LFE48
+ 2342 0080 00000000 		.4byte	.LFB49
+ 2343 0084 0C000000 		.4byte	.LFE49
+ 2344 0088 00000000 		.4byte	.LFB50
+ 2345 008c 9C000000 		.4byte	.LFE50
+ 2346 0090 00000000 		.4byte	.LFB51
+ 2347 0094 38000000 		.4byte	.LFE51
+ 2348 0098 00000000 		.4byte	.LFB52
+ 2349 009c 24000000 		.4byte	.LFE52
+ 2350 00a0 00000000 		.4byte	.LFB53
+ 2351 00a4 1C000000 		.4byte	.LFE53
+ 2352 00a8 00000000 		.4byte	.LFB54
+ 2353 00ac 40000000 		.4byte	.LFE54
+ 2354 00b0 00000000 		.4byte	0
+ 2355 00b4 00000000 		.4byte	0
+ 2356              		.section	.debug_line,"",%progbits
+ 2357              	.Ldebug_line0:
+ 2358 0000 77030000 		.section	.debug_str,"MS",%progbits,1
+ 2358      02007401 
+ 2358      00000201 
+ 2358      FB0E0D00 
+ 2358      01010101 
+ 2359              	.LASF84:
+ 2360 0000 66736D49 		.ascii	"fsmIfacePlatform_send_msg\000"
+ 2360      66616365 
+ 2360      506C6174 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 47
+
+
+ 2360      666F726D 
+ 2360      5F73656E 
+ 2361              	.LASF40:
+ 2362 001a 74657374 		.ascii	"test_raised\000"
+ 2362      5F726169 
+ 2362      73656400 
+ 2363              	.LASF49:
+ 2364 0026 46736D49 		.ascii	"FsmIfaceWaterControl\000"
+ 2364      66616365 
+ 2364      57617465 
+ 2364      72436F6E 
+ 2364      74726F6C 
+ 2365              	.LASF94:
+ 2366 003b 636F6D6D 		.ascii	"communicationHandler\000"
+ 2366      756E6963 
+ 2366      6174696F 
+ 2366      6E48616E 
+ 2366      646C6572 
+ 2367              	.LASF22:
+ 2368 0050 4E554D5F 		.ascii	"NUM_OF_ATOM_MODES\000"
+ 2368      4F465F41 
+ 2368      544F4D5F 
+ 2368      4D4F4445 
+ 2368      5300
+ 2369              	.LASF2:
+ 2370 0062 73686F72 		.ascii	"short int\000"
+ 2370      7420696E 
+ 2370      7400
+ 2371              	.LASF17:
+ 2372 006c 73697A65 		.ascii	"sizetype\000"
+ 2372      74797065 
+ 2372      00
+ 2373              	.LASF57:
+ 2374 0075 74696D65 		.ascii	"timeEvents\000"
+ 2374      4576656E 
+ 2374      747300
+ 2375              	.LASF92:
+ 2376 0080 2E5C7372 		.ascii	".\\src\\main.c\000"
+ 2376      635C6D61 
+ 2376      696E2E63 
+ 2376      00
+ 2377              	.LASF6:
+ 2378 008d 6C6F6E67 		.ascii	"long long int\000"
+ 2378      206C6F6E 
+ 2378      6720696E 
+ 2378      7400
+ 2379              	.LASF61:
+ 2380 009b 6D6F6465 		.ascii	"mode\000"
+ 2380      00
+ 2381              	.LASF58:
+ 2382 00a0 73656373 		.ascii	"secs\000"
+ 2382      00
+ 2383              	.LASF71:
+ 2384 00a5 73657476 		.ascii	"setvar_shutdownTime\000"
+ 2384      61725F73 
+ 2384      68757464 
+ 2384      6F776E54 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 48
+
+
+ 2384      696D6500 
+ 2385              	.LASF26:
+ 2386 00b9 73635F69 		.ascii	"sc_integer\000"
+ 2386      6E746567 
+ 2386      657200
+ 2387              	.LASF64:
+ 2388 00c4 68616E64 		.ascii	"handle\000"
+ 2388      6C6500
+ 2389              	.LASF29:
+ 2390 00cb 46736D5F 		.ascii	"Fsm_main_region_Operation_op_Decide\000"
+ 2390      6D61696E 
+ 2390      5F726567 
+ 2390      696F6E5F 
+ 2390      4F706572 
+ 2391              	.LASF48:
+ 2392 00ef 6F704D6F 		.ascii	"opMode\000"
+ 2392      646500
+ 2393              	.LASF24:
+ 2394 00f6 61746F6D 		.ascii	"atom_modes_t\000"
+ 2394      5F6D6F64 
+ 2394      65735F74 
+ 2394      00
+ 2395              	.LASF77:
+ 2396 0103 52657375 		.ascii	"ResumePeripherals\000"
+ 2396      6D655065 
+ 2396      72697068 
+ 2396      6572616C 
+ 2396      7300
+ 2397              	.LASF20:
+ 2398 0115 41544F4D 		.ascii	"ATOM_MODE_Idle\000"
+ 2398      5F4D4F44 
+ 2398      455F4964 
+ 2398      6C6500
+ 2399              	.LASF46:
+ 2400 0124 6D617856 		.ascii	"maxVolume\000"
+ 2400      6F6C756D 
+ 2400      6500
+ 2401              	.LASF55:
+ 2402 012e 69666163 		.ascii	"ifaceAtom\000"
+ 2402      6541746F 
+ 2402      6D00
+ 2403              	.LASF51:
+ 2404 0138 46736D54 		.ascii	"FsmTimeEvents\000"
+ 2404      696D6545 
+ 2404      76656E74 
+ 2404      7300
+ 2405              	.LASF23:
+ 2406 0146 494E5641 		.ascii	"INVALID_ATOM_MODE\000"
+ 2406      4C49445F 
+ 2406      41544F4D 
+ 2406      5F4D4F44 
+ 2406      4500
+ 2407              	.LASF0:
+ 2408 0158 7369676E 		.ascii	"signed char\000"
+ 2408      65642063 
+ 2408      68617200 
+ 2409              	.LASF79:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 49
+
+
+ 2410 0164 63686563 		.ascii	"check_duty_cycle\000"
+ 2410      6B5F6475 
+ 2410      74795F63 
+ 2410      79636C65 
+ 2410      00
+ 2411              	.LASF14:
+ 2412 0175 666C6F61 		.ascii	"float\000"
+ 2412      7400
+ 2413              	.LASF41:
+ 2414 017b 69646C65 		.ascii	"idle_raised\000"
+ 2414      5F726169 
+ 2414      73656400 
+ 2415              	.LASF68:
+ 2416 0187 67657476 		.ascii	"getvar_sleepPeriod\000"
+ 2416      61725F73 
+ 2416      6C656570 
+ 2416      50657269 
+ 2416      6F6400
+ 2417              	.LASF19:
+ 2418 019a 41544F4D 		.ascii	"ATOM_MODE_Test\000"
+ 2418      5F4D4F44 
+ 2418      455F5465 
+ 2418      737400
+ 2419              	.LASF25:
+ 2420 01a9 73635F75 		.ascii	"sc_ushort\000"
+ 2420      73686F72 
+ 2420      7400
+ 2421              	.LASF70:
+ 2422 01b3 67657476 		.ascii	"getvar_shutdownTime\000"
+ 2422      61725F73 
+ 2422      68757464 
+ 2422      6F776E54 
+ 2422      696D6500 
+ 2423              	.LASF4:
+ 2424 01c7 6C6F6E67 		.ascii	"long int\000"
+ 2424      20696E74 
+ 2424      00
+ 2425              	.LASF88:
+ 2426 01d0 766F6C74 		.ascii	"voltage\000"
+ 2426      61676500 
+ 2427              	.LASF72:
+ 2428 01d8 636F6D6D 		.ascii	"comm_ModeChange\000"
+ 2428      5F4D6F64 
+ 2428      65436861 
+ 2428      6E676500 
+ 2429              	.LASF18:
+ 2430 01e8 41544F4D 		.ascii	"ATOM_MODE_Start\000"
+ 2430      5F4D4F44 
+ 2430      455F5374 
+ 2430      61727400 
+ 2431              	.LASF80:
+ 2432 01f8 53657455 		.ascii	"SetUpWDT\000"
+ 2432      70574454 
+ 2432      00
+ 2433              	.LASF62:
+ 2434 0201 6F6D6F64 		.ascii	"omode\000"
+ 2434      6500
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 50
+
+
+ 2435              	.LASF39:
+ 2436 0207 73746172 		.ascii	"start_raised\000"
+ 2436      745F7261 
+ 2436      69736564 
+ 2436      00
+ 2437              	.LASF81:
+ 2438 0214 66736D49 		.ascii	"fsmIfacePlatform_sleep\000"
+ 2438      66616365 
+ 2438      506C6174 
+ 2438      666F726D 
+ 2438      5F736C65 
+ 2439              	.LASF1:
+ 2440 022b 756E7369 		.ascii	"unsigned char\000"
+ 2440      676E6564 
+ 2440      20636861 
+ 2440      7200
+ 2441              	.LASF52:
+ 2442 0239 73746174 		.ascii	"stateConfVector\000"
+ 2442      65436F6E 
+ 2442      66566563 
+ 2442      746F7200 
+ 2443              	.LASF73:
+ 2444 0249 67657454 		.ascii	"getTime\000"
+ 2444      696D6500 
+ 2445              	.LASF66:
+ 2446 0251 73657476 		.ascii	"setvar_test\000"
+ 2446      61725F74 
+ 2446      65737400 
+ 2447              	.LASF21:
+ 2448 025d 41544F4D 		.ascii	"ATOM_MODE_Shutdown\000"
+ 2448      5F4D4F44 
+ 2448      455F5368 
+ 2448      7574646F 
+ 2448      776E00
+ 2449              	.LASF7:
+ 2450 0270 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2450      206C6F6E 
+ 2450      6720756E 
+ 2450      7369676E 
+ 2450      65642069 
+ 2451              	.LASF36:
+ 2452 0287 46736D5F 		.ascii	"Fsm_main_region_Idle\000"
+ 2452      6D61696E 
+ 2452      5F726567 
+ 2452      696F6E5F 
+ 2452      49646C65 
+ 2453              	.LASF38:
+ 2454 029c 46736D53 		.ascii	"FsmStates\000"
+ 2454      74617465 
+ 2454      7300
+ 2455              	.LASF8:
+ 2456 02a6 756E7369 		.ascii	"unsigned int\000"
+ 2456      676E6564 
+ 2456      20696E74 
+ 2456      00
+ 2457              	.LASF28:
+ 2458 02b3 46736D5F 		.ascii	"Fsm_main_region_Operation\000"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 51
+
+
+ 2458      6D61696E 
+ 2458      5F726567 
+ 2458      696F6E5F 
+ 2458      4F706572 
+ 2459              	.LASF87:
+ 2460 02cd 74696D65 		.ascii	"time\000"
+ 2460      00
+ 2461              	.LASF3:
+ 2462 02d2 73686F72 		.ascii	"short unsigned int\000"
+ 2462      7420756E 
+ 2462      7369676E 
+ 2462      65642069 
+ 2462      6E7400
+ 2463              	.LASF86:
+ 2464 02e5 466C6167 		.ascii	"Flag\000"
+ 2464      00
+ 2465              	.LASF83:
+ 2466 02ea 43686563 		.ascii	"CheckTime\000"
+ 2466      6B54696D 
+ 2466      6500
+ 2467              	.LASF60:
+ 2468 02f4 686F7572 		.ascii	"hours\000"
+ 2468      7300
+ 2469              	.LASF47:
+ 2470 02fa 63757272 		.ascii	"currentVolume\000"
+ 2470      656E7456 
+ 2470      6F6C756D 
+ 2470      6500
+ 2471              	.LASF16:
+ 2472 0308 63686172 		.ascii	"char\000"
+ 2472      00
+ 2473              	.LASF76:
+ 2474 030d 696E6974 		.ascii	"init\000"
+ 2474      00
+ 2475              	.LASF93:
+ 2476 0312 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 2476      73657273 
+ 2476      5C736465 
+ 2476      76617365 
+ 2476      6E617061 
+ 2477 0340 6F6D2E63 		.ascii	"om.cydsn\000"
+ 2477      7964736E 
+ 2477      00
+ 2478              	.LASF85:
+ 2479 0349 6D61696E 		.ascii	"main\000"
+ 2479      00
+ 2480              	.LASF10:
+ 2481 034e 696E7433 		.ascii	"int32_t\000"
+ 2481      325F7400 
+ 2482              	.LASF11:
+ 2483 0356 75696E74 		.ascii	"uint_fast16_t\000"
+ 2483      5F666173 
+ 2483      7431365F 
+ 2483      7400
+ 2484              	.LASF59:
+ 2485 0364 6D696E73 		.ascii	"mins\000"
+ 2485      00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 52
+
+
+ 2486              	.LASF67:
+ 2487 0369 67657476 		.ascii	"getvar_test\000"
+ 2487      61725F74 
+ 2487      65737400 
+ 2488              	.LASF30:
+ 2489 0375 46736D5F 		.ascii	"Fsm_main_region_Operation_op_ValveOn\000"
+ 2489      6D61696E 
+ 2489      5F726567 
+ 2489      696F6E5F 
+ 2489      4F706572 
+ 2490              	.LASF43:
+ 2491 039a 5F426F6F 		.ascii	"_Bool\000"
+ 2491      6C00
+ 2492              	.LASF27:
+ 2493 03a0 46736D5F 		.ascii	"Fsm_main_region_Sleep\000"
+ 2493      6D61696E 
+ 2493      5F726567 
+ 2493      696F6E5F 
+ 2493      536C6565 
+ 2494              	.LASF69:
+ 2495 03b6 73657476 		.ascii	"setvar_sleepPeriod\000"
+ 2495      61725F73 
+ 2495      6C656570 
+ 2495      50657269 
+ 2495      6F6400
+ 2496              	.LASF54:
+ 2497 03c9 69666163 		.ascii	"ifacePlatform\000"
+ 2497      65506C61 
+ 2497      74666F72 
+ 2497      6D00
+ 2498              	.LASF50:
+ 2499 03d7 66736D5F 		.ascii	"fsm_main_region_Operation_op_SendStats_tev0_raised\000"
+ 2499      6D61696E 
+ 2499      5F726567 
+ 2499      696F6E5F 
+ 2499      4F706572 
+ 2500              	.LASF42:
+ 2501 040a 74696D65 		.ascii	"timer_raised\000"
+ 2501      725F7261 
+ 2501      69736564 
+ 2501      00
+ 2502              	.LASF13:
+ 2503 0417 75696E74 		.ascii	"uint32\000"
+ 2503      333200
+ 2504              	.LASF5:
+ 2505 041e 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2505      20756E73 
+ 2505      69676E65 
+ 2505      6420696E 
+ 2505      7400
+ 2506              	.LASF63:
+ 2507 0430 636C6F63 		.ascii	"clock\000"
+ 2507      6B00
+ 2508              	.LASF15:
+ 2509 0436 646F7562 		.ascii	"double\000"
+ 2509      6C6500
+ 2510              	.LASF90:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 53
+
+
+ 2511 043d 6D6F6465 		.ascii	"modelHandle\000"
+ 2511      6C48616E 
+ 2511      646C6500 
+ 2512              	.LASF34:
+ 2513 0449 46736D5F 		.ascii	"Fsm_main_region_TestState\000"
+ 2513      6D61696E 
+ 2513      5F726567 
+ 2513      696F6E5F 
+ 2513      54657374 
+ 2514              	.LASF56:
+ 2515 0463 69666163 		.ascii	"ifaceWaterControl\000"
+ 2515      65576174 
+ 2515      6572436F 
+ 2515      6E74726F 
+ 2515      6C00
+ 2516              	.LASF65:
+ 2517 0475 73657476 		.ascii	"setvar_updateRate\000"
+ 2517      61725F75 
+ 2517      70646174 
+ 2517      65526174 
+ 2517      6500
+ 2518              	.LASF37:
+ 2519 0487 46736D5F 		.ascii	"Fsm_last_state\000"
+ 2519      6C617374 
+ 2519      5F737461 
+ 2519      746500
+ 2520              	.LASF75:
+ 2521 0496 70726573 		.ascii	"preset\000"
+ 2521      657400
+ 2522              	.LASF9:
+ 2523 049d 5F5F696E 		.ascii	"__int32_t\000"
+ 2523      7433325F 
+ 2523      7400
+ 2524              	.LASF35:
+ 2525 04a7 46736D5F 		.ascii	"Fsm_main_region_TestState_test__final_\000"
+ 2525      6D61696E 
+ 2525      5F726567 
+ 2525      696F6E5F 
+ 2525      54657374 
+ 2526              	.LASF82:
+ 2527 04ce 66736D49 		.ascii	"fsmIfacePlatform_resume\000"
+ 2527      66616365 
+ 2527      506C6174 
+ 2527      666F726D 
+ 2527      5F726573 
+ 2528              	.LASF12:
+ 2529 04e6 75696E74 		.ascii	"uint8\000"
+ 2529      3800
+ 2530              	.LASF44:
+ 2531 04ec 46736D49 		.ascii	"FsmIfacePlatform\000"
+ 2531      66616365 
+ 2531      506C6174 
+ 2531      666F726D 
+ 2531      00
+ 2532              	.LASF45:
+ 2533 04fd 46736D49 		.ascii	"FsmIfaceAtom\000"
+ 2533      66616365 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 54
+
+
+ 2533      41746F6D 
+ 2533      00
+ 2534              	.LASF74:
+ 2535 050a 5744545F 		.ascii	"WDT_ISR_Handler\000"
+ 2535      4953525F 
+ 2535      48616E64 
+ 2535      6C657200 
+ 2536              	.LASF53:
+ 2537 051a 73746174 		.ascii	"stateConfVectorPosition\000"
+ 2537      65436F6E 
+ 2537      66566563 
+ 2537      746F7250 
+ 2537      6F736974 
+ 2538              	.LASF33:
+ 2539 0532 46736D5F 		.ascii	"Fsm_main_region_Operation_op_SendStats\000"
+ 2539      6D61696E 
+ 2539      5F726567 
+ 2539      696F6E5F 
+ 2539      4F706572 
+ 2540              	.LASF31:
+ 2541 0559 46736D5F 		.ascii	"Fsm_main_region_Operation_op_ValveOff\000"
+ 2541      6D61696E 
+ 2541      5F726567 
+ 2541      696F6E5F 
+ 2541      4F706572 
+ 2542              	.LASF78:
+ 2543 057f 53746F72 		.ascii	"StorePeripherals\000"
+ 2543      65506572 
+ 2543      69706865 
+ 2543      72616C73 
+ 2543      00
+ 2544              	.LASF32:
+ 2545 0590 46736D5F 		.ascii	"Fsm_main_region_Operation_op_VolumeCheck\000"
+ 2545      6D61696E 
+ 2545      5F726567 
+ 2545      696F6E5F 
+ 2545      4F706572 
+ 2546              	.LASF91:
+ 2547 05b9 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 2547      4320342E 
+ 2547      382E3420 
+ 2547      32303134 
+ 2547      30353236 
+ 2548 05ec 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 2548      20726576 
+ 2548      6973696F 
+ 2548      6E203231 
+ 2548      31333538 
+ 2549 061f 30202D66 		.ascii	"0 -ffunction-sections\000"
+ 2549      66756E63 
+ 2549      74696F6E 
+ 2549      2D736563 
+ 2549      74696F6E 
+ 2550              	.LASF89:
+ 2551 0635 7374725F 		.ascii	"str_mode\000"
+ 2551      6D6F6465 
+ 2551      00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccn2niKJ.s 			page 55
+
+
+ 2552              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

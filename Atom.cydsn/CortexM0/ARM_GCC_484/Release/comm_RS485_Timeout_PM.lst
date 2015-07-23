@@ -1,0 +1,885 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"comm_RS485_Timeout_PM.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.comm_RS485_Timeout_SaveConfig,"ax",%progbits
+  18              		.align	1
+  19              		.global	comm_RS485_Timeout_SaveConfig
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	comm_RS485_Timeout_SaveConfig, %function
+  23              	comm_RS485_Timeout_SaveConfig:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\comm_RS485_Timeout_PM.c"
+   1:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * File Name: comm_RS485_Timeout_PM.c
+   3:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Version 1.0
+   4:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+   5:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Description:
+   6:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This file provides Low power mode APIs for Count7 component.
+   7:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+   8:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Note:
+   9:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  10:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  11:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** ********************************************************************************
+  12:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Copyright 2013, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  18:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** #include "comm_RS485_Timeout.h"
+  19:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  20:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  21:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** comm_RS485_Timeout_BACKUP_STRUCT comm_RS485_Timeout_backup;
+  22:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  23:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  24:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** /*******************************************************************************
+  25:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Function Name: comm_RS485_Timeout_SaveConfig
+  26:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** ********************************************************************************
+  27:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  28:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Summary:
+  29:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This function saves the component configuration and non-retention registers.
+  30:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This function is called by the Count7_Sleep() function.
+  31:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  32:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Parameters:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  34:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  35:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Return:
+  36:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  37:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  38:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Global Variables:
+  39:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  comm_RS485_Timeout_backup - used to save component configuration and non-
+  40:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  retention registers before enter sleep mode.
+  41:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  42:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *******************************************************************************/
+  43:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** void comm_RS485_Timeout_SaveConfig(void) 
+  44:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** {
+  26              		.loc 1 44 0
+  27              		.cfi_startproc
+  45:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_backup.count = comm_RS485_Timeout_COUNT_REG;
+  28              		.loc 1 45 0
+  29 0000 024B     		ldr	r3, .L2
+  46:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** }
+  30              		.loc 1 46 0
+  31              		@ sp needed
+  45:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_backup.count = comm_RS485_Timeout_COUNT_REG;
+  32              		.loc 1 45 0
+  33 0002 1A78     		ldrb	r2, [r3]
+  34 0004 024B     		ldr	r3, .L2+4
+  35 0006 5A70     		strb	r2, [r3, #1]
+  36              		.loc 1 46 0
+  37 0008 7047     		bx	lr
+  38              	.L3:
+  39 000a C046     		.align	2
+  40              	.L2:
+  41 000c 73000F40 		.word	1074724979
+  42 0010 00000000 		.word	comm_RS485_Timeout_backup
+  43              		.cfi_endproc
+  44              	.LFE0:
+  45              		.size	comm_RS485_Timeout_SaveConfig, .-comm_RS485_Timeout_SaveConfig
+  46              		.section	.text.comm_RS485_Timeout_Sleep,"ax",%progbits
+  47              		.align	1
+  48              		.global	comm_RS485_Timeout_Sleep
+  49              		.code	16
+  50              		.thumb_func
+  51              		.type	comm_RS485_Timeout_Sleep, %function
+  52              	comm_RS485_Timeout_Sleep:
+  53              	.LFB1:
+  47:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  48:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  49:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** /*******************************************************************************
+  50:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Function Name: comm_RS485_Timeout_Sleep
+  51:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** ********************************************************************************
+  52:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  53:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Summary:
+  54:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This is the preferred API to prepare the component for low power mode
+  55:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  operation. The Count7_Sleep() API saves the current component state using
+  56:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  Count7_SaveConfig() and disables the counter.
+  57:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  58:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Parameters:
+  59:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  60:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 3
+
+
+  61:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Return:
+  62:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  63:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  64:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *******************************************************************************/
+  65:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** void comm_RS485_Timeout_Sleep(void) 
+  66:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** {
+  54              		.loc 1 66 0
+  55              		.cfi_startproc
+  56 0000 08B5     		push	{r3, lr}
+  57              		.cfi_def_cfa_offset 8
+  58              		.cfi_offset 3, -8
+  59              		.cfi_offset 14, -4
+  67:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     if(0u != (comm_RS485_Timeout_AUX_CONTROL_REG & comm_RS485_Timeout_COUNTER_START))
+  60              		.loc 1 67 0
+  61 0002 074B     		ldr	r3, .L8
+  62 0004 1A78     		ldrb	r2, [r3]
+  63 0006 2023     		mov	r3, #32
+  64 0008 1A40     		and	r2, r3
+  65 000a 064B     		ldr	r3, .L8+4
+  66 000c 04D0     		beq	.L5
+  68:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     {
+  69:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****         comm_RS485_Timeout_backup.enableState = 1u;
+  67              		.loc 1 69 0
+  68 000e 0122     		mov	r2, #1
+  69 0010 1A70     		strb	r2, [r3]
+  70:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****         comm_RS485_Timeout_Stop();
+  70              		.loc 1 70 0
+  71 0012 FFF7FEFF 		bl	comm_RS485_Timeout_Stop
+  72              	.LVL0:
+  73 0016 00E0     		b	.L6
+  74              	.L5:
+  71:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     }
+  72:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     else
+  73:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     {
+  74:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****         comm_RS485_Timeout_backup.enableState = 0u;
+  75              		.loc 1 74 0
+  76 0018 1A70     		strb	r2, [r3]
+  77              	.L6:
+  75:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     }
+  76:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  77:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_SaveConfig();
+  78              		.loc 1 77 0
+  79 001a FFF7FEFF 		bl	comm_RS485_Timeout_SaveConfig
+  80              	.LVL1:
+  78:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** }
+  81              		.loc 1 78 0
+  82              		@ sp needed
+  83 001e 08BD     		pop	{r3, pc}
+  84              	.L9:
+  85              		.align	2
+  86              	.L8:
+  87 0020 93000F40 		.word	1074725011
+  88 0024 00000000 		.word	comm_RS485_Timeout_backup
+  89              		.cfi_endproc
+  90              	.LFE1:
+  91              		.size	comm_RS485_Timeout_Sleep, .-comm_RS485_Timeout_Sleep
+  92              		.section	.text.comm_RS485_Timeout_RestoreConfig,"ax",%progbits
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 4
+
+
+  93              		.align	1
+  94              		.global	comm_RS485_Timeout_RestoreConfig
+  95              		.code	16
+  96              		.thumb_func
+  97              		.type	comm_RS485_Timeout_RestoreConfig, %function
+  98              	comm_RS485_Timeout_RestoreConfig:
+  99              	.LFB2:
+  79:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  80:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+  81:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** /*******************************************************************************
+  82:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Function Name: comm_RS485_Timeout_RestoreConfig
+  83:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** ********************************************************************************
+  84:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  85:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Summary:
+  86:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This function restores the component configuration and non-retention
+  87:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  registers. This function is called by the Count7_Wakeup() function.
+  88:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  89:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Parameters:
+  90:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  91:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  92:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Return:
+  93:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+  94:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  95:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Global Variables:
+  96:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  comm_RS485_Timeout_backup - used to save component configuration and
+  97:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  non-retention registers before exit sleep mode.
+  98:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+  99:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *******************************************************************************/
+ 100:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** void comm_RS485_Timeout_RestoreConfig(void) 
+ 101:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** {
+ 100              		.loc 1 101 0
+ 101              		.cfi_startproc
+ 102:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_COUNT_REG = comm_RS485_Timeout_backup.count;
+ 102              		.loc 1 102 0
+ 103 0000 024B     		ldr	r3, .L11
+ 103:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** }
+ 104              		.loc 1 103 0
+ 105              		@ sp needed
+ 102:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_COUNT_REG = comm_RS485_Timeout_backup.count;
+ 106              		.loc 1 102 0
+ 107 0002 5A78     		ldrb	r2, [r3, #1]
+ 108 0004 024B     		ldr	r3, .L11+4
+ 109 0006 1A70     		strb	r2, [r3]
+ 110              		.loc 1 103 0
+ 111 0008 7047     		bx	lr
+ 112              	.L12:
+ 113 000a C046     		.align	2
+ 114              	.L11:
+ 115 000c 00000000 		.word	comm_RS485_Timeout_backup
+ 116 0010 73000F40 		.word	1074724979
+ 117              		.cfi_endproc
+ 118              	.LFE2:
+ 119              		.size	comm_RS485_Timeout_RestoreConfig, .-comm_RS485_Timeout_RestoreConfig
+ 120              		.section	.text.comm_RS485_Timeout_Wakeup,"ax",%progbits
+ 121              		.align	1
+ 122              		.global	comm_RS485_Timeout_Wakeup
+ 123              		.code	16
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 5
+
+
+ 124              		.thumb_func
+ 125              		.type	comm_RS485_Timeout_Wakeup, %function
+ 126              	comm_RS485_Timeout_Wakeup:
+ 127              	.LFB3:
+ 104:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+ 105:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+ 106:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** /*******************************************************************************
+ 107:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Function Name: comm_RS485_Timeout_Wakeup
+ 108:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** ********************************************************************************
+ 109:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+ 110:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Summary:
+ 111:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  This is the preferred API to restore the component to the state when
+ 112:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  Count7_Sleep() was called. The Count7_Wakeup() function calls the
+ 113:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  Count7_RestoreConfig() function to restore the configuration.
+ 114:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+ 115:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Parameters:
+ 116:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+ 117:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+ 118:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** * Return:
+ 119:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *  None
+ 120:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *
+ 121:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** *******************************************************************************/
+ 122:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** void comm_RS485_Timeout_Wakeup(void) 
+ 123:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** {
+ 128              		.loc 1 123 0
+ 129              		.cfi_startproc
+ 130 0000 08B5     		push	{r3, lr}
+ 131              		.cfi_def_cfa_offset 8
+ 132              		.cfi_offset 3, -8
+ 133              		.cfi_offset 14, -4
+ 124:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     comm_RS485_Timeout_RestoreConfig();
+ 134              		.loc 1 124 0
+ 135 0002 FFF7FEFF 		bl	comm_RS485_Timeout_RestoreConfig
+ 136              	.LVL2:
+ 125:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** 
+ 126:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     /* Restore enable state */
+ 127:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     if (comm_RS485_Timeout_backup.enableState != 0u)
+ 137              		.loc 1 127 0
+ 138 0006 034B     		ldr	r3, .L18
+ 139 0008 1B78     		ldrb	r3, [r3]
+ 140 000a 002B     		cmp	r3, #0
+ 141 000c 01D0     		beq	.L13
+ 128:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     {
+ 129:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****         comm_RS485_Timeout_Enable();
+ 142              		.loc 1 129 0
+ 143 000e FFF7FEFF 		bl	comm_RS485_Timeout_Enable
+ 144              	.LVL3:
+ 145              	.L13:
+ 130:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c ****     }
+ 131:.\Generated_Source\PSoC4/comm_RS485_Timeout_PM.c **** }
+ 146              		.loc 1 131 0
+ 147              		@ sp needed
+ 148 0012 08BD     		pop	{r3, pc}
+ 149              	.L19:
+ 150              		.align	2
+ 151              	.L18:
+ 152 0014 00000000 		.word	comm_RS485_Timeout_backup
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 6
+
+
+ 153              		.cfi_endproc
+ 154              	.LFE3:
+ 155              		.size	comm_RS485_Timeout_Wakeup, .-comm_RS485_Timeout_Wakeup
+ 156              		.comm	comm_RS485_Timeout_backup,2,1
+ 157              		.text
+ 158              	.Letext0:
+ 159              		.file 2 ".\\Generated_Source\\PSoC4\\cytypes.h"
+ 160              		.file 3 ".\\Generated_Source\\PSoC4\\comm_RS485_Timeout.h"
+ 161              		.section	.debug_info,"",%progbits
+ 162              	.Ldebug_info0:
+ 163 0000 56010000 		.4byte	0x156
+ 164 0004 0400     		.2byte	0x4
+ 165 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 166 000a 04       		.byte	0x4
+ 167 000b 01       		.uleb128 0x1
+ 168 000c C5000000 		.4byte	.LASF23
+ 169 0010 01       		.byte	0x1
+ 170 0011 21000000 		.4byte	.LASF24
+ 171 0015 C4010000 		.4byte	.LASF25
+ 172 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 173 001d 00000000 		.4byte	0
+ 174 0021 00000000 		.4byte	.Ldebug_line0
+ 175 0025 02       		.uleb128 0x2
+ 176 0026 01       		.byte	0x1
+ 177 0027 06       		.byte	0x6
+ 178 0028 51020000 		.4byte	.LASF0
+ 179 002c 02       		.uleb128 0x2
+ 180 002d 01       		.byte	0x1
+ 181 002e 08       		.byte	0x8
+ 182 002f 5E010000 		.4byte	.LASF1
+ 183 0033 02       		.uleb128 0x2
+ 184 0034 02       		.byte	0x2
+ 185 0035 05       		.byte	0x5
+ 186 0036 2C020000 		.4byte	.LASF2
+ 187 003a 02       		.uleb128 0x2
+ 188 003b 02       		.byte	0x2
+ 189 003c 07       		.byte	0x7
+ 190 003d 83010000 		.4byte	.LASF3
+ 191 0041 02       		.uleb128 0x2
+ 192 0042 04       		.byte	0x4
+ 193 0043 05       		.byte	0x5
+ 194 0044 3C020000 		.4byte	.LASF4
+ 195 0048 02       		.uleb128 0x2
+ 196 0049 04       		.byte	0x4
+ 197 004a 07       		.byte	0x7
+ 198 004b 71010000 		.4byte	.LASF5
+ 199 004f 02       		.uleb128 0x2
+ 200 0050 08       		.byte	0x8
+ 201 0051 05       		.byte	0x5
+ 202 0052 FB010000 		.4byte	.LASF6
+ 203 0056 02       		.uleb128 0x2
+ 204 0057 08       		.byte	0x8
+ 205 0058 07       		.byte	0x7
+ 206 0059 47010000 		.4byte	.LASF7
+ 207 005d 03       		.uleb128 0x3
+ 208 005e 04       		.byte	0x4
+ 209 005f 05       		.byte	0x5
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 7
+
+
+ 210 0060 696E7400 		.ascii	"int\000"
+ 211 0064 02       		.uleb128 0x2
+ 212 0065 04       		.byte	0x4
+ 213 0066 07       		.byte	0x7
+ 214 0067 B7010000 		.4byte	.LASF8
+ 215 006b 04       		.uleb128 0x4
+ 216 006c 36020000 		.4byte	.LASF12
+ 217 0070 02       		.byte	0x2
+ 218 0071 B3       		.byte	0xb3
+ 219 0072 2C000000 		.4byte	0x2c
+ 220 0076 02       		.uleb128 0x2
+ 221 0077 04       		.byte	0x4
+ 222 0078 04       		.byte	0x4
+ 223 0079 41010000 		.4byte	.LASF9
+ 224 007d 02       		.uleb128 0x2
+ 225 007e 08       		.byte	0x8
+ 226 007f 04       		.byte	0x4
+ 227 0080 B0010000 		.4byte	.LASF10
+ 228 0084 02       		.uleb128 0x2
+ 229 0085 01       		.byte	0x1
+ 230 0086 08       		.byte	0x8
+ 231 0087 09020000 		.4byte	.LASF11
+ 232 008b 05       		.uleb128 0x5
+ 233 008c 6C010000 		.4byte	.LASF13
+ 234 0090 02       		.byte	0x2
+ 235 0091 5D01     		.2byte	0x15d
+ 236 0093 97000000 		.4byte	0x97
+ 237 0097 06       		.uleb128 0x6
+ 238 0098 6B000000 		.4byte	0x6b
+ 239 009c 07       		.uleb128 0x7
+ 240 009d 02       		.byte	0x2
+ 241 009e 03       		.byte	0x3
+ 242 009f 2E       		.byte	0x2e
+ 243 00a0 BD000000 		.4byte	0xbd
+ 244 00a4 08       		.uleb128 0x8
+ 245 00a5 45020000 		.4byte	.LASF14
+ 246 00a9 03       		.byte	0x3
+ 247 00aa 30       		.byte	0x30
+ 248 00ab 6B000000 		.4byte	0x6b
+ 249 00af 00       		.byte	0
+ 250 00b0 08       		.uleb128 0x8
+ 251 00b1 6A000000 		.4byte	.LASF15
+ 252 00b5 03       		.byte	0x3
+ 253 00b6 31       		.byte	0x31
+ 254 00b7 6B000000 		.4byte	0x6b
+ 255 00bb 01       		.byte	0x1
+ 256 00bc 00       		.byte	0
+ 257 00bd 04       		.uleb128 0x4
+ 258 00be 00000000 		.4byte	.LASF16
+ 259 00c2 03       		.byte	0x3
+ 260 00c3 32       		.byte	0x32
+ 261 00c4 9C000000 		.4byte	0x9c
+ 262 00c8 09       		.uleb128 0x9
+ 263 00c9 0E020000 		.4byte	.LASF17
+ 264 00cd 01       		.byte	0x1
+ 265 00ce 2B       		.byte	0x2b
+ 266 00cf 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 8
+
+
+ 267 00d3 14000000 		.4byte	.LFE0-.LFB0
+ 268 00d7 01       		.uleb128 0x1
+ 269 00d8 9C       		.byte	0x9c
+ 270 00d9 0A       		.uleb128 0xa
+ 271 00da 5D020000 		.4byte	.LASF19
+ 272 00de 01       		.byte	0x1
+ 273 00df 41       		.byte	0x41
+ 274 00e0 00000000 		.4byte	.LFB1
+ 275 00e4 28000000 		.4byte	.LFE1-.LFB1
+ 276 00e8 01       		.uleb128 0x1
+ 277 00e9 9C       		.byte	0x9c
+ 278 00ea 01010000 		.4byte	0x101
+ 279 00ee 0B       		.uleb128 0xb
+ 280 00ef 16000000 		.4byte	.LVL0
+ 281 00f3 4B010000 		.4byte	0x14b
+ 282 00f7 0B       		.uleb128 0xb
+ 283 00f8 1E000000 		.4byte	.LVL1
+ 284 00fc C8000000 		.4byte	0xc8
+ 285 0100 00       		.byte	0
+ 286 0101 09       		.uleb128 0x9
+ 287 0102 8A000000 		.4byte	.LASF18
+ 288 0106 01       		.byte	0x1
+ 289 0107 64       		.byte	0x64
+ 290 0108 00000000 		.4byte	.LFB2
+ 291 010c 14000000 		.4byte	.LFE2-.LFB2
+ 292 0110 01       		.uleb128 0x1
+ 293 0111 9C       		.byte	0x9c
+ 294 0112 0A       		.uleb128 0xa
+ 295 0113 70000000 		.4byte	.LASF20
+ 296 0117 01       		.byte	0x1
+ 297 0118 7A       		.byte	0x7a
+ 298 0119 00000000 		.4byte	.LFB3
+ 299 011d 18000000 		.4byte	.LFE3-.LFB3
+ 300 0121 01       		.uleb128 0x1
+ 301 0122 9C       		.byte	0x9c
+ 302 0123 3A010000 		.4byte	0x13a
+ 303 0127 0B       		.uleb128 0xb
+ 304 0128 06000000 		.4byte	.LVL2
+ 305 012c 01010000 		.4byte	0x101
+ 306 0130 0B       		.uleb128 0xb
+ 307 0131 12000000 		.4byte	.LVL3
+ 308 0135 52010000 		.4byte	0x152
+ 309 0139 00       		.byte	0
+ 310 013a 0C       		.uleb128 0xc
+ 311 013b AB000000 		.4byte	.LASF26
+ 312 013f 01       		.byte	0x1
+ 313 0140 15       		.byte	0x15
+ 314 0141 BD000000 		.4byte	0xbd
+ 315 0145 05       		.uleb128 0x5
+ 316 0146 03       		.byte	0x3
+ 317 0147 00000000 		.4byte	comm_RS485_Timeout_backup
+ 318 014b 0D       		.uleb128 0xd
+ 319 014c 52000000 		.4byte	.LASF21
+ 320 0150 03       		.byte	0x3
+ 321 0151 1F       		.byte	0x1f
+ 322 0152 0D       		.uleb128 0xd
+ 323 0153 96010000 		.4byte	.LASF22
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 9
+
+
+ 324 0157 03       		.byte	0x3
+ 325 0158 1D       		.byte	0x1d
+ 326 0159 00       		.byte	0
+ 327              		.section	.debug_abbrev,"",%progbits
+ 328              	.Ldebug_abbrev0:
+ 329 0000 01       		.uleb128 0x1
+ 330 0001 11       		.uleb128 0x11
+ 331 0002 01       		.byte	0x1
+ 332 0003 25       		.uleb128 0x25
+ 333 0004 0E       		.uleb128 0xe
+ 334 0005 13       		.uleb128 0x13
+ 335 0006 0B       		.uleb128 0xb
+ 336 0007 03       		.uleb128 0x3
+ 337 0008 0E       		.uleb128 0xe
+ 338 0009 1B       		.uleb128 0x1b
+ 339 000a 0E       		.uleb128 0xe
+ 340 000b 55       		.uleb128 0x55
+ 341 000c 17       		.uleb128 0x17
+ 342 000d 11       		.uleb128 0x11
+ 343 000e 01       		.uleb128 0x1
+ 344 000f 10       		.uleb128 0x10
+ 345 0010 17       		.uleb128 0x17
+ 346 0011 00       		.byte	0
+ 347 0012 00       		.byte	0
+ 348 0013 02       		.uleb128 0x2
+ 349 0014 24       		.uleb128 0x24
+ 350 0015 00       		.byte	0
+ 351 0016 0B       		.uleb128 0xb
+ 352 0017 0B       		.uleb128 0xb
+ 353 0018 3E       		.uleb128 0x3e
+ 354 0019 0B       		.uleb128 0xb
+ 355 001a 03       		.uleb128 0x3
+ 356 001b 0E       		.uleb128 0xe
+ 357 001c 00       		.byte	0
+ 358 001d 00       		.byte	0
+ 359 001e 03       		.uleb128 0x3
+ 360 001f 24       		.uleb128 0x24
+ 361 0020 00       		.byte	0
+ 362 0021 0B       		.uleb128 0xb
+ 363 0022 0B       		.uleb128 0xb
+ 364 0023 3E       		.uleb128 0x3e
+ 365 0024 0B       		.uleb128 0xb
+ 366 0025 03       		.uleb128 0x3
+ 367 0026 08       		.uleb128 0x8
+ 368 0027 00       		.byte	0
+ 369 0028 00       		.byte	0
+ 370 0029 04       		.uleb128 0x4
+ 371 002a 16       		.uleb128 0x16
+ 372 002b 00       		.byte	0
+ 373 002c 03       		.uleb128 0x3
+ 374 002d 0E       		.uleb128 0xe
+ 375 002e 3A       		.uleb128 0x3a
+ 376 002f 0B       		.uleb128 0xb
+ 377 0030 3B       		.uleb128 0x3b
+ 378 0031 0B       		.uleb128 0xb
+ 379 0032 49       		.uleb128 0x49
+ 380 0033 13       		.uleb128 0x13
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 10
+
+
+ 381 0034 00       		.byte	0
+ 382 0035 00       		.byte	0
+ 383 0036 05       		.uleb128 0x5
+ 384 0037 16       		.uleb128 0x16
+ 385 0038 00       		.byte	0
+ 386 0039 03       		.uleb128 0x3
+ 387 003a 0E       		.uleb128 0xe
+ 388 003b 3A       		.uleb128 0x3a
+ 389 003c 0B       		.uleb128 0xb
+ 390 003d 3B       		.uleb128 0x3b
+ 391 003e 05       		.uleb128 0x5
+ 392 003f 49       		.uleb128 0x49
+ 393 0040 13       		.uleb128 0x13
+ 394 0041 00       		.byte	0
+ 395 0042 00       		.byte	0
+ 396 0043 06       		.uleb128 0x6
+ 397 0044 35       		.uleb128 0x35
+ 398 0045 00       		.byte	0
+ 399 0046 49       		.uleb128 0x49
+ 400 0047 13       		.uleb128 0x13
+ 401 0048 00       		.byte	0
+ 402 0049 00       		.byte	0
+ 403 004a 07       		.uleb128 0x7
+ 404 004b 13       		.uleb128 0x13
+ 405 004c 01       		.byte	0x1
+ 406 004d 0B       		.uleb128 0xb
+ 407 004e 0B       		.uleb128 0xb
+ 408 004f 3A       		.uleb128 0x3a
+ 409 0050 0B       		.uleb128 0xb
+ 410 0051 3B       		.uleb128 0x3b
+ 411 0052 0B       		.uleb128 0xb
+ 412 0053 01       		.uleb128 0x1
+ 413 0054 13       		.uleb128 0x13
+ 414 0055 00       		.byte	0
+ 415 0056 00       		.byte	0
+ 416 0057 08       		.uleb128 0x8
+ 417 0058 0D       		.uleb128 0xd
+ 418 0059 00       		.byte	0
+ 419 005a 03       		.uleb128 0x3
+ 420 005b 0E       		.uleb128 0xe
+ 421 005c 3A       		.uleb128 0x3a
+ 422 005d 0B       		.uleb128 0xb
+ 423 005e 3B       		.uleb128 0x3b
+ 424 005f 0B       		.uleb128 0xb
+ 425 0060 49       		.uleb128 0x49
+ 426 0061 13       		.uleb128 0x13
+ 427 0062 38       		.uleb128 0x38
+ 428 0063 0B       		.uleb128 0xb
+ 429 0064 00       		.byte	0
+ 430 0065 00       		.byte	0
+ 431 0066 09       		.uleb128 0x9
+ 432 0067 2E       		.uleb128 0x2e
+ 433 0068 00       		.byte	0
+ 434 0069 3F       		.uleb128 0x3f
+ 435 006a 19       		.uleb128 0x19
+ 436 006b 03       		.uleb128 0x3
+ 437 006c 0E       		.uleb128 0xe
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 11
+
+
+ 438 006d 3A       		.uleb128 0x3a
+ 439 006e 0B       		.uleb128 0xb
+ 440 006f 3B       		.uleb128 0x3b
+ 441 0070 0B       		.uleb128 0xb
+ 442 0071 27       		.uleb128 0x27
+ 443 0072 19       		.uleb128 0x19
+ 444 0073 11       		.uleb128 0x11
+ 445 0074 01       		.uleb128 0x1
+ 446 0075 12       		.uleb128 0x12
+ 447 0076 06       		.uleb128 0x6
+ 448 0077 40       		.uleb128 0x40
+ 449 0078 18       		.uleb128 0x18
+ 450 0079 9742     		.uleb128 0x2117
+ 451 007b 19       		.uleb128 0x19
+ 452 007c 00       		.byte	0
+ 453 007d 00       		.byte	0
+ 454 007e 0A       		.uleb128 0xa
+ 455 007f 2E       		.uleb128 0x2e
+ 456 0080 01       		.byte	0x1
+ 457 0081 3F       		.uleb128 0x3f
+ 458 0082 19       		.uleb128 0x19
+ 459 0083 03       		.uleb128 0x3
+ 460 0084 0E       		.uleb128 0xe
+ 461 0085 3A       		.uleb128 0x3a
+ 462 0086 0B       		.uleb128 0xb
+ 463 0087 3B       		.uleb128 0x3b
+ 464 0088 0B       		.uleb128 0xb
+ 465 0089 27       		.uleb128 0x27
+ 466 008a 19       		.uleb128 0x19
+ 467 008b 11       		.uleb128 0x11
+ 468 008c 01       		.uleb128 0x1
+ 469 008d 12       		.uleb128 0x12
+ 470 008e 06       		.uleb128 0x6
+ 471 008f 40       		.uleb128 0x40
+ 472 0090 18       		.uleb128 0x18
+ 473 0091 9742     		.uleb128 0x2117
+ 474 0093 19       		.uleb128 0x19
+ 475 0094 01       		.uleb128 0x1
+ 476 0095 13       		.uleb128 0x13
+ 477 0096 00       		.byte	0
+ 478 0097 00       		.byte	0
+ 479 0098 0B       		.uleb128 0xb
+ 480 0099 898201   		.uleb128 0x4109
+ 481 009c 00       		.byte	0
+ 482 009d 11       		.uleb128 0x11
+ 483 009e 01       		.uleb128 0x1
+ 484 009f 31       		.uleb128 0x31
+ 485 00a0 13       		.uleb128 0x13
+ 486 00a1 00       		.byte	0
+ 487 00a2 00       		.byte	0
+ 488 00a3 0C       		.uleb128 0xc
+ 489 00a4 34       		.uleb128 0x34
+ 490 00a5 00       		.byte	0
+ 491 00a6 03       		.uleb128 0x3
+ 492 00a7 0E       		.uleb128 0xe
+ 493 00a8 3A       		.uleb128 0x3a
+ 494 00a9 0B       		.uleb128 0xb
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 12
+
+
+ 495 00aa 3B       		.uleb128 0x3b
+ 496 00ab 0B       		.uleb128 0xb
+ 497 00ac 49       		.uleb128 0x49
+ 498 00ad 13       		.uleb128 0x13
+ 499 00ae 3F       		.uleb128 0x3f
+ 500 00af 19       		.uleb128 0x19
+ 501 00b0 02       		.uleb128 0x2
+ 502 00b1 18       		.uleb128 0x18
+ 503 00b2 00       		.byte	0
+ 504 00b3 00       		.byte	0
+ 505 00b4 0D       		.uleb128 0xd
+ 506 00b5 2E       		.uleb128 0x2e
+ 507 00b6 00       		.byte	0
+ 508 00b7 3F       		.uleb128 0x3f
+ 509 00b8 19       		.uleb128 0x19
+ 510 00b9 03       		.uleb128 0x3
+ 511 00ba 0E       		.uleb128 0xe
+ 512 00bb 3A       		.uleb128 0x3a
+ 513 00bc 0B       		.uleb128 0xb
+ 514 00bd 3B       		.uleb128 0x3b
+ 515 00be 0B       		.uleb128 0xb
+ 516 00bf 27       		.uleb128 0x27
+ 517 00c0 19       		.uleb128 0x19
+ 518 00c1 3C       		.uleb128 0x3c
+ 519 00c2 19       		.uleb128 0x19
+ 520 00c3 00       		.byte	0
+ 521 00c4 00       		.byte	0
+ 522 00c5 00       		.byte	0
+ 523              		.section	.debug_aranges,"",%progbits
+ 524 0000 34000000 		.4byte	0x34
+ 525 0004 0200     		.2byte	0x2
+ 526 0006 00000000 		.4byte	.Ldebug_info0
+ 527 000a 04       		.byte	0x4
+ 528 000b 00       		.byte	0
+ 529 000c 0000     		.2byte	0
+ 530 000e 0000     		.2byte	0
+ 531 0010 00000000 		.4byte	.LFB0
+ 532 0014 14000000 		.4byte	.LFE0-.LFB0
+ 533 0018 00000000 		.4byte	.LFB1
+ 534 001c 28000000 		.4byte	.LFE1-.LFB1
+ 535 0020 00000000 		.4byte	.LFB2
+ 536 0024 14000000 		.4byte	.LFE2-.LFB2
+ 537 0028 00000000 		.4byte	.LFB3
+ 538 002c 18000000 		.4byte	.LFE3-.LFB3
+ 539 0030 00000000 		.4byte	0
+ 540 0034 00000000 		.4byte	0
+ 541              		.section	.debug_ranges,"",%progbits
+ 542              	.Ldebug_ranges0:
+ 543 0000 00000000 		.4byte	.LFB0
+ 544 0004 14000000 		.4byte	.LFE0
+ 545 0008 00000000 		.4byte	.LFB1
+ 546 000c 28000000 		.4byte	.LFE1
+ 547 0010 00000000 		.4byte	.LFB2
+ 548 0014 14000000 		.4byte	.LFE2
+ 549 0018 00000000 		.4byte	.LFB3
+ 550 001c 18000000 		.4byte	.LFE3
+ 551 0020 00000000 		.4byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 13
+
+
+ 552 0024 00000000 		.4byte	0
+ 553              		.section	.debug_line,"",%progbits
+ 554              	.Ldebug_line0:
+ 555 0000 C3000000 		.section	.debug_str,"MS",%progbits,1
+ 555      02006C00 
+ 555      00000201 
+ 555      FB0E0D00 
+ 555      01010101 
+ 556              	.LASF16:
+ 557 0000 636F6D6D 		.ascii	"comm_RS485_Timeout_BACKUP_STRUCT\000"
+ 557      5F525334 
+ 557      38355F54 
+ 557      696D656F 
+ 557      75745F42 
+ 558              	.LASF24:
+ 559 0021 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\comm_RS485_Timeout_PM.c"
+ 559      6E657261 
+ 559      7465645F 
+ 559      536F7572 
+ 559      63655C50 
+ 560 0051 00       		.ascii	"\000"
+ 561              	.LASF21:
+ 562 0052 636F6D6D 		.ascii	"comm_RS485_Timeout_Stop\000"
+ 562      5F525334 
+ 562      38355F54 
+ 562      696D656F 
+ 562      75745F53 
+ 563              	.LASF15:
+ 564 006a 636F756E 		.ascii	"count\000"
+ 564      7400
+ 565              	.LASF20:
+ 566 0070 636F6D6D 		.ascii	"comm_RS485_Timeout_Wakeup\000"
+ 566      5F525334 
+ 566      38355F54 
+ 566      696D656F 
+ 566      75745F57 
+ 567              	.LASF18:
+ 568 008a 636F6D6D 		.ascii	"comm_RS485_Timeout_RestoreConfig\000"
+ 568      5F525334 
+ 568      38355F54 
+ 568      696D656F 
+ 568      75745F52 
+ 569              	.LASF26:
+ 570 00ab 636F6D6D 		.ascii	"comm_RS485_Timeout_backup\000"
+ 570      5F525334 
+ 570      38355F54 
+ 570      696D656F 
+ 570      75745F62 
+ 571              	.LASF23:
+ 572 00c5 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 572      4320342E 
+ 572      382E3420 
+ 572      32303134 
+ 572      30353236 
+ 573 00f8 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 573      20726576 
+ 573      6973696F 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 14
+
+
+ 573      6E203231 
+ 573      31333538 
+ 574 012b 73202D66 		.ascii	"s -ffunction-sections\000"
+ 574      66756E63 
+ 574      74696F6E 
+ 574      2D736563 
+ 574      74696F6E 
+ 575              	.LASF9:
+ 576 0141 666C6F61 		.ascii	"float\000"
+ 576      7400
+ 577              	.LASF7:
+ 578 0147 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 578      206C6F6E 
+ 578      6720756E 
+ 578      7369676E 
+ 578      65642069 
+ 579              	.LASF1:
+ 580 015e 756E7369 		.ascii	"unsigned char\000"
+ 580      676E6564 
+ 580      20636861 
+ 580      7200
+ 581              	.LASF13:
+ 582 016c 72656738 		.ascii	"reg8\000"
+ 582      00
+ 583              	.LASF5:
+ 584 0171 6C6F6E67 		.ascii	"long unsigned int\000"
+ 584      20756E73 
+ 584      69676E65 
+ 584      6420696E 
+ 584      7400
+ 585              	.LASF3:
+ 586 0183 73686F72 		.ascii	"short unsigned int\000"
+ 586      7420756E 
+ 586      7369676E 
+ 586      65642069 
+ 586      6E7400
+ 587              	.LASF22:
+ 588 0196 636F6D6D 		.ascii	"comm_RS485_Timeout_Enable\000"
+ 588      5F525334 
+ 588      38355F54 
+ 588      696D656F 
+ 588      75745F45 
+ 589              	.LASF10:
+ 590 01b0 646F7562 		.ascii	"double\000"
+ 590      6C6500
+ 591              	.LASF8:
+ 592 01b7 756E7369 		.ascii	"unsigned int\000"
+ 592      676E6564 
+ 592      20696E74 
+ 592      00
+ 593              	.LASF25:
+ 594 01c4 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 594      73657273 
+ 594      5C736465 
+ 594      76617365 
+ 594      6E617061 
+ 595 01f2 6F6D2E63 		.ascii	"om.cydsn\000"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccpHkBpJ.s 			page 15
+
+
+ 595      7964736E 
+ 595      00
+ 596              	.LASF6:
+ 597 01fb 6C6F6E67 		.ascii	"long long int\000"
+ 597      206C6F6E 
+ 597      6720696E 
+ 597      7400
+ 598              	.LASF11:
+ 599 0209 63686172 		.ascii	"char\000"
+ 599      00
+ 600              	.LASF17:
+ 601 020e 636F6D6D 		.ascii	"comm_RS485_Timeout_SaveConfig\000"
+ 601      5F525334 
+ 601      38355F54 
+ 601      696D656F 
+ 601      75745F53 
+ 602              	.LASF2:
+ 603 022c 73686F72 		.ascii	"short int\000"
+ 603      7420696E 
+ 603      7400
+ 604              	.LASF12:
+ 605 0236 75696E74 		.ascii	"uint8\000"
+ 605      3800
+ 606              	.LASF4:
+ 607 023c 6C6F6E67 		.ascii	"long int\000"
+ 607      20696E74 
+ 607      00
+ 608              	.LASF14:
+ 609 0245 656E6162 		.ascii	"enableState\000"
+ 609      6C655374 
+ 609      61746500 
+ 610              	.LASF0:
+ 611 0251 7369676E 		.ascii	"signed char\000"
+ 611      65642063 
+ 611      68617200 
+ 612              	.LASF19:
+ 613 025d 636F6D6D 		.ascii	"comm_RS485_Timeout_Sleep\000"
+ 613      5F525334 
+ 613      38355F54 
+ 613      696D656F 
+ 613      75745F53 
+ 614              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br

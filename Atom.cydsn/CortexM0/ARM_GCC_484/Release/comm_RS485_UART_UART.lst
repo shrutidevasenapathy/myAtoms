@@ -1,0 +1,2374 @@
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 4
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"comm_RS485_UART_UART.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.comm_RS485_UART_UartInit,"ax",%progbits
+  18              		.align	1
+  19              		.global	comm_RS485_UART_UartInit
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	comm_RS485_UART_UartInit, %function
+  23              	comm_RS485_UART_UartInit:
+  24              	.LFB0:
+  25              		.file 1 ".\\Generated_Source\\PSoC4\\comm_RS485_UART_UART.c"
+   1:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** /*******************************************************************************
+   2:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * File Name: comm_RS485_UART_UART.c
+   3:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Version 2.0
+   4:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+   5:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Description:
+   6:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  This file provides the source code to the API for the SCB Component in
+   7:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  UART mode.
+   8:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+   9:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Note:
+  10:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+  11:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *******************************************************************************
+  12:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Copyright 2013-2014, Cypress Semiconductor Corporation.  All rights reserved.
+  13:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * the software package with which this file was provided.
+  16:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *******************************************************************************/
+  17:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  18:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #include "comm_RS485_UART_PVT.h"
+  19:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #include "comm_RS485_UART_SPI_UART_PVT.h"
+  20:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  21:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  22:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #if(comm_RS485_UART_SCB_MODE_UNCONFIG_CONST_CFG)
+  23:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  24:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /***************************************
+  25:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Configuration Structure Initialization
+  26:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ***************************************/
+  27:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  28:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     const comm_RS485_UART_UART_INIT_STRUCT comm_RS485_UART_configUart =
+  29:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+  30:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_SUB_MODE,
+  31:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_DIRECTION,
+  32:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_DATA_BITS_NUM,
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 2
+
+
+  33:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_PARITY_TYPE,
+  34:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_STOP_BITS_NUM,
+  35:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_OVS_FACTOR,
+  36:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_IRDA_LOW_POWER,
+  37:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_MEDIAN_FILTER_ENABLE,
+  38:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_RETRY_ON_NACK,
+  39:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_IRDA_POLARITY,
+  40:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_DROP_ON_PARITY_ERR,
+  41:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_DROP_ON_FRAME_ERR,
+  42:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_WAKE_ENABLE,
+  43:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         0u,
+  44:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         NULL,
+  45:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         0u,
+  46:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         NULL,
+  47:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_MP_MODE_ENABLE,
+  48:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_MP_ACCEPT_ADDRESS,
+  49:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_MP_RX_ADDRESS,
+  50:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_MP_RX_ADDRESS_MASK,
+  51:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint32) comm_RS485_UART_SCB_IRQ_INTERNAL,
+  52:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_INTR_RX_MASK,
+  53:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_RX_TRIGGER_LEVEL,
+  54:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_INTR_TX_MASK,
+  55:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_TX_TRIGGER_LEVEL,
+  56:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint8) comm_RS485_UART_UART_BYTE_MODE_ENABLE,
+  57:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint8) comm_RS485_UART_UART_CTS_ENABLE,
+  58:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint8) comm_RS485_UART_UART_CTS_POLARITY,
+  59:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint8) comm_RS485_UART_UART_RTS_POLARITY,
+  60:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (uint8) comm_RS485_UART_UART_RTS_FIFO_LEVEL
+  61:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     };
+  62:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  63:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  64:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+  65:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartInit
+  66:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+  67:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+  68:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+  69:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Configures the SCB for the UART operation.
+  70:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+  71:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+  72:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  config:  Pointer to a structure that contains the following ordered list of
+  73:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *           fields. These fields match the selections available in the
+  74:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *           customizer.
+  75:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+  76:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+  77:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+  78:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+  79:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+  80:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     void comm_RS485_UART_UartInit(const comm_RS485_UART_UART_INIT_STRUCT *config)
+  81:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+  82:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 pinsConfig;
+  83:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  84:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         if(NULL == config)
+  85:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+  86:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             CYASSERT(0u != 0u); /* Halt execution due to bad function parameter */
+  87:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+  88:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         else
+  89:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 3
+
+
+  90:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Get direction to configure UART pins: TX, RX or TX+RX */
+  91:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             pinsConfig  = config->direction;
+  92:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  93:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #if !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1)
+  94:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Add RTS and CTS pins to configure */
+  95:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             pinsConfig |= (0u != config->rtsRxFifoLevel) ? (comm_RS485_UART_UART_RTS_PIN_ENABLE) : 
+  96:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             pinsConfig |= (0u != config->enableCts)         ? (comm_RS485_UART_UART_CTS_PIN_ENABLE)
+  97:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #endif /* !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1) */
+  98:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+  99:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure pins */
+ 100:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_SetPins(comm_RS485_UART_SCB_MODE_UART, config->mode, pinsConfig);
+ 101:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 102:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Store internal configuration */
+ 103:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_scbMode       = (uint8) comm_RS485_UART_SCB_MODE_UART;
+ 104:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_scbEnableWake = (uint8) config->enableWake;
+ 105:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_scbEnableIntr = (uint8) config->enableInterrupt;
+ 106:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 107:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Set RX direction internal variables */
+ 108:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxBuffer      =         config->rxBuffer;
+ 109:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxDataBits    = (uint8) config->dataBits;
+ 110:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxBufferSize  = (uint8) config->rxBufferSize;
+ 111:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 112:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Set TX direction internal variables */
+ 113:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_txBuffer      =         config->txBuffer;
+ 114:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_txDataBits    = (uint8) config->dataBits;
+ 115:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_txBufferSize  = (uint8) config->txBufferSize;
+ 116:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 117:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure UART interface */
+ 118:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             if(comm_RS485_UART_UART_MODE_IRDA == config->mode)
+ 119:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ 120:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 /* OVS settings: IrDA */
+ 121:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 comm_RS485_UART_CTRL_REG  = ((0u != config->enableIrdaLowPower) ?
+ 122:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 (comm_RS485_UART_UART_GET_CTRL_OVS_IRDA_LP(config->
+ 123:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 (comm_RS485_UART_CTRL_OVS_IRDA_OVS16));
+ 124:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 125:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             else
+ 126:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ 127:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 /* OVS settings: UART and SmartCard */
+ 128:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 comm_RS485_UART_CTRL_REG  = comm_RS485_UART_GET_CTRL_OVS(config->oversample);
+ 129:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 130:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 131:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_CTRL_REG     |= comm_RS485_UART_GET_CTRL_BYTE_MODE  (config->enableByte
+ 132:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                              comm_RS485_UART_GET_CTRL_ADDR_ACCEPT(config->multiproc
+ 133:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                              comm_RS485_UART_CTRL_UART;
+ 134:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 135:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure sub-mode: UART, SmartCard or IrDA */
+ 136:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UART_CTRL_REG = comm_RS485_UART_GET_UART_CTRL_MODE(config->mode);
+ 137:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 138:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure RX direction */
+ 139:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UART_RX_CTRL_REG = comm_RS485_UART_GET_UART_RX_CTRL_MODE(config->stopBi
+ 140:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                         comm_RS485_UART_GET_UART_RX_CTRL_POLARITY(config->enableInv
+ 141:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                         comm_RS485_UART_GET_UART_RX_CTRL_MP_MODE(config->enableMult
+ 142:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                         comm_RS485_UART_GET_UART_RX_CTRL_DROP_ON_PARITY_ERR(config-
+ 143:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                         comm_RS485_UART_GET_UART_RX_CTRL_DROP_ON_FRAME_ERR(config->
+ 144:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 145:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             if(comm_RS485_UART_UART_PARITY_NONE != config->parity)
+ 146:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 4
+
+
+ 147:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                comm_RS485_UART_UART_RX_CTRL_REG |= comm_RS485_UART_GET_UART_RX_CTRL_PARITY(config->
+ 148:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                     comm_RS485_UART_UART_RX_CTRL_PARITY_ENABLED;
+ 149:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 150:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 151:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_RX_CTRL_REG      = comm_RS485_UART_GET_RX_CTRL_DATA_WIDTH(config->dataB
+ 152:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 comm_RS485_UART_GET_RX_CTRL_MEDIAN(config->enableMe
+ 153:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 comm_RS485_UART_GET_UART_RX_CTRL_ENABLED(config->di
+ 154:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 155:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_RX_FIFO_CTRL_REG = comm_RS485_UART_GET_RX_FIFO_CTRL_TRIGGER_LEVEL(confi
+ 156:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 157:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure MP address */
+ 158:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_RX_MATCH_REG     = comm_RS485_UART_GET_RX_MATCH_ADDR(config->multiprocA
+ 159:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 comm_RS485_UART_GET_RX_MATCH_MASK(config->multiproc
+ 160:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 161:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure RX direction */
+ 162:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UART_TX_CTRL_REG = comm_RS485_UART_GET_UART_TX_CTRL_MODE(config->stopBi
+ 163:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 comm_RS485_UART_GET_UART_TX_CTRL_RETRY_NACK(config-
+ 164:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 165:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             if(comm_RS485_UART_UART_PARITY_NONE != config->parity)
+ 166:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ 167:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                comm_RS485_UART_UART_TX_CTRL_REG |= comm_RS485_UART_GET_UART_TX_CTRL_PARITY(config->
+ 168:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                     comm_RS485_UART_UART_TX_CTRL_PARITY_ENABLED;
+ 169:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 170:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 171:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_TX_CTRL_REG      = comm_RS485_UART_GET_TX_CTRL_DATA_WIDTH(config->dataB
+ 172:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                                 comm_RS485_UART_GET_UART_TX_CTRL_ENABLED(config->di
+ 173:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 174:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_TX_FIFO_CTRL_REG = comm_RS485_UART_GET_TX_FIFO_CTRL_TRIGGER_LEVEL(confi
+ 175:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 176:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #if !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1)
+ 177:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UART_FLOW_CTRL_REG = comm_RS485_UART_GET_UART_FLOW_CTRL_CTS_ENABLE(conf
+ 178:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                             comm_RS485_UART_GET_UART_FLOW_CTRL_CTS_POLARITY (config
+ 179:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                             comm_RS485_UART_GET_UART_FLOW_CTRL_RTS_POLARITY(config-
+ 180:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                                             comm_RS485_UART_GET_UART_FLOW_CTRL_TRIGGER_LEVEL(config
+ 181:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #endif /* !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1) */
+ 182:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 183:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure interrupt with UART handler but do not enable it */
+ 184:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             CyIntDisable    (comm_RS485_UART_ISR_NUMBER);
+ 185:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             CyIntSetPriority(comm_RS485_UART_ISR_NUMBER, comm_RS485_UART_ISR_PRIORITY);
+ 186:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             (void) CyIntSetVector(comm_RS485_UART_ISR_NUMBER, &comm_RS485_UART_SPI_UART_ISR);
+ 187:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 188:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure WAKE interrupt */
+ 189:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #if(comm_RS485_UART_UART_RX_WAKEUP_IRQ)
+ 190:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             CyIntDisable    (comm_RS485_UART_RX_WAKE_ISR_NUMBER);
+ 191:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             CyIntSetPriority(comm_RS485_UART_RX_WAKE_ISR_NUMBER, comm_RS485_UART_RX_WAKE_ISR_PRIORI
+ 192:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             (void) CyIntSetVector(comm_RS485_UART_RX_WAKE_ISR_NUMBER, &comm_RS485_UART_UART_WAKEUP_
+ 193:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         #endif /* (comm_RS485_UART_UART_RX_WAKEUP_IRQ) */
+ 194:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 195:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Configure interrupt sources */
+ 196:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_I2C_EC_MASK_REG = comm_RS485_UART_NO_INTR_SOURCES;
+ 197:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_SPI_EC_MASK_REG = comm_RS485_UART_NO_INTR_SOURCES;
+ 198:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_SLAVE_MASK_REG  = comm_RS485_UART_NO_INTR_SOURCES;
+ 199:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_MASTER_MASK_REG = comm_RS485_UART_NO_INTR_SOURCES;
+ 200:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_RX_MASK_REG     = config->rxInterruptMask;
+ 201:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_INTR_TX_MASK_REG     = config->txInterruptMask;
+ 202:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 203:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Clear RX buffer indexes */
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 5
+
+
+ 204:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxBufferHead     = 0u;
+ 205:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxBufferTail     = 0u;
+ 206:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_rxBufferOverflow = 0u;
+ 207:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 208:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Clear TX buffer indexes */
+ 209:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_txBufferHead = 0u;
+ 210:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_txBufferTail = 0u;
+ 211:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 212:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+ 213:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 214:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #else
+ 215:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 216:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+ 217:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartInit
+ 218:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+ 219:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 220:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+ 221:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Configures the SCB for the UART operation.
+ 222:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 223:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+ 224:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 225:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 226:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+ 227:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 228:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 229:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+ 230:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     void comm_RS485_UART_UartInit(void)
+ 231:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+  26              		.loc 1 231 0
+  27              		.cfi_startproc
+ 232:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure UART interface */
+ 233:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_CTRL_REG = comm_RS485_UART_UART_DEFAULT_CTRL;
+  28              		.loc 1 233 0
+  29 0000 1A4A     		ldr	r2, .L2
+  30 0002 1B4B     		ldr	r3, .L2+4
+ 231:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+  31              		.loc 1 231 0
+  32 0004 10B5     		push	{r4, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 4, -8
+  35              		.cfi_offset 14, -4
+  36              		.loc 1 233 0
+  37 0006 1A60     		str	r2, [r3]
+ 234:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 235:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure sub-mode: UART, SmartCard or IrDA */
+ 236:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_CTRL_REG = comm_RS485_UART_UART_DEFAULT_UART_CTRL;
+  38              		.loc 1 236 0
+  39 0008 1A4B     		ldr	r3, .L2+8
+  40 000a 0024     		mov	r4, #0
+  41 000c 1C60     		str	r4, [r3]
+ 237:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 238:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure RX direction */
+ 239:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_RX_CTRL_REG = comm_RS485_UART_UART_DEFAULT_UART_RX_CTRL;
+  42              		.loc 1 239 0
+  43 000e 1A4A     		ldr	r2, .L2+12
+  44 0010 1A4B     		ldr	r3, .L2+16
+ 240:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_CTRL_REG      = comm_RS485_UART_UART_DEFAULT_RX_CTRL;
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 6
+
+
+ 241:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_FIFO_CTRL_REG = comm_RS485_UART_UART_DEFAULT_RX_FIFO_CTRL;
+  45              		.loc 1 241 0
+  46 0012 0721     		mov	r1, #7
+ 239:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_RX_CTRL_REG = comm_RS485_UART_UART_DEFAULT_UART_RX_CTRL;
+  47              		.loc 1 239 0
+  48 0014 1A60     		str	r2, [r3]
+ 240:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_CTRL_REG      = comm_RS485_UART_UART_DEFAULT_RX_CTRL;
+  49              		.loc 1 240 0
+  50 0016 1A4B     		ldr	r3, .L2+20
+  51 0018 1A4A     		ldr	r2, .L2+24
+ 242:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_MATCH_REG     = comm_RS485_UART_UART_DEFAULT_RX_MATCH_REG;
+ 243:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 244:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure TX direction */
+ 245:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_TX_CTRL_REG = comm_RS485_UART_UART_DEFAULT_UART_TX_CTRL;
+ 246:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_TX_CTRL_REG      = comm_RS485_UART_UART_DEFAULT_TX_CTRL;
+ 247:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_TX_FIFO_CTRL_REG = comm_RS485_UART_UART_DEFAULT_TX_FIFO_CTRL;
+ 248:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 249:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1)
+ 250:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_FLOW_CTRL_REG = comm_RS485_UART_UART_DEFAULT_FLOW_CTRL;
+ 251:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1) */
+ 252:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 253:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure interrupt with UART handler but do not enable it */
+ 254:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if(comm_RS485_UART_SCB_IRQ_INTERNAL)
+ 255:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntDisable    (comm_RS485_UART_ISR_NUMBER);
+  52              		.loc 1 255 0
+  53 001a 0A20     		mov	r0, #10
+ 240:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_CTRL_REG      = comm_RS485_UART_UART_DEFAULT_RX_CTRL;
+  54              		.loc 1 240 0
+  55 001c 1360     		str	r3, [r2]
+ 241:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_FIFO_CTRL_REG = comm_RS485_UART_UART_DEFAULT_RX_FIFO_CTRL;
+  56              		.loc 1 241 0
+  57 001e 1A4A     		ldr	r2, .L2+28
+ 256:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntSetPriority(comm_RS485_UART_ISR_NUMBER, comm_RS485_UART_ISR_PRIORITY);
+ 257:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (void) CyIntSetVector(comm_RS485_UART_ISR_NUMBER, &comm_RS485_UART_SPI_UART_ISR);
+ 258:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* (comm_RS485_UART_SCB_IRQ_INTERNAL) */
+ 259:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 260:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure WAKE interrupt */
+ 261:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if(comm_RS485_UART_UART_RX_WAKEUP_IRQ)
+ 262:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntDisable    (comm_RS485_UART_RX_WAKE_ISR_NUMBER);
+ 263:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntSetPriority(comm_RS485_UART_RX_WAKE_ISR_NUMBER, comm_RS485_UART_RX_WAKE_ISR_PRIORITY);
+ 264:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (void) CyIntSetVector(comm_RS485_UART_RX_WAKE_ISR_NUMBER, &comm_RS485_UART_UART_WAKEUP_ISR)
+ 265:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* (comm_RS485_UART_UART_RX_WAKEUP_IRQ) */
+ 266:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 267:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Configure interrupt sources */
+ 268:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_I2C_EC_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_I2C_EC_MASK;
+ 269:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_SPI_EC_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_SPI_EC_MASK;
+ 270:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_SLAVE_MASK_REG  = comm_RS485_UART_UART_DEFAULT_INTR_SLAVE_MASK;
+ 271:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_MASTER_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_MASTER_MASK;
+ 272:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_RX_MASK_REG     = comm_RS485_UART_UART_DEFAULT_INTR_RX_MASK;
+ 273:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_TX_MASK_REG     = comm_RS485_UART_UART_DEFAULT_INTR_TX_MASK;
+ 274:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 275:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if(comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST)
+ 276:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_rxBufferHead     = 0u;
+ 277:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_rxBufferTail     = 0u;
+ 278:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_rxBufferOverflow = 0u;
+ 279:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* (comm_RS485_UART_INTERNAL_RX_SW_BUFFER_CONST) */
+ 280:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 7
+
+
+ 281:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if(comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST)
+ 282:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_txBufferHead = 0u;
+ 283:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_txBufferTail = 0u;
+ 284:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* (comm_RS485_UART_INTERNAL_TX_SW_BUFFER_CONST) */
+ 285:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+  58              		.loc 1 285 0
+  59              		@ sp needed
+ 241:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_FIFO_CTRL_REG = comm_RS485_UART_UART_DEFAULT_RX_FIFO_CTRL;
+  60              		.loc 1 241 0
+  61 0020 1160     		str	r1, [r2]
+ 242:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_RX_MATCH_REG     = comm_RS485_UART_UART_DEFAULT_RX_MATCH_REG;
+  62              		.loc 1 242 0
+  63 0022 1A49     		ldr	r1, .L2+32
+  64 0024 1A4A     		ldr	r2, .L2+36
+  65 0026 1160     		str	r1, [r2]
+ 245:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UART_TX_CTRL_REG = comm_RS485_UART_UART_DEFAULT_UART_TX_CTRL;
+  66              		.loc 1 245 0
+  67 0028 1A4A     		ldr	r2, .L2+40
+  68 002a 0121     		mov	r1, #1
+  69 002c 1160     		str	r1, [r2]
+ 246:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_TX_CTRL_REG      = comm_RS485_UART_UART_DEFAULT_TX_CTRL;
+  70              		.loc 1 246 0
+  71 002e 1A4A     		ldr	r2, .L2+44
+  72 0030 1360     		str	r3, [r2]
+ 247:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_TX_FIFO_CTRL_REG = comm_RS485_UART_UART_DEFAULT_TX_FIFO_CTRL;
+  73              		.loc 1 247 0
+  74 0032 1A4B     		ldr	r3, .L2+48
+  75 0034 1C60     		str	r4, [r3]
+ 255:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntDisable    (comm_RS485_UART_ISR_NUMBER);
+  76              		.loc 1 255 0
+  77 0036 FFF7FEFF 		bl	CyIntDisable
+  78              	.LVL0:
+ 256:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         CyIntSetPriority(comm_RS485_UART_ISR_NUMBER, comm_RS485_UART_ISR_PRIORITY);
+  79              		.loc 1 256 0
+  80 003a 0A20     		mov	r0, #10
+  81 003c 0321     		mov	r1, #3
+  82 003e FFF7FEFF 		bl	CyIntSetPriority
+  83              	.LVL1:
+ 257:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         (void) CyIntSetVector(comm_RS485_UART_ISR_NUMBER, &comm_RS485_UART_SPI_UART_ISR);
+  84              		.loc 1 257 0
+  85 0042 1749     		ldr	r1, .L2+52
+  86 0044 0A20     		mov	r0, #10
+  87 0046 FFF7FEFF 		bl	CyIntSetVector
+  88              	.LVL2:
+ 268:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_I2C_EC_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_I2C_EC_MASK;
+  89              		.loc 1 268 0
+  90 004a 164B     		ldr	r3, .L2+56
+ 272:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_RX_MASK_REG     = comm_RS485_UART_UART_DEFAULT_INTR_RX_MASK;
+  91              		.loc 1 272 0
+  92 004c 0422     		mov	r2, #4
+ 268:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_I2C_EC_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_I2C_EC_MASK;
+  93              		.loc 1 268 0
+  94 004e 1C60     		str	r4, [r3]
+ 269:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_SPI_EC_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_SPI_EC_MASK;
+  95              		.loc 1 269 0
+  96 0050 154B     		ldr	r3, .L2+60
+  97 0052 1C60     		str	r4, [r3]
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 8
+
+
+ 270:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_SLAVE_MASK_REG  = comm_RS485_UART_UART_DEFAULT_INTR_SLAVE_MASK;
+  98              		.loc 1 270 0
+  99 0054 154B     		ldr	r3, .L2+64
+ 100 0056 1C60     		str	r4, [r3]
+ 271:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_MASTER_MASK_REG = comm_RS485_UART_UART_DEFAULT_INTR_MASTER_MASK;
+ 101              		.loc 1 271 0
+ 102 0058 154B     		ldr	r3, .L2+68
+ 103 005a 1C60     		str	r4, [r3]
+ 272:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_RX_MASK_REG     = comm_RS485_UART_UART_DEFAULT_INTR_RX_MASK;
+ 104              		.loc 1 272 0
+ 105 005c 154B     		ldr	r3, .L2+72
+ 106 005e 1A60     		str	r2, [r3]
+ 273:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_INTR_TX_MASK_REG     = comm_RS485_UART_UART_DEFAULT_INTR_TX_MASK;
+ 107              		.loc 1 273 0
+ 108 0060 154B     		ldr	r3, .L2+76
+ 109 0062 8022     		mov	r2, #128
+ 110 0064 9200     		lsl	r2, r2, #2
+ 111 0066 1A60     		str	r2, [r3]
+ 112              		.loc 1 285 0
+ 113 0068 10BD     		pop	{r4, pc}
+ 114              	.L3:
+ 115 006a C046     		.align	2
+ 116              	.L2:
+ 117 006c 0B000102 		.word	33619979
+ 118 0070 00000640 		.word	1074135040
+ 119 0074 40000640 		.word	1074135104
+ 120 0078 01040000 		.word	1025
+ 121 007c 48000640 		.word	1074135112
+ 122 0080 08000080 		.word	-2147483640
+ 123 0084 00030640 		.word	1074135808
+ 124 0088 04030640 		.word	1074135812
+ 125 008c 0100FF00 		.word	16711681
+ 126 0090 10030640 		.word	1074135824
+ 127 0094 44000640 		.word	1074135108
+ 128 0098 00020640 		.word	1074135552
+ 129 009c 04020640 		.word	1074135556
+ 130 00a0 00000000 		.word	comm_RS485_UART_SPI_UART_ISR
+ 131 00a4 880E0640 		.word	1074138760
+ 132 00a8 C80E0640 		.word	1074138824
+ 133 00ac 480F0640 		.word	1074138952
+ 134 00b0 080F0640 		.word	1074138888
+ 135 00b4 C80F0640 		.word	1074139080
+ 136 00b8 880F0640 		.word	1074139016
+ 137              		.cfi_endproc
+ 138              	.LFE0:
+ 139              		.size	comm_RS485_UART_UartInit, .-comm_RS485_UART_UartInit
+ 140              		.section	.text.comm_RS485_UART_UartSetRxAddress,"ax",%progbits
+ 141              		.align	1
+ 142              		.global	comm_RS485_UART_UartSetRxAddress
+ 143              		.code	16
+ 144              		.thumb_func
+ 145              		.type	comm_RS485_UART_UartSetRxAddress, %function
+ 146              	comm_RS485_UART_UartSetRxAddress:
+ 147              	.LFB1:
+ 286:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #endif /* (comm_RS485_UART_SCB_MODE_UNCONFIG_CONST_CFG) */
+ 287:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 288:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 9
+
+
+ 289:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** /*******************************************************************************
+ 290:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Function Name: comm_RS485_UART_UartSetRxAddress
+ 291:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** ********************************************************************************
+ 292:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 293:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Summary:
+ 294:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  Sets the hardware detectable receiver address for the UART in the
+ 295:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  Multiprocessor mode.
+ 296:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 297:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Parameters:
+ 298:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  address: Address for hardware address detection.
+ 299:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 300:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Return:
+ 301:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  None
+ 302:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 303:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *******************************************************************************/
+ 304:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** void comm_RS485_UART_UartSetRxAddress(uint32 address)
+ 305:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** {
+ 148              		.loc 1 305 0
+ 149              		.cfi_startproc
+ 150              	.LVL3:
+ 306:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****      uint32 matchReg;
+ 307:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 308:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg = comm_RS485_UART_RX_MATCH_REG;
+ 151              		.loc 1 308 0
+ 152 0000 034B     		ldr	r3, .L5
+ 309:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 310:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg &= ((uint32) ~comm_RS485_UART_RX_MATCH_ADDR_MASK); /* Clear address bits */
+ 153              		.loc 1 310 0
+ 154 0002 FF22     		mov	r2, #255
+ 308:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg = comm_RS485_UART_RX_MATCH_REG;
+ 155              		.loc 1 308 0
+ 156 0004 1968     		ldr	r1, [r3]
+ 157              	.LVL4:
+ 311:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg |= ((uint32)  (address & comm_RS485_UART_RX_MATCH_ADDR_MASK)); /* Set address  */
+ 312:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 313:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     comm_RS485_UART_RX_MATCH_REG = matchReg;
+ 314:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** }
+ 158              		.loc 1 314 0
+ 159              		@ sp needed
+ 310:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg &= ((uint32) ~comm_RS485_UART_RX_MATCH_ADDR_MASK); /* Clear address bits */
+ 160              		.loc 1 310 0
+ 161 0006 9143     		bic	r1, r2
+ 162              	.LVL5:
+ 311:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg |= ((uint32)  (address & comm_RS485_UART_RX_MATCH_ADDR_MASK)); /* Set address  */
+ 163              		.loc 1 311 0
+ 164 0008 0240     		and	r2, r0
+ 165 000a 0A43     		orr	r2, r1
+ 166              	.LVL6:
+ 313:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     comm_RS485_UART_RX_MATCH_REG = matchReg;
+ 167              		.loc 1 313 0
+ 168 000c 1A60     		str	r2, [r3]
+ 169              		.loc 1 314 0
+ 170 000e 7047     		bx	lr
+ 171              	.L6:
+ 172              		.align	2
+ 173              	.L5:
+ 174 0010 10030640 		.word	1074135824
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 10
+
+
+ 175              		.cfi_endproc
+ 176              	.LFE1:
+ 177              		.size	comm_RS485_UART_UartSetRxAddress, .-comm_RS485_UART_UartSetRxAddress
+ 178              		.section	.text.comm_RS485_UART_UartSetRxAddressMask,"ax",%progbits
+ 179              		.align	1
+ 180              		.global	comm_RS485_UART_UartSetRxAddressMask
+ 181              		.code	16
+ 182              		.thumb_func
+ 183              		.type	comm_RS485_UART_UartSetRxAddressMask, %function
+ 184              	comm_RS485_UART_UartSetRxAddressMask:
+ 185              	.LFB2:
+ 315:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 316:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 317:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** /*******************************************************************************
+ 318:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Function Name: comm_RS485_UART_UartSetRxAddressMask
+ 319:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** ********************************************************************************
+ 320:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 321:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Summary:
+ 322:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  Sets the hardware address mask for the UART in the Multiprocessor mode.
+ 323:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 324:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Parameters:
+ 325:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  addressMask: Address mask.
+ 326:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *   0 - address bit does not care while comparison.
+ 327:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *   1 - address bit is significant while comparison.
+ 328:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 329:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** * Return:
+ 330:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *  None
+ 331:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *
+ 332:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** *******************************************************************************/
+ 333:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** void comm_RS485_UART_UartSetRxAddressMask(uint32 addressMask)
+ 334:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** {
+ 186              		.loc 1 334 0
+ 187              		.cfi_startproc
+ 188              	.LVL7:
+ 335:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     uint32 matchReg;
+ 336:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 337:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg = comm_RS485_UART_RX_MATCH_REG;
+ 189              		.loc 1 337 0
+ 190 0000 034B     		ldr	r3, .L8
+ 338:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 339:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg &= ((uint32) ~comm_RS485_UART_RX_MATCH_MASK_MASK); /* Clear address mask bits */
+ 191              		.loc 1 339 0
+ 192 0002 044A     		ldr	r2, .L8+4
+ 337:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg = comm_RS485_UART_RX_MATCH_REG;
+ 193              		.loc 1 337 0
+ 194 0004 1968     		ldr	r1, [r3]
+ 195              	.LVL8:
+ 340:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg |= ((uint32) (addressMask << comm_RS485_UART_RX_MATCH_MASK_POS));
+ 196              		.loc 1 340 0
+ 197 0006 0004     		lsl	r0, r0, #16
+ 198              	.LVL9:
+ 339:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     matchReg &= ((uint32) ~comm_RS485_UART_RX_MATCH_MASK_MASK); /* Clear address mask bits */
+ 199              		.loc 1 339 0
+ 200 0008 0A40     		and	r2, r1
+ 201              	.LVL10:
+ 202              		.loc 1 340 0
+ 203 000a 1043     		orr	r0, r2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 11
+
+
+ 204              	.LVL11:
+ 341:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 342:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     comm_RS485_UART_RX_MATCH_REG = matchReg;
+ 205              		.loc 1 342 0
+ 206 000c 1860     		str	r0, [r3]
+ 343:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** }
+ 207              		.loc 1 343 0
+ 208              		@ sp needed
+ 209 000e 7047     		bx	lr
+ 210              	.L9:
+ 211              		.align	2
+ 212              	.L8:
+ 213 0010 10030640 		.word	1074135824
+ 214 0014 FFFF00FF 		.word	-16711681
+ 215              		.cfi_endproc
+ 216              	.LFE2:
+ 217              		.size	comm_RS485_UART_UartSetRxAddressMask, .-comm_RS485_UART_UartSetRxAddressMask
+ 218              		.section	.text.comm_RS485_UART_UartGetChar,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	comm_RS485_UART_UartGetChar
+ 221              		.code	16
+ 222              		.thumb_func
+ 223              		.type	comm_RS485_UART_UartGetChar, %function
+ 224              	comm_RS485_UART_UartGetChar:
+ 225              	.LFB3:
+ 344:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 345:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 346:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #if(comm_RS485_UART_UART_RX_DIRECTION)
+ 347:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+ 348:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartGetChar
+ 349:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+ 350:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 351:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+ 352:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Retrieves the next data element from the receive buffer.
+ 353:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  This function is designed for ASCII characters and returns a char
+ 354:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  where 1 to 255 are valid characters and 0 indicates an error occurred or
+ 355:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  no data present.
+ 356:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  - The RX software buffer is disabled: returns the data element
+ 357:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *    retrieved from the RX FIFO.
+ 358:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *    Undefined data will be returned if the RX FIFO is empty.
+ 359:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  - The RX software buffer is enabled: returns the data element from
+ 360:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *    the software receive buffer.
+ 361:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 362:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+ 363:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 364:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 365:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+ 366:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  The next data element from the receive buffer.
+ 367:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  ASCII character values from 1 to 255 are valid.
+ 368:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  A returned zero signifies an error condition or no data available.
+ 369:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 370:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Side Effects:
+ 371:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  The errors bits may not correspond with reading characters due to RX FIFO
+ 372:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  and software buffer usage.
+ 373:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  RX software buffer is enabled: The internal software buffer overflow
+ 374:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  does not treat as an error condition.
+ 375:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Check SCB_rxBufferOverflow to capture that error condition.
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 12
+
+
+ 376:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 377:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+ 378:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     uint32 comm_RS485_UART_UartGetChar(void)
+ 379:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+ 226              		.loc 1 379 0
+ 227              		.cfi_startproc
+ 228              	.LVL12:
+ 229 0000 08B5     		push	{r3, lr}
+ 230              		.cfi_def_cfa_offset 8
+ 231              		.cfi_offset 3, -8
+ 232              		.cfi_offset 14, -4
+ 380:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 rxData = 0u;
+ 381:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 382:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Reads data only if there is data to read */
+ 383:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         if(0u != comm_RS485_UART_SpiUartGetRxBufferSize())
+ 233              		.loc 1 383 0
+ 234 0002 FFF7FEFF 		bl	comm_RS485_UART_SpiUartGetRxBufferSize
+ 235              	.LVL13:
+ 236 0006 031C     		mov	r3, r0
+ 380:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 rxData = 0u;
+ 237              		.loc 1 380 0
+ 238 0008 0020     		mov	r0, #0
+ 239              		.loc 1 383 0
+ 240 000a 8342     		cmp	r3, r0
+ 241 000c 01D0     		beq	.L11
+ 384:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 385:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             rxData = comm_RS485_UART_SpiUartReadRxData();
+ 242              		.loc 1 385 0
+ 243 000e FFF7FEFF 		bl	comm_RS485_UART_SpiUartReadRxData
+ 244              	.LVL14:
+ 245              	.L11:
+ 386:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 387:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 388:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         if(comm_RS485_UART_CHECK_INTR_RX(comm_RS485_UART_INTR_RX_ERR))
+ 246              		.loc 1 388 0
+ 247 0012 044B     		ldr	r3, .L19
+ 248 0014 D822     		mov	r2, #216
+ 249 0016 1968     		ldr	r1, [r3]
+ 250 0018 9200     		lsl	r2, r2, #2
+ 251 001a 1142     		tst	r1, r2
+ 252 001c 01D0     		beq	.L12
+ 253              	.LVL15:
+ 389:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 390:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             rxData = 0u; /* Error occurred: returns zero */
+ 391:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_ClearRxInterruptSource(comm_RS485_UART_INTR_RX_ERR);
+ 254              		.loc 1 391 0
+ 255 001e 1A60     		str	r2, [r3]
+ 390:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             rxData = 0u; /* Error occurred: returns zero */
+ 256              		.loc 1 390 0
+ 257 0020 0020     		mov	r0, #0
+ 258              	.LVL16:
+ 259              	.L12:
+ 392:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 393:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 394:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         return(rxData);
+ 395:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+ 260              		.loc 1 395 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 13
+
+
+ 261              		@ sp needed
+ 262 0022 08BD     		pop	{r3, pc}
+ 263              	.L20:
+ 264              		.align	2
+ 265              	.L19:
+ 266 0024 C00F0640 		.word	1074139072
+ 267              		.cfi_endproc
+ 268              	.LFE3:
+ 269              		.size	comm_RS485_UART_UartGetChar, .-comm_RS485_UART_UartGetChar
+ 270              		.section	.text.comm_RS485_UART_UartGetByte,"ax",%progbits
+ 271              		.align	1
+ 272              		.global	comm_RS485_UART_UartGetByte
+ 273              		.code	16
+ 274              		.thumb_func
+ 275              		.type	comm_RS485_UART_UartGetByte, %function
+ 276              	comm_RS485_UART_UartGetByte:
+ 277              	.LFB4:
+ 396:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 397:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 398:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+ 399:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartGetByte
+ 400:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+ 401:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 402:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+ 403:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Retrieves the next data element from the receive buffer, returns the
+ 404:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  received byte and error condition.
+ 405:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *   - The RX software buffer is disabled: returns the data element retrieved
+ 406:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *     from the RX FIFO. Undefined data will be returned if the RX FIFO is
+ 407:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *     empty.
+ 408:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *   - The RX software buffer is enabled: returns data element from the
+ 409:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *     software receive buffer.
+ 410:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 411:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+ 412:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 413:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 414:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+ 415:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Bits 7-0 contain the next data element from the receive buffer and
+ 416:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  other bits contain the error condition.
+ 417:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 418:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Side Effects:
+ 419:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  The errors bits may not correspond with reading characters due to RX FIFO
+ 420:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  and software buffer usage.
+ 421:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  RX software buffer is disabled: The internal software buffer overflow
+ 422:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  is not returned as status by this function.
+ 423:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Check SCB_rxBufferOverflow to capture that error condition.
+ 424:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 425:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+ 426:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     uint32 comm_RS485_UART_UartGetByte(void)
+ 427:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+ 278              		.loc 1 427 0
+ 279              		.cfi_startproc
+ 280 0000 10B5     		push	{r4, lr}
+ 281              		.cfi_def_cfa_offset 8
+ 282              		.cfi_offset 4, -8
+ 283              		.cfi_offset 14, -4
+ 428:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 rxData;
+ 429:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 tmpStatus;
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 14
+
+
+ 430:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 intSourceMask;
+ 431:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 432:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         intSourceMask = comm_RS485_UART_SpiUartDisableIntRx();
+ 284              		.loc 1 432 0
+ 285 0002 FFF7FEFF 		bl	comm_RS485_UART_SpiUartDisableIntRx
+ 286              	.LVL17:
+ 287 0006 041C     		mov	r4, r0
+ 288              	.LVL18:
+ 433:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 434:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         if(0u != comm_RS485_UART_SpiUartGetRxBufferSize())
+ 289              		.loc 1 434 0
+ 290 0008 FFF7FEFF 		bl	comm_RS485_UART_SpiUartGetRxBufferSize
+ 291              	.LVL19:
+ 292 000c 094B     		ldr	r3, .L24
+ 293 000e 0028     		cmp	r0, #0
+ 294 0010 03D0     		beq	.L22
+ 435:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 436:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Enables interrupt to receive more bytes: at least one byte is in
+ 437:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             * buffer.
+ 438:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             */
+ 439:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_SpiUartEnableIntRx(intSourceMask);
+ 295              		.loc 1 439 0
+ 296 0012 1C60     		str	r4, [r3]
+ 440:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 441:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Get received byte */
+ 442:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             rxData = comm_RS485_UART_SpiUartReadRxData();
+ 297              		.loc 1 442 0
+ 298 0014 FFF7FEFF 		bl	comm_RS485_UART_SpiUartReadRxData
+ 299              	.LVL20:
+ 300 0018 02E0     		b	.L23
+ 301              	.LVL21:
+ 302              	.L22:
+ 443:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 444:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         else
+ 445:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 446:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Reads a byte directly from RX FIFO: underflow is raised in the case
+ 447:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             * of empty. Otherwise the first received byte will be read.
+ 448:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             */
+ 449:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             rxData = comm_RS485_UART_RX_FIFO_RD_REG;
+ 303              		.loc 1 449 0
+ 304 001a 074A     		ldr	r2, .L24+4
+ 305 001c 1068     		ldr	r0, [r2]
+ 306              	.LVL22:
+ 450:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 451:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             /* Enables interrupt to receive more bytes.
+ 452:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             * The RX_NOT_EMPTY interrupt is cleared by the interrupt routine
+ 453:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             * in case the byte was received and read by code above.
+ 454:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             */
+ 455:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_SpiUartEnableIntRx(intSourceMask);
+ 307              		.loc 1 455 0
+ 308 001e 1C60     		str	r4, [r3]
+ 309              	.L23:
+ 456:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 457:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 458:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Get and clear RX error mask */
+ 459:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         tmpStatus = (comm_RS485_UART_GetRxInterruptSource() & comm_RS485_UART_INTR_RX_ERR);
+ 310              		.loc 1 459 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 15
+
+
+ 311 0020 064A     		ldr	r2, .L24+8
+ 460:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_ClearRxInterruptSource(comm_RS485_UART_INTR_RX_ERR);
+ 312              		.loc 1 460 0
+ 313 0022 D823     		mov	r3, #216
+ 459:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         tmpStatus = (comm_RS485_UART_GetRxInterruptSource() & comm_RS485_UART_INTR_RX_ERR);
+ 314              		.loc 1 459 0
+ 315 0024 1168     		ldr	r1, [r2]
+ 316              	.LVL23:
+ 317              		.loc 1 460 0
+ 318 0026 9B00     		lsl	r3, r3, #2
+ 319 0028 1360     		str	r3, [r2]
+ 320              	.LVL24:
+ 459:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         tmpStatus = (comm_RS485_UART_GetRxInterruptSource() & comm_RS485_UART_INTR_RX_ERR);
+ 321              		.loc 1 459 0
+ 322 002a 0B40     		and	r3, r1
+ 461:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 462:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Puts together data and error status:
+ 463:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * MP mode and accept address: 9th bit is set to notify mark.
+ 464:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         */
+ 465:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         rxData |= ((uint32) (tmpStatus << 8u));
+ 323              		.loc 1 465 0
+ 324 002c 1B02     		lsl	r3, r3, #8
+ 325 002e 1843     		orr	r0, r3
+ 326              	.LVL25:
+ 466:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 467:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         return(rxData);
+ 468:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+ 327              		.loc 1 468 0
+ 328              		@ sp needed
+ 329              	.LVL26:
+ 330 0030 10BD     		pop	{r4, pc}
+ 331              	.L25:
+ 332 0032 C046     		.align	2
+ 333              	.L24:
+ 334 0034 C80F0640 		.word	1074139080
+ 335 0038 40030640 		.word	1074135872
+ 336 003c C00F0640 		.word	1074139072
+ 337              		.cfi_endproc
+ 338              	.LFE4:
+ 339              		.size	comm_RS485_UART_UartGetByte, .-comm_RS485_UART_UartGetByte
+ 340              		.section	.text.comm_RS485_UART_UartPutString,"ax",%progbits
+ 341              		.align	1
+ 342              		.global	comm_RS485_UART_UartPutString
+ 343              		.code	16
+ 344              		.thumb_func
+ 345              		.type	comm_RS485_UART_UartPutString, %function
+ 346              	comm_RS485_UART_UartPutString:
+ 347              	.LFB5:
+ 469:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 470:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 471:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #if !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1)
+ 472:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /*******************************************************************************
+ 473:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Function Name: comm_RS485_UART_UartSetRtsPolarity
+ 474:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         ********************************************************************************
+ 475:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 476:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Summary:
+ 477:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  Sets active polarity of RTS output signal.
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 16
+
+
+ 478:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 479:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Parameters:
+ 480:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  polarity: Active polarity of RTS output signal.
+ 481:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *   comm_RS485_UART_UART_RTS_ACTIVE_LOW  - RTS signal is active low.
+ 482:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *   comm_RS485_UART_UART_RTS_ACTIVE_HIGH - RTS signal is active high.
+ 483:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 484:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Return:
+ 485:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  None
+ 486:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 487:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *******************************************************************************/
+ 488:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         void comm_RS485_UART_UartSetRtsPolarity(uint32 polarity)
+ 489:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 490:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             if(0u != polarity)
+ 491:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ 492:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 comm_RS485_UART_UART_FLOW_CTRL_REG |= (uint32)  comm_RS485_UART_UART_FLOW_CTRL_RTS_
+ 493:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 494:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             else
+ 495:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             {
+ 496:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****                 comm_RS485_UART_UART_FLOW_CTRL_REG &= (uint32) ~comm_RS485_UART_UART_FLOW_CTRL_RTS_
+ 497:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             }
+ 498:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 499:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 500:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 501:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /*******************************************************************************
+ 502:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Function Name: comm_RS485_UART_UartSetRtsFifoLevel
+ 503:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         ********************************************************************************
+ 504:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 505:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Summary:
+ 506:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  Sets level in the RX FIFO for RTS signal activation.
+ 507:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  While the RX FIFO has fewer entries than the RX FIFO level the RTS signal
+ 508:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  remains active, otherwise the RTS signal becomes inactive.
+ 509:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 510:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Parameters:
+ 511:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  level: Level in the RX FIFO for RTS signal activation.
+ 512:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *         The range of valid level values is between 0 and RX FIFO depth - 1.
+ 513:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *         Setting level value to 0 disables RTS signal activation.
+ 514:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 515:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         * Return:
+ 516:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *  None
+ 517:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *
+ 518:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         *******************************************************************************/
+ 519:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         void comm_RS485_UART_UartSetRtsFifoLevel(uint32 level)
+ 520:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 521:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             uint32 uartFlowCtrl;
+ 522:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 523:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             uartFlowCtrl = comm_RS485_UART_UART_FLOW_CTRL_REG;
+ 524:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 525:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             uartFlowCtrl &= ((uint32) ~comm_RS485_UART_UART_FLOW_CTRL_TRIGGER_LEVEL_MASK); /* Clear
+ 526:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             uartFlowCtrl |= ((uint32) (comm_RS485_UART_UART_FLOW_CTRL_TRIGGER_LEVEL_MASK & level));
+ 527:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 528:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UART_FLOW_CTRL_REG = uartFlowCtrl;
+ 529:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 530:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     #endif /* !(comm_RS485_UART_CY_SCBIP_V0 || comm_RS485_UART_CY_SCBIP_V1) */
+ 531:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 532:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #endif /* (comm_RS485_UART_UART_RX_DIRECTION) */
+ 533:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 534:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 17
+
+
+ 535:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** #if(comm_RS485_UART_UART_TX_DIRECTION)
+ 536:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+ 537:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartPutString
+ 538:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+ 539:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 540:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+ 541:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Places a NULL terminated string in the transmit buffer to be sent at the
+ 542:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  next available bus time.
+ 543:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  This function is blocking and waits until there is space available to put
+ 544:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  all the requested data into the  transmit buffer.
+ 545:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 546:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+ 547:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  string: pointer to the null terminated string array to be placed in the
+ 548:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *          transmit buffer.
+ 549:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 550:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+ 551:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 552:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 553:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+ 554:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     void comm_RS485_UART_UartPutString(const char8 string[])
+ 555:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+ 348              		.loc 1 555 0
+ 349              		.cfi_startproc
+ 350              	.LVL27:
+ 351 0000 10B5     		push	{r4, lr}
+ 352              		.cfi_def_cfa_offset 8
+ 353              		.cfi_offset 4, -8
+ 354              		.cfi_offset 14, -4
+ 355 0002 041C     		mov	r4, r0
+ 356              	.LVL28:
+ 357              	.L27:
+ 358 0004 0134     		add	r4, r4, #1
+ 359              	.LVL29:
+ 360 0006 631E     		sub	r3, r4, #1
+ 556:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         uint32 bufIndex;
+ 557:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 558:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         bufIndex = 0u;
+ 559:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 560:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         /* Blocks the control flow until all data has been sent */
+ 561:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         while(string[bufIndex] != ((char8) 0))
+ 361              		.loc 1 561 0 discriminator 1
+ 362 0008 1878     		ldrb	r0, [r3]
+ 363 000a 0028     		cmp	r0, #0
+ 364 000c 02D0     		beq	.L29
+ 562:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         {
+ 563:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             comm_RS485_UART_UartPutChar((uint32) string[bufIndex]);
+ 365              		.loc 1 563 0
+ 366 000e FFF7FEFF 		bl	comm_RS485_UART_SpiUartWriteTxData
+ 367              	.LVL30:
+ 368 0012 F7E7     		b	.L27
+ 369              	.LVL31:
+ 370              	.L29:
+ 564:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****             bufIndex++;
+ 565:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         }
+ 566:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+ 371              		.loc 1 566 0
+ 372              		@ sp needed
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 18
+
+
+ 373              	.LVL32:
+ 374 0014 10BD     		pop	{r4, pc}
+ 375              		.cfi_endproc
+ 376              	.LFE5:
+ 377              		.size	comm_RS485_UART_UartPutString, .-comm_RS485_UART_UartPutString
+ 378              		.section	.text.comm_RS485_UART_UartPutCRLF,"ax",%progbits
+ 379              		.align	1
+ 380              		.global	comm_RS485_UART_UartPutCRLF
+ 381              		.code	16
+ 382              		.thumb_func
+ 383              		.type	comm_RS485_UART_UartPutCRLF, %function
+ 384              	comm_RS485_UART_UartPutCRLF:
+ 385              	.LFB6:
+ 567:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 568:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c **** 
+ 569:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     /*******************************************************************************
+ 570:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Function Name: comm_RS485_UART_UartPutCRLF
+ 571:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     ********************************************************************************
+ 572:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 573:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Summary:
+ 574:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  Places a byte of data followed by a carriage return (0x0D) and
+ 575:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  line feed (0x0A) into the transmit buffer.
+ 576:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  This function is blocking and waits until there is space available to put
+ 577:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  all the requested data into the  transmit buffer.
+ 578:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 579:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Parameters:
+ 580:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  txDataByte : the data to be transmitted.
+ 581:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 582:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     * Return:
+ 583:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *  None
+ 584:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *
+ 585:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     *******************************************************************************/
+ 586:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     void comm_RS485_UART_UartPutCRLF(uint32 txDataByte)
+ 587:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     {
+ 386              		.loc 1 587 0
+ 387              		.cfi_startproc
+ 388              	.LVL33:
+ 389 0000 08B5     		push	{r3, lr}
+ 390              		.cfi_def_cfa_offset 8
+ 391              		.cfi_offset 3, -8
+ 392              		.cfi_offset 14, -4
+ 588:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UartPutChar(txDataByte);  /* Blocks control flow until all data has been se
+ 393              		.loc 1 588 0
+ 394 0002 FFF7FEFF 		bl	comm_RS485_UART_SpiUartWriteTxData
+ 395              	.LVL34:
+ 589:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UartPutChar(0x0Du);       /* Blocks control flow until all data has been se
+ 396              		.loc 1 589 0
+ 397 0006 0D20     		mov	r0, #13
+ 398 0008 FFF7FEFF 		bl	comm_RS485_UART_SpiUartWriteTxData
+ 399              	.LVL35:
+ 590:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****         comm_RS485_UART_UartPutChar(0x0Au);       /* Blocks control flow until all data has been se
+ 400              		.loc 1 590 0
+ 401 000c 0A20     		mov	r0, #10
+ 402 000e FFF7FEFF 		bl	comm_RS485_UART_SpiUartWriteTxData
+ 403              	.LVL36:
+ 591:.\Generated_Source\PSoC4/comm_RS485_UART_UART.c ****     }
+ 404              		.loc 1 591 0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 19
+
+
+ 405              		@ sp needed
+ 406 0012 08BD     		pop	{r3, pc}
+ 407              		.cfi_endproc
+ 408              	.LFE6:
+ 409              		.size	comm_RS485_UART_UartPutCRLF, .-comm_RS485_UART_UartPutCRLF
+ 410              		.text
+ 411              	.Letext0:
+ 412              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 413              		.file 3 "Generated_Source\\PSoC4/CyLib.h"
+ 414              		.file 4 ".\\Generated_Source\\PSoC4\\comm_RS485_UART_SPI_UART.h"
+ 415              		.file 5 ".\\Generated_Source\\PSoC4\\comm_RS485_UART_SPI_UART_PVT.h"
+ 416              		.section	.debug_info,"",%progbits
+ 417              	.Ldebug_info0:
+ 418 0000 47030000 		.4byte	0x347
+ 419 0004 0400     		.2byte	0x4
+ 420 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 421 000a 04       		.byte	0x4
+ 422 000b 01       		.uleb128 0x1
+ 423 000c F5000000 		.4byte	.LASF39
+ 424 0010 01       		.byte	0x1
+ 425 0011 F6010000 		.4byte	.LASF40
+ 426 0015 5C020000 		.4byte	.LASF41
+ 427 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 428 001d 00000000 		.4byte	0
+ 429 0021 00000000 		.4byte	.Ldebug_line0
+ 430 0025 02       		.uleb128 0x2
+ 431 0026 01       		.byte	0x1
+ 432 0027 06       		.byte	0x6
+ 433 0028 81030000 		.4byte	.LASF0
+ 434 002c 02       		.uleb128 0x2
+ 435 002d 01       		.byte	0x1
+ 436 002e 08       		.byte	0x8
+ 437 002f 8E010000 		.4byte	.LASF1
+ 438 0033 02       		.uleb128 0x2
+ 439 0034 02       		.byte	0x2
+ 440 0035 05       		.byte	0x5
+ 441 0036 05030000 		.4byte	.LASF2
+ 442 003a 02       		.uleb128 0x2
+ 443 003b 02       		.byte	0x2
+ 444 003c 07       		.byte	0x7
+ 445 003d AD000000 		.4byte	.LASF3
+ 446 0041 02       		.uleb128 0x2
+ 447 0042 04       		.byte	0x4
+ 448 0043 05       		.byte	0x5
+ 449 0044 65030000 		.4byte	.LASF4
+ 450 0048 02       		.uleb128 0x2
+ 451 0049 04       		.byte	0x4
+ 452 004a 07       		.byte	0x7
+ 453 004b 34020000 		.4byte	.LASF5
+ 454 004f 02       		.uleb128 0x2
+ 455 0050 08       		.byte	0x8
+ 456 0051 05       		.byte	0x5
+ 457 0052 00000000 		.4byte	.LASF6
+ 458 0056 02       		.uleb128 0x2
+ 459 0057 08       		.byte	0x8
+ 460 0058 07       		.byte	0x7
+ 461 0059 77010000 		.4byte	.LASF7
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 20
+
+
+ 462 005d 03       		.uleb128 0x3
+ 463 005e 04       		.byte	0x4
+ 464 005f 05       		.byte	0x5
+ 465 0060 696E7400 		.ascii	"int\000"
+ 466 0064 02       		.uleb128 0x2
+ 467 0065 04       		.byte	0x4
+ 468 0066 07       		.byte	0x7
+ 469 0067 C0000000 		.4byte	.LASF8
+ 470 006b 04       		.uleb128 0x4
+ 471 006c DD010000 		.4byte	.LASF9
+ 472 0070 02       		.byte	0x2
+ 473 0071 B3       		.byte	0xb3
+ 474 0072 2C000000 		.4byte	0x2c
+ 475 0076 04       		.uleb128 0x4
+ 476 0077 2D020000 		.4byte	.LASF10
+ 477 007b 02       		.byte	0x2
+ 478 007c B5       		.byte	0xb5
+ 479 007d 48000000 		.4byte	0x48
+ 480 0081 02       		.uleb128 0x2
+ 481 0082 04       		.byte	0x4
+ 482 0083 04       		.byte	0x4
+ 483 0084 71010000 		.4byte	.LASF11
+ 484 0088 02       		.uleb128 0x2
+ 485 0089 08       		.byte	0x8
+ 486 008a 04       		.byte	0x4
+ 487 008b 26020000 		.4byte	.LASF12
+ 488 008f 04       		.uleb128 0x4
+ 489 0090 9C010000 		.4byte	.LASF13
+ 490 0094 02       		.byte	0x2
+ 491 0095 C4       		.byte	0xc4
+ 492 0096 9A000000 		.4byte	0x9a
+ 493 009a 02       		.uleb128 0x2
+ 494 009b 01       		.byte	0x1
+ 495 009c 08       		.byte	0x8
+ 496 009d F3020000 		.4byte	.LASF14
+ 497 00a1 05       		.uleb128 0x5
+ 498 00a2 0E000000 		.4byte	.LASF15
+ 499 00a6 02       		.byte	0x2
+ 500 00a7 5F01     		.2byte	0x15f
+ 501 00a9 AD000000 		.4byte	0xad
+ 502 00ad 06       		.uleb128 0x6
+ 503 00ae 76000000 		.4byte	0x76
+ 504 00b2 05       		.uleb128 0x5
+ 505 00b3 A4020000 		.4byte	.LASF16
+ 506 00b7 02       		.byte	0x2
+ 507 00b8 6F01     		.2byte	0x16f
+ 508 00ba BE000000 		.4byte	0xbe
+ 509 00be 07       		.uleb128 0x7
+ 510 00bf 04       		.byte	0x4
+ 511 00c0 C4000000 		.4byte	0xc4
+ 512 00c4 08       		.uleb128 0x8
+ 513 00c5 02       		.uleb128 0x2
+ 514 00c6 04       		.byte	0x4
+ 515 00c7 07       		.byte	0x7
+ 516 00c8 DF020000 		.4byte	.LASF17
+ 517 00cc 09       		.uleb128 0x9
+ 518 00cd C4010000 		.4byte	.LASF18
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 21
+
+
+ 519 00d1 01       		.byte	0x1
+ 520 00d2 E6       		.byte	0xe6
+ 521 00d3 00000000 		.4byte	.LFB0
+ 522 00d7 BC000000 		.4byte	.LFE0-.LFB0
+ 523 00db 01       		.uleb128 0x1
+ 524 00dc 9C       		.byte	0x9c
+ 525 00dd 1C010000 		.4byte	0x11c
+ 526 00e1 0A       		.uleb128 0xa
+ 527 00e2 3A000000 		.4byte	.LVL0
+ 528 00e6 D8020000 		.4byte	0x2d8
+ 529 00ea F4000000 		.4byte	0xf4
+ 530 00ee 0B       		.uleb128 0xb
+ 531 00ef 01       		.uleb128 0x1
+ 532 00f0 50       		.byte	0x50
+ 533 00f1 01       		.uleb128 0x1
+ 534 00f2 3A       		.byte	0x3a
+ 535 00f3 00       		.byte	0
+ 536 00f4 0A       		.uleb128 0xa
+ 537 00f5 42000000 		.4byte	.LVL1
+ 538 00f9 E9020000 		.4byte	0x2e9
+ 539 00fd 0C010000 		.4byte	0x10c
+ 540 0101 0B       		.uleb128 0xb
+ 541 0102 01       		.uleb128 0x1
+ 542 0103 51       		.byte	0x51
+ 543 0104 01       		.uleb128 0x1
+ 544 0105 33       		.byte	0x33
+ 545 0106 0B       		.uleb128 0xb
+ 546 0107 01       		.uleb128 0x1
+ 547 0108 50       		.byte	0x50
+ 548 0109 01       		.uleb128 0x1
+ 549 010a 3A       		.byte	0x3a
+ 550 010b 00       		.byte	0
+ 551 010c 0C       		.uleb128 0xc
+ 552 010d 4A000000 		.4byte	.LVL2
+ 553 0111 FF020000 		.4byte	0x2ff
+ 554 0115 0B       		.uleb128 0xb
+ 555 0116 01       		.uleb128 0x1
+ 556 0117 50       		.byte	0x50
+ 557 0118 01       		.uleb128 0x1
+ 558 0119 3A       		.byte	0x3a
+ 559 011a 00       		.byte	0
+ 560 011b 00       		.byte	0
+ 561 011c 0D       		.uleb128 0xd
+ 562 011d CD000000 		.4byte	.LASF19
+ 563 0121 01       		.byte	0x1
+ 564 0122 3001     		.2byte	0x130
+ 565 0124 00000000 		.4byte	.LFB1
+ 566 0128 14000000 		.4byte	.LFE1-.LFB1
+ 567 012c 01       		.uleb128 0x1
+ 568 012d 9C       		.byte	0x9c
+ 569 012e 51010000 		.4byte	0x151
+ 570 0132 0E       		.uleb128 0xe
+ 571 0133 54020000 		.4byte	.LASF21
+ 572 0137 01       		.byte	0x1
+ 573 0138 3001     		.2byte	0x130
+ 574 013a 76000000 		.4byte	0x76
+ 575 013e 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 22
+
+
+ 576 013f 50       		.byte	0x50
+ 577 0140 0F       		.uleb128 0xf
+ 578 0141 78030000 		.4byte	.LASF23
+ 579 0145 01       		.byte	0x1
+ 580 0146 3201     		.2byte	0x132
+ 581 0148 76000000 		.4byte	0x76
+ 582 014c 00000000 		.4byte	.LLST0
+ 583 0150 00       		.byte	0
+ 584 0151 0D       		.uleb128 0xd
+ 585 0152 BA020000 		.4byte	.LASF20
+ 586 0156 01       		.byte	0x1
+ 587 0157 4D01     		.2byte	0x14d
+ 588 0159 00000000 		.4byte	.LFB2
+ 589 015d 18000000 		.4byte	.LFE2-.LFB2
+ 590 0161 01       		.uleb128 0x1
+ 591 0162 9C       		.byte	0x9c
+ 592 0163 88010000 		.4byte	0x188
+ 593 0167 10       		.uleb128 0x10
+ 594 0168 EA010000 		.4byte	.LASF22
+ 595 016c 01       		.byte	0x1
+ 596 016d 4D01     		.2byte	0x14d
+ 597 016f 76000000 		.4byte	0x76
+ 598 0173 1E000000 		.4byte	.LLST1
+ 599 0177 0F       		.uleb128 0xf
+ 600 0178 78030000 		.4byte	.LASF23
+ 601 017c 01       		.byte	0x1
+ 602 017d 4F01     		.2byte	0x14f
+ 603 017f 76000000 		.4byte	0x76
+ 604 0183 3F000000 		.4byte	.LLST2
+ 605 0187 00       		.byte	0
+ 606 0188 11       		.uleb128 0x11
+ 607 0189 91000000 		.4byte	.LASF25
+ 608 018d 01       		.byte	0x1
+ 609 018e 7A01     		.2byte	0x17a
+ 610 0190 76000000 		.4byte	0x76
+ 611 0194 00000000 		.4byte	.LFB3
+ 612 0198 28000000 		.4byte	.LFE3-.LFB3
+ 613 019c 01       		.uleb128 0x1
+ 614 019d 9C       		.byte	0x9c
+ 615 019e C5010000 		.4byte	0x1c5
+ 616 01a2 0F       		.uleb128 0xf
+ 617 01a3 E3010000 		.4byte	.LASF24
+ 618 01a7 01       		.byte	0x1
+ 619 01a8 7C01     		.2byte	0x17c
+ 620 01aa 76000000 		.4byte	0x76
+ 621 01ae 68000000 		.4byte	.LLST3
+ 622 01b2 12       		.uleb128 0x12
+ 623 01b3 06000000 		.4byte	.LVL13
+ 624 01b7 19030000 		.4byte	0x319
+ 625 01bb 12       		.uleb128 0x12
+ 626 01bc 12000000 		.4byte	.LVL14
+ 627 01c0 25030000 		.4byte	0x325
+ 628 01c4 00       		.byte	0
+ 629 01c5 11       		.uleb128 0x11
+ 630 01c6 2D030000 		.4byte	.LASF26
+ 631 01ca 01       		.byte	0x1
+ 632 01cb AA01     		.2byte	0x1aa
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 23
+
+
+ 633 01cd 76000000 		.4byte	0x76
+ 634 01d1 00000000 		.4byte	.LFB4
+ 635 01d5 40000000 		.4byte	.LFE4-.LFB4
+ 636 01d9 01       		.uleb128 0x1
+ 637 01da 9C       		.byte	0x9c
+ 638 01db 2F020000 		.4byte	0x22f
+ 639 01df 0F       		.uleb128 0xf
+ 640 01e0 E3010000 		.4byte	.LASF24
+ 641 01e4 01       		.byte	0x1
+ 642 01e5 AC01     		.2byte	0x1ac
+ 643 01e7 76000000 		.4byte	0x76
+ 644 01eb 9E000000 		.4byte	.LLST4
+ 645 01ef 13       		.uleb128 0x13
+ 646 01f0 6E030000 		.4byte	.LASF27
+ 647 01f4 01       		.byte	0x1
+ 648 01f5 AD01     		.2byte	0x1ad
+ 649 01f7 76000000 		.4byte	0x76
+ 650 01fb 07       		.uleb128 0x7
+ 651 01fc 71       		.byte	0x71
+ 652 01fd 00       		.sleb128 0
+ 653 01fe 0A       		.byte	0xa
+ 654 01ff 6003     		.2byte	0x360
+ 655 0201 1A       		.byte	0x1a
+ 656 0202 9F       		.byte	0x9f
+ 657 0203 0F       		.uleb128 0xf
+ 658 0204 46020000 		.4byte	.LASF28
+ 659 0208 01       		.byte	0x1
+ 660 0209 AE01     		.2byte	0x1ae
+ 661 020b 76000000 		.4byte	0x76
+ 662 020f D2000000 		.4byte	.LLST5
+ 663 0213 12       		.uleb128 0x12
+ 664 0214 06000000 		.4byte	.LVL17
+ 665 0218 31030000 		.4byte	0x331
+ 666 021c 12       		.uleb128 0x12
+ 667 021d 0C000000 		.4byte	.LVL19
+ 668 0221 19030000 		.4byte	0x319
+ 669 0225 12       		.uleb128 0x12
+ 670 0226 18000000 		.4byte	.LVL20
+ 671 022a 25030000 		.4byte	0x325
+ 672 022e 00       		.byte	0
+ 673 022f 0D       		.uleb128 0xd
+ 674 0230 0F030000 		.4byte	.LASF29
+ 675 0234 01       		.byte	0x1
+ 676 0235 2A02     		.2byte	0x22a
+ 677 0237 00000000 		.4byte	.LFB5
+ 678 023b 16000000 		.4byte	.LFE5-.LFB5
+ 679 023f 01       		.uleb128 0x1
+ 680 0240 9C       		.byte	0x9c
+ 681 0241 6F020000 		.4byte	0x26f
+ 682 0245 10       		.uleb128 0x10
+ 683 0246 EE000000 		.4byte	.LASF30
+ 684 024a 01       		.byte	0x1
+ 685 024b 2A02     		.2byte	0x22a
+ 686 024d 6F020000 		.4byte	0x26f
+ 687 0251 F0000000 		.4byte	.LLST6
+ 688 0255 0F       		.uleb128 0xf
+ 689 0256 B1020000 		.4byte	.LASF31
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 24
+
+
+ 690 025a 01       		.byte	0x1
+ 691 025b 2C02     		.2byte	0x22c
+ 692 025d 76000000 		.4byte	0x76
+ 693 0261 11010000 		.4byte	.LLST7
+ 694 0265 12       		.uleb128 0x12
+ 695 0266 12000000 		.4byte	.LVL30
+ 696 026a 3C030000 		.4byte	0x33c
+ 697 026e 00       		.byte	0
+ 698 026f 07       		.uleb128 0x7
+ 699 0270 04       		.byte	0x4
+ 700 0271 75020000 		.4byte	0x275
+ 701 0275 14       		.uleb128 0x14
+ 702 0276 8F000000 		.4byte	0x8f
+ 703 027a 0D       		.uleb128 0xd
+ 704 027b 49030000 		.4byte	.LASF32
+ 705 027f 01       		.byte	0x1
+ 706 0280 4A02     		.2byte	0x24a
+ 707 0282 00000000 		.4byte	.LFB6
+ 708 0286 14000000 		.4byte	.LFE6-.LFB6
+ 709 028a 01       		.uleb128 0x1
+ 710 028b 9C       		.byte	0x9c
+ 711 028c D8020000 		.4byte	0x2d8
+ 712 0290 10       		.uleb128 0x10
+ 713 0291 E8020000 		.4byte	.LASF33
+ 714 0295 01       		.byte	0x1
+ 715 0296 4A02     		.2byte	0x24a
+ 716 0298 76000000 		.4byte	0x76
+ 717 029c 70010000 		.4byte	.LLST8
+ 718 02a0 0A       		.uleb128 0xa
+ 719 02a1 06000000 		.4byte	.LVL34
+ 720 02a5 3C030000 		.4byte	0x33c
+ 721 02a9 B5020000 		.4byte	0x2b5
+ 722 02ad 0B       		.uleb128 0xb
+ 723 02ae 01       		.uleb128 0x1
+ 724 02af 50       		.byte	0x50
+ 725 02b0 03       		.uleb128 0x3
+ 726 02b1 F3       		.byte	0xf3
+ 727 02b2 01       		.uleb128 0x1
+ 728 02b3 50       		.byte	0x50
+ 729 02b4 00       		.byte	0
+ 730 02b5 0A       		.uleb128 0xa
+ 731 02b6 0C000000 		.4byte	.LVL35
+ 732 02ba 3C030000 		.4byte	0x33c
+ 733 02be C8020000 		.4byte	0x2c8
+ 734 02c2 0B       		.uleb128 0xb
+ 735 02c3 01       		.uleb128 0x1
+ 736 02c4 50       		.byte	0x50
+ 737 02c5 01       		.uleb128 0x1
+ 738 02c6 3D       		.byte	0x3d
+ 739 02c7 00       		.byte	0
+ 740 02c8 0C       		.uleb128 0xc
+ 741 02c9 12000000 		.4byte	.LVL36
+ 742 02cd 3C030000 		.4byte	0x33c
+ 743 02d1 0B       		.uleb128 0xb
+ 744 02d2 01       		.uleb128 0x1
+ 745 02d3 50       		.byte	0x50
+ 746 02d4 01       		.uleb128 0x1
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 25
+
+
+ 747 02d5 3A       		.byte	0x3a
+ 748 02d6 00       		.byte	0
+ 749 02d7 00       		.byte	0
+ 750 02d8 15       		.uleb128 0x15
+ 751 02d9 F8020000 		.4byte	.LASF34
+ 752 02dd 03       		.byte	0x3
+ 753 02de 4E       		.byte	0x4e
+ 754 02df E9020000 		.4byte	0x2e9
+ 755 02e3 16       		.uleb128 0x16
+ 756 02e4 6B000000 		.4byte	0x6b
+ 757 02e8 00       		.byte	0
+ 758 02e9 15       		.uleb128 0x15
+ 759 02ea 93020000 		.4byte	.LASF35
+ 760 02ee 03       		.byte	0x3
+ 761 02ef 49       		.byte	0x49
+ 762 02f0 FF020000 		.4byte	0x2ff
+ 763 02f4 16       		.uleb128 0x16
+ 764 02f5 6B000000 		.4byte	0x6b
+ 765 02f9 16       		.uleb128 0x16
+ 766 02fa 6B000000 		.4byte	0x6b
+ 767 02fe 00       		.byte	0
+ 768 02ff 17       		.uleb128 0x17
+ 769 0300 5B000000 		.4byte	.LASF42
+ 770 0304 03       		.byte	0x3
+ 771 0305 46       		.byte	0x46
+ 772 0306 B2000000 		.4byte	0xb2
+ 773 030a 19030000 		.4byte	0x319
+ 774 030e 16       		.uleb128 0x16
+ 775 030f 6B000000 		.4byte	0x6b
+ 776 0313 16       		.uleb128 0x16
+ 777 0314 B2000000 		.4byte	0xb2
+ 778 0318 00       		.byte	0
+ 779 0319 18       		.uleb128 0x18
+ 780 031a 6A000000 		.4byte	.LASF36
+ 781 031e 04       		.byte	0x4
+ 782 031f 7701     		.2byte	0x177
+ 783 0321 76000000 		.4byte	0x76
+ 784 0325 18       		.uleb128 0x18
+ 785 0326 A2010000 		.4byte	.LASF37
+ 786 032a 04       		.byte	0x4
+ 787 032b 7601     		.2byte	0x176
+ 788 032d 76000000 		.4byte	0x76
+ 789 0331 19       		.uleb128 0x19
+ 790 0332 37000000 		.4byte	.LASF38
+ 791 0336 05       		.byte	0x5
+ 792 0337 51       		.byte	0x51
+ 793 0338 76000000 		.4byte	0x76
+ 794 033c 1A       		.uleb128 0x1a
+ 795 033d 14000000 		.4byte	.LASF43
+ 796 0341 04       		.byte	0x4
+ 797 0342 7D01     		.2byte	0x17d
+ 798 0344 16       		.uleb128 0x16
+ 799 0345 76000000 		.4byte	0x76
+ 800 0349 00       		.byte	0
+ 801 034a 00       		.byte	0
+ 802              		.section	.debug_abbrev,"",%progbits
+ 803              	.Ldebug_abbrev0:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 26
+
+
+ 804 0000 01       		.uleb128 0x1
+ 805 0001 11       		.uleb128 0x11
+ 806 0002 01       		.byte	0x1
+ 807 0003 25       		.uleb128 0x25
+ 808 0004 0E       		.uleb128 0xe
+ 809 0005 13       		.uleb128 0x13
+ 810 0006 0B       		.uleb128 0xb
+ 811 0007 03       		.uleb128 0x3
+ 812 0008 0E       		.uleb128 0xe
+ 813 0009 1B       		.uleb128 0x1b
+ 814 000a 0E       		.uleb128 0xe
+ 815 000b 55       		.uleb128 0x55
+ 816 000c 17       		.uleb128 0x17
+ 817 000d 11       		.uleb128 0x11
+ 818 000e 01       		.uleb128 0x1
+ 819 000f 10       		.uleb128 0x10
+ 820 0010 17       		.uleb128 0x17
+ 821 0011 00       		.byte	0
+ 822 0012 00       		.byte	0
+ 823 0013 02       		.uleb128 0x2
+ 824 0014 24       		.uleb128 0x24
+ 825 0015 00       		.byte	0
+ 826 0016 0B       		.uleb128 0xb
+ 827 0017 0B       		.uleb128 0xb
+ 828 0018 3E       		.uleb128 0x3e
+ 829 0019 0B       		.uleb128 0xb
+ 830 001a 03       		.uleb128 0x3
+ 831 001b 0E       		.uleb128 0xe
+ 832 001c 00       		.byte	0
+ 833 001d 00       		.byte	0
+ 834 001e 03       		.uleb128 0x3
+ 835 001f 24       		.uleb128 0x24
+ 836 0020 00       		.byte	0
+ 837 0021 0B       		.uleb128 0xb
+ 838 0022 0B       		.uleb128 0xb
+ 839 0023 3E       		.uleb128 0x3e
+ 840 0024 0B       		.uleb128 0xb
+ 841 0025 03       		.uleb128 0x3
+ 842 0026 08       		.uleb128 0x8
+ 843 0027 00       		.byte	0
+ 844 0028 00       		.byte	0
+ 845 0029 04       		.uleb128 0x4
+ 846 002a 16       		.uleb128 0x16
+ 847 002b 00       		.byte	0
+ 848 002c 03       		.uleb128 0x3
+ 849 002d 0E       		.uleb128 0xe
+ 850 002e 3A       		.uleb128 0x3a
+ 851 002f 0B       		.uleb128 0xb
+ 852 0030 3B       		.uleb128 0x3b
+ 853 0031 0B       		.uleb128 0xb
+ 854 0032 49       		.uleb128 0x49
+ 855 0033 13       		.uleb128 0x13
+ 856 0034 00       		.byte	0
+ 857 0035 00       		.byte	0
+ 858 0036 05       		.uleb128 0x5
+ 859 0037 16       		.uleb128 0x16
+ 860 0038 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 27
+
+
+ 861 0039 03       		.uleb128 0x3
+ 862 003a 0E       		.uleb128 0xe
+ 863 003b 3A       		.uleb128 0x3a
+ 864 003c 0B       		.uleb128 0xb
+ 865 003d 3B       		.uleb128 0x3b
+ 866 003e 05       		.uleb128 0x5
+ 867 003f 49       		.uleb128 0x49
+ 868 0040 13       		.uleb128 0x13
+ 869 0041 00       		.byte	0
+ 870 0042 00       		.byte	0
+ 871 0043 06       		.uleb128 0x6
+ 872 0044 35       		.uleb128 0x35
+ 873 0045 00       		.byte	0
+ 874 0046 49       		.uleb128 0x49
+ 875 0047 13       		.uleb128 0x13
+ 876 0048 00       		.byte	0
+ 877 0049 00       		.byte	0
+ 878 004a 07       		.uleb128 0x7
+ 879 004b 0F       		.uleb128 0xf
+ 880 004c 00       		.byte	0
+ 881 004d 0B       		.uleb128 0xb
+ 882 004e 0B       		.uleb128 0xb
+ 883 004f 49       		.uleb128 0x49
+ 884 0050 13       		.uleb128 0x13
+ 885 0051 00       		.byte	0
+ 886 0052 00       		.byte	0
+ 887 0053 08       		.uleb128 0x8
+ 888 0054 15       		.uleb128 0x15
+ 889 0055 00       		.byte	0
+ 890 0056 27       		.uleb128 0x27
+ 891 0057 19       		.uleb128 0x19
+ 892 0058 00       		.byte	0
+ 893 0059 00       		.byte	0
+ 894 005a 09       		.uleb128 0x9
+ 895 005b 2E       		.uleb128 0x2e
+ 896 005c 01       		.byte	0x1
+ 897 005d 3F       		.uleb128 0x3f
+ 898 005e 19       		.uleb128 0x19
+ 899 005f 03       		.uleb128 0x3
+ 900 0060 0E       		.uleb128 0xe
+ 901 0061 3A       		.uleb128 0x3a
+ 902 0062 0B       		.uleb128 0xb
+ 903 0063 3B       		.uleb128 0x3b
+ 904 0064 0B       		.uleb128 0xb
+ 905 0065 27       		.uleb128 0x27
+ 906 0066 19       		.uleb128 0x19
+ 907 0067 11       		.uleb128 0x11
+ 908 0068 01       		.uleb128 0x1
+ 909 0069 12       		.uleb128 0x12
+ 910 006a 06       		.uleb128 0x6
+ 911 006b 40       		.uleb128 0x40
+ 912 006c 18       		.uleb128 0x18
+ 913 006d 9742     		.uleb128 0x2117
+ 914 006f 19       		.uleb128 0x19
+ 915 0070 01       		.uleb128 0x1
+ 916 0071 13       		.uleb128 0x13
+ 917 0072 00       		.byte	0
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 28
+
+
+ 918 0073 00       		.byte	0
+ 919 0074 0A       		.uleb128 0xa
+ 920 0075 898201   		.uleb128 0x4109
+ 921 0078 01       		.byte	0x1
+ 922 0079 11       		.uleb128 0x11
+ 923 007a 01       		.uleb128 0x1
+ 924 007b 31       		.uleb128 0x31
+ 925 007c 13       		.uleb128 0x13
+ 926 007d 01       		.uleb128 0x1
+ 927 007e 13       		.uleb128 0x13
+ 928 007f 00       		.byte	0
+ 929 0080 00       		.byte	0
+ 930 0081 0B       		.uleb128 0xb
+ 931 0082 8A8201   		.uleb128 0x410a
+ 932 0085 00       		.byte	0
+ 933 0086 02       		.uleb128 0x2
+ 934 0087 18       		.uleb128 0x18
+ 935 0088 9142     		.uleb128 0x2111
+ 936 008a 18       		.uleb128 0x18
+ 937 008b 00       		.byte	0
+ 938 008c 00       		.byte	0
+ 939 008d 0C       		.uleb128 0xc
+ 940 008e 898201   		.uleb128 0x4109
+ 941 0091 01       		.byte	0x1
+ 942 0092 11       		.uleb128 0x11
+ 943 0093 01       		.uleb128 0x1
+ 944 0094 31       		.uleb128 0x31
+ 945 0095 13       		.uleb128 0x13
+ 946 0096 00       		.byte	0
+ 947 0097 00       		.byte	0
+ 948 0098 0D       		.uleb128 0xd
+ 949 0099 2E       		.uleb128 0x2e
+ 950 009a 01       		.byte	0x1
+ 951 009b 3F       		.uleb128 0x3f
+ 952 009c 19       		.uleb128 0x19
+ 953 009d 03       		.uleb128 0x3
+ 954 009e 0E       		.uleb128 0xe
+ 955 009f 3A       		.uleb128 0x3a
+ 956 00a0 0B       		.uleb128 0xb
+ 957 00a1 3B       		.uleb128 0x3b
+ 958 00a2 05       		.uleb128 0x5
+ 959 00a3 27       		.uleb128 0x27
+ 960 00a4 19       		.uleb128 0x19
+ 961 00a5 11       		.uleb128 0x11
+ 962 00a6 01       		.uleb128 0x1
+ 963 00a7 12       		.uleb128 0x12
+ 964 00a8 06       		.uleb128 0x6
+ 965 00a9 40       		.uleb128 0x40
+ 966 00aa 18       		.uleb128 0x18
+ 967 00ab 9742     		.uleb128 0x2117
+ 968 00ad 19       		.uleb128 0x19
+ 969 00ae 01       		.uleb128 0x1
+ 970 00af 13       		.uleb128 0x13
+ 971 00b0 00       		.byte	0
+ 972 00b1 00       		.byte	0
+ 973 00b2 0E       		.uleb128 0xe
+ 974 00b3 05       		.uleb128 0x5
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 29
+
+
+ 975 00b4 00       		.byte	0
+ 976 00b5 03       		.uleb128 0x3
+ 977 00b6 0E       		.uleb128 0xe
+ 978 00b7 3A       		.uleb128 0x3a
+ 979 00b8 0B       		.uleb128 0xb
+ 980 00b9 3B       		.uleb128 0x3b
+ 981 00ba 05       		.uleb128 0x5
+ 982 00bb 49       		.uleb128 0x49
+ 983 00bc 13       		.uleb128 0x13
+ 984 00bd 02       		.uleb128 0x2
+ 985 00be 18       		.uleb128 0x18
+ 986 00bf 00       		.byte	0
+ 987 00c0 00       		.byte	0
+ 988 00c1 0F       		.uleb128 0xf
+ 989 00c2 34       		.uleb128 0x34
+ 990 00c3 00       		.byte	0
+ 991 00c4 03       		.uleb128 0x3
+ 992 00c5 0E       		.uleb128 0xe
+ 993 00c6 3A       		.uleb128 0x3a
+ 994 00c7 0B       		.uleb128 0xb
+ 995 00c8 3B       		.uleb128 0x3b
+ 996 00c9 05       		.uleb128 0x5
+ 997 00ca 49       		.uleb128 0x49
+ 998 00cb 13       		.uleb128 0x13
+ 999 00cc 02       		.uleb128 0x2
+ 1000 00cd 17       		.uleb128 0x17
+ 1001 00ce 00       		.byte	0
+ 1002 00cf 00       		.byte	0
+ 1003 00d0 10       		.uleb128 0x10
+ 1004 00d1 05       		.uleb128 0x5
+ 1005 00d2 00       		.byte	0
+ 1006 00d3 03       		.uleb128 0x3
+ 1007 00d4 0E       		.uleb128 0xe
+ 1008 00d5 3A       		.uleb128 0x3a
+ 1009 00d6 0B       		.uleb128 0xb
+ 1010 00d7 3B       		.uleb128 0x3b
+ 1011 00d8 05       		.uleb128 0x5
+ 1012 00d9 49       		.uleb128 0x49
+ 1013 00da 13       		.uleb128 0x13
+ 1014 00db 02       		.uleb128 0x2
+ 1015 00dc 17       		.uleb128 0x17
+ 1016 00dd 00       		.byte	0
+ 1017 00de 00       		.byte	0
+ 1018 00df 11       		.uleb128 0x11
+ 1019 00e0 2E       		.uleb128 0x2e
+ 1020 00e1 01       		.byte	0x1
+ 1021 00e2 3F       		.uleb128 0x3f
+ 1022 00e3 19       		.uleb128 0x19
+ 1023 00e4 03       		.uleb128 0x3
+ 1024 00e5 0E       		.uleb128 0xe
+ 1025 00e6 3A       		.uleb128 0x3a
+ 1026 00e7 0B       		.uleb128 0xb
+ 1027 00e8 3B       		.uleb128 0x3b
+ 1028 00e9 05       		.uleb128 0x5
+ 1029 00ea 27       		.uleb128 0x27
+ 1030 00eb 19       		.uleb128 0x19
+ 1031 00ec 49       		.uleb128 0x49
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 30
+
+
+ 1032 00ed 13       		.uleb128 0x13
+ 1033 00ee 11       		.uleb128 0x11
+ 1034 00ef 01       		.uleb128 0x1
+ 1035 00f0 12       		.uleb128 0x12
+ 1036 00f1 06       		.uleb128 0x6
+ 1037 00f2 40       		.uleb128 0x40
+ 1038 00f3 18       		.uleb128 0x18
+ 1039 00f4 9742     		.uleb128 0x2117
+ 1040 00f6 19       		.uleb128 0x19
+ 1041 00f7 01       		.uleb128 0x1
+ 1042 00f8 13       		.uleb128 0x13
+ 1043 00f9 00       		.byte	0
+ 1044 00fa 00       		.byte	0
+ 1045 00fb 12       		.uleb128 0x12
+ 1046 00fc 898201   		.uleb128 0x4109
+ 1047 00ff 00       		.byte	0
+ 1048 0100 11       		.uleb128 0x11
+ 1049 0101 01       		.uleb128 0x1
+ 1050 0102 31       		.uleb128 0x31
+ 1051 0103 13       		.uleb128 0x13
+ 1052 0104 00       		.byte	0
+ 1053 0105 00       		.byte	0
+ 1054 0106 13       		.uleb128 0x13
+ 1055 0107 34       		.uleb128 0x34
+ 1056 0108 00       		.byte	0
+ 1057 0109 03       		.uleb128 0x3
+ 1058 010a 0E       		.uleb128 0xe
+ 1059 010b 3A       		.uleb128 0x3a
+ 1060 010c 0B       		.uleb128 0xb
+ 1061 010d 3B       		.uleb128 0x3b
+ 1062 010e 05       		.uleb128 0x5
+ 1063 010f 49       		.uleb128 0x49
+ 1064 0110 13       		.uleb128 0x13
+ 1065 0111 02       		.uleb128 0x2
+ 1066 0112 18       		.uleb128 0x18
+ 1067 0113 00       		.byte	0
+ 1068 0114 00       		.byte	0
+ 1069 0115 14       		.uleb128 0x14
+ 1070 0116 26       		.uleb128 0x26
+ 1071 0117 00       		.byte	0
+ 1072 0118 49       		.uleb128 0x49
+ 1073 0119 13       		.uleb128 0x13
+ 1074 011a 00       		.byte	0
+ 1075 011b 00       		.byte	0
+ 1076 011c 15       		.uleb128 0x15
+ 1077 011d 2E       		.uleb128 0x2e
+ 1078 011e 01       		.byte	0x1
+ 1079 011f 3F       		.uleb128 0x3f
+ 1080 0120 19       		.uleb128 0x19
+ 1081 0121 03       		.uleb128 0x3
+ 1082 0122 0E       		.uleb128 0xe
+ 1083 0123 3A       		.uleb128 0x3a
+ 1084 0124 0B       		.uleb128 0xb
+ 1085 0125 3B       		.uleb128 0x3b
+ 1086 0126 0B       		.uleb128 0xb
+ 1087 0127 27       		.uleb128 0x27
+ 1088 0128 19       		.uleb128 0x19
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 31
+
+
+ 1089 0129 3C       		.uleb128 0x3c
+ 1090 012a 19       		.uleb128 0x19
+ 1091 012b 01       		.uleb128 0x1
+ 1092 012c 13       		.uleb128 0x13
+ 1093 012d 00       		.byte	0
+ 1094 012e 00       		.byte	0
+ 1095 012f 16       		.uleb128 0x16
+ 1096 0130 05       		.uleb128 0x5
+ 1097 0131 00       		.byte	0
+ 1098 0132 49       		.uleb128 0x49
+ 1099 0133 13       		.uleb128 0x13
+ 1100 0134 00       		.byte	0
+ 1101 0135 00       		.byte	0
+ 1102 0136 17       		.uleb128 0x17
+ 1103 0137 2E       		.uleb128 0x2e
+ 1104 0138 01       		.byte	0x1
+ 1105 0139 3F       		.uleb128 0x3f
+ 1106 013a 19       		.uleb128 0x19
+ 1107 013b 03       		.uleb128 0x3
+ 1108 013c 0E       		.uleb128 0xe
+ 1109 013d 3A       		.uleb128 0x3a
+ 1110 013e 0B       		.uleb128 0xb
+ 1111 013f 3B       		.uleb128 0x3b
+ 1112 0140 0B       		.uleb128 0xb
+ 1113 0141 27       		.uleb128 0x27
+ 1114 0142 19       		.uleb128 0x19
+ 1115 0143 49       		.uleb128 0x49
+ 1116 0144 13       		.uleb128 0x13
+ 1117 0145 3C       		.uleb128 0x3c
+ 1118 0146 19       		.uleb128 0x19
+ 1119 0147 01       		.uleb128 0x1
+ 1120 0148 13       		.uleb128 0x13
+ 1121 0149 00       		.byte	0
+ 1122 014a 00       		.byte	0
+ 1123 014b 18       		.uleb128 0x18
+ 1124 014c 2E       		.uleb128 0x2e
+ 1125 014d 00       		.byte	0
+ 1126 014e 3F       		.uleb128 0x3f
+ 1127 014f 19       		.uleb128 0x19
+ 1128 0150 03       		.uleb128 0x3
+ 1129 0151 0E       		.uleb128 0xe
+ 1130 0152 3A       		.uleb128 0x3a
+ 1131 0153 0B       		.uleb128 0xb
+ 1132 0154 3B       		.uleb128 0x3b
+ 1133 0155 05       		.uleb128 0x5
+ 1134 0156 27       		.uleb128 0x27
+ 1135 0157 19       		.uleb128 0x19
+ 1136 0158 49       		.uleb128 0x49
+ 1137 0159 13       		.uleb128 0x13
+ 1138 015a 3C       		.uleb128 0x3c
+ 1139 015b 19       		.uleb128 0x19
+ 1140 015c 00       		.byte	0
+ 1141 015d 00       		.byte	0
+ 1142 015e 19       		.uleb128 0x19
+ 1143 015f 2E       		.uleb128 0x2e
+ 1144 0160 00       		.byte	0
+ 1145 0161 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 32
+
+
+ 1146 0162 19       		.uleb128 0x19
+ 1147 0163 03       		.uleb128 0x3
+ 1148 0164 0E       		.uleb128 0xe
+ 1149 0165 3A       		.uleb128 0x3a
+ 1150 0166 0B       		.uleb128 0xb
+ 1151 0167 3B       		.uleb128 0x3b
+ 1152 0168 0B       		.uleb128 0xb
+ 1153 0169 27       		.uleb128 0x27
+ 1154 016a 19       		.uleb128 0x19
+ 1155 016b 49       		.uleb128 0x49
+ 1156 016c 13       		.uleb128 0x13
+ 1157 016d 3C       		.uleb128 0x3c
+ 1158 016e 19       		.uleb128 0x19
+ 1159 016f 00       		.byte	0
+ 1160 0170 00       		.byte	0
+ 1161 0171 1A       		.uleb128 0x1a
+ 1162 0172 2E       		.uleb128 0x2e
+ 1163 0173 01       		.byte	0x1
+ 1164 0174 3F       		.uleb128 0x3f
+ 1165 0175 19       		.uleb128 0x19
+ 1166 0176 03       		.uleb128 0x3
+ 1167 0177 0E       		.uleb128 0xe
+ 1168 0178 3A       		.uleb128 0x3a
+ 1169 0179 0B       		.uleb128 0xb
+ 1170 017a 3B       		.uleb128 0x3b
+ 1171 017b 05       		.uleb128 0x5
+ 1172 017c 27       		.uleb128 0x27
+ 1173 017d 19       		.uleb128 0x19
+ 1174 017e 3C       		.uleb128 0x3c
+ 1175 017f 19       		.uleb128 0x19
+ 1176 0180 00       		.byte	0
+ 1177 0181 00       		.byte	0
+ 1178 0182 00       		.byte	0
+ 1179              		.section	.debug_loc,"",%progbits
+ 1180              	.Ldebug_loc0:
+ 1181              	.LLST0:
+ 1182 0000 06000000 		.4byte	.LVL4
+ 1183 0004 0C000000 		.4byte	.LVL6
+ 1184 0008 0100     		.2byte	0x1
+ 1185 000a 51       		.byte	0x51
+ 1186 000b 0C000000 		.4byte	.LVL6
+ 1187 000f 14000000 		.4byte	.LFE1
+ 1188 0013 0100     		.2byte	0x1
+ 1189 0015 52       		.byte	0x52
+ 1190 0016 00000000 		.4byte	0
+ 1191 001a 00000000 		.4byte	0
+ 1192              	.LLST1:
+ 1193 001e 00000000 		.4byte	.LVL7
+ 1194 0022 08000000 		.4byte	.LVL9
+ 1195 0026 0100     		.2byte	0x1
+ 1196 0028 50       		.byte	0x50
+ 1197 0029 08000000 		.4byte	.LVL9
+ 1198 002d 18000000 		.4byte	.LFE2
+ 1199 0031 0400     		.2byte	0x4
+ 1200 0033 F3       		.byte	0xf3
+ 1201 0034 01       		.uleb128 0x1
+ 1202 0035 50       		.byte	0x50
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 33
+
+
+ 1203 0036 9F       		.byte	0x9f
+ 1204 0037 00000000 		.4byte	0
+ 1205 003b 00000000 		.4byte	0
+ 1206              	.LLST2:
+ 1207 003f 06000000 		.4byte	.LVL8
+ 1208 0043 0A000000 		.4byte	.LVL10
+ 1209 0047 0100     		.2byte	0x1
+ 1210 0049 51       		.byte	0x51
+ 1211 004a 0A000000 		.4byte	.LVL10
+ 1212 004e 0C000000 		.4byte	.LVL11
+ 1213 0052 0100     		.2byte	0x1
+ 1214 0054 52       		.byte	0x52
+ 1215 0055 0C000000 		.4byte	.LVL11
+ 1216 0059 18000000 		.4byte	.LFE2
+ 1217 005d 0100     		.2byte	0x1
+ 1218 005f 50       		.byte	0x50
+ 1219 0060 00000000 		.4byte	0
+ 1220 0064 00000000 		.4byte	0
+ 1221              	.LLST3:
+ 1222 0068 00000000 		.4byte	.LVL12
+ 1223 006c 12000000 		.4byte	.LVL14
+ 1224 0070 0200     		.2byte	0x2
+ 1225 0072 30       		.byte	0x30
+ 1226 0073 9F       		.byte	0x9f
+ 1227 0074 12000000 		.4byte	.LVL14
+ 1228 0078 1E000000 		.4byte	.LVL15
+ 1229 007c 0100     		.2byte	0x1
+ 1230 007e 50       		.byte	0x50
+ 1231 007f 1E000000 		.4byte	.LVL15
+ 1232 0083 22000000 		.4byte	.LVL16
+ 1233 0087 0200     		.2byte	0x2
+ 1234 0089 30       		.byte	0x30
+ 1235 008a 9F       		.byte	0x9f
+ 1236 008b 22000000 		.4byte	.LVL16
+ 1237 008f 28000000 		.4byte	.LFE3
+ 1238 0093 0100     		.2byte	0x1
+ 1239 0095 50       		.byte	0x50
+ 1240 0096 00000000 		.4byte	0
+ 1241 009a 00000000 		.4byte	0
+ 1242              	.LLST4:
+ 1243 009e 18000000 		.4byte	.LVL20
+ 1244 00a2 1A000000 		.4byte	.LVL21
+ 1245 00a6 0100     		.2byte	0x1
+ 1246 00a8 50       		.byte	0x50
+ 1247 00a9 1E000000 		.4byte	.LVL22
+ 1248 00ad 2A000000 		.4byte	.LVL24
+ 1249 00b1 0100     		.2byte	0x1
+ 1250 00b3 50       		.byte	0x50
+ 1251 00b4 2A000000 		.4byte	.LVL24
+ 1252 00b8 30000000 		.4byte	.LVL25
+ 1253 00bc 0C00     		.2byte	0xc
+ 1254 00be 71       		.byte	0x71
+ 1255 00bf 00       		.sleb128 0
+ 1256 00c0 0A       		.byte	0xa
+ 1257 00c1 6003     		.2byte	0x360
+ 1258 00c3 1A       		.byte	0x1a
+ 1259 00c4 38       		.byte	0x38
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 34
+
+
+ 1260 00c5 24       		.byte	0x24
+ 1261 00c6 70       		.byte	0x70
+ 1262 00c7 00       		.sleb128 0
+ 1263 00c8 21       		.byte	0x21
+ 1264 00c9 9F       		.byte	0x9f
+ 1265 00ca 00000000 		.4byte	0
+ 1266 00ce 00000000 		.4byte	0
+ 1267              	.LLST5:
+ 1268 00d2 08000000 		.4byte	.LVL18
+ 1269 00d6 0B000000 		.4byte	.LVL19-1
+ 1270 00da 0100     		.2byte	0x1
+ 1271 00dc 50       		.byte	0x50
+ 1272 00dd 0B000000 		.4byte	.LVL19-1
+ 1273 00e1 30000000 		.4byte	.LVL26
+ 1274 00e5 0100     		.2byte	0x1
+ 1275 00e7 54       		.byte	0x54
+ 1276 00e8 00000000 		.4byte	0
+ 1277 00ec 00000000 		.4byte	0
+ 1278              	.LLST6:
+ 1279 00f0 00000000 		.4byte	.LVL27
+ 1280 00f4 04000000 		.4byte	.LVL28
+ 1281 00f8 0100     		.2byte	0x1
+ 1282 00fa 50       		.byte	0x50
+ 1283 00fb 04000000 		.4byte	.LVL28
+ 1284 00ff 16000000 		.4byte	.LFE5
+ 1285 0103 0400     		.2byte	0x4
+ 1286 0105 F3       		.byte	0xf3
+ 1287 0106 01       		.uleb128 0x1
+ 1288 0107 50       		.byte	0x50
+ 1289 0108 9F       		.byte	0x9f
+ 1290 0109 00000000 		.4byte	0
+ 1291 010d 00000000 		.4byte	0
+ 1292              	.LLST7:
+ 1293 0111 04000000 		.4byte	.LVL28
+ 1294 0115 06000000 		.4byte	.LVL29
+ 1295 0119 0700     		.2byte	0x7
+ 1296 011b 74       		.byte	0x74
+ 1297 011c 00       		.sleb128 0
+ 1298 011d F3       		.byte	0xf3
+ 1299 011e 01       		.uleb128 0x1
+ 1300 011f 50       		.byte	0x50
+ 1301 0120 1C       		.byte	0x1c
+ 1302 0121 9F       		.byte	0x9f
+ 1303 0122 06000000 		.4byte	.LVL29
+ 1304 0126 12000000 		.4byte	.LVL30
+ 1305 012a 0800     		.2byte	0x8
+ 1306 012c F3       		.byte	0xf3
+ 1307 012d 01       		.uleb128 0x1
+ 1308 012e 50       		.byte	0x50
+ 1309 012f 20       		.byte	0x20
+ 1310 0130 74       		.byte	0x74
+ 1311 0131 00       		.sleb128 0
+ 1312 0132 22       		.byte	0x22
+ 1313 0133 9F       		.byte	0x9f
+ 1314 0134 12000000 		.4byte	.LVL30
+ 1315 0138 14000000 		.4byte	.LVL31
+ 1316 013c 0700     		.2byte	0x7
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 35
+
+
+ 1317 013e 74       		.byte	0x74
+ 1318 013f 00       		.sleb128 0
+ 1319 0140 F3       		.byte	0xf3
+ 1320 0141 01       		.uleb128 0x1
+ 1321 0142 50       		.byte	0x50
+ 1322 0143 1C       		.byte	0x1c
+ 1323 0144 9F       		.byte	0x9f
+ 1324 0145 14000000 		.4byte	.LVL31
+ 1325 0149 14000000 		.4byte	.LVL32
+ 1326 014d 0800     		.2byte	0x8
+ 1327 014f F3       		.byte	0xf3
+ 1328 0150 01       		.uleb128 0x1
+ 1329 0151 50       		.byte	0x50
+ 1330 0152 20       		.byte	0x20
+ 1331 0153 74       		.byte	0x74
+ 1332 0154 00       		.sleb128 0
+ 1333 0155 22       		.byte	0x22
+ 1334 0156 9F       		.byte	0x9f
+ 1335 0157 14000000 		.4byte	.LVL32
+ 1336 015b 16000000 		.4byte	.LFE5
+ 1337 015f 0700     		.2byte	0x7
+ 1338 0161 73       		.byte	0x73
+ 1339 0162 00       		.sleb128 0
+ 1340 0163 F3       		.byte	0xf3
+ 1341 0164 01       		.uleb128 0x1
+ 1342 0165 50       		.byte	0x50
+ 1343 0166 1C       		.byte	0x1c
+ 1344 0167 9F       		.byte	0x9f
+ 1345 0168 00000000 		.4byte	0
+ 1346 016c 00000000 		.4byte	0
+ 1347              	.LLST8:
+ 1348 0170 00000000 		.4byte	.LVL33
+ 1349 0174 05000000 		.4byte	.LVL34-1
+ 1350 0178 0100     		.2byte	0x1
+ 1351 017a 50       		.byte	0x50
+ 1352 017b 05000000 		.4byte	.LVL34-1
+ 1353 017f 14000000 		.4byte	.LFE6
+ 1354 0183 0400     		.2byte	0x4
+ 1355 0185 F3       		.byte	0xf3
+ 1356 0186 01       		.uleb128 0x1
+ 1357 0187 50       		.byte	0x50
+ 1358 0188 9F       		.byte	0x9f
+ 1359 0189 00000000 		.4byte	0
+ 1360 018d 00000000 		.4byte	0
+ 1361              		.section	.debug_aranges,"",%progbits
+ 1362 0000 4C000000 		.4byte	0x4c
+ 1363 0004 0200     		.2byte	0x2
+ 1364 0006 00000000 		.4byte	.Ldebug_info0
+ 1365 000a 04       		.byte	0x4
+ 1366 000b 00       		.byte	0
+ 1367 000c 0000     		.2byte	0
+ 1368 000e 0000     		.2byte	0
+ 1369 0010 00000000 		.4byte	.LFB0
+ 1370 0014 BC000000 		.4byte	.LFE0-.LFB0
+ 1371 0018 00000000 		.4byte	.LFB1
+ 1372 001c 14000000 		.4byte	.LFE1-.LFB1
+ 1373 0020 00000000 		.4byte	.LFB2
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 36
+
+
+ 1374 0024 18000000 		.4byte	.LFE2-.LFB2
+ 1375 0028 00000000 		.4byte	.LFB3
+ 1376 002c 28000000 		.4byte	.LFE3-.LFB3
+ 1377 0030 00000000 		.4byte	.LFB4
+ 1378 0034 40000000 		.4byte	.LFE4-.LFB4
+ 1379 0038 00000000 		.4byte	.LFB5
+ 1380 003c 16000000 		.4byte	.LFE5-.LFB5
+ 1381 0040 00000000 		.4byte	.LFB6
+ 1382 0044 14000000 		.4byte	.LFE6-.LFB6
+ 1383 0048 00000000 		.4byte	0
+ 1384 004c 00000000 		.4byte	0
+ 1385              		.section	.debug_ranges,"",%progbits
+ 1386              	.Ldebug_ranges0:
+ 1387 0000 00000000 		.4byte	.LFB0
+ 1388 0004 BC000000 		.4byte	.LFE0
+ 1389 0008 00000000 		.4byte	.LFB1
+ 1390 000c 14000000 		.4byte	.LFE1
+ 1391 0010 00000000 		.4byte	.LFB2
+ 1392 0014 18000000 		.4byte	.LFE2
+ 1393 0018 00000000 		.4byte	.LFB3
+ 1394 001c 28000000 		.4byte	.LFE3
+ 1395 0020 00000000 		.4byte	.LFB4
+ 1396 0024 40000000 		.4byte	.LFE4
+ 1397 0028 00000000 		.4byte	.LFB5
+ 1398 002c 16000000 		.4byte	.LFE5
+ 1399 0030 00000000 		.4byte	.LFB6
+ 1400 0034 14000000 		.4byte	.LFE6
+ 1401 0038 00000000 		.4byte	0
+ 1402 003c 00000000 		.4byte	0
+ 1403              		.section	.debug_line,"",%progbits
+ 1404              	.Ldebug_line0:
+ 1405 0000 84010000 		.section	.debug_str,"MS",%progbits,1
+ 1405      0200B500 
+ 1405      00000201 
+ 1405      FB0E0D00 
+ 1405      01010101 
+ 1406              	.LASF6:
+ 1407 0000 6C6F6E67 		.ascii	"long long int\000"
+ 1407      206C6F6E 
+ 1407      6720696E 
+ 1407      7400
+ 1408              	.LASF15:
+ 1409 000e 72656733 		.ascii	"reg32\000"
+ 1409      3200
+ 1410              	.LASF43:
+ 1411 0014 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartWriteTxData\000"
+ 1411      5F525334 
+ 1411      38355F55 
+ 1411      4152545F 
+ 1411      53706955 
+ 1412              	.LASF38:
+ 1413 0037 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartDisableIntRx\000"
+ 1413      5F525334 
+ 1413      38355F55 
+ 1413      4152545F 
+ 1413      53706955 
+ 1414              	.LASF42:
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 37
+
+
+ 1415 005b 4379496E 		.ascii	"CyIntSetVector\000"
+ 1415      74536574 
+ 1415      56656374 
+ 1415      6F7200
+ 1416              	.LASF36:
+ 1417 006a 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartGetRxBufferSize\000"
+ 1417      5F525334 
+ 1417      38355F55 
+ 1417      4152545F 
+ 1417      53706955 
+ 1418              	.LASF25:
+ 1419 0091 636F6D6D 		.ascii	"comm_RS485_UART_UartGetChar\000"
+ 1419      5F525334 
+ 1419      38355F55 
+ 1419      4152545F 
+ 1419      55617274 
+ 1420              	.LASF3:
+ 1421 00ad 73686F72 		.ascii	"short unsigned int\000"
+ 1421      7420756E 
+ 1421      7369676E 
+ 1421      65642069 
+ 1421      6E7400
+ 1422              	.LASF8:
+ 1423 00c0 756E7369 		.ascii	"unsigned int\000"
+ 1423      676E6564 
+ 1423      20696E74 
+ 1423      00
+ 1424              	.LASF19:
+ 1425 00cd 636F6D6D 		.ascii	"comm_RS485_UART_UartSetRxAddress\000"
+ 1425      5F525334 
+ 1425      38355F55 
+ 1425      4152545F 
+ 1425      55617274 
+ 1426              	.LASF30:
+ 1427 00ee 73747269 		.ascii	"string\000"
+ 1427      6E6700
+ 1428              	.LASF39:
+ 1429 00f5 474E5520 		.ascii	"GNU C 4.8.4 20140526 (release) [ARM/embedded-4_8-br"
+ 1429      4320342E 
+ 1429      382E3420 
+ 1429      32303134 
+ 1429      30353236 
+ 1430 0128 616E6368 		.ascii	"anch revision 211358] -mcpu=cortex-m0 -mthumb -g -O"
+ 1430      20726576 
+ 1430      6973696F 
+ 1430      6E203231 
+ 1430      31333538 
+ 1431 015b 73202D66 		.ascii	"s -ffunction-sections\000"
+ 1431      66756E63 
+ 1431      74696F6E 
+ 1431      2D736563 
+ 1431      74696F6E 
+ 1432              	.LASF11:
+ 1433 0171 666C6F61 		.ascii	"float\000"
+ 1433      7400
+ 1434              	.LASF7:
+ 1435 0177 6C6F6E67 		.ascii	"long long unsigned int\000"
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 38
+
+
+ 1435      206C6F6E 
+ 1435      6720756E 
+ 1435      7369676E 
+ 1435      65642069 
+ 1436              	.LASF1:
+ 1437 018e 756E7369 		.ascii	"unsigned char\000"
+ 1437      676E6564 
+ 1437      20636861 
+ 1437      7200
+ 1438              	.LASF13:
+ 1439 019c 63686172 		.ascii	"char8\000"
+ 1439      3800
+ 1440              	.LASF37:
+ 1441 01a2 636F6D6D 		.ascii	"comm_RS485_UART_SpiUartReadRxData\000"
+ 1441      5F525334 
+ 1441      38355F55 
+ 1441      4152545F 
+ 1441      53706955 
+ 1442              	.LASF18:
+ 1443 01c4 636F6D6D 		.ascii	"comm_RS485_UART_UartInit\000"
+ 1443      5F525334 
+ 1443      38355F55 
+ 1443      4152545F 
+ 1443      55617274 
+ 1444              	.LASF9:
+ 1445 01dd 75696E74 		.ascii	"uint8\000"
+ 1445      3800
+ 1446              	.LASF24:
+ 1447 01e3 72784461 		.ascii	"rxData\000"
+ 1447      746100
+ 1448              	.LASF22:
+ 1449 01ea 61646472 		.ascii	"addressMask\000"
+ 1449      6573734D 
+ 1449      61736B00 
+ 1450              	.LASF40:
+ 1451 01f6 2E5C4765 		.ascii	".\\Generated_Source\\PSoC4\\comm_RS485_UART_UART.c\000"
+ 1451      6E657261 
+ 1451      7465645F 
+ 1451      536F7572 
+ 1451      63655C50 
+ 1452              	.LASF12:
+ 1453 0226 646F7562 		.ascii	"double\000"
+ 1453      6C6500
+ 1454              	.LASF10:
+ 1455 022d 75696E74 		.ascii	"uint32\000"
+ 1455      333200
+ 1456              	.LASF5:
+ 1457 0234 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1457      20756E73 
+ 1457      69676E65 
+ 1457      6420696E 
+ 1457      7400
+ 1458              	.LASF28:
+ 1459 0246 696E7453 		.ascii	"intSourceMask\000"
+ 1459      6F757263 
+ 1459      654D6173 
+ 1459      6B00
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 39
+
+
+ 1460              	.LASF21:
+ 1461 0254 61646472 		.ascii	"address\000"
+ 1461      65737300 
+ 1462              	.LASF41:
+ 1463 025c 443A5C55 		.ascii	"D:\\Users\\sdevasenapathy\\atoms\\AtomWorkspace\\At"
+ 1463      73657273 
+ 1463      5C736465 
+ 1463      76617365 
+ 1463      6E617061 
+ 1464 028a 6F6D2E63 		.ascii	"om.cydsn\000"
+ 1464      7964736E 
+ 1464      00
+ 1465              	.LASF35:
+ 1466 0293 4379496E 		.ascii	"CyIntSetPriority\000"
+ 1466      74536574 
+ 1466      5072696F 
+ 1466      72697479 
+ 1466      00
+ 1467              	.LASF16:
+ 1468 02a4 63796973 		.ascii	"cyisraddress\000"
+ 1468      72616464 
+ 1468      72657373 
+ 1468      00
+ 1469              	.LASF31:
+ 1470 02b1 62756649 		.ascii	"bufIndex\000"
+ 1470      6E646578 
+ 1470      00
+ 1471              	.LASF20:
+ 1472 02ba 636F6D6D 		.ascii	"comm_RS485_UART_UartSetRxAddressMask\000"
+ 1472      5F525334 
+ 1472      38355F55 
+ 1472      4152545F 
+ 1472      55617274 
+ 1473              	.LASF17:
+ 1474 02df 73697A65 		.ascii	"sizetype\000"
+ 1474      74797065 
+ 1474      00
+ 1475              	.LASF33:
+ 1476 02e8 74784461 		.ascii	"txDataByte\000"
+ 1476      74614279 
+ 1476      746500
+ 1477              	.LASF14:
+ 1478 02f3 63686172 		.ascii	"char\000"
+ 1478      00
+ 1479              	.LASF34:
+ 1480 02f8 4379496E 		.ascii	"CyIntDisable\000"
+ 1480      74446973 
+ 1480      61626C65 
+ 1480      00
+ 1481              	.LASF2:
+ 1482 0305 73686F72 		.ascii	"short int\000"
+ 1482      7420696E 
+ 1482      7400
+ 1483              	.LASF29:
+ 1484 030f 636F6D6D 		.ascii	"comm_RS485_UART_UartPutString\000"
+ 1484      5F525334 
+ 1484      38355F55 
+ARM GAS  C:\Users\SDEVAS~1\AppData\Local\Temp\ccmGD0VW.s 			page 40
+
+
+ 1484      4152545F 
+ 1484      55617274 
+ 1485              	.LASF26:
+ 1486 032d 636F6D6D 		.ascii	"comm_RS485_UART_UartGetByte\000"
+ 1486      5F525334 
+ 1486      38355F55 
+ 1486      4152545F 
+ 1486      55617274 
+ 1487              	.LASF32:
+ 1488 0349 636F6D6D 		.ascii	"comm_RS485_UART_UartPutCRLF\000"
+ 1488      5F525334 
+ 1488      38355F55 
+ 1488      4152545F 
+ 1488      55617274 
+ 1489              	.LASF4:
+ 1490 0365 6C6F6E67 		.ascii	"long int\000"
+ 1490      20696E74 
+ 1490      00
+ 1491              	.LASF27:
+ 1492 036e 746D7053 		.ascii	"tmpStatus\000"
+ 1492      74617475 
+ 1492      7300
+ 1493              	.LASF23:
+ 1494 0378 6D617463 		.ascii	"matchReg\000"
+ 1494      68526567 
+ 1494      00
+ 1495              	.LASF0:
+ 1496 0381 7369676E 		.ascii	"signed char\000"
+ 1496      65642063 
+ 1496      68617200 
+ 1497              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.8.4 20140526 (release) [ARM/embedded-4_8-br
